@@ -26,6 +26,7 @@ public class BoardEntity extends BaseEntity {
     private String bview; // 8. 조회수
     private String bgood; //9. 추천수
     private String bbad; //10. 비추천
+    private int vview;
 
     // 연관관계1 [ 회원번호[pk : mno] <--양방향--> 게시물번호[fk : bno]
     @ManyToOne
