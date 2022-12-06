@@ -10,7 +10,7 @@ import javax.persistence.*;
 @AllArgsConstructor @NoArgsConstructor @Getter @Setter @Builder @ToString
 public class LetterEntity extends BaseEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // 자동번호 부여
     private int lno;
 
     @Column( nullable = false )
@@ -18,6 +18,9 @@ public class LetterEntity extends BaseEntity {
 
     @Column( nullable = false )
     private String  lcontent;   //내용
+
+    @Column
+    private String lfile;  // 첨부파일
 
     // 연관관계1 [ 회원번호[pk : mno] <--양방향--> 보내는 사람[fk : lfrom]
     @ManyToOne
@@ -37,6 +40,7 @@ public class LetterEntity extends BaseEntity {
                 .lno( this.lno )
                 .ltitle( this.ltitle)
                 .lcontent( this.lcontent)
+                .lfile( this.lfile )
                 .build();
     }
 }

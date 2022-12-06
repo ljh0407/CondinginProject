@@ -21,7 +21,6 @@ public class BoardEntity extends BaseEntity {
     @Column( nullable = false ) // not null
     private String  bcontent; //3. 내용
     @Column( nullable = false ) // not null
-    private String bwriter; // 4. 작성자
     private String bfile; //; 5. 첨부파일
     private String bview; // 8. 조회수
     private String bgood; //9. 추천수
@@ -48,7 +47,6 @@ public class BoardEntity extends BaseEntity {
                 .bno( this.bno )
                 .btitle( this.btitle )
                 .bcontent( this.bcontent )
-                .bwriter( this.bwriter)
                 .bfile( this.bfile)
                 .bview( this.bview)
                 .bgood( this.bgood)
