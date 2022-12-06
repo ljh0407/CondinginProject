@@ -1,0 +1,68 @@
+*{
+    margin : 0%;
+    padding : 0;
+    box-sizing : border-box;
+}
+@font-face {
+    font-family: 'Humanbumsuk';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2210-2@1.0/Humanbumsuk.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+li{ list-style-type: none; }
+
+header{
+    height: 166px;
+    border : solid 1px red; *//* 지워야함 */
+}
+
+.box{
+    width: 1100px;
+    margin: 0 auto;
+    border : solid 1px red; *//* 지워야함 */
+}
+
+#logo{
+    float: left;
+    margin: 1% 0 0 7%;
+}
+
+#menu{
+    float: right;
+    text-align: right;
+    margin-right : 20px;
+}
+
+#menu li{  display : inline-block; }
+
+#top_menu li{
+    margin : 60px 0 0 5px;
+    font-family: 'Humanbumsuk';
+    font-size: 140%;
+    border-radius: 45px;
+    background: #ffffff;
+    box-shadow:  21px 21px 42px #d6d6d6,
+                 -21px -21px 42px #ffffff;
+ }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
