@@ -9,7 +9,7 @@ import org.springframework.core.io.Resource;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-@CrossOrigin
+
 @RestController
 @RequestMapping("/board")
 public class boardController {
