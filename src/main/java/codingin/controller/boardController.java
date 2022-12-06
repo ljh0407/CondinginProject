@@ -12,7 +12,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/board")
-public class boardController {
+public class boardController {  //
     //=============================================//
     @Autowired
     private MemberService memberService;
