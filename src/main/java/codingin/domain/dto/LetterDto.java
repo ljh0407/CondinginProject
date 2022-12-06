@@ -10,6 +10,7 @@ public class LetterDto {
     private String  lto;    //받는 사람
     private String  ltitle; //제목
     private String  lcontent;   //내용
+    private String lfile;
 
     public LetterEntity toEntity(){
         return LetterEntity
@@ -17,6 +18,7 @@ public class LetterDto {
                 .lno( this.lno )
                 .ltitle( this.ltitle)
                 .lcontent( this.lcontent)
+                .lfile( this.lfile)
                 .build();
     }
 }

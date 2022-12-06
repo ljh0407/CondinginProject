@@ -47,6 +47,10 @@ public class MemberEntity extends BaseEntity {
 
     @OneToMany(mappedBy = "memberEntity")
     @Builder.Default
+    private List<ReplyEntity>replyEntityList = new ArrayList<>();
+
+    @OneToMany(mappedBy = "memberEntity")
+    @Builder.Default
     private List<RereplyEntity>rereplyEntityList = new ArrayList<>();
 
 //    //양방향[일대일]
