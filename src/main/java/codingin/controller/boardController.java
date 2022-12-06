@@ -6,10 +6,7 @@ import codingin.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -36,6 +33,7 @@ public class boardController {
     public int bwrite(BoardDto boardDto){
             System.out.println("boardController 1.개별 글쓰기 boardDto 확인 : "+boardDto);
         int result = boardService.bwrite(boardDto);
+            System.out.println("boardController 1. 개별 글 쓰기 result 확인 : " + result);
         return result;
     }
 
@@ -46,22 +44,25 @@ public class boardController {
     }
 
 
-    //3. 개별 글 보기
+    //3. 개별 글 보기 12.6 최예은
+    @GetMapping("/getboard")
+    public BoardDto getboard(@RequestParam("bno")int bno){
+       return boardService.getboard(bno);
+   }
 
 
+    //4. 글 수정하기 12.6 최예은
+    @PutMapping("/upboard")
+    public boolean upboard(@RequestBody BoardDto boardDto){
+       return boardService.upboard(boardDto);
+    }
 
-    //4. 모든 글 출력하기
+    //5. 글 삭제하기 12.6 최예은
 
-    //5. 글 수정하기
-
-    //6. 글 삭제하기
-
-
-
-
-
-
-
+    @GetMapping("/deleteboard")
+    public boolean deleteboard(@RequestParam("bno")int bno){
+       return boardService.deleteboard(bno);
+    }
 
 
 }
