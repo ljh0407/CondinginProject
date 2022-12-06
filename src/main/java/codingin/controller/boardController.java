@@ -12,7 +12,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/board")
-public class boardController {  //
+public class boardController {
     //=============================================//
     @Autowired
     private MemberService memberService;
@@ -63,6 +63,9 @@ public class boardController {  //
     public boolean deleteboard(@RequestParam("bno")int bno){
        return boardService.deleteboard(bno);
     }
+
+    @GetMapping("/updown")
+    public  Resource updown() {return  new ClassPathResource("templates/updown.html");}
 
 
 }

@@ -19,6 +19,8 @@ public class MemberService {
     private ReplyRepository replyRepository;
     @Autowired
     private RereplyRepository rereplyRepository;
+    @Autowired
+    private  UpdownRepository updownRepository;
     //====================================================//
 
 }
