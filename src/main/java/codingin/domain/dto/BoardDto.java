@@ -14,6 +14,9 @@ public class BoardDto {
     private String bgood; //9. 추천수
     private String bbad; //10. 비추천
 
+    //12.6 최예은 추가 글쓴이 일치여부 (수정,삭제때문에 추가)
+    private boolean btnaction; //로그인한 사람과 글쓴이가 일치하는지 확인하기 위해서 추가함
+
     public BoardEntity toEntity(){
         return BoardEntity
                 .builder()

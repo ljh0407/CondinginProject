@@ -61,7 +61,15 @@ public class BoardService {
             BoardEntity boardEntity = optional.get();
                 System.out.println("BoardService 3.개별 글 보기 boardEntity 확인  : " + boardEntity);
                 System.out.println("BoardService 3.개별 글 보기 boardEntity.toDto 확인  : " + boardEntity.toDto());
-            return boardEntity.toDto(); //형변환된 dto 반환
+
+                BoardDto boardDto = boardEntity.toDto(); // board객체
+                if(boardDto.getBwriter().equals("qweqwe")){//만약에 로그인한 사람과 글을 작성한 사람과 일치하면 "qwe"는 로그인세션 나중에 집어넣어주기
+                    boardDto.setBtnaction(true); //있으면 수정삭제 버튼 보여주기
+                }else {
+                    boardDto.setBtnaction(false); //그렇지 않으면 그냥 화면 보여주기
+                }
+
+                return boardDto; //형변환된 dto 반환
         }//if end
         else {
             return null; //없으면 null 반환
