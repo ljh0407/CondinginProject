@@ -95,7 +95,6 @@ public class BoardService {
         }
     }
 
-
     //5. 글 삭제하기 12.6 최예은
     public boolean deleteboard( int bno){
         boardRepository.findById(bno);
@@ -113,5 +112,5 @@ public class BoardService {
     }
 
 
-}
-//12.6
+}// class end
+
