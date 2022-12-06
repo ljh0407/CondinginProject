@@ -19,4 +19,11 @@ public class MemberController {
     public Resource getindex(){
         return new ClassPathResource("templates/index.html");
     }
+
+
+
+    //1 주혁 좋아요 싫어요 테스트
+
+
+
 }

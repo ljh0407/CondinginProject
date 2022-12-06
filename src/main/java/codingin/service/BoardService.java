@@ -19,6 +19,11 @@ public class BoardService {
     private ReplyRepository replyRepository;
     @Autowired
     private RereplyRepository rereplyRepository;
+    @Autowired
+    private  UpdownRepository updownRepository;
     //====================================================//
+
+
+
 
 }
