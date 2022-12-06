@@ -38,7 +38,7 @@ public class LetterController {
     @GetMapping("/getlist")
     public List<LetterDto>letterList(@RequestBody LetterDto letterDto){
         System.out.println("리스트 출력 : "+ letterDto.toString());
-        return letterService.letterList(letterDto);
+        return null;
     }
 
 } // end

@@ -8,6 +8,10 @@ public class BoardDto {
     private int bno;
     private String btitle; //제목
     private String  bcontent; //3. 내용
+
+    private String  bwrite; //3.  작 성 자
+    private String  mno; //3.  작 성 자
+
     private String bfile; //; 5. 첨부파일
     private String bview; // 8. 조회수
     private String bgood; //9. 추천수

@@ -43,9 +43,10 @@ public class LetterService {
     // 2. 쪽지리스트 출력
     public List<LetterDto>letterList(){
         List<LetterEntity> letterEntityList = null;
-        if(letterEntityList != 0){
-            letterEntityList = letterRepository.findAll(); // 모든 엔티티 호출
-        }
+//        if(letterEntityList != 0){
+//            letterEntityList = letterRepository.findAll(); // 모든 엔티티 호출
+//        }
+        return null;
     }
 }
 
