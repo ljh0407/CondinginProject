@@ -64,8 +64,14 @@ public class boardController {
        return boardService.deleteboard(bno);
     }
 
+    // 주혁 12-06 테스트 경로
     @GetMapping("/updown")
     public  Resource updown() {return  new ClassPathResource("templates/updown.html");}
+
+//    @PostMapping("updown")
+//    public  int updown(@RequestBody BoardDto boardDto){
+//       return  boardService.updown(boardDto);
+//    }
 
 
 
