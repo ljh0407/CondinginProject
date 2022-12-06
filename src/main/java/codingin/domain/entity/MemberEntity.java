@@ -47,6 +47,10 @@ public class MemberEntity extends BaseEntity {
 
     @OneToMany(mappedBy = "memberEntity")
     @Builder.Default
+    private List<ReplyEntity>replyEntityList = new ArrayList<>();
+
+    @OneToMany(mappedBy = "memberEntity")
+    @Builder.Default
     private List<RereplyEntity>rereplyEntityList = new ArrayList<>();
 
     //주혁 좋아요 엔티티 연관관계 2022 12-06
