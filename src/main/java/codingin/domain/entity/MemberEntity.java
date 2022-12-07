@@ -16,9 +16,10 @@ public class MemberEntity extends BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int mno; //회원번호
 
-    @Column(nullable = false)
+    @Column(nullable = false)// 12.07 삭제된 필드 복구
     private String memail;
-    @Column( nullable = false ) // not null
+
+    @Column( nullable = false )
     private String mnick;   //닉네임
 
     @Column( nullable = false ) // not null
