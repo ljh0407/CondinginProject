@@ -12,10 +12,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.transaction.Transactional;
+import java.util.ArrayList;
 import java.util.List;
 
-@Service
-public class LetterService {
+    @Service
+    public class LetterService {
     @Autowired
     private LetterRepository letterRepository;
     @Autowired
@@ -41,13 +42,20 @@ public class LetterService {
 
     @Transactional
     // 2. 쪽지리스트 출력
-    public List<LetterDto>letterList(){
+    public List<LetterDto>letterList(int lno, String ltitle, String lcontent ){
         List<LetterEntity> letterEntityList = null;
-//        if(letterEntityList != 0){
-//            letterEntityList = letterRepository.findAll(); // 모든 엔티티 호출
-//        }
+        if(lno != 0){
+            letterEntityList = letterRepository.findAll();
+            List<LetterDto> letterDtoList = new ArrayList<>();
+            for(LetterEntity letterEntity : letterEntityList){
+                letterDtoList.add( letterEntity.toDto());
+            }
+            return letterDtoList;
+        }
         return null;
     }
+
+
 }
 
 

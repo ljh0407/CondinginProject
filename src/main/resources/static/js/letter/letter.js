@@ -10,7 +10,7 @@ function setletter(){
    }
     $.ajax({
         url : '/letter/setletter',
-        type : 'POST',
+        type : 'post',
         data : JSON.stringify(data),
         contentType : 'application/json',
         success : function(re){
@@ -27,5 +27,22 @@ function setletter(){
 
 // 글 리스트출력
 function letterList(){
+    alert("리스트출력")
 
+    $.ajax({
+    url : "/letter/getlist",
+    type : 'get',
+    success : function(re){
+        alert(re)
+        let html = ' <tr>'+
+                                  '<td>번호</td><td>제목</td> <td>내용 </td>'+
+                            '</tr>';
+       re.forEach( (l) => {
+            html +=  ' <tr>'+
+                                    '<td>'+l.lno+'</td><td>'+l.ltitle+'</td> <td>'+l.lcontent+'</td>'+
+                             '</tr>';
+            })
+            document.querySelector('.listtable').innerHTML = html;
+        }
+    })
 }
