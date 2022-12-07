@@ -44,15 +44,13 @@ import java.util.List;
     // 2. 쪽지리스트 출력
     public List<LetterDto>letterList(int lno, String ltitle, String lcontent ){
         List<LetterEntity> letterEntityList = null;
-        if(lno != 0){
             letterEntityList = letterRepository.findAll();
             List<LetterDto> letterDtoList = new ArrayList<>();
             for(LetterEntity letterEntity : letterEntityList){
-                letterDtoList.add( letterEntity.toDto());
+                letterDtoList.add(letterEntity.toDto());
             }
-            return letterDtoList;
-        }
-        return null;
+        System.out.println("test");
+        return letterDtoList;
     }
 
 
