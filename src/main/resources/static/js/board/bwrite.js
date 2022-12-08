@@ -32,57 +32,38 @@ function bwrite(){
 }
 
 /////////////////////////////글출력/////////////////////////////
-/*
+
 blist() // blist 실행
 function blist(){
     $.ajax({
-        url: "/blist",
+        url: "/board/blist",
         type:"Get",
         contentType:"application/json",
         success : function(list){
             alert(list)
-            let html = */
-/*`        <li class="blist">
-                                    <div class="profile"><!--프로필영역-->
-                                        <div class="mprofile">프로필사진가져와야함</div>
-                                    </div>
-                                    <div  class="boardSection">
-                                        <div class="writeNview">
-                                            <span class="bwrite">작성자</span>
-                                            <span class="bview">조회수</span>
-                                        </div>
-                                        <div class="title">
-                                            <a class="btitle">제목</a>
-                                        </div>
-                                    </div>
-                                    <div><!--조회수 및 좋아요-->
-                                        <span class="bview"></span>
-                                        <span class="bgood"></span>
-                                    </div>
-                                </li>`*//*
-'';
-
+            let html = '';
                console.log(html)
 
                list.forEach((b)=>{
-                    html += `        <li class="blist">
-                                         <div class="profile">
-                                             <div class="mprofile"> 프로필가져와야함</div> //프로필사진
-                                         </div>
-                                         <div  class="boardSection">
-                                             <div class="writeNview">
-                                                 <span class="bwrite">'+b.bwrite+'</span>
-                                                 <span class="bdate">작성한시간이 올라가야함</span> //작성한시간
-                                             </div>
-                                             <div class="title">
-                                                 <a class="btitle" onclick="+b.bno+">'+b.btitle+'</a>
-                                             </div>
-                                         </div>
-                                         <div>//조회수 및 좋아요
-                                             <span class="bview">+'b.bview'+</span>
-                                             <span class="bgood">+'b.bgood'+</span>
-                                         </div>
-                                     </li>`
+                    html +=
+                        "<li class='blist'>"+
+                            "<div class='profile'>"+
+                                "<div class='mprofile'> 프로필가져와야함</div>"+ //프로필사진
+                            "</div>"+
+                                "<div  class='boardSection'>"+
+                                    "<div class='writeNview'>"+
+                                        "<span class='bwrite'>" +b.bwrite+ "</span>"+ //작성자
+                                        "<span class='bdate'>작성한시간이 올라가야함</span>"+ //작성한시간
+                                    "</div>"+
+                                    "<div class='title'>"+
+                                        "<a class='btitle' onclick='getboard("+b.bno+")'>" +b.btitle+ "</a>"+ //글제목
+                                    "</div>"+
+                                "</div>"+
+                                "<div>"+//조회수 및 좋아요
+                                    "<span class='bview'>"+b.bview+"</span>"+ //조회수
+                                    "<span class='bgood'>"+b.bgood+"</span>"+ // 좋아요수
+                                "</div>"+
+                        "</li>"
                })//forEach end
                document.querySelector(".blist-ul").innerHTML = html;
         }//success end
