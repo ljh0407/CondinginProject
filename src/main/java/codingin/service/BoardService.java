@@ -91,7 +91,7 @@ public class BoardService {
             BoardEntity entity = optional.get();
             entity.setBtitle(boardDto.getBtitle()); //글제목수정
             entity.setBcontent(boardDto.getBcontent()); // 글 내용수정
-            entity.setBfile(boardDto.getBfile()); // 파일 수정하기
+
             return true;
         }//if end
         else{
