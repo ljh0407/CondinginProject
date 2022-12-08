@@ -4,8 +4,10 @@ import codingin.domain.dto.MemberDto;
 import codingin.domain.dto.OauthDto;
 import codingin.domain.entity.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -61,13 +63,31 @@ public class MemberService implements  OAuth2UserService< OAuth2UserRequest , OA
         // 권한부여
         Set<GrantedAuthority> authorities   = new HashSet<>();
         authorities.add( new SimpleGrantedAuthority( memberEntity.getMlevel() ) );
-        // 5. 반환 MemberDto[ 일반회원 vs oauth : 통합회원 - loginDto ]
+        // 5. 반환 MemberDto[ oauth ]
         MemberDto memberDto = new MemberDto();
         memberDto.setMemail( memberEntity.getMemail() );
         memberDto.setAuthorities( authorities );
         memberDto.setAttributes( oauthDto.getAttributes() );
 
         return memberDto;
+    }
+    // 2. 로그인 여부 판단 메소드
+    public  String getloginMno() {
+        // 1. 인증된 토큰 확인
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        // 12.08 고은시 확인용 System.out.println("서비스"+authentication);
+        // 2. 인증된 토큰 내용 확인
+        Object principal = authentication.getPrincipal();  // Principal : 접근주체 [ UserDeatils(MemberDto) ]
+        // 12.08 고은시 확인용 System.out.println("서비스"+principal);
+        // 3. 토큰 내용에 따른 제어
+        if (principal.equals("anonymousUser")) {  // anonymousUser 이면 로그인전
+            System.out.println("서비스"+principal);
+            return null;
+        } else { // anonymousUser 아니면 로그인후
+            MemberDto memberDto = (MemberDto) principal;
+            // 12.08 고은시 확인용 System.out.println("서비스"+memberDto);
+            return memberDto.getMemail()+"_"+memberDto.getAuthorities();
+        }
     }
 
 }
