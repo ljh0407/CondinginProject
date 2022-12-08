@@ -21,7 +21,7 @@ import java.util.Optional;
 import java.util.Set;
 
 @Service
-public class MemberService implements UserDetailsService , OAuth2UserService< OAuth2UserRequest , OAuth2User> {
+public class MemberService implements  OAuth2UserService< OAuth2UserRequest , OAuth2User> {
     //=============전역변수=============================//
     @Autowired
     private BoardRepository boardRepository;
@@ -70,8 +70,4 @@ public class MemberService implements UserDetailsService , OAuth2UserService< OA
         return memberDto;
     }
 
-    @Override   //12.07 구현메소드 자동 생성 회원 레벨 설정하는거같은데 지우면 오류뜸
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        return null;
-    }
 }
