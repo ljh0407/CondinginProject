@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <!-- 썸머노트 API css -->
+    <!-- include libraries(jQuery, bootstrap) -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
+    <!-- include summernote css/js -->
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
+
+
+</head>
+<body>
+<!--12.7 최예은 글쓰기 테스트-->
+<div class="wrap">
+    <form class="boardform">
+        <span>제목</span> <input type="text" name="btitle" class="btitle" id="btitle"><br>
+        <span>내용</span> <textarea id="summernote" name="bcontent" class="bcontent" style="resize: none;"></textarea><br>
+        <button type="button" onclick="bwrite()">작성하기</button>
+    </form>
+
+    <!--글보기페이지-->
+    <ul class="blist-ul">
+<!--
+        <li class="blist">
+            <div class="profile">&lt;!&ndash;프로필영역&ndash;&gt;
+                <div class="mprofile"></div>
+            </div>
+            <div  class="boardSection">
+                <div class="writeNview">
+                    <span class="bwrite">작성자</span>
+                    <span class="bview">조회수</span>
+                </div>
+                <div class="title">
+                    <a class="btitle">제목</a>
+                </div>
+            </div>
+            <div>&lt;!&ndash;조회수 및 좋아요&ndash;&gt;
+                <span class="bview"></span>
+                <span class="bgood"></span>
+            </div>
+        </li>
+-->
+    </ul>
+</div><!--wrap-->
+<!--jquery 버전-->
+<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+<!-- 썸머노트 API js -->
+<!-- include libraries(jQuery, bootstrap) -->
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<!-- include summernote css/js -->
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+<!-- include plugin -->
+
+
+
+
+<!--사용자 script-->
+<script src="/js/board/bwrite.js"></script>
+</body>
+</html>
