@@ -61,6 +61,15 @@ public class OauthDto {
                 .build();
     }
 
+    /*// 4. github 객체 생성 메소드
+    public static OauthDto ofGithub( String registrationId , String oauth2UserInfo , Map<String , Object> attributes ){
+        System.out.println("Github attributes : " + attributes);
+        return  OauthDto.builder()
+                .memail((String) attributes.get("email"))
+                .mname((String) attributes.get(""))
+                .build();
+    }*/
+
     // 4. dto --> ToEntity
     public MemberEntity toEntity(  ){
         return MemberEntity.builder()

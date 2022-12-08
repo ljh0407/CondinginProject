@@ -19,19 +19,18 @@ public class MemberEntity extends BaseEntity {
     @Column(nullable = false)// 12.07 삭제된 필드 복구
     private String memail;
 
-    @Column( nullable = false )
+    @Column
     private String mnick;   //닉네임
 
-    @Column( nullable = false ) // not null
+    @Column
     private String mpassword; //비밀번호
 
-    @Column( nullable = false ) // not null
-    private String mphone;  //전화번호
-
-    @Column( nullable = false ) // not null
+    @Column
     private String mprofile;    //프로필
 
+    @Column
     private String mlevel; //회원등급
+
 
     @OneToMany(mappedBy = "memberEntity" ) // [ 1:n] PK 에 해당 어노테이션   mappedBy="fk필드명"
     @Builder.Default // 빌더 사용시 해당 필드의 초기값 설정
@@ -75,7 +74,6 @@ public class MemberEntity extends BaseEntity {
                 .builder()
                 .mno( this.mno )
                 .mpassword( this.mpassword )
-                .mphone( this.mphone )
                 .mprofile( this.mprofile )
                 .mnick( this.mnick )
                 .mlevel( this.mlevel)

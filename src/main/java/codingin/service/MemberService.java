@@ -4,8 +4,10 @@ import codingin.domain.dto.MemberDto;
 import codingin.domain.dto.OauthDto;
 import codingin.domain.entity.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -40,9 +42,11 @@ public class MemberService implements  OAuth2UserService< OAuth2UserRequest , OA
     //====================================================//
     @Override   // 12.07 고은시 자동생성_로그인 성공한 소셜 회원 정보 받는 메소드
     public OAuth2User loadUser(OAuth2UserRequest userRequest) throws OAuth2AuthenticationException {
+        System.out.println("1.**"+userRequest.toString());
         // 1. 인증[로그인] 결과 정보 요청
         OAuth2UserService oAuth2UserService = new DefaultOAuth2UserService();
         OAuth2User oAuth2User = oAuth2UserService.loadUser( userRequest ); // oAuth2User.getAttributes()
+        System.out.println("**2 = "+oAuth2User.toString());
         // 2. oauth2 클라이언트 식별 [ 카카오 vs 네이버 vs 구글 ]
         String registrationId = userRequest.getClientRegistration().getRegistrationId();
         // 3. 회원정보 담긴 객체명 [ JSON 형태 ]
@@ -68,6 +72,25 @@ public class MemberService implements  OAuth2UserService< OAuth2UserRequest , OA
         memberDto.setAttributes( oauthDto.getAttributes() );
 
         return memberDto;
+    }
+
+    // 2. 로그인 여부 판단 메소드
+    public  String getloginMno() {
+        // 1. 인증된 토큰 확인
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        System.out.println("서비스"+authentication);
+        // 2. 인증된 토큰 내용 확인
+        Object principal = authentication.getPrincipal();  // Principal : 접근주체 [ UserDeatils(MemberDto) ]
+        System.out.println("서비스"+principal);
+        // 3. 토큰 내용에 따른 제어
+        if (principal.equals("anonymousUser")) {  // anonymousUser 이면 로그인전
+            System.out.println("서비스"+principal);
+            return null;
+        } else { // anonymousUser 아니면 로그인후
+            MemberDto memberDto = (MemberDto) principal;
+            System.out.println("서비스"+memberDto);
+            return memberDto.getMemail()+"_"+memberDto.getAuthorities();
+        }
     }
 
 }

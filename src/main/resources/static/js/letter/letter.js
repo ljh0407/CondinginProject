@@ -1,4 +1,4 @@
-alert('쪽지확인')
+  alert('쪽지확인')
 
 
 // 글쓰기 이종훈
@@ -9,6 +9,7 @@ function setletter(){
         lfile : document.querySelector(".lfile").value
    }
     $.ajax({
+
         url : '/letter/setletter',
         type : 'post',
         data : JSON.stringify(data),
