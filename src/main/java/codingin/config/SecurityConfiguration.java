@@ -20,7 +20,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .logout()                                           // 로그아웃 보안 설정
-
+                .logoutRequestMatcher( new AntPathRequestMatcher("/member/logout"))  // 12.08 고은시 로그아웃 처리 URL 정의
                 .logoutSuccessUrl("/")                          // 로그아웃 성공했을때 이동할 URL
                 .invalidateHttpSession( true )                  // 세션초기화  [ principal 초기화 ]
                 .and()  // 기능 구분
