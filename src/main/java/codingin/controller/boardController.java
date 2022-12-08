@@ -18,15 +18,13 @@ public class boardController {
     private MemberService memberService;
     @Autowired
     private BoardService boardService;
-   //====================페이지 [html]요청 로드=========================//
+//    //====================페이지 [html]요청 로드=========================//
    @GetMapping("/")    //인덱스 html 불러오기
    public Resource index(){
        return new ClassPathResource("templates/index.html");
     }
 
-    //주혁 test
-    @GetMapping("/updown")
-    public  Resource updown() {return  new ClassPathResource("templates/updown.html");}
+
 
     @GetMapping("/bwrite")
     public  Resource bwrite() {return  new ClassPathResource("templates/board/bwrite.html");}
@@ -73,7 +71,8 @@ public class boardController {
        return boardService.deleteboard(bno);
     }
 
-
+    @GetMapping("/updown")
+    public  Resource updown() {return  new ClassPathResource("templates/updown.html");}
 
 
 }
