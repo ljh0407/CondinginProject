@@ -21,6 +21,8 @@ public class MemberService {
     private RereplyRepository rereplyRepository;
     @Autowired
     private  UpdownRepository updownRepository;
+
+
     //====================================================//
 
 }

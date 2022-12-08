@@ -11,7 +11,7 @@ public class UpdownDto {
     // 12-06 주혁 좋아요 싫어요 Dto  생성
     private  int uno; // pk
 
-    private  int likeno; //좋아요
+    private  int liketype; //좋아요
 
     private  int dno; // 싫어요
 
@@ -22,9 +22,7 @@ public class UpdownDto {
         return  UpdownEntity
                 .builder()
                 .uno(this.uno)
-                .likeno(this.likeno)
-                .dno(this.dno)
-                .upview(this.upview)
+                .liketype(this.liketype)
                 .build();
     }
 }

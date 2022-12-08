@@ -1,6 +1,7 @@
 package codingin.controller;
 
 import codingin.domain.dto.BoardDto;
+import codingin.domain.dto.UpdownDto;
 import codingin.service.BoardService;
 import codingin.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -68,9 +69,9 @@ public class boardController {
     @GetMapping("/updown")
     public  Resource updown() {return  new ClassPathResource("templates/updown.html");}
 
-//    @PostMapping("updown")
-//    public  int updown(@RequestBody BoardDto boardDto){
-//       return  boardService.updown(boardDto);
+//    @PostMapping("/postupdown")
+//    public  int updown(@RequestParam("bno") int bno , @RequestParam("liketype") int liketype ) {
+//       return  boardService.postupdown(  bno ,  liketype);
 //    }
 
 

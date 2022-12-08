@@ -1,6 +1,7 @@
 package codingin.service;
 
 import codingin.domain.dto.BoardDto;
+import codingin.domain.dto.UpdownDto;
 import codingin.domain.entity.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,6 +28,9 @@ public class BoardService {
     private RereplyRepository rereplyRepository;
     @Autowired
     private  UpdownRepository updownRepository;
+    @Autowired
+    private  MemberService memberService;
+
     //====================================================//
     //1. 개별글쓰기 12.5 최예은
     @Transactional
@@ -110,6 +114,13 @@ public class BoardService {
             return false;
         }
     }
+
+    //테스트 12-06 주혁
+
+//     public  int postupdown( int bno , int liketype){
+//        //준비물 게시물번호,회원번호 ,좋아요싫어요
+//
+//    };
 
 
 }// class end

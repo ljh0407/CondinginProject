@@ -26,19 +26,14 @@ public class UpdownEntity extends BaseEntity {
     private  int uno; //pk
 
     @Column
-    private  int likeno; // 좋아요
+    private  int liketype; // 좋아요
 
-    @Column(nullable = false)
-    private  int dno; //싫어요
 
-    @Column(nullable = false)
-    private  int upview; // 좋아요나 싫어요 눌렀을때 증가
-
-    @OneToMany(mappedBy = "updownEntity")
+    @ManyToOne
     @Builder.Default
-    private List<MemberEntity> memberEntityList = new ArrayList<>();
+    private MemberEntity memberEntity;
 
-    @OneToMany(mappedBy = "updownEntity")
+    @ManyToOne
     @Builder.Default
     private  List<BoardEntity> boardEntityList = new ArrayList<>();
 
@@ -46,9 +41,7 @@ public class UpdownEntity extends BaseEntity {
         return  UpdownDto
                 .builder()
                 .uno(this.uno)
-                .likeno(this.likeno)
-                .dno(this.dno)
-                .upview(this.upview)
+                .liketype(this.liketype)
                 .build();
     }
 
