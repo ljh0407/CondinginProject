@@ -2,6 +2,7 @@ import React from 'react';
 import Header from './Header';
 import Footer from './Footer';
 import logo from '../img/logo.png'
+import StyleSheet from '../css/Index.css'; // css 불러오기
 import { HashRouter, BrowserRouter , Routes , Route , Link , Router } from 'react-router-dom';
 
 export default function Index( props ){
@@ -9,7 +10,18 @@ export default function Index( props ){
             <div className="box">
                 <BrowserRouter>
                     <Header/>
-                        <h3>메인페이지</h3>
+                        <div className="LayOut">    {/* 레이아웃 전체 */}
+                            <div className="Photo">
+                            </div>
+
+                            <article  className="sidebar">
+                                <li> 공지사항 </li>
+                            </article>
+
+                            <div className="post">
+                            </div>
+
+                        </div>                      {/* 레이아웃 전체 */}
                     <Footer/>
                     <Routes>
                         <Route path="/"  />
