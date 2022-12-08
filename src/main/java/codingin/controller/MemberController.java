@@ -21,8 +21,9 @@ public class MemberController {
     }
 
 
+    @GetMapping("/signup")
+    public Resource getsignup(){return new ClassPathResource("templates/signup.html");}
 
-    //1 주혁 좋아요 싫어요 테스트
 
 
 
