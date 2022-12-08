@@ -4,10 +4,16 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+// 1. 사용할 컴포넌트 호출 [import 컴포넌트명 from 파일명 ]
+import Header from './component/Header';
+import Index from './component/Index';
+import Footer from './component/Footer';
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
+
 root.render(
   <React.StrictMode>
-    <App />
+    <Index />
   </React.StrictMode>
 );
 
