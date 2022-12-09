@@ -26,6 +26,13 @@ public class MemberController {
     public Resource getsignup(){return new ClassPathResource("templates/signup.html");}
 
 
+    @GetMapping("/getloginMno") // 6. 로그인 정보 확인
+    public String getloginMno(){
+        String result = memberService.getloginMno();
+        return result;
+    }
 
+    @GetMapping("/login")
+    public Resource login(){return new ClassPathResource("templates/signup.html");}
 
 }
