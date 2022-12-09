@@ -75,13 +75,8 @@ function blist(){
 //12.9 최예은 개별 글 보기
 getboard();
 function getboard(bno){
-
     alert(bno)
-
-
-
-
-
+    sessionStorage.setItem("bno",bno) //세션 생성함 기록을 남기기위해서
 }
 
 

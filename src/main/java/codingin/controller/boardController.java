@@ -26,12 +26,11 @@ public class boardController {
     @GetMapping("/bwrite")
     public  Resource bwrite() {return  new ClassPathResource("templates/board/bwrite.html");}
 
-    /*// 12.9 최예은 추가
+    // 12.9 최예은 추가
     //개별 글 조회하기 페이지 입니다.
 
-    @GetMapping("/getboard")
+    @GetMapping("/toboard")
     public Resource getboard() {return  new ClassPathResource("templates/board/getboard.html");}
-*/
 
     //====================서비스=========================//
 

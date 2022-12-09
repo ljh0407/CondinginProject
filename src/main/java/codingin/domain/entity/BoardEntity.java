@@ -46,6 +46,10 @@ public class BoardEntity extends BaseEntity {
     @ToString.Exclude
     private  UpdownEntity updownEntity;
 
+    //12.9 최예은 추가 작성시간을 출력하기 위해서 작성시간 가져옴
+    @ManyToOne
+
+
 
     public BoardDto toDto(){
         return BoardDto
@@ -56,6 +60,7 @@ public class BoardEntity extends BaseEntity {
                 .bview( this.bview)
                 .bgood( this.bgood)
                 .bbad( this.bbad)
+                //.cdate( this.getCdate() )
                 .build();
     }
 }
