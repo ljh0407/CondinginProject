@@ -6,10 +6,11 @@ import { BrowserRouter , Routes , Route , Link , Router} from 'react-router-dom'
 
 export default function Header(props) {
     return(
+
         <header>
                 <div className="box">
                     <div id="logo">
-                        <Link to="/" > <img className="logo" src={logo} /> </Link>
+                        <Link to="/index"> <img className="logo" src={logo} /> </Link>
                     </div>
                     <nav id="menu">
                         <ul id="top_menu">
@@ -20,6 +21,7 @@ export default function Header(props) {
                     </nav>
                 </div>
             </header>
+
     );
 }
 
