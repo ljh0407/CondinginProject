@@ -20,16 +20,18 @@ public class boardController {
     private BoardService boardService;
 //    //====================페이지 [html]요청 로드=========================//
    @GetMapping("/")    //인덱스 html 불러오기
-   public Resource index(){
-       return new ClassPathResource("templates/index.html");
-    }
+   public Resource index(){return new ClassPathResource("templates/index.html");}
 
-
-
+    //글쓰기 페이지
     @GetMapping("/bwrite")
     public  Resource bwrite() {return  new ClassPathResource("templates/board/bwrite.html");}
 
+    /*// 12.9 최예은 추가
+    //개별 글 조회하기 페이지 입니다.
 
+    @GetMapping("/getboard")
+    public Resource getboard() {return  new ClassPathResource("templates/board/getboard.html");}
+*/
 
     //====================서비스=========================//
 

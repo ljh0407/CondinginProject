@@ -45,7 +45,7 @@ function blist(){
                console.log(html)
 
                list.forEach((b)=>{
-                    html +=
+                   html +=
                         "<li class='blist'>"+
                             "<div class='profile'>"+
                                 "<div class='mprofile'> 프로필가져와야함</div>"+ //프로필사진
@@ -56,7 +56,7 @@ function blist(){
                                         "<span class='bdate'>작성한시간이 올라가야함</span>"+ //작성한시간
                                     "</div>"+
                                     "<div class='title'>"+
-                                        "<a class='btitle' onclick='getboard("+b.bno+")'>" +b.btitle+ "</a>"+ //글제목
+                                        "<a class='btitle' onclick='getboard("+b.bno+")' >" +b.btitle+ "</a>"+ //글제목
                                     "</div>"+
                                 "</div>"+
                                 "<div>"+//조회수 및 좋아요
@@ -69,6 +69,20 @@ function blist(){
         }//success end
     })//ajax end
 }//blist end*/
+
+
+
+//12.9 최예은 개별 글 보기
+getboard();
+function getboard(bno){
+
+    alert(bno)
+
+
+
+
+
+}
 
 
 /*
