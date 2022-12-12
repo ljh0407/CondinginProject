@@ -3,6 +3,7 @@ package codingin.controller;
 import codingin.domain.dto.BoardDto;
 import codingin.service.BoardService;
 import codingin.service.MemberService;
+import org.aspectj.apache.bcel.util.ClassPath;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
@@ -31,6 +32,7 @@ public class boardController {
 
     @GetMapping("/toboard")
     public Resource getboard() {return  new ClassPathResource("templates/board/getboard.html");}
+
 
     //====================서비스=========================//
 

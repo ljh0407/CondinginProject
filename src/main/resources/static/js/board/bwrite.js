@@ -53,7 +53,7 @@ function blist(){
                                 "<div  class='boardSection'>"+
                                     "<div class='writeNview'>"+
                                         "<span class='bwrite'>" +b.bwrite+ "</span>"+ //작성자
-                                        "<span class='bdate'>작성한시간이 올라가야함</span>"+ //작성한시간
+                                        "<span class='bdate'>"+b.bdate+"</span>"+ //작성한시간
                                     "</div>"+
                                     "<div class='title'>"+
                                         "<a class='btitle' onclick='getboard("+b.bno+")' >" +b.btitle+ "</a>"+ //글제목
