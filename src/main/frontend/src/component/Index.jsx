@@ -1,6 +1,7 @@
 import React from 'react';
 import Header from './Header';
 //import promotion from './promotion';
+import Home from './Home';
 import Footer from './Footer';
 import logo from '../img/logo.png'
 import StyleSheet from '../css/Index.css'; // css 불러오기
