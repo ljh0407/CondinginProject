@@ -67,9 +67,9 @@ public class BoardEntity extends BaseEntity {
                 .bdate(
                         this.getCdate().toLocalDate().toString().equals(LocalDateTime.now().toString())
                                 ?
-                                this.getCdate().toLocalTime().format(DateTimeFormatter.ofPattern("HH:mm:ss"))
+                        this.getCdate().toLocalTime().format(DateTimeFormatter.ofPattern("HH:mm:ss"))
                                 :
-                                this.getCdate().toLocalDate().toString()
+                        this.getCdate().toLocalDate().toString()
 
                 ) //12.12 최예은 작성시간 추가
                 .mprofile(this.getMemberEntity().getMprofile()) // 12.12  최예은 프로필사진 추가

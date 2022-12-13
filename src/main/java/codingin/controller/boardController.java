@@ -3,7 +3,6 @@ package codingin.controller;
 import codingin.domain.dto.BoardDto;
 import codingin.service.BoardService;
 import codingin.service.MemberService;
-import org.aspectj.apache.bcel.util.ClassPath;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
@@ -29,9 +28,8 @@ public class boardController {
 
     // 12.9 최예은 추가
     //개별 글 조회하기 페이지 입니다.
-
     @GetMapping("/toboard")
-    public Resource getboard() {return  new ClassPathResource("templates/board/getboard.html");}
+    public Resource getboard() {return  new ClassPathResource("templates/board/bview.html");}
 
 
     //====================서비스=========================//

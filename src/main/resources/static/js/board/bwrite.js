@@ -7,7 +7,7 @@ $(document).ready(function() {
 
 /*/////////////////////////////글쓰기/////////////////////////////*/
 function bwrite(){
-    alert("글 작성하기")
+    //alert("글 작성하기")
 
 
     // 한꺼번에 전송하기 위해 객체로 만들어서 가져온다.
@@ -48,11 +48,11 @@ function blist(){
                    html +=
                         "<li class='blist'>"+
                             "<div class='profile'>"+
-                                "<div class='mprofile'> 프로필가져와야함</div>"+ //프로필사진
+                                "<div class='mprofile'>"+b.mprofile+"</div>"+ //프로필사진
                             "</div>"+
                                 "<div  class='boardSection'>"+
                                     "<div class='writeNview'>"+
-                                        "<span class='bwrite'>" +b.bwrite+ "</span>"+ //작성자
+                                        "<span class='bwrite'>" +b.mno+ "</span>"+ //작성자
                                         "<span class='bdate'>"+b.bdate+"</span>"+ //작성한시간
                                     "</div>"+
                                     "<div class='title'>"+
