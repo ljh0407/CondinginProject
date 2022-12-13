@@ -34,11 +34,13 @@ public class LetterController {
 
     //---------------------- 페이지로드 -----------------------
     // 이종훈 12/5 쪽지등록
+/*
     @GetMapping("/write")
         public Resource getwrite(){ return new ClassPathResource("templates/letter/letter.html");
         }
     @GetMapping("/list")
         public Resource getlist(){ return new ClassPathResource("templates/letter/letter.html") ;}
+*/
 
 
 
@@ -60,6 +62,8 @@ public class LetterController {
         System.out.println("리스트 출력 : ");
         return dtolist;
     }
+
+
 
 } // end
 

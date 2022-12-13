@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+
 @RestController
 @RequestMapping("/member")
 public class MemberController {
@@ -15,16 +16,10 @@ public class MemberController {
     @Autowired
     private MemberService memberService;
     //=============================================//
-    @GetMapping("/index")    //인덱스 html 불러오기
-    public Resource getindex(){
-        return new ClassPathResource("templates/index.html");
+    @GetMapping("/getloginMno") // 1. 로그인 정보 확인
+    public String getloginMno() {
+        String result = memberService.getloginMno();
+        return result;
     }
-
-
-    @GetMapping("/signup")
-    public Resource getsignup(){return new ClassPathResource("templates/signup.html");}
-
-
-
 
 }
