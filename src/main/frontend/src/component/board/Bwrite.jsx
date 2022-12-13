@@ -1,13 +1,12 @@
 import React from "react";
 import axios from "axios";
+import { CKEditor } from '@ckeditor/ckeditor5-react';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+
 
 export default function Bwrite(){
     //12.7 최예은 글쓰기 테스트
     alert("bwrite.js 확인")
-    /*썸머노트*/
-    $(document).ready(function() {
-        $('#summernote').summernote({height: 300});
-    });
 
     /*/////////////////////////////글쓰기/////////////////////////////*/
     function bwrite(){

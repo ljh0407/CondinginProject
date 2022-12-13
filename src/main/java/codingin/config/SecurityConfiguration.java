@@ -40,7 +40,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .and()  // 기능 구분
                 .csrf() // 요청 위조 방지
                 .ignoringAntMatchers("/member/signup")
-                .ignoringAntMatchers("/letter/setletter")
+                .ignoringAntMatchers("/letter/lwrite")
                 .ignoringAntMatchers("/board/bwrite")
                 .and()
                 .oauth2Login() // 소셜 로그인 보안 설정

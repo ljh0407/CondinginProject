@@ -2,15 +2,22 @@ import React from "react";
 import axios from "axios";
 
 
-export default function lwrite(){
+export default function Lwrite(){
 
     const setletter = () =>{
 
-        // 편지쓰기 유효성 검사
-        if( mno == 0 ){ alert('로그인부터 해주세요.'); return; }
-
-        let ltitle = document.querySelector('.ltitle').value
-
+        let info = {
+            ltitle : document.querySelector('.ltitle').value ,
+            lcontent : document.querySelector('.lcontent').value
+        }
+        axios
+            .post("/letter/setletter" , info )
+            .then( res => {
+                console.log(res.data)
+                if( res.data == true ){alert('편지보내기 성공');}
+                else{ alert('게시물 작성 실패');}
+            })
+            .catch( err => { console.log( err ); } )
     }
 
     return(
