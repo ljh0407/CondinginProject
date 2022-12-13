@@ -29,13 +29,13 @@ public class UpdownEntity extends BaseEntity {
     private  int liketype; // 좋아요
 
 
-    @ManyToOne
-    @Builder.Default
-    private MemberEntity memberEntity;
-
-    @ManyToOne
-    @Builder.Default
-    private  List<BoardEntity> boardEntityList = new ArrayList<>();
+//    @ManyToOne
+//    @Builder.Default
+//    private MemberEntity memberEntity;
+//
+//    @ManyToOne
+//    @Builder.Default
+//    private  List<BoardEntity> boardEntityList = new ArrayList<>();
 
     private UpdownDto toDto(){
         return  UpdownDto
