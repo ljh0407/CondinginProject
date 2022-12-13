@@ -21,9 +21,9 @@ export default function Index( props ){
                 <BrowserRouter>
                     <Header/>
                         <h3>메인페이지</h3>
-                    <Footer/>
+
                     <Routes>
-                        <Route path="./member/Login"  />
+                        <Route path="/member/signup"  />
                     </Routes>
                             <div className="LayOut">   {/* 전체 div */}
                                  <div className="mid">
@@ -55,9 +55,7 @@ export default function Index( props ){
 
                                 </div>  {/* mid div */}
 
-                            <Routes>
-                                <Route path="/" element={ <Header /> }  />
-                            </Routes>
+
                             </div>   {/* 전체 div */}
                     <Footer/>
                 </BrowserRouter>

@@ -75,7 +75,6 @@ public class MemberEntity extends BaseEntity {
                 .builder()
                 .mno( this.mno )
                 .mpassword( this.mpassword )
-                .mphone( this.mphone )
                 .mprofile( this.mprofile )
                 .mnick( this.mnick )
                 .mlevel( this.mlevel)
