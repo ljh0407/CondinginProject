@@ -25,14 +25,13 @@ public class MemberEntity extends BaseEntity {
 
     @Column
     private String mpassword; //비밀번호
-
     @Column
     private String mphone;  //전화번호
-
     @Column
     private String mprofile;    //프로필
 
     private String mlevel; //로그인한 소셜 확인
+
 
     @OneToMany(mappedBy = "memberEntity" ) // [ 1:n] PK 에 해당 어노테이션   mappedBy="fk필드명"
     @Builder.Default // 빌더 사용시 해당 필드의 초기값 설정
@@ -76,7 +75,6 @@ public class MemberEntity extends BaseEntity {
                 .builder()
                 .mno( this.mno )
                 .mpassword( this.mpassword )
-                //.mphone( this.mphone )    12.08 고은시 소셜 로그인 전화번호 필요없음
                 .mprofile( this.mprofile )
                 .mnick( this.mnick )
                 .mlevel( this.mlevel)
