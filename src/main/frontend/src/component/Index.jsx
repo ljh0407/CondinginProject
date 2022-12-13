@@ -51,7 +51,7 @@ export default function Index( props ){
                                 </div>  {/* mid div */}
 
                             <Routes>
-                                <Route path="/" element={ <Header /> }  />
+
                             </Routes>
                             </div>   {/* 전체 div */}
                     <Footer/>
