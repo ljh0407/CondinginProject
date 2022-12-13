@@ -22,7 +22,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     }
 
     //12.07 고은시 http를 통한 보안은 html완성 후 진행
-
+    // dd
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
