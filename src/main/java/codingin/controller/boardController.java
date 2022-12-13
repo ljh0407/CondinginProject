@@ -51,7 +51,7 @@ public class boardController {
         System.out.println("boardController 1. 개별 글 쓰기 result 확인 : " + result);
         return result;
     }
-
+    // 
     //2. 글 출력하기 12.5 최예은
     @GetMapping("/blist")
     public List<BoardDto> blist() {
