@@ -3,8 +3,12 @@ import Header from './Header';
 //import promotion from './promotion';
 import Home from './Home';
 import Footer from './Footer';
+import Bwrite from "./board/Bwrite";
+import Bview from "./board/Bview";
 import logo from '../img/logo.png'
 import StyleSheet from '../css/Index.css'; // css 불러오기
+import Login from './member/Login';
+
 import { HashRouter, BrowserRouter , Routes , Route , Link , Router } from 'react-router-dom';
 
 export default function Index( props ){
@@ -17,43 +21,18 @@ export default function Index( props ){
     { name : "인기게시판" , path: "/" }
     ];
      return  (
-            <div className="box">   {/* 전체 box */}
+            <div className="box">
                 <BrowserRouter>
                     <Header/>
-                            <div className="LayOut">   {/* 전체 div */}
-                                 <div className="mid">
-                                    <article  className="sidebar">
-                                        <ul>
-                                           <li> <Link to="/"> 공지사항 </Link> </li>
-                                           <li> <Link to="/"> 고민 </Link> </li>
-                                           <li> <Link to="/"> Q&A </Link> </li>
-                                           <li> <Link to="/"> 이벤트 </Link> </li>
-                                           <li> <Link to="/"> 인기게시판 </Link> </li>
-                                        </ul>
-                                    </article>
+                        <h3>메인페이지</h3>
 
-                                        <div className="rightSection">
-                                            <div className="section01">
-                                                <div className="topSection section">
-                                                    <div className="blist blist01"></div>
-                                                    <div className="blist blist02"></div>
-                                                </div>
-                                                <div className="bottomSection section">
-                                                    <div className="blist blist03"></div>
-                                                    <div className="blist blist04"></div>
-                                                </div>
-                                            </div>
-                                            <div className="section02">
-                                                <div className="eventSection"></div>
-                                            </div>
-                                        </div>
+                    <Routes>
+                        <Route path="/"  element={ < Home /> } />
+                        <Route path="/member/signup"  element={ < Login /> } />
+                        <Route path="/board/bwrite" element={ <Bwrite />} />
+                        <Route path="/board/bview" element={ <Bview />} />
+                    </Routes>
 
-                                </div>  {/* mid div */}
-
-                            <Routes>
-
-                            </Routes>
-                            </div>   {/* 전체 div */}
                     <Footer/>
                 </BrowserRouter>
             </div>
