@@ -12,7 +12,7 @@ export default function Index( props ){
                         <h3>메인페이지</h3>
                     <Footer/>
                     <Routes>
-                        <Route path="/"  />
+                        <Route path="./member/Login"  />
                     </Routes>
                 </BrowserRouter>
             </div>
