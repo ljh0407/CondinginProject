@@ -3,8 +3,11 @@ package codingin.domain.entity;
 import codingin.domain.BaseEntity;
 import codingin.domain.dto.BoardDto;
 import lombok.*;
+import org.hibernate.annotations.ColumnDefault;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,10 +23,12 @@ public class BoardEntity extends BaseEntity {
     private String btitle; //제목
     @Column( nullable = false ) // not null
     private String  bcontent; //3. 내용
-
-    private String bview; // 8. 조회수
-    private String bgood; //9. 추천수
-    private String bbad; //10. 비추천
+    @ColumnDefault("0")
+    private int bview; // 8. 조회수 //12.12 최예은 String--<int 변경
+    @ColumnDefault("0")
+    private int bgood; //9. 추천수 //12.12 최예은 String--<int 변경
+    @ColumnDefault("0")
+    private int bbad; //10. 비추천 //12.12 최예은 String--<int 변경
 
     // 연관관계1 [ 회원번호[pk : mno] <--양방향--> 게시물번호[fk : bno]
     @ManyToOne
@@ -47,15 +52,27 @@ public class BoardEntity extends BaseEntity {
     private  UpdownEntity updownEntity;
 
 
+
+
+
     public BoardDto toDto(){
         return BoardDto
                 .builder()
                 .bno( this.bno )
                 .btitle( this.btitle )
                 .bcontent( this.bcontent )
-                .bview( this.bview)
-                .bgood( this.bgood)
-                .bbad( this.bbad)
+                .bview(this.bview)
+                .bgood(this.bgood)
+                .bbad(this.bbad)
+                .bdate(
+                        this.getCdate().toLocalDate().toString().equals(LocalDateTime.now().toString())
+                                ?
+                        this.getCdate().toLocalTime().format(DateTimeFormatter.ofPattern("HH:mm:ss"))
+                                :
+                        this.getCdate().toLocalDate().toString()
+
+                ) //12.12 최예은 작성시간 추가
+                .mprofile(this.getMemberEntity().getMprofile()) // 12.12  최예은 프로필사진 추가
                 .build();
     }
 }
