@@ -11,10 +11,11 @@ export default function Header(props) {
             .then( (response) => { setLogin( response.data );  console.log( login ) } )
 
     return(
+
         <header>
                 <div className="box">
                     <div id="logo">
-                        <Link to="/" > <img className="logo" src={logo} /> </Link>
+                        <Link to="/index"> <img className="logo" src={logo} /> </Link>
                     </div>
                     <nav id="menu">
                         <ul id="top_menu">
@@ -39,6 +40,7 @@ export default function Header(props) {
                     }
                 </div>
             </header>
+
     );
 }
 

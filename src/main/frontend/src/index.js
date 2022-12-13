@@ -6,6 +6,8 @@ import reportWebVitals from './reportWebVitals';
 
 // 1. 사용할 컴포넌트 호출 [import 컴포넌트명 from 파일명 ]
 import Header from './component/Header';
+//import promotion from './component/promotion';
+import Home from './component/Home';
 import Index from './component/Index';
 import Footer from './component/Footer';
 
