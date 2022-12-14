@@ -40,8 +40,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .and()  // 기능 구분
                 .csrf() // 요청 위조 방지
                 .ignoringAntMatchers("/member/signup")
-                .ignoringAntMatchers("/letter/lwrite")
-                .ignoringAntMatchers("/board/bwrite")
+                .ignoringAntMatchers("/letter/lwrite")  // post 쪽지쓰기
+                .ignoringAntMatchers("/board/bwrite")   // post 글쓰기
                 .and()
                 .oauth2Login() // 소셜 로그인 보안 설정
                 .defaultSuccessUrl("/")// 소셜 로그인 성공시 이동하는 URL
