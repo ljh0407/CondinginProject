@@ -38,7 +38,8 @@ public class MemberService implements  OAuth2UserService< OAuth2UserRequest , OA
     @Autowired
     private RereplyRepository rereplyRepository;
     @Autowired
-    private  UpdownRepository updownRepository;
+    private  UpdownRepository updownRepository;    
+
     //====================================================//
     @Override   // 12.07 고은시 자동생성_로그인                   성공한 소셜 회원 정보 받는 메소드
     public OAuth2User loadUser(OAuth2UserRequest userRequest) throws OAuth2AuthenticationException {

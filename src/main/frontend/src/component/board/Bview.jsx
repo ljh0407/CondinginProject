@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from "axios";
-
+//테스트?
 export default function Bview(){
 
     return(

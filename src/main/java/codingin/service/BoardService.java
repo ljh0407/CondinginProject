@@ -14,8 +14,6 @@ import java.util.Optional;
 public class BoardService {
     //=============전역변수=============================//
     @Autowired
-    private MemberService memberService;
-    @Autowired
     private BoardRepository boardRepository;
     @Autowired
     private CategoryRepository categoryRepository;
@@ -29,16 +27,31 @@ public class BoardService {
     private RereplyRepository rereplyRepository;
     @Autowired
     private  UpdownRepository updownRepository;
+
+    //12.14최예은 memberService 추가함
+    @Autowired
+    private MemberService memberService;
     //====================================================//
     //1. 개별글쓰기 12.5 최예은
+/*    @Transactional
+    public int bwrite(BoardDto boardDto){
+        BoardEntity boardEntity = boardRepository.save(boardDto.toEntity());
+        System.out.println("BoardService 1. 개별 글 쓰기 boardEntity 확인 : " + boardEntity);
+        return boardEntity.getBno();
+    }*/
+    //12.14 1.글 쓰기 최예은
     @Transactional
-    public int setboard(BoardDto boardDto){
-        return 0;
+    public boolean setboard( BoardDto boardDto){
+        BoardEntity boardEntity = boardRepository.save(boardDto.toEntity());
+        System.out.println("BoardService 1. 개별 글 쓰기 boardEntity 확인 : " + boardEntity);
+        return true;
+
     }
 
     // 2. 글 출력하기 12.5 최예은
     public List<BoardDto> blist(){
         List<BoardEntity> elist = boardRepository.findAll(); //모든엔티티를 꺼내온다
+        System.out.println("BoardService 2. 글 출력하기 elist 확인 : " + elist ); //확인하기
         List<BoardDto> dlist = new ArrayList<>(); //js는 엔티티를 모르니 dto로 변환 그릇을 미리 만들어 둔다 아직은 깡통이다
         for(BoardEntity entity : elist){ // 원본에 있는 그릇을 하나씩 dto   그릇에 담아준다.
             dlist.add(entity.toDto()); //아까 만든 깡통에 하나씩 담아준다.
