@@ -1,17 +1,13 @@
 import React from 'react';
 import Header from './Header';
-//import promotion from './promotion';
 import Home from './Home';
 import Footer from './Footer';
 import Bwrite from "./board/Bwrite";
-import Bview from "./board/Bview";
-import lwrite from "./letter/Lwrite";
+import Lwrite from "./letter/Lwrite";
+import Login from './member/Login';
 import logo from '../img/logo.png'
 import StyleSheet from '../css/Index.css'; // css 불러오기
-import Login from './member/Login';
-
 import { HashRouter, BrowserRouter , Routes , Route , Link , Router } from 'react-router-dom';
-import Lwrite from "./letter/Lwrite";
 
 export default function Index( props ){
 
@@ -32,7 +28,6 @@ export default function Index( props ){
                         <Route path="/"  element={ < Home /> } />
                         <Route path="/member/signup"  element={ < Login /> } />
                         <Route path="/board/bwrite" element={ <Bwrite />} />
-                        <Route path="/board/bview" element={ <Bview />} />
                         <Route path="/letter/lwrite" element={ <Lwrite />} />
                     </Routes>
 
