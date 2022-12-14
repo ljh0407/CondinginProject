@@ -27,13 +27,25 @@ public class BoardService {
     private RereplyRepository rereplyRepository;
     @Autowired
     private  UpdownRepository updownRepository;
+
+    //12.14최예은 memberService 추가함
+    @Autowired
+    private MemberService memberService;
     //====================================================//
     //1. 개별글쓰기 12.5 최예은
-    @Transactional
+/*    @Transactional
     public int bwrite(BoardDto boardDto){
         BoardEntity boardEntity = boardRepository.save(boardDto.toEntity());
         System.out.println("BoardService 1. 개별 글 쓰기 boardEntity 확인 : " + boardEntity);
         return boardEntity.getBno();
+    }*/
+    //12.14 1.글 쓰기 최예은
+    @Transactional
+    public boolean setboard( BoardDto boardDto){
+        BoardEntity boardEntity = boardRepository.save(boardDto.toEntity());
+        System.out.println("BoardService 1. 개별 글 쓰기 boardEntity 확인 : " + boardEntity);
+        return true;
+
     }
 
     // 2. 글 출력하기 12.5 최예은

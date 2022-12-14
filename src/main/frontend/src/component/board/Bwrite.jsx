@@ -12,8 +12,12 @@ export default function Bwrite(props) {
         // 12.14 고은시 데이터 전송방식 변경
         let boardform = document.querySelector('.boardform');
         let formdata = new FormData(boardform);
+        formdata.set("bcontent",bcontent)
 
-        axios.post("/board/bwrite", formdata, {headers: {'Content-Type': 'multipart/form-data'}})
+        console.log("Bwrite.js formdata 확인 : ")
+        console.log(formdata)
+
+        axios.post("/board/setboard", formdata, {headers: {'Content-Type': 'multipart/form-data'}})
             .then(res => {
                 console.log(res.data)
                 if (res.data == true) {
