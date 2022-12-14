@@ -13,7 +13,7 @@ export default function Bwrite(props) {
         let boardform = document.querySelector('.boardform');
         let formdata = new FormData(boardform);
 
-        axios.post("/board/bwrite", formdata, {headers: {'Content-Type': 'multipart/form-data'}})
+        axios.post("/board/setboard", formdata, {headers: {'Content-Type': 'multipart/form-data'}})
             .then(res => {
                 console.log(res.data)
                 if (res.data == true) {

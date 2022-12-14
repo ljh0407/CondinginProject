@@ -4,6 +4,7 @@ import Home from './Home';
 import Footer from './Footer';
 import Bwrite from "./board/Bwrite";
 import Lwrite from "./letter/Lwrite";
+
 import Login from './member/Login';
 import logo from '../img/logo.png'
 import StyleSheet from '../css/Index.css'; // css 불러오기
@@ -29,6 +30,8 @@ export default function Index( props ){
                         <Route path="/member/signup"  element={ < Login /> } />
                         <Route path="/board/bwrite" element={ <Bwrite />} />
                         <Route path="/letter/lwrite" element={ <Lwrite />} />
+
+
                     </Routes>
 
                     <Footer/>
