@@ -20,6 +20,7 @@ public class boardController {
     private BoardService boardService;
     //====================서비스=========================//
 
+    //controller
     //1. 개별 글쓰기  12.5 최예은
     // 썸머노트를 사용 할 예정인데 혹시 지장이 있을까요?
     @PostMapping("/setboard")
