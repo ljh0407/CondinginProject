@@ -108,4 +108,5 @@ public class MemberService implements  OAuth2UserService< OAuth2UserRequest , OA
         return optional.get();  //로그인정보 확인되면 전부 반환
     }
 
+
 }

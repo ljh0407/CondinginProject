@@ -21,34 +21,34 @@ export default function BoardList(props) {
 
 
     return(
-    <div>
-        {
+        <div>
+            {
 
-            pageDto.list.map((b) => {
-                <div>
-                    <div className='blist'>
-                        <div className='profile'>
-                            <div className='mprofile'>{ b.mprofile }</div> {/*프로필사진*/}
-                        </div>
-                        <div  className='boardSection'>
-                            <div className='writeNview'>
-                                <span className='bwrite'>{ b.mno }</span>{/*작성자*/}
-                                <span className='bdate'>{ b.bdate }</span>{/*작성시간*/}
+                pageDto.list.map((b) => {
+                    <div>
+                        <div className='blist'>
+                            <div className='profile'>
+                                <div className='mprofile'>{ b.mprofile }</div> {/*프로필사진*/}
                             </div>
-                            <div className='title'>
-                                <a className='btitle' onClick={ (b.bno) } > {b.btitle} </a> {/*글제목*/}
+                            <div  className='boardSection'>
+                                <div className='writeNview'>
+                                    <span className='bwrite'>{ b.mno }</span>{/*작성자*/}
+                                    <span className='bdate'>{ b.bdate }</span>{/*작성시간*/}
+                                </div>
+                                <div className='title'>
+                                    <a className='btitle' onClick={ (b.bno) } > {b.btitle} </a> {/*글제목*/}
+                                </div>
                             </div>
-                        </div>
-                        <div>
-                            <span className='bview'>{ b.bview }</span>{/*조회수*/}
-                            <span className='bgood'>{ b.bgood }</span>{/*좋아요수*/}
+                            <div>
+                                <span className='bview'>{ b.bview }</span>{/*조회수*/}
+                                <span className='bgood'>{ b.bgood }</span>{/*좋아요수*/}
+                            </div>
                         </div>
                     </div>
-                </div>
-            })
-        }
+                })
+            }
 
-    </div>
+        </div>
     );//return end
 
 }
