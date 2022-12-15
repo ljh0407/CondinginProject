@@ -7,7 +7,8 @@ import logo from '../img/logo.png'
 import Login from './member/Login';
 //board 영역
 import Bwrite from "./board/Bwrite";//글쓰기
-import Bview from "./board/Bview";//글쓰기
+import BoardList from "./board/BoardList";//전체글보기12.15 최예은 추가
+import Bview from "./board/Bview";//개별글보기
 //letter영역
 import Lwrite from "./letter/Lwrite";
 //css영역
@@ -32,7 +33,8 @@ export default function Index( props ){
                         <Route path="/"  element={ < Home /> } />
                         <Route path="/member/signup"  element={ < Login /> } />
                         <Route path="/board/bwrite" element={ <Bwrite />} /> // 글쓰기
-                        <Route path="/board/bview" element={ <Bview />} /> // 전체글보기
+                        <Route path="/board/boardlist" element={ <BoardList />} /> // 글쓰기
+                        <Route path="/board/bview" element={ <Bview />} /> // 개별글보기
                         <Route path="/letter/lwrite" element={ <Lwrite />} />
                     </Routes>
 
