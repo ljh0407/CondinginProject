@@ -1,20 +1,21 @@
 import React from 'react';
 import Header from './Header';
-//import promotion from './promotion';
 import Home from './Home';
 import Footer from './Footer';
-import Bwrite from "./board/Bwrite";
-import Bview from "./board/Bview";
-import lwrite from "./letter/Lwrite";
 import logo from '../img/logo.png'
-import StyleSheet from '../css/Index.css'; // css 불러오기
+//로그인영역
 import Login from './member/Login';
-
-import { HashRouter, BrowserRouter , Routes , Route , Link , Router } from 'react-router-dom';
+//board 영역
+import Bwrite from "./board/Bwrite";//글쓰기
+import BoardList from "./board/BoardList";//전체글보기12.15 최예은 추가
+import Bview from "./board/Bview";//개별글보기
+//letter영역
 import Lwrite from "./letter/Lwrite";
+//css영역
+import StyleSheet from '../css/Index.css'; // css 불러오기
+import { HashRouter, BrowserRouter , Routes , Route , Link , Router } from 'react-router-dom';
 
 export default function Index( props ){
-
     const menus = [
     { name : "공지사항" , path: "/" },
     { name : "고민" , path: "/" },
@@ -27,12 +28,13 @@ export default function Index( props ){
                 <BrowserRouter>
                     <Header/>
                         <h3>메인페이지</h3>
-
+                    <Footer/>
                     <Routes>
                         <Route path="/"  element={ < Home /> } />
                         <Route path="/member/signup"  element={ < Login /> } />
-                        <Route path="/board/bwrite" element={ <Bwrite />} />
-                        <Route path="/board/bview" element={ <Bview />} />
+                        <Route path="/board/bwrite" element={ <Bwrite />} /> // 글쓰기
+                        <Route path="/board/boardlist" element={ <BoardList />} /> // 글쓰기
+                        <Route path="/board/bview" element={ <Bview />} /> // 개별글보기
                         <Route path="/letter/lwrite" element={ <Lwrite />} />
                     </Routes>
 
