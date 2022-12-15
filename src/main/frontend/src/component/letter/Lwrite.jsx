@@ -1,7 +1,6 @@
 import React from "react";
 import axios from "axios";
 
-alert("편지")
 export default function Lwrite(){
 
     const setletter = () =>{

@@ -33,19 +33,18 @@ public class BoardService {
     private MemberService memberService;
     //====================================================//
     //1. 개별글쓰기 12.5 최예은
-/*    @Transactional
-    public int bwrite(BoardDto boardDto){
-        BoardEntity boardEntity = boardRepository.save(boardDto.toEntity());
-        System.out.println("BoardService 1. 개별 글 쓰기 boardEntity 확인 : " + boardEntity);
-        return boardEntity.getBno();
-    }*/
     //12.14 1.글 쓰기 최예은
     @Transactional
     public boolean setboard( BoardDto boardDto){
+        MemberEntity memberEntity = memberService.getEntity();  //멤버서비스에서 작성한 메소드 호출
+        if(memberEntity == null){return false;} //만약에 멤버엔티티가 null(회원정보가 없으면)실패
+        //dto -> entity에 담기
         BoardEntity boardEntity = boardRepository.save(boardDto.toEntity());
-        System.out.println("BoardService 1. 개별 글 쓰기 boardEntity 확인 : " + boardEntity);
-        return true;
 
+        if(boardEntity.getBno() != 0){  //게시물 번호가 0이 아니면
+            boardEntity.setMemberEntity(memberEntity);  //보트엔티티에 멤버엔티티 연결
+            return true;    //게시물번호가 0이 아니면 저장
+        }else {return false;}   //게시물번호가 0이면 실패
     }
 
     // 2. 글 출력하기 12.5 최예은
