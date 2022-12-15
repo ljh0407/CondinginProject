@@ -9,7 +9,7 @@ export default function Bwrite(props) {
 
     /*/////////////////////////////글쓰기/////////////////////////////*/
     const bwrite = () => {
-        // 12.14 고은시 데이터 전송방식 변경
+
         let boardform = document.querySelector('.boardform');
         let formdata = new FormData(boardform);
         formdata.set("bcontent",bcontent)
