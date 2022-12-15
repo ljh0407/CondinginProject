@@ -11,7 +11,7 @@ import java.util.List;
 @Entity // 엔티티 정의
 @Table(name = "category") // 테이블명 정의
 @AllArgsConstructor @NoArgsConstructor @Getter @Setter @Builder @ToString
-public class CategoryEntity extends BaseEntity {
+public class CategoryEntity{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int cno;

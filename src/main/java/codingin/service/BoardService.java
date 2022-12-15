@@ -1,6 +1,7 @@
 package codingin.service;
 
 import codingin.domain.dto.BoardDto;
+import codingin.domain.dto.CategoryDto;
 import codingin.domain.dto.PageDto;
 import codingin.domain.entity.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -61,18 +62,6 @@ public class BoardService {
             return true;    //게시물번호가 0이 아니면 저장
         }else {return false;}   //게시물번호가 0이면 실패
     }
-
-/*    // 2. 글 출력하기 12.5 최예은
-    public List<BoardDto> blist(){
-        List<BoardEntity> elist = boardRepository.findAll(); //모든엔티티를 꺼내온다
-        System.out.println("BoardService 2. 글 출력하기 elist 확인 : " + elist ); //확인하기
-        List<BoardDto> dlist = new ArrayList<>(); //js는 엔티티를 모르니 dto로 변환 그릇을 미리 만들어 둔다 아직은 깡통이다
-        for(BoardEntity entity : elist){ // 원본에 있는 그릇을 하나씩 dto   그릇에 담아준다.
-            dlist.add(entity.toDto()); //아까 만든 깡통에 하나씩 담아준다.
-        }
-        System.out.println("BoardService 2. 글 출력하기 dlist 확인 : " + dlist); // 확인하기
-        return  dlist;
-    }*/
 
 
     // 2. 글 출력하기 12.14 최예은
@@ -148,7 +137,6 @@ public class BoardService {
             BoardEntity entity = optional.get();
             entity.setBtitle(boardDto.getBtitle()); //글제목수정
             entity.setBcontent(boardDto.getBcontent()); // 글 내용수정
-
             return true;
         }//if end
         else{
@@ -173,6 +161,7 @@ public class BoardService {
     }
 
     //////////////////////////////////////카테고리 출력하기///////////////////////////////////////////////
+
     public List<CategoryDto> bcategoryList(){
         List<CategoryEntity> categorylist = categoryRepository.findAll();
         System.out.println("Boardservice 6.카테고리 출력하기 확인하기" + categorylist );
@@ -180,7 +169,5 @@ public class BoardService {
         System.out.println("Boardservice 6.카테고리 출력하기 확인하기" + dtolist );
         return dtolist;
     }
-
-
 }// class end
 

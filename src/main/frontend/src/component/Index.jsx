@@ -37,7 +37,6 @@ export default function Index( props ){
                         <Route path="/board/bview" element={ <Bview />} /> // 개별글보기
                         <Route path="/letter/lwrite" element={ <Lwrite />} />
                     </Routes>
-
                     <Footer/>
                 </BrowserRouter>
             </div>

@@ -8,11 +8,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface BoardRepository extends JpaRepository<BoardEntity , Integer> {
-
-
-    
     //12.15 최예은 추가
-
     @Query( value = "SELECT * " +
             "FROM " +
             "board " +
