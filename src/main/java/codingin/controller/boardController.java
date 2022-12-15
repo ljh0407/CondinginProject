@@ -62,5 +62,13 @@ public class boardController {
     }
 
 
+
+
+
+    //6. 카테고리 출력하기
+
+
+
+
 }
 
