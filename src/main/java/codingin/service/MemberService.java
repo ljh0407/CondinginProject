@@ -92,5 +92,19 @@ public class MemberService implements  OAuth2UserService< OAuth2UserRequest , OA
             return memberDto.getMemail()+"_"+memberDto.getAuthorities();
         }
     }
+    //12.15 고은시 이종훈 엔티티에서 이메일 가져오고 로그인 토큰 반환(회원번호 호출)
+    public MemberEntity getEntity(){
+        //로그인정보 확인
+        Object object = new SecurityContextHolder().getContext().getAuthentication().getPrincipal();
+
+        if(object == null){return null;}    //회원정보가 없으면
+
+        MemberDto memberDto = (MemberDto) object;   //오브젝트를 디티오 형변환
+        //멤버디티오에 있는 이메일을 멤버엔티티에 저장
+        Optional<MemberEntity> optional = memberRepository.findByMemail(memberDto.getMemail());
+
+        if(!optional.isPresent()){return null;} //로그인 확인 안되면 null 반환
+        return optional.get();  //로그인정보 확인되면 전부 반환
+    }
 
 }

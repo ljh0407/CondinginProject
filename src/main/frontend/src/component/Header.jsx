@@ -21,7 +21,6 @@ export default function Header(props) {
                     <nav id="menu">
                         <ul id="top_menu">
                             <li><Link to="/"> { login } </Link></li>
-                            <li><Link to="/"> 쪽지</Link></li>
                             <li><Link to="/"> 내정보</Link></li>
                         </ul>
                     </nav>
@@ -36,6 +35,8 @@ export default function Header(props) {
                             <>
                                  <li> { login } </li>
                                  <li> <a href="/member/logout"> 로그아웃     </a> </li>
+                                 <li> <a href="/letter/Lwrite"> 쪽지     </a> </li>
+                                 <li> <a href="/board/Bwrite"> 글쓰기     </a> </li>
                             </>
                         )
                     }
