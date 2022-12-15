@@ -1,11 +1,18 @@
 package codingin.service;
 
 import codingin.domain.dto.BoardDto;
+import codingin.domain.dto.PageDto;
 import codingin.domain.entity.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -31,6 +38,14 @@ public class BoardService {
     //12.14최예은 memberService 추가함
     @Autowired
     private MemberService memberService;
+    
+    //12.15 최예은 추가
+    @Autowired
+    private HttpServletRequest request; // 요청객체선언
+    //12.15 최예은 추가
+    @Autowired
+    private HttpServletResponse response; //응답객체 선언
+    
     //====================================================//
     //1. 개별글쓰기 12.5 최예은
 /*    @Transactional
@@ -48,7 +63,7 @@ public class BoardService {
 
     }
 
-    // 2. 글 출력하기 12.5 최예은
+/*    // 2. 글 출력하기 12.5 최예은
     public List<BoardDto> blist(){
         List<BoardEntity> elist = boardRepository.findAll(); //모든엔티티를 꺼내온다
         System.out.println("BoardService 2. 글 출력하기 elist 확인 : " + elist ); //확인하기
@@ -58,7 +73,42 @@ public class BoardService {
         }
         System.out.println("BoardService 2. 글 출력하기 dlist 확인 : " + dlist); // 확인하기
         return  dlist;
+    }*/
+
+
+    // 2. 글 출력하기 12.14 최예은
+    // page : 현재 페이지번호 , key : 검색필드명 , keyword : 검색 데이터
+    @Transactional
+    public PageDto getboardlist(PageDto pageDto){
+        Page<BoardEntity> elist = null; //먼저 선언함
+        Pageable pageable = PageRequest.of(pageDto.getPage()-1,2,Sort.by(Sort.Direction.DESC,"bno")) ; //페이징설정
+                        //PageRequest.of(현재페이지번호, 표시할레코드수,정렬)
+        System.out.println("BoardService 2. 글목록보기 pageable 확인 "+ pageable);
+        //검색여부
+        elist = boardRepository.findbySearch(pageDto.getKey(), pageDto.getKeyword(),pageable);
+        //프론트엔드에 표시할 페이징번호 버튼 수
+        System.out.println("BoardService 2. 글출력하기 elist 확인"  + elist);
+
+        int btncount = 5;
+        int startbtn = (pageDto.getPage()/btncount)*btncount+1;// 시작번호 버튼
+        int endbtn = startbtn+btncount-1; //끝번호
+
+        if(endbtn>elist.getTotalPages()) endbtn = elist.getTotalPages();
+
+        List<BoardDto> dlist = new ArrayList<BoardDto>();//컨트롤에게 전달할 때 형변한 하기 위한 그릇
+
+       for(BoardEntity entity : elist){//반환
+           dlist.add(entity.toDto());
+           System.out.println("BoardService 2. 글출력하기 dlist 확인하기 :" + dlist);
+       }
+       pageDto.setList(dlist); //글작성
+       pageDto.setStartbtn(startbtn); //시작버튼
+       pageDto.setEndbtn(endbtn); //끝버튼
+       pageDto.setTotalBoards(elist.getTotalElements());
+       System.out.println("BoardService 2. 글출력하기 pagedto 확인 : " + pageDto);
+       return pageDto;
     }
+
 
     // 3. 개별  글 보기 12.6 최예은
     @Transactional

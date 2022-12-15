@@ -2,12 +2,13 @@ import React from "react";
 import axios from "axios";
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
-
+let bcno = 0; // 선택한 카테고리 번호 [ 전역변수 ]
 let bcontent = ''; // 12.14 고은시 입력받은 게시물 내용 [ 전역변수 ]  // 변수가 수정될경우 재랜더링할 필요 X
 
 export default function Bwrite(props) {
 
     /*/////////////////////////////글쓰기/////////////////////////////*/
+
     const bwrite = () => {
         // 12.14 고은시 데이터 전송방식 변경
         let boardform = document.querySelector('.boardform');

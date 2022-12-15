@@ -1,6 +1,7 @@
 package codingin.controller;
 
 import codingin.domain.dto.BoardDto;
+import codingin.domain.dto.PageDto;
 import codingin.service.BoardService;
 import codingin.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,10 +31,16 @@ public class boardController {
         System.out.println("boardController 1. 개별 글 쓰기 result 확인 : " + result);
         return boardService.setboard(boardDto);
     }
-    //2. 글 출력하기 12.5 최예은
-    @GetMapping("/getboardlist")
-    public List<BoardDto> blist() {
-        return boardService.blist();
+    //2. 게시물 목록 조회 [페이지 , 검색] 최예은
+
+    @PostMapping("/getboardlist")
+    public PageDto getboardlist(@RequestBody PageDto pageDto){
+        System.out.println("BoardController 2. 글 출력하기 pageDto확인하기 : " + pageDto);
+        System.out.println("BoardController 2. 글 출력하기 pageDto확인하기 : " + pageDto.toString());
+        return boardService.getboardlist(pageDto);
     }
+
+
+
 }
 
