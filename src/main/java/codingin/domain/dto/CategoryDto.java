@@ -11,6 +11,7 @@ public class CategoryDto {
         return CategoryEntity
                 .builder()
                 .cno( this.cno )
+                .cname(this.cname) // 최예은 12.16 추가
                 .build();
     }
 }

@@ -9,24 +9,35 @@ export default function Home( props ){
     const [categorylist,setCategorylist] = useState([]); // db에 등록해놓은 카테고리 리스트
     // 카테고리 가져오기
 
+//    useEffect(
+//        ()=>axios
+//            .get("/board/getcategory")
+//            .then( res => {setCategorylist (res.data); console.log(res.data); console.log("카테고리리스트.data");  console.log(categorylist.data); console.log("list"); console.log(categorylist.list)})
+//            .catch(err=>{ console.log(err);})
+//    ,[])
 
-    useEffect(
-        ()=>axios
-            .post("/board/getcategory")
-            .then( res => {setCategorylist (res.data); console.log(res.data);})
-            .catch(err=>{ console.log(err);})
-    ,[])
-
-
-
+ function clist(){
+       axios
+         .get("/board/getcategory")
+         .then( res => {setCategorylist(res.data)})
+         .catch(err=>{ console.log(err);})
+ }
+    useEffect( clist, [] );
+    console.log("카테고리리스트");
+    console.log(categorylist);
 
     return(
         <>
 
-
         <div className="LayOut">   {/* 전체 div */}
             <div className="mid">
                 <article  className="sidebar">
+                    {
+                        categorylist.map((c)=>{
+                            <div className="clist"> {c.cname} </div>
+                        })
+                    }
+
                     <ul>
                         <li> <Link to="/"> 공지사항 </Link> </li>
                         <li> <Link to="/"> 고민있어요 </Link> </li>

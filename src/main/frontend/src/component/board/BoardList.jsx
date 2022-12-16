@@ -23,7 +23,6 @@ export default function BoardList(props) {
     return(
         <div>
             {
-
                 pageDto.list.map((b) => {
                     <div>
                         <div className='blist'>
