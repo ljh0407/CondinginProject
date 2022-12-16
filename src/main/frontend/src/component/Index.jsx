@@ -28,7 +28,6 @@ export default function Index( props ){
                 <BrowserRouter>
                     <Header/>
                         <h3>메인페이지</h3>
-                    <Footer/>
                     <Routes>
                         <Route path="/"  element={ < Home /> } />
                         <Route path="/member/signup"  element={ < Login /> } />
@@ -37,7 +36,6 @@ export default function Index( props ){
                         <Route path="/board/bview" element={ <Bview />} /> // 개별글보기
                         <Route path="/letter/lwrite" element={ <Lwrite />} />
                     </Routes>
-
                     <Footer/>
                 </BrowserRouter>
             </div>
