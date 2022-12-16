@@ -7,7 +7,7 @@ import logo from '../img/logo.png'
 import Login from './member/Login';
 //board 영역
 import Bwrite from "./board/Bwrite";//글쓰기
-import BoardList from "./board/BoardList";//전체글보기12.15 최예은 추가
+import BoardList from "./board/BoardList"; //전체글보기12.15 최예은 추가
 import Bview from "./board/Bview";//개별글보기
 //letter영역
 import Lwrite from "./letter/Lwrite";
@@ -16,6 +16,7 @@ import StyleSheet from '../css/Index.css'; // css 불러오기
 import { HashRouter, BrowserRouter , Routes , Route , Link , Router } from 'react-router-dom';
 
 export default function Index( props ){
+
     const menus = [
     { name : "공지사항" , path: "/" },
     { name : "고민" , path: "/" },
