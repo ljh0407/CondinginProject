@@ -23,7 +23,7 @@ export default function Header(props) {
                             <li><Link to="/"> { login } </Link></li>
                             <li><Link to="/"> 내정보</Link></li>
                         </ul>
-                    </nav>
+                    </nav> 
                     {login == "" ?
                         (
                             <>
