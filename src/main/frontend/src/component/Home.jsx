@@ -6,17 +6,24 @@ import axios from "axios";// 12.16 최예은 추가
 
 export default function Home( props ){
     //0. 12.16 최예은 추가
-   const [categorylist,getCategorylist] = useState([]); // db에 등록해놓은 카테고리 리스트
+    const [categorylist,setCategorylist] = useState([]); // db에 등록해놓은 카테고리 리스트
+    // 카테고리 가져오기
+
 
     useEffect(
         ()=>axios
-        .post("/board/getcategory")
-        .then( res => getCategorylist (res.data))
-        .catch(err=>{ console.log(err);})
-    )
+            .post("/board/getcategory")
+            .then( res => {setCategorylist (res.data); console.log(res.data);})
+            .catch(err=>{ console.log(err);})
+    ,[])
+
+
+
 
     return(
         <>
+
+
         <div className="LayOut">   {/* 전체 div */}
             <div className="mid">
                 <article  className="sidebar">

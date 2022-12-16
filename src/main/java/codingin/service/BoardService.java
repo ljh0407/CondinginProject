@@ -162,6 +162,11 @@ public class BoardService {
         List<CategoryEntity> categorylist = categoryRepository.findAll();
         System.out.println("Boardservice 6.카테고리 출력하기 확인하기" + categorylist );
         List<CategoryDto> dtolist = new ArrayList<>();
+
+        for(CategoryEntity centity : categorylist){
+            dtolist.add(centity.toDto());// 형변환
+        }
+
         System.out.println("Boardservice 6.카테고리 출력하기 확인하기" + dtolist );
         return dtolist;
     }

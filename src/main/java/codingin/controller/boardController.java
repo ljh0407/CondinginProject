@@ -39,11 +39,11 @@ public class boardController {
         return boardService.getboardlist(pageDto);
     }
 
-
     //6.  카테고리 출력하기 12.15 최예은 추가
     @PostMapping("/getcategory")
     public List<CategoryDto> categorylist(){
-        System.out.println("BoardController 6. 카테고리 출력하기 categorylist 확인" + categorylist());
+        System.out.println("BoardController 6. 카테고리 출력하기 categorylist 확인");
+
         return boardService.bcategoryList();
     }
 
