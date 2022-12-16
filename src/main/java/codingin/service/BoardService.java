@@ -38,14 +38,14 @@ public class BoardService {
     //12.14최예은 memberService 추가함
     @Autowired
     private MemberService memberService;
-    
+
     //12.15 최예은 추가
     @Autowired
     private HttpServletRequest request; // 요청객체선언
     //12.15 최예은 추가
     @Autowired
     private HttpServletResponse response; //응답객체 선언
-    
+
     //====================================================//
     //1. 개별글쓰기 12.5 최예은
     //12.14 1.글 쓰기 최예은
@@ -62,7 +62,7 @@ public class BoardService {
         }else {return false;}   //게시물번호가 0이면 실패
     }
 
-/*    // 2. 글 출력하기 12.5 최예은
+    // 2. 글 출력하기 12.5 최예은
     public List<BoardDto> blist(){
         List<BoardEntity> elist = boardRepository.findAll(); //모든엔티티를 꺼내온다
         System.out.println("BoardService 2. 글 출력하기 elist 확인 : " + elist ); //확인하기
@@ -72,7 +72,7 @@ public class BoardService {
         }
         System.out.println("BoardService 2. 글 출력하기 dlist 확인 : " + dlist); // 확인하기
         return  dlist;
-    }*/
+    }
 
 
     // 2. 글 출력하기 12.14 최예은
@@ -107,7 +107,6 @@ public class BoardService {
        System.out.println("BoardService 2. 글출력하기 pagedto 확인 : " + pageDto);
        return pageDto;
     }
-
 
     // 3. 개별  글 보기 12.6 최예은
     @Transactional
