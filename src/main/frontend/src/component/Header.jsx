@@ -21,6 +21,7 @@ export default function Header(props) {
                     <nav id="menu">
                         <ul id="top_menu">
                             <li><Link to="/"> { login } </Link></li>
+                            <li><Link to="/"> 쪽지</Link></li>
                             <li><Link to="/"> 내정보</Link></li>
                         </ul>
                     </nav>

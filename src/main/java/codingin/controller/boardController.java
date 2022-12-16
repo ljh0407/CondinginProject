@@ -25,13 +25,15 @@ public class boardController {
     // 썸머노트를 사용 할 예정인데 혹시 지장이 있을까요?
     @PostMapping("/setboard")
     public boolean setboard(BoardDto boardDto) { //js에서 json으로 받을 예정이라 @RequestBody로 받아야 함.
-        //System.out.println("boardController 1.개별 글쓰기 boardDto 확인 : " + boardDto);
-        //12.14 이종훈 두번 저장 확인 boolean result = boardService.setboard(boardDto);
-        //System.out.println("boardController 1. 개별 글 쓰기 result 확인 : " + result);
+        System.out.println("boardController 1.개별 글쓰기 boardDto 확인 : " + boardDto);
         return boardService.setboard(boardDto);
     }
     //2. 글 출력하기 12.5 최예은
-    @GetMapping("/getboardlist")
-    public List<BoardDto> blist() { return boardService.blist(); }
+    @PostMapping("/getboardlist")
+    public PageDto getboardlist(@RequestBody PageDto pageDto){
+        System.out.println("BoardController 2. 글 출력하기 pageDto확인하기 : " + pageDto);
+        System.out.println("BoardController 2. 글 출력하기 pageDto확인하기 : " + pageDto.toString());
+        return boardService.getboardlist(pageDto);
+    }
 }
 

@@ -1,11 +1,18 @@
 package codingin.service;
 
 import codingin.domain.dto.BoardDto;
+import codingin.domain.dto.PageDto;
 import codingin.domain.entity.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -40,21 +47,14 @@ public class BoardService {
         return boardEntity.getBno();
     }*/
     //12.14 1.글 쓰기 최예은
-//    @Transactional
-//    public boolean setboard( BoardDto boardDto) {
-//        // ---------- 로그인 회원 찾기 메소드 실행 --> 회원엔티티 검색 --------------  //
-//        String memberEntity = (String) memberService.getloginMno(); // * 시큐리티 적용하기 전/후 확인
-//        if (memberEntity == null) {
-//            return false;
-//        }
-//        BoardEntity boardEntity = boardRepository.save(boardDto.toEntity());
-//        if (boardEntity.getBno() != 0) {   // 2. 생성된 entity의 게시물번호가 0 이 아니면  성공
-//            // 1. 회원 <---> 게시물 연관관계 대입
-//            boardEntity.setMemberEntity( memberEntity ); // ***!!!! 5. fk 대입
-//            memberEntity.getBoardEntityList().add( boardEntity); // *** 양방향 [ pk필드에 fk 연결 ]
-//            return true;
-//        } else { return false; }
-//    }
+    @Transactional
+    public boolean setboard( BoardDto boardDto){
+        BoardEntity boardEntity = boardRepository.save(boardDto.toEntity());
+        System.out.println("BoardService 1. 개별 글 쓰기 boardEntity 확인 : " + boardEntity);
+        return true;
+
+    }
+
     // 2. 글 출력하기 12.5 최예은
     public List<BoardDto> blist(){
         List<BoardEntity> elist = boardRepository.findAll(); //모든엔티티를 꺼내온다
