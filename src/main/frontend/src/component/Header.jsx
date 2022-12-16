@@ -9,7 +9,7 @@ export default function Header(props) {
     const [ login , setLogin ] = useState(null); // 로그인된 회원정보 state 생명주기 // 변경시 재 렌더링
     axios
             .get("/member/getloginMno")
-            .then( (response) => { setLogin( response.data );  console.log( login ) } )
+            .then( (response) => { setLogin( response.data );  } )
 
     return(
 
