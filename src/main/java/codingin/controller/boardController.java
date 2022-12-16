@@ -1,6 +1,7 @@
 package codingin.controller;
 
 import codingin.domain.dto.BoardDto;
+import codingin.domain.dto.PageDto;
 import codingin.service.BoardService;
 import codingin.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
