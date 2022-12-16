@@ -28,7 +28,6 @@ export default function Index( props ){
                 <BrowserRouter>
                     <Header/>
                         <h3>메인페이지</h3>
-                    <Footer/>
                     <Routes>
                         <Route path="/"  element={ < Home /> } />
                         <Route path="/member/signup"  element={ < Login /> } />

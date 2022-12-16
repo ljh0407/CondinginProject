@@ -18,6 +18,7 @@ import org.springframework.security.oauth2.core.OAuth2AuthenticationException;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
@@ -41,7 +42,7 @@ public class MemberService implements  OAuth2UserService< OAuth2UserRequest , OA
     private  UpdownRepository updownRepository;    
 
     //====================================================//
-    @Override   // 12.07 고은시 자동생성_로그인                   성공한 소셜 회원 정보 받는 메소드
+    @Override   //1. 12.07 고은시 자동생성_로그인                   성공한 소셜 회원 정보 받는 메소드
     public OAuth2User loadUser(OAuth2UserRequest userRequest) throws OAuth2AuthenticationException {
         // 1. 인증[로그인] 결과 정보 요청
         OAuth2UserService oAuth2UserService = new DefaultOAuth2UserService();
@@ -86,7 +87,7 @@ public class MemberService implements  OAuth2UserService< OAuth2UserRequest , OA
             return memberDto.getMemail()+"_"+memberDto.getAuthorities();
         }
     }
-    //12.15 고은시 이종훈 엔티티에서 이메일 가져오고 로그인 토큰 반환(회원번호 호출)
+    //3. 12.15 고은시 이종훈 엔티티에서 이메일 가져오고 로그인 토큰 반환(회원번호 호출)
     public MemberEntity getEntity(){
         //로그인정보 확인
         Object object = new SecurityContextHolder().getContext().getAuthentication().getPrincipal();
@@ -100,19 +101,9 @@ public class MemberService implements  OAuth2UserService< OAuth2UserRequest , OA
         if(!optional.isPresent()){return null;} //로그인 확인 안되면 null 반환
         return optional.get();  //로그인정보 확인되면 전부 반환
     }
-
-
-//    //3. 12.14 확인 회원호출
-//    public MemberEntity getEntity(){
-//        //1.로그인 정보 확인
-//        String memail = getloginMno().split("_")[0];
-//        Optional< MemberEntity > optional = memberRepository.findByMemail(memail);
-//        if(optional.isPresent()){
-//            MemberEntity memberEntity = optional.get();
-//            return memberEntity;
-//        }
-//           //
-//        return null;
-//    }
-
+    //4. 12.16 회원 수정
+    @Transactional
+    public int setupdate(String memail){
+        Object object =
+    }
 }
