@@ -12,7 +12,7 @@ import java.util.List;
 @ToString
 @Builder
 public class PageDto {
-    private int bcno;       // 카테고리
+    private int cno;       // 카테고리
     private int page ;      // 현재 페이지
     private String key;     // 검색 필드
     private String keyword; // 검색 단어

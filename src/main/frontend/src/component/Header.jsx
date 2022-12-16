@@ -11,6 +11,10 @@ export default function Header(props) {
             .get("/member/getloginMno")
             .then( (response) => { setLogin( response.data );  console.log( login ) } )
 
+    //서버로부터 해당 게시물 번호의 게시물 번호 요청
+
+
+
     return(
 
         <header>
@@ -29,7 +33,7 @@ export default function Header(props) {
                         (
                             <>
                                 <li ><Link to="/member/signup"> 회원가입 및 로그인 </Link> </li>
-                                <li> <Link to="/board/blist">글 목록</Link> </li>
+                                <li> <Link to="/board/boardlist">글목록</Link> </li>
                             </>
                         )
                         :

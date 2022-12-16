@@ -1,6 +1,7 @@
 import React , { useState , useEffect } from 'react';
 import axios from "axios";
-import Pagination from 'react-js-pagination' // npm i react-js-pagination 설치 12.14 최예은 설치함
+import Pagination from 'react-js-pagination'
+import Bview from "./Bview"; // npm i react-js-pagination 설치 12.14 최예은 설치함
 
 export default function BoardList(props) {
 //1. 메모리
@@ -13,11 +14,13 @@ export default function BoardList(props) {
         axios
             .post("/board/getboardlist",pageInfo)
             .then(res => {
+                console.log(res.pageInfo);
                 console.log(res.data);
                 setPageDto(res.data); })
             .catch(err => console.error(err))
     }
     useEffect(getboardlist,[pageInfo])
+
 
     // 페이징처리
     const onPage = (page) =>{
@@ -33,22 +36,26 @@ export default function BoardList(props) {
         setPageInfo(
             { cno : pageInfo.cno ,
                 page : 1 , // 검색시 첫페이지부터 보여주기
-                key: document.querySelector('')
+                key: document.querySelector('.key').value,
+                keyword: document.querySelector('.keyword').value
             }
-
-
         )}
+
+    const loadView=(bno)=>{ {/*12.16 게시물번호 넘기기(상세보기)*/}
+            window.location = "/board/bview/" +bno
+    }
 
 
     return(
             <div>
                 <table className="blist">
-                    {
+                {
                     pageDto.list.map( (b) => {
                         return(
                             <tr>
                             <td>{b.bno}</td>
-                            <td>{b.btitle}</td>
+                                {/*제목누르면 상세보기 */}
+                            <td onClick={() => loadView(b.bno)}>{b.btitle}</td>
                             <td>{b.memail}</td>
                             <td>{b.bdate}</td>
                             <td>{b.bview}</td>

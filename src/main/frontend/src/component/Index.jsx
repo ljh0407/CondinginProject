@@ -34,7 +34,7 @@ export default function Index( props ){
                         <Route path="/member/signup"  element={ < Login /> } />
                         <Route path="/board/bwrite" element={ <Bwrite />} /> // 글쓰기
                         <Route path="/board/boardlist" element={ <BoardList />} /> // 글쓰기
-                        <Route path="/board/bview" element={ <Bview />} /> // 개별글보기
+                        <Route path="/board/bview/:bno" element={ <Bview />} /> // 개별글보기
                         <Route path="/letter/lwrite" element={ <Lwrite />} />
                     </Routes>
                     <Footer/>
