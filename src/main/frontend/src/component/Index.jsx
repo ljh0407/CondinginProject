@@ -32,10 +32,10 @@ export default function Index( props ){
                     <Routes>
                         <Route path="/"  element={ < Home /> } />
                         <Route path="/member/signup"  element={ < Login /> } />
-                        <Route path="/board/bwrite" element={ <Bwrite />} /> // 글쓰기
-                        <Route path="/board/boardlist" element={ <BoardList />} /> // 글쓰기
-                        <Route path="/board/bview/:bno" element={ <Bview />} /> // 개별글보기
-                        <Route path="/letter/lwrite" element={ <Lwrite />} />
+                        <Route path="/board/bwrite" element={ <Bwrite />} /> {/*// 글쓰기*/}
+                        <Route path="/board/boardlist" element={ <BoardList />} /> {/*// 글쓰기*/}
+                        <Route path="/board/bview/:bno" element={ <Bview />} /> {/*// 개별글보기*/}
+                        <Route path="/letter/lwrite" element={ <Lwrite />} />   {/*//쪽지*/}
                     </Routes>
                     <Footer/>
                 </BrowserRouter>

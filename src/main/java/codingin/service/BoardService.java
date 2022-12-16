@@ -115,14 +115,13 @@ public class BoardService {
 
     //4. 글 수정하기 12.6 최예은
     public boolean upboard(BoardDto boardDto){
+        System.out.printf("서비스수정**");
         //1.dto에서 수정할 pk번호 이용하여 엔티티 찾기
-        //글 수정은 글을 작성한 사람만 가능하니까 뭔가 추가를 해야 할 것 같은데? 아닌가 어차피 수정삭제는 본인만 볼 수 있으니까 ..?
         Optional<BoardEntity> optional = boardRepository.findById(boardDto.getBno());
         if(optional.isPresent()) {// 내용물이 있는지 확인
             BoardEntity entity = optional.get();
             entity.setBtitle(boardDto.getBtitle()); //글제목수정
             entity.setBcontent(boardDto.getBcontent()); // 글 내용수정
-
             return true;
         }//if end
         else{
