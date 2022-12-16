@@ -76,15 +76,11 @@ public class BoardService {
         elist = boardRepository.findbySearch(pageDto.getKey(), pageDto.getKeyword(),pageable);
         //프론트엔드에 표시할 페이징번호 버튼 수
         System.out.println("BoardService 2. 글출력하기 elist 확인"  + elist);
-
         int btncount = 5;
         int startbtn = (pageDto.getPage()/btncount)*btncount+1;// 시작번호 버튼
         int endbtn = startbtn+btncount-1; //끝번호
-
         if(endbtn>elist.getTotalPages()) endbtn = elist.getTotalPages();
-
         List<BoardDto> dlist = new ArrayList<BoardDto>();//컨트롤에게 전달할 때 형변한 하기 위한 그릇
-
        for(BoardEntity entity : elist){//반환
            dlist.add(entity.toDto());
            System.out.println("BoardService 2. 글출력하기 dlist 확인하기 :" + dlist);

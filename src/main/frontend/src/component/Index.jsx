@@ -18,7 +18,7 @@ import { HashRouter, BrowserRouter , Routes , Route , Link , Router } from 'reac
 export default function Index( props ){
     const menus = [
     { name : "공지사항" , path: "/" },
-    { name : "고민" , path: "/" },
+    { name : "고민있어요" , path: "/" },
     { name : "Q&A" , path: "/" },
     { name : "이벤트" , path: "/" },
     { name : "인기게시판" , path: "/" }
@@ -28,7 +28,6 @@ export default function Index( props ){
                 <BrowserRouter>
                     <Header/>
                         <h3>메인페이지</h3>
-                    <Footer/>
                     <Routes>
                         <Route path="/"  element={ < Home /> } />
                         <Route path="/member/signup"  element={ < Login /> } />
@@ -42,19 +41,3 @@ export default function Index( props ){
             </div>
         );
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
