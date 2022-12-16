@@ -28,7 +28,6 @@ export default function Home( props ){
 
     return(
         <>
-
         <div className="LayOut">   {/* 전체 div */}
             <div className="mid">
                 <article  className="sidebar">
