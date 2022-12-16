@@ -10,10 +10,6 @@ public class BoardDto {
     private String btitle; //제목
     private String  bcontent; //3. 내용
 
-    private String  bwrite; //4-1.  작성자
-
-    private String  mno; //4-2.  작성자
-
     private int bview; // 8. 조회수
 
     private int bgood; //9. 추천수
@@ -26,8 +22,6 @@ public class BoardDto {
 
     //12.12 최예은 추가
     private String bdate; //12.12 최예은 작성시간
-
-    private String mprofile; // 12.12 최예은 프로필사진 추가
 
 
     public BoardEntity toEntity(){

@@ -55,16 +55,37 @@ public class BoardService {
 
     }
 
-    // 2. 글 출력하기 12.5 최예은
-    public List<BoardDto> blist(){
-        List<BoardEntity> elist = boardRepository.findAll(); //모든엔티티를 꺼내온다
-        System.out.println("BoardService 2. 글 출력하기 elist 확인 : " + elist ); //확인하기
-        List<BoardDto> dlist = new ArrayList<>(); //js는 엔티티를 모르니 dto로 변환 그릇을 미리 만들어 둔다 아직은 깡통이다
-        for(BoardEntity entity : elist){ // 원본에 있는 그릇을 하나씩 dto   그릇에 담아준다.
-            dlist.add(entity.toDto()); //아까 만든 깡통에 하나씩 담아준다.
+    // 2. 글 출력하기 12.14 최예은
+    // page : 현재 페이지번호 , key : 검색필드명 , keyword : 검색 데이터
+    @Transactional
+    public PageDto blist(PageDto pageDto){
+        Page<BoardEntity> elist = null; //먼저 선언함
+        Pageable pageable = PageRequest.of(pageDto.getPage()-1,2,Sort.by(Sort.Direction.DESC,"bno")) ; //페이징설정
+        //PageRequest.of(현재페이지번호, 표시할레코드수,정렬)
+        System.out.println("BoardService 2. 글목록보기 pageable 확인 "+ pageable);
+        //검색여부
+        elist = boardRepository.findbySearch(pageDto.getKey(), pageDto.getKeyword(),pageable);
+        //프론트엔드에 표시할 페이징번호 버튼 수
+        System.out.println("BoardService 2. 글출력하기 elist 확인"  + elist);
+
+        int btncount = 5;
+        int startbtn = (pageDto.getPage()/btncount)*btncount+1;// 시작번호 버튼
+        int endbtn = startbtn+btncount-1; //끝번호
+
+        if(endbtn>elist.getTotalPages()) endbtn = elist.getTotalPages();
+
+        List<BoardDto> dlist = new ArrayList<BoardDto>();//컨트롤에게 전달할 때 형변한 하기 위한 그릇
+
+        for(BoardEntity entity : elist){//반환
+            dlist.add(entity.toDto());
+            System.out.println("BoardService 2. 글출력하기 dlist 확인하기 :" + dlist);
         }
-        System.out.println("BoardService 2. 글 출력하기 dlist 확인 : " + dlist); // 확인하기
-        return  dlist;
+        pageDto.setList(dlist); //글작성
+        pageDto.setStartbtn(startbtn); //시작버튼
+        pageDto.setEndbtn(endbtn); //끝버튼
+        pageDto.setTotalBoards(elist.getTotalElements());
+        System.out.println("BoardService 2. 글출력하기 pagedto 확인 : " + pageDto);
+        return pageDto;
     }
 
     // 3. 개별  글 보기 12.6 최예은
@@ -81,7 +102,8 @@ public class BoardService {
             System.out.println("BoardService 3.개별 글 보기 boardEntity.toDto 확인  : " + boardEntity.toDto());
 
             BoardDto boardDto = boardEntity.toDto(); // board객체
-            if(boardDto.getBwrite().equals("qweqwe")){//만약에 로그인한 사람과 글을 작성한 사람과 일치하면 "qwe"는 로그인세션 나중에 집어넣어주기
+            //12.16 고은시 보드디티오에 있는 bwrite삭제하면서 일단 자료형만 맟춰서 수정
+            if(boardDto.getBtitle().equals("qweqwe")){//만약에 로그인한 사람과 글을 작성한 사람과 일치하면 "qwe"는 로그인세션 나중에 집어넣어주기
                 boardDto.setBtnaction(true); //있으면 수정삭제 버튼 보여주기
             }else {
                 boardDto.setBtnaction(false); //그렇지 않으면 그냥 화면 보여주기

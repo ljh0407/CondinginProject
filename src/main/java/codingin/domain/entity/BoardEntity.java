@@ -51,10 +51,6 @@ public class BoardEntity extends BaseEntity {
     @ToString.Exclude
     private  UpdownEntity updownEntity;
 
-
-
-
-
     public BoardDto toDto(){
         return BoardDto
                 .builder()
@@ -70,9 +66,7 @@ public class BoardEntity extends BaseEntity {
                         this.getCdate().toLocalTime().format(DateTimeFormatter.ofPattern("HH:mm:ss"))
                                 :
                         this.getCdate().toLocalDate().toString()
-
                 ) //12.12 최예은 작성시간 추가
-                .mprofile(this.getMemberEntity().getMprofile()) // 12.12  최예은 프로필사진 추가
                 .build();
     }
 }

@@ -18,11 +18,9 @@ public class MemberEntity extends BaseEntity {
 
     @Column(nullable = false)// 12.07 삭제된 필드 복구
     private String memail;
-
     //12.08 고은시  not null일 필요 없어서 삭제
     @Column
     private String mnick;   //닉네임
-
     @Column
     private String mpassword; //비밀번호
     @Column
