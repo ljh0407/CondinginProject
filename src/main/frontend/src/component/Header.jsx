@@ -12,44 +12,39 @@ export default function Header(props) {
             .then( (response) => { setLogin( response.data );  console.log( login ) } )
 
     //서버로부터 해당 게시물 번호의 게시물 번호 요청
-
-
-
     return(
 
         <header>
-                <div className="box">
-                    <div id="logo">
-                        <Link to="/index"> <img className="logo" src={logo} /> </Link>
-                    </div>
-                    <nav id="menu">
-                        <ul id="top_menu">
-                            <li><Link to="/"> { login } </Link></li>
-                            <li><Link to="/"> 쪽지</Link></li>
-                            <li><Link to="/"> 내정보</Link></li>
-                        </ul>
-                    </nav>
-                    {login == "" ?
-                        (
-                            <>
-                                <li ><Link to="/member/signup"> 회원가입 및 로그인 </Link> </li>
-                                <li> <Link to="/board/boardlist">글목록</Link> </li>
-                            </>
-                        )
-                        :
-                        (
-                            <>
-                                 <li> { login } </li>
-                                 <li> <a href="/member/logout"> 로그아웃     </a> </li>
-                                <li> <a href="/board/bwrite">게시판</a> </li>
-                                <li> <a href="/letter/lwrite">쪽지함</a> </li>
-                                <li> <a href="/board/boardlist">글보기</a> </li>
-                            </>
-                        )
-                    }
+            <div className="box">
+                <div id="logo">
+                    <Link to="/index"> <img className="logo" src={logo} /> </Link>
                 </div>
-            </header>
-
+                <nav id="menu">
+                    <ul id="top_menu">
+                        <li><Link to="/"> { login } </Link></li>
+                        <li><Link to="/"> 쪽지</Link></li>
+                        <li><Link to="/"> 내정보</Link></li>
+                    </ul>
+                </nav>
+                {login == "" ?
+                    (
+                        <>
+                            <li ><Link to="/member/signup"> 회원가입 및 로그인 </Link> </li>
+                        </>
+                    )
+                    :
+                    (
+                        <>
+                            <li> { login } </li>
+                            <li> <a href="/member/logout"> 로그아웃     </a> </li>
+                            <li> <a href="/board/bwrite">게시판</a> </li>
+                            <li> <a href="/letter/lwrite">쪽지함</a> </li>
+                            <li> <a href="/board/boardlist">글보기</a> </li>
+                        </>
+                    )
+                }
+            </div>
+        </header>
     );
 }
 

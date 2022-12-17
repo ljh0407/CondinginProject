@@ -8,12 +8,12 @@ export default function Bview(props){
     //게시물 , 리랜더링될 게시물           // 게시물 메모리
     const [ board , setBoard ] = useState({ });
 
-    useEffect( // 1. 서버로 부터 해당 게시물번호의 게시물정보 요청
-        () => axios
-            //컨트롤 목록조회url                   bno받기
-            .get("/board/getbview" , { params : {bno : params.bno}})
-            //setBoard에 데이터 담기
-            .then( res => {setBoard(res.data)}) ,[]);
+    useEffect( // 1. 서버로 부터 해당 게시물번호의 시물정보 요청
+    () => axios
+        //컨트롤 목록조회url                   bno받기
+        .get("/board/getbview" , { params : {bno : params.bno}})
+        //setBoard에 데이터 담기
+        .then( res => {setBoard(res.data)}) ,[]);
 
     //로그인 맞는지 확인
     const [ login , setLogin ] = useState(null); // 로그인된 회원정보 state 생명주기 // 변경시 재 렌더링
@@ -22,7 +22,7 @@ export default function Bview(props){
         .then( (response) => { setLogin( response.data.split("_")[0] );  console.log( login ) } )
 
     // 2. 해당 게시물번호의 해당하는 업데이트 페이지로 이동
-    const getUpdate = () => { window.location.href='/board/update/'+params.bno;  }
+    const getUpdate = () => { alert('수정'); window.location.href='/board/update/'+params.bno;  }
 
     //3. 게시물 삭제하기
     const onDelete = () =>{
@@ -44,7 +44,7 @@ export default function Bview(props){
 
             {/*12.16 작성자와 로그인이 같으면 버튼 노출*/}
             { login==board.memail && <button type="button" onClick={onDelete}>삭제</button> }
-            { login==board.memail && <button type="button" onClick={getUpdate}>수정</button> }
+            { login == board.memail && <button type="button" onClick={ getUpdate }> 수정 </button>  }
         </div>
 
     )
