@@ -2,6 +2,7 @@ import React,{useState, useEffect} from 'react';
 import StyleSheet from '../css/home.css';
 import {Link} from "react-router-dom";
 import axios from "axios";// 12.16 최예은 추가
+import HomeBoard from "./board/HomeBoard" // 12.19 최예은 추가
 
 
 export default function Home( props ){
@@ -28,7 +29,7 @@ export default function Home( props ){
                         {
                             categorylist.map((c)=>{
                                 return(
-                                    <div className="clist"> {c.cname} </div>
+                                    <div className="clist"> {/*{c.cname}*/} </div>
                                 )
                             })
                         }
@@ -45,23 +46,20 @@ export default function Home( props ){
                     <div className="rightSection">
                         <div className="section01">
                             <div className="topSection section">
-                                <div className="blist blist01">  </div>
-                                <div className="blist blist02"></div>
+                                <HomeBoard cno={ 1 } bcname={ "공지사항" } />
+                                <HomeBoard cno={ 2 } bcname={ "질문있어요" } />
                             </div>
                             <div className="bottomSection section">
-                                <div className="blist blist03"></div>
-                                <div className="blist blist04"></div>
+                                <HomeBoard cno={ 3 } bcname={ "고민있어요" } />
+                                <HomeBoard cno={ 4 } bcname={ "인기게시판" } />
                             </div>
                         </div>
                         <div className="section02">
                             <div className="eventSection"></div>
                         </div>
                     </div>
-
                 </div>  {/* mid div */}
-
-
-            </div>   {/* 전체 div */}
+        </div>   {/* 전체 div */}
         </>
     )
 }

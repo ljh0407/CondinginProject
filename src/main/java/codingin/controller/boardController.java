@@ -39,13 +39,11 @@ public class boardController {
         return boardService.getboardlist(pageDto);
     }
 
-
     //3.게시물 개별조회
     @GetMapping("/getbview")
     public BoardDto getbview (@RequestParam("bno") int bno){
         System.out.println("컨트로 1 : **"+bno);
-        return boardService.getboard(bno);
-    }
+        return boardService.getboard(bno);    }
 
 
     //4.게시물 삭제하기
@@ -67,5 +65,11 @@ public class boardController {
         System.out.println("BoardController 6. 카테고리 출력하기 categorylist 확인");
         return boardService.bcategoryList();
     }
+
+    //7.각 카테고리의 최신 글 가져오기 12.19 최예은 추가
+   /* @GetMapping("/getlimitdesc")
+    public List<BoardDto> getlimitdesc(@RequestParam int cno){
+        return boardService.getlimitdesc(cno);
+    }*/
 
 }

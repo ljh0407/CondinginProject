@@ -188,6 +188,7 @@ public class BoardService {
         }
     }
     //////////////////////////////////////카테고리 출력하기///////////////////////////////////////////////
+    //6. 카테고리 출력하기 최예은
     public List<CategoryDto> bcategoryList(){
         List<CategoryEntity> categorylist = categoryRepository.findAll();
         System.out.println("Boardservice 6.카테고리 출력하기 확인하기" + categorylist );
@@ -196,5 +197,13 @@ public class BoardService {
         return dtolist;
     }
     /////////////////////////////////////////////////////////////////////////
+
+    //7.각 카테고리의 최신 글 가져오기 12.19 최예은 추가
+    /*public List<CategoryDto> getlimitdesc(int cno){
+
+    }
+*/
+
+
 }// class end
 
