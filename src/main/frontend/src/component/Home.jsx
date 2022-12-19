@@ -1,8 +1,23 @@
-import React from 'react';
+import React,{useState, useEffect} from 'react';
 import StyleSheet from '../css/home.css';
 import {Link} from "react-router-dom";
+import axios from "axios";// 12.16 최예은 추가
 
 export default function Home( props ){
+
+
+    //0. 12.16 최예은 추가
+    const [categorylist,getCategorylist] = useState([]); // db에 등록해놓은 카테고리 리스트
+
+    useEffect(
+        ()=>axios
+            .post("/board/getcategory")
+            .then( res => getCategorylist (res.data))
+            .catch(err=>{ console.log(err);})
+    ,[])
+
+
+
     return(
         <>
         <div className="LayOut">   {/* 전체 div */}
@@ -32,10 +47,7 @@ export default function Home( props ){
                         <div className="eventSection"></div>
                     </div>
                 </div>
-
             </div>  {/* mid div */}
-
-
         </div>   {/* 전체 div */}
         </>
     )

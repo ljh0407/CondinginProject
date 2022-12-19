@@ -38,15 +38,14 @@ public class MemberService implements  OAuth2UserService< OAuth2UserRequest , OA
     @Autowired
     private RereplyRepository rereplyRepository;
     @Autowired
-    private  UpdownRepository updownRepository;
+    private  UpdownRepository updownRepository;    
+
     //====================================================//
-    @Override   // 12.07 고은시 자동생성_로그인 성공한 소셜 회원 정보 받는 메소드
+    @Override   // 12.07 고은시 자동생성_로그인                   성공한 소셜 회원 정보 받는 메소드
     public OAuth2User loadUser(OAuth2UserRequest userRequest) throws OAuth2AuthenticationException {
-        System.out.println("1.**"+userRequest.toString());
         // 1. 인증[로그인] 결과 정보 요청
         OAuth2UserService oAuth2UserService = new DefaultOAuth2UserService();
         OAuth2User oAuth2User = oAuth2UserService.loadUser( userRequest ); // oAuth2User.getAttributes()
-        System.out.println("**2 = "+oAuth2User.toString());
         // 2. oauth2 클라이언트 식별 [ 카카오 vs 네이버 vs 구글 ]
         String registrationId = userRequest.getClientRegistration().getRegistrationId();
         // 3. 회원정보 담긴 객체명 [ JSON 형태 ]
@@ -78,19 +77,30 @@ public class MemberService implements  OAuth2UserService< OAuth2UserRequest , OA
     public  String getloginMno() {
         // 1. 인증된 토큰 확인
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        System.out.println("서비스"+authentication);
         // 2. 인증된 토큰 내용 확인
         Object principal = authentication.getPrincipal();  // Principal : 접근주체 [ UserDeatils(MemberDto) ]
-        System.out.println("서비스"+principal);
         // 3. 토큰 내용에 따른 제어
         if (principal.equals("anonymousUser")) {  // anonymousUser 이면 로그인전
-            System.out.println("서비스"+principal);
             return null;
         } else { // anonymousUser 아니면 로그인후
             MemberDto memberDto = (MemberDto) principal;
-            System.out.println("서비스"+memberDto);
             return memberDto.getMemail()+"_"+memberDto.getAuthorities();
         }
     }
+    //12.15 고은시 이종훈 엔티티에서 이메일 가져오고 로그인 토큰 반환(회원번호 호출)
+    public MemberEntity getEntity(){
+        //로그인정보 확인
+        Object object = new SecurityContextHolder().getContext().getAuthentication().getPrincipal();
+
+        if(object == null){return null;}    //회원정보가 없으면
+
+        MemberDto memberDto = (MemberDto) object;   //오브젝트를 디티오 형변환
+        //멤버디티오에 있는 이메일을 멤버엔티티에 저장
+        Optional<MemberEntity> optional = memberRepository.findByMemail(memberDto.getMemail());
+
+        if(!optional.isPresent()){return null;} //로그인 확인 안되면 null 반환
+        return optional.get();  //로그인정보 확인되면 전부 반환
+    }
+
 
 }

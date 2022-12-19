@@ -21,9 +21,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         //멤버서비스에서 userDetailsService구현제를 loadUserByUsername에서 구현
     }
 
-    //12.07 고은시 http를 통한 보안은 html완성 후 진행
-    // dd
-
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
@@ -40,8 +37,12 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .and()  // 기능 구분
                 .csrf() // 요청 위조 방지
                 .ignoringAntMatchers("/member/signup")
-                .ignoringAntMatchers("/letter/setletter")
-                .ignoringAntMatchers("/board/setboard")
+                .ignoringAntMatchers("/letter/setletter") // 쪽지 작성 post 사용
+                .ignoringAntMatchers("/board/setboard") // 게시글 작성 post 사용
+                .ignoringAntMatchers("/board/getboardlist")  // 글리스트 출력 post
+                .ignoringAntMatchers("/board/getcategory")  // 12.16 최예은 카테고리 리스트 post 사용
+                .ignoringAntMatchers("/board/delboard")  // 12.16 최예은 카테고리 리스트 post 사용
+                .ignoringAntMatchers("/board/upboard") // 게시물수정 put 사용
                 .and()
                 .oauth2Login() // 소셜 로그인 보안 설정
                 .defaultSuccessUrl("/")// 소셜 로그인 성공시 이동하는 URL

@@ -30,6 +30,9 @@ public class BoardEntity extends BaseEntity {
     @ColumnDefault("0")
     private int bbad; //10. 비추천 //12.12 최예은 String--<int 변경
 
+  /*  @Column
+    private String bfile;       // 파일명*/
+
     // 연관관계1 [ 회원번호[pk : mno] <--양방향--> 게시물번호[fk : bno]
     @ManyToOne
     @JoinColumn(name="mno") // 테이블에서 사용할 fk의 필드명 정의
@@ -51,10 +54,6 @@ public class BoardEntity extends BaseEntity {
     @ToString.Exclude
     private  UpdownEntity updownEntity;
 
-
-
-
-
     public BoardDto toDto(){
         return BoardDto
                 .builder()
@@ -73,6 +72,7 @@ public class BoardEntity extends BaseEntity {
 
                 ) //12.12 최예은 작성시간 추가
                 .mprofile(this.getMemberEntity().getMprofile()) // 12.12  최예은 프로필사진 추가
+                .memail(this.getMemberEntity().getMemail())
                 .build();
     }
 }

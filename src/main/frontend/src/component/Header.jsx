@@ -24,15 +24,6 @@ export default function Header(props) {
                             <li><Link to="/"> 내정보</Link></li>
                         </ul>
                     </nav>
-
-
-
-
-
-
-
-
-
                     {login == "" ?
                         (
                             <>
