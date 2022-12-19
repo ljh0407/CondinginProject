@@ -6,7 +6,7 @@ import axios from "axios";// 12.16 최예은 추가
 
 export default function Home( props ){
     //0. 12.16 최예은 추가
-    const [ categorylist ,setCategorylist] = useState([]); // db에 등록해놓은 카테고리 리스트
+    const [categorylist,setCategorylist] = useState([]); // db에 등록해놓은 카테고리 리스트
     // 카테고리 가져오기
 
 //    useEffect(
@@ -16,28 +16,28 @@ export default function Home( props ){
 //            .catch(err=>{ console.log(err);})
 //    ,[])
 
-    function clist(){
+ function clist(){
        axios
          .get("/board/getcategory")
-         .then( res => { console.log(res.data); setCategorylist(res.data); })
+         .then( res => {setCategorylist(res.data)})
          .catch(err=>{ console.log(err);})
-    }
-
-
-    useEffect( clist(), [] );
+ }
+    useEffect( clist, [] );
+    console.log("카테고리리스트");
+    console.log(categorylist);
 
     return(
         <>
+
         <div className="LayOut">   {/* 전체 div */}
             <div className="mid">
                 <article  className="sidebar">
-
                     {
-                        categorylist.map( (c)=>{
+                        categorylist.map((c)=>{
                             return(
-                                <div className="test"> {c.cname} </div>
+                                <div className="clist"> {c.cname} </div>
                             )
-                        } )
+                        })
                     }
 
                     <ul>
