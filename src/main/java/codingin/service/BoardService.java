@@ -174,7 +174,6 @@ public class BoardService {
         }
         else {return false;}
     }
-
     //5. 글 삭제하기 12.6 최예은
     public boolean deleteboard( int bno){
         boardRepository.findById(bno);
@@ -188,9 +187,7 @@ public class BoardService {
             return false;
         }
     }
-
     //////////////////////////////////////카테고리 출력하기///////////////////////////////////////////////
-
     public List<CategoryDto> bcategoryList(){
         List<CategoryEntity> categorylist = categoryRepository.findAll();
         System.out.println("Boardservice 6.카테고리 출력하기 확인하기" + categorylist );
@@ -198,7 +195,5 @@ public class BoardService {
         categorylist.forEach( e -> dtolist.add( e.toDto() ) );
         return dtolist;
     }
-
-
 }// class end
 
