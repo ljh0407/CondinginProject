@@ -170,5 +170,6 @@ public class BoardService {
         System.out.println("Boardservice 6.카테고리 출력하기 확인하기" + dtolist );
         return dtolist;
     }
+    /////////////////////////////////////////////////////////////////////////
 }// class end
 

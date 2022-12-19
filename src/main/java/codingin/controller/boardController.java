@@ -38,12 +38,12 @@ public class boardController {
         System.out.println("BoardController 2. 글 출력하기 pageDto확인하기 : " + pageDto.toString());
         return boardService.getboardlist(pageDto);
     }
-
+    ////////////////////////////////////
     //6.  카테고리 출력하기 12.15 최예은 추가
     @GetMapping("/getcategory")
     public List<CategoryDto> categorylist(){
         System.out.println("BoardController 6. 카테고리 출력하기 categorylist 확인");
         return boardService.bcategoryList();
     }
-
+    ////////////////////////////////////
 }
