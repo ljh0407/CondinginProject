@@ -56,7 +56,7 @@ public class BoardService {
     String path = "C:\\upload\\";  // C드라이브-> upload 폴더 생성
 
     //====================================================//
-   /* // 0. 첨부파일 다운로드
+   // 0. 첨부파일 다운로드
     public void filedownload( String filename ){
         String realfilename ="";  // uuid 제거  //
         String [] split = filename.split("_"); // 1. _ 기준으로 자르기
@@ -101,7 +101,7 @@ public class BoardService {
             }
             return  true;
         }else{ return  false;}
-    }*/
+    }
 
     //1. 개별글쓰기 12.5 최예은
     //12.14 1.글 쓰기 최예은
@@ -193,7 +193,9 @@ public class BoardService {
 
     public List<CategoryDto> bcategoryList(){
         List<CategoryEntity> categorylist = categoryRepository.findAll();
+        System.out.println("Boardservice 6.카테고리 출력하기 확인하기" + categorylist );
         List<CategoryDto> dtolist = new ArrayList<>();
+        categorylist.forEach( e -> dtolist.add( e.toDto() ) );
         return dtolist;
     }
 

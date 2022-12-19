@@ -27,6 +27,7 @@ public class CategoryEntity extends BaseEntity {
         return CategoryDto
                 .builder()
                 .cno( this.cno )
+                .cname(this.cname)
                 .build();
     }
 }

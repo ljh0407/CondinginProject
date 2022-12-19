@@ -53,13 +53,12 @@ public class boardController {
 
     //5. 게시물 수정하기
    @PutMapping("/upboard")
-    public boolean upboard(BoardDto boardDto){
+    public boolean upboard( BoardDto boardDto){
        System.out.println("컨트로 2 : **"+boardDto);
         return boardService.bupboard(boardDto);
    }
-
     //6.  카테고리 출력하기 12.15 최예은 추가
-    @PostMapping("/getcategory")
+    @GetMapping("/getcategory")
     public List<CategoryDto> categorylist(){
         return boardService.bcategoryList();
     }
