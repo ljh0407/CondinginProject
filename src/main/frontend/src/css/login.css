@@ -7,5 +7,16 @@
 }
 /* 로그인 h3 */
 .title{
+    font-size: 500%;
+    justify-content: center;
+    display: flex;
+    height: 300px;
+    align-items: center;
+    color: #51d4dd;
+}
 
+#Log{
+     display: flex;
+     flex-direction: column;
+     align-items: center;
 }
