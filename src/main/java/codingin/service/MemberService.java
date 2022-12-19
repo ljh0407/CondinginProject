@@ -17,6 +17,7 @@ import org.springframework.security.oauth2.client.userinfo.OAuth2UserService;
 import org.springframework.security.oauth2.core.OAuth2AuthenticationException;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.HashSet;
 import java.util.Optional;
@@ -102,5 +103,39 @@ public class MemberService implements  OAuth2UserService< OAuth2UserRequest , OA
         return optional.get();  //로그인정보 확인되면 전부 반환
     }
 
+    // 회원수정
+    @Transactional
+    public boolean setmupdate(MemberDto memberDto){
+        System.out.println("서비스****");
+        Optional<MemberEntity> optional = memberRepository.findById(memberDto.getMno());
+        if( optional.isPresent() ) {
+            MemberEntity memberEntity = optional.get();
+            memberEntity.setMnick( memberDto.getMnick() );
+            memberEntity.setMprofile( memberDto.getMprofile()); ;
+            return true;
+        }else{  return false;  }
+    }
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

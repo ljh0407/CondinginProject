@@ -5,6 +5,7 @@ import Footer from './Footer';
 import logo from '../img/logo.png'
 //로그인영역
 import Login from './member/Login';
+import MUpdate from "./member/MUpdate";
 //board 영역
 import Bwrite from "./board/Bwrite";//글쓰기
 import BoardList from "./board/BoardList"; //전체글보기12.15 최예은 추가
@@ -37,7 +38,8 @@ export default function Index( props ){
                         <Route path="/board/boardlist" element={ <BoardList />} /> {/*// 글쓰기*/}
                         <Route path="/board/bview/:bno" element={ <Bview />} /> {/*// 개별글보기*/}
                         <Route path="/letter/lwrite" element={ <Lwrite />} />   {/*//쪽지*/}
-                        <Route path="/board/update/:bno" element={ <Bupdate />} />   {/*//수정*/}
+                        <Route path="/board/update/:bno" element={ <Bupdate />} />   {/*//게시글 수정*/}
+                        <Route path="/member/mupdate" element={ <MUpdate />} />   {/*//회원수정*/}
                     </Routes>
                     <Footer/>
                 </BrowserRouter>
