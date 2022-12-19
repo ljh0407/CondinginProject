@@ -38,12 +38,34 @@ public class boardController {
         System.out.println("BoardController 2. 글 출력하기 pageDto확인하기 : " + pageDto.toString());
         return boardService.getboardlist(pageDto);
     }
-    ////////////////////////////////////
+
+
+    //3.게시물 개별조회
+    @GetMapping("/getbview")
+    public BoardDto getbview (@RequestParam("bno") int bno){
+        System.out.println("컨트로 1 : **"+bno);
+        return boardService.getboard(bno);
+    }
+
+
+    //4.게시물 삭제하기
+    @DeleteMapping("/delboard")
+    public boolean delboard(@RequestParam("bno") int bno){
+
+        return  boardService.deleteboard(bno);
+    }
+
+    //5. 게시물 수정하기
+   @PutMapping("/upboard")
+    public boolean upboard( BoardDto boardDto){
+       System.out.println("컨트로 2 : **"+boardDto);
+        return boardService.bupboard(boardDto);
+   }
     //6.  카테고리 출력하기 12.15 최예은 추가
     @GetMapping("/getcategory")
     public List<CategoryDto> categorylist(){
         System.out.println("BoardController 6. 카테고리 출력하기 categorylist 확인");
         return boardService.bcategoryList();
     }
-    ////////////////////////////////////
+
 }

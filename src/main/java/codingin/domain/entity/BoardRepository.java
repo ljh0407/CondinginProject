@@ -13,7 +13,6 @@ public interface BoardRepository extends JpaRepository<BoardEntity , Integer> {
             "FROM " +
             "board " +
             "WHERE " +
-            "IF( :bcno = 0 , bcno like '%%' , bcno = :bcno  ) and " +
             "IF( :key = '' , true , IF( :key = 'btitle' ,  btitle like %:keyword% , bcontent like %:keyword%  ) )" , nativeQuery = true )
     Page<BoardEntity> findbySearch( String key , String keyword , Pageable pageable);
                 //카테고리번호는 뺐습니다.

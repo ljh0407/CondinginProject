@@ -32,18 +32,6 @@ public class LetterController {
     @Autowired
     private LetterRepository letterRepository;
 
-    //---------------------- 페이지로드 -----------------------
-    // 이종훈 12/5 쪽지등록
-/*
-    @GetMapping("/write")
-        public Resource getwrite(){ return new ClassPathResource("templates/letter/letter.html");
-        }
-    @GetMapping("/list")
-        public Resource getlist(){ return new ClassPathResource("templates/letter/letter.html") ;}
-*/
-
-
-
 // ------------------------- 기능 ------------------------------------
 
     // 1. 쪽지쓰기

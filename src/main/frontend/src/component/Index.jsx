@@ -7,8 +7,9 @@ import logo from '../img/logo.png'
 import Login from './member/Login';
 //board 영역
 import Bwrite from "./board/Bwrite";//글쓰기
-import BoardList from "./board/BoardList";//전체글보기12.15 최예은 추가
+import BoardList from "./board/BoardList"; //전체글보기12.15 최예은 추가
 import Bview from "./board/Bview";//개별글보기
+import Bupdate from "./board/Bupdate";  //게시글 수정
 //letter영역
 import Lwrite from "./letter/Lwrite";
 //css영역
@@ -16,6 +17,7 @@ import StyleSheet from '../css/Index.css'; // css 불러오기
 import { HashRouter, BrowserRouter , Routes , Route , Link , Router } from 'react-router-dom';
 
 export default function Index( props ){
+
     const menus = [
     { name : "공지사항" , path: "/" },
     { name : "고민있어요" , path: "/" },
@@ -31,10 +33,11 @@ export default function Index( props ){
                     <Routes>
                         <Route path="/"  element={ < Home /> } />
                         <Route path="/member/signup"  element={ < Login /> } />
-                        <Route path="/board/bwrite" element={ <Bwrite />} /> // 글쓰기
-                        <Route path="/board/boardlist" element={ <BoardList />} /> // 글쓰기
-                        <Route path="/board/bview" element={ <Bview />} /> // 개별글보기
-                        <Route path="/letter/lwrite" element={ <Lwrite />} />
+                        <Route path="/board/bwrite" element={ <Bwrite />} /> {/*// 글쓰기*/}
+                        <Route path="/board/boardlist" element={ <BoardList />} /> {/*// 글쓰기*/}
+                        <Route path="/board/bview/:bno" element={ <Bview />} /> {/*// 개별글보기*/}
+                        <Route path="/letter/lwrite" element={ <Lwrite />} />   {/*//쪽지*/}
+                        <Route path="/board/update/:bno" element={ <Bupdate />} />   {/*//수정*/}
                     </Routes>
                     <Footer/>
                 </BrowserRouter>
