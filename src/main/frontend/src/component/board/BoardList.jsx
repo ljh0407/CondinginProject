@@ -86,11 +86,3 @@ export default function BoardList(props) {
     );//return end
 
 }
-
-/*        <Pagination
-            activePage={ pageInfo.page  }
-            itemsCountPerPage = { 5 }
-            totalItemsCount = { pageDto.totalBoards }
-            pageRangeDisplayed = { 5 }
-            onChange={ onPage }
-        />*/
