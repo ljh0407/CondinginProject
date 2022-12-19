@@ -27,7 +27,9 @@ export default function Bupdate( props ){
         console.log(formdata);
         console.log(bcontent);
 
-        axios.put("/board/bupboard" , formdata )
+        // 폼 전송시에는 멀티파트 폼 데이터 라는
+
+        axios.put("/board/upboard" , formdata , {headers: {'Content-Type': 'multipart/form-data'}})
             .then( res => {
                 if( res.data == true ){ alert('게시물 수정 성공'); }
                 else{ alert('게시물 수정 실패'); }
