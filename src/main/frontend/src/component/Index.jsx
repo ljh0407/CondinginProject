@@ -30,7 +30,7 @@ export default function Index( props ){
             <div className="box">
                 <BrowserRouter>
                     <Header/>
-                        <h3>메인페이지</h3>
+
                     <Routes>
                         <Route path="/"  element={ < Home /> } />
                         <Route path="/member/signup"  element={ < Login /> } />
