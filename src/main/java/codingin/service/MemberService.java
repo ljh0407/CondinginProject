@@ -8,17 +8,14 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.oauth2.client.userinfo.DefaultOAuth2UserService;
 import org.springframework.security.oauth2.client.userinfo.OAuth2UserRequest;
 import org.springframework.security.oauth2.client.userinfo.OAuth2UserService;
 import org.springframework.security.oauth2.core.OAuth2AuthenticationException;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import javax.transaction.Transactional;
 import java.io.File;
 import java.util.HashSet;
 import java.util.Optional;
@@ -60,12 +57,13 @@ public class MemberService implements  OAuth2UserService< OAuth2UserRequest , OA
                 File uploadfile = new File(path + filename);  // 4. 경로+파일명 [ 객체화 ]
                 memberDto.getMprofile().transferTo(uploadfile);   // 5. 해당 객체 경로 로 업로드
             } catch (Exception e) {
-                System.out.println("첨부파일 업로드 실패 : "+e);
-            }return  true;
+                System.out.println("첨부파일 업로드 실패 "+e);
+            }
+            return  true;
         }else{ return  false;}
     }
     //====================================================//
-    @Override   //1. 12.07 고은시 자동생성_로그인                   성공한 소셜 회원 정보 받는 메소드
+    @Override   // 12.07 고은시 자동생성_로그인                   성공한 소셜 회원 정보 받는 메소드
     public OAuth2User loadUser(OAuth2UserRequest userRequest) throws OAuth2AuthenticationException {
         // 1. 인증[로그인] 결과 정보 요청
         OAuth2UserService oAuth2UserService = new DefaultOAuth2UserService();
@@ -93,6 +91,7 @@ public class MemberService implements  OAuth2UserService< OAuth2UserRequest , OA
         memberDto.setMemail( memberEntity.getMemail() );
         memberDto.setAuthorities( authorities );
         memberDto.setAttributes( oauthDto.getAttributes() );
+
         return memberDto;
     }
 
@@ -110,7 +109,7 @@ public class MemberService implements  OAuth2UserService< OAuth2UserRequest , OA
             return memberDto.getMemail()+"_"+memberDto.getAuthorities();
         }
     }
-    //3. 12.15 고은시 이종훈 엔티티에서 이메일 가져오고 로그인 토큰 반환(회원번호 호출)
+    //12.15 고은시 이종훈 엔티티에서 이메일 가져오고 로그인 토큰 반환(회원번호 호출)
     public MemberEntity getEntity(){
         //로그인정보 확인
         Object object = new SecurityContextHolder().getContext().getAuthentication().getPrincipal();
@@ -124,15 +123,18 @@ public class MemberService implements  OAuth2UserService< OAuth2UserRequest , OA
         if(!optional.isPresent()){return null;} //로그인 확인 안되면 null 반환
         return optional.get();  //로그인정보 확인되면 전부 반환
     }
+
     // 12.20 고은시 회원수정 시 프로파일 업로드
     @Transactional
     public boolean setmupdate(MemberDto memberDto){
         System.out.println("서비스****");
-        //dto -> entity저장
-        MemberEntity memberEntity = memberRepository.save(memberDto.toEntity());
-        if(memberEntity.getMno() != 0) {    //회원번호가 0이 아니면(회원일때)
-            fileupload(memberDto , memberEntity);   //파일 업로드함수 dto,entity 실행
+        Optional<MemberEntity> optional = memberRepository.findById(memberDto.getMno());
+        if( optional.isPresent() ) {
+            MemberEntity memberEntity = optional.get();
+            memberEntity.setMnick( memberDto.getMnick() );
+            ///memberEntity.setMprofile( memberDto.getMprofile()); ;
             return true;
         }else{  return false;  }
     }
+
 }

@@ -10,8 +10,9 @@ import Header from './component/Header';
 import Home from './component/Home';
 import Index from './component/Index';
 import Footer from './component/Footer';
-/*import Bview from './component/board/Bview';
-import Bwrite from './component/board/Bwrite';*/
+
+//import Notice from './sidebar/Notice';
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 root.render(

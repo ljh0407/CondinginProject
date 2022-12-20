@@ -2,6 +2,7 @@ package codingin.domain.entity;
 import codingin.domain.BaseEntity;
 import codingin.domain.dto.MemberDto;
 import lombok.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -18,15 +19,17 @@ public class MemberEntity extends BaseEntity {
 
     @Column(nullable = false)// 12.07 삭제된 필드 복구
     private String memail;
+
     //12.08 고은시  not null일 필요 없어서 삭제
     @Column
     private String mnick;   //닉네임
+
     @Column
     private String mpassword; //비밀번호
     @Column
     private String mphone;  //전화번호
     @Column
-    private String mprofile;    //프로필
+    private String mprofile;    //프로필 파일명
 
     private String mlevel; //로그인한 소셜 확인
 
@@ -73,7 +76,7 @@ public class MemberEntity extends BaseEntity {
                 .builder()
                 .mno( this.mno )
                 .mpassword( this.mpassword )
-                //12.20 고은시 필드 삭제.mprofile( this.mprofile )
+                //12.20 고은시 필드 삭제 .mprofile(this.mprofile)
                 .mnick( this.mnick )
                 .mlevel( this.mlevel)
                 .build();

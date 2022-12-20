@@ -16,6 +16,7 @@ public class MemberDto implements UserDetails , OAuth2User {    //12.07 고은�
     private int mno;
     private String mpassword; //비밀번호
     private String memail;      // 12.07 삭제된 필드 복구
+    //private String mphone;  //12.08 전화번호 필드 삭제(소셜로그인이라 필요없음)
     private MultipartFile mprofile;    //12.20 고은시 자료형 추가 프로필[업로드용]
     private String mfilename;   //12.20 고은시 자료형 변경 첨부파일 [ 출력용 ]
     private String mnick;   //닉네임
