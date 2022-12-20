@@ -16,7 +16,7 @@ import Lwrite from "./letter/Lwrite";
 //css영역
 import StyleSheet from '../css/Index.css'; // css 불러오기
 import { HashRouter, BrowserRouter , Routes , Route , Link , Router } from 'react-router-dom';
-
+//
 export default function Index( props ){
 
     const menus = [
