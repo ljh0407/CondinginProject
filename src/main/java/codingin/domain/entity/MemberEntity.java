@@ -73,7 +73,7 @@ public class MemberEntity extends BaseEntity {
                 .builder()
                 .mno( this.mno )
                 .mpassword( this.mpassword )
-                .mprofile( this.mprofile )
+                //12.20 고은시 필드 삭제.mprofile( this.mprofile )
                 .mnick( this.mnick )
                 .mlevel( this.mlevel)
                 .build();
