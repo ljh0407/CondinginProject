@@ -8,9 +8,6 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.oauth2.client.userinfo.DefaultOAuth2UserService;
 import org.springframework.security.oauth2.client.userinfo.OAuth2UserRequest;
 import org.springframework.security.oauth2.client.userinfo.OAuth2UserService;
@@ -19,9 +16,11 @@ import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.io.File;
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
+import java.util.UUID;
 
 @Service
 public class MemberService implements  OAuth2UserService< OAuth2UserRequest , OAuth2User> {
@@ -39,8 +38,30 @@ public class MemberService implements  OAuth2UserService< OAuth2UserRequest , OA
     @Autowired
     private RereplyRepository rereplyRepository;
     @Autowired
-    private  UpdownRepository updownRepository;    
+    private  UpdownRepository updownRepository;
+    // 12.20 고은시 첨부파일 경로
+    String path = "C:\\upload\\";  // C드라이브-> upload 폴더 생성
 
+    //====================================================//
+    // 12.20 고은시 * 첨부파일 업로드 [ 1. 쓰기메소드 2. 수정메소드 ] 사용
+    @Transactional              //  boardDto : 쓰기,수정 대상     BoardEntity:원본
+    public boolean fileupload( MemberDto memberDto , MemberEntity memberEntity ){
+        if( !memberDto.getMprofile().getOriginalFilename().equals("") ) { // ** 첨부파일 있을때
+            // * 업로드 된 파일의 이름 [ 문제점 : 파일명 중복 ]
+            String uuid = UUID.randomUUID().toString(); // 1. 난수생성
+            String filename = uuid + "_" + memberDto.getMprofile().getOriginalFilename(); // 2. 난수+파일명
+            // * 첨부파일명 db 에 등록
+            memberEntity.setMprofile(filename); // 해당 파일명 엔티티에 저장 // 3. 난수+파일명 엔티티 에 저장
+            // * 첨부파일 업로드 // 3. 저장할 경로 [ 전역변수 ]
+            try {
+                File uploadfile = new File(path + filename);  // 4. 경로+파일명 [ 객체화 ]
+                memberDto.getMprofile().transferTo(uploadfile);   // 5. 해당 객체 경로 로 업로드
+            } catch (Exception e) {
+                System.out.println("첨부파일 업로드 실패 "+e);
+            }
+            return  true;
+        }else{ return  false;}
+    }
     //====================================================//
     @Override   // 12.07 고은시 자동생성_로그인                   성공한 소셜 회원 정보 받는 메소드
     public OAuth2User loadUser(OAuth2UserRequest userRequest) throws OAuth2AuthenticationException {
@@ -103,7 +124,7 @@ public class MemberService implements  OAuth2UserService< OAuth2UserRequest , OA
         return optional.get();  //로그인정보 확인되면 전부 반환
     }
 
-    // 회원수정
+    // 12.20 고은시 회원수정 시 프로파일 업로드
     @Transactional
     public boolean setmupdate(MemberDto memberDto){
         System.out.println("서비스****");
@@ -111,7 +132,7 @@ public class MemberService implements  OAuth2UserService< OAuth2UserRequest , OA
         if( optional.isPresent() ) {
             MemberEntity memberEntity = optional.get();
             memberEntity.setMnick( memberDto.getMnick() );
-            memberEntity.setMprofile( memberDto.getMprofile()); ;
+            ///memberEntity.setMprofile( memberDto.getMprofile()); ;
             return true;
         }else{  return false;  }
     }
