@@ -123,17 +123,16 @@ public class MemberService implements  OAuth2UserService< OAuth2UserRequest , OA
 
     // 12.20 고은시 회원수정 시 프로파일 업로드
     @Transactional
-    public boolean setmupdate(MemberDto memberDto){
+    public boolean setmupdate(MemberDto memberDto ){
         String Memail = getloginMno().split("_")[0];
         MemberEntity memberEntity = memberRepository.findByMemail(Memail).get();
         ///dto -> entity저장
-       if(memberEntity.getMno() > 0 ){ //회원번호가 0보다 크면
+       if(memberEntity.getMno() > 0 ) { //회원번호가 0보다 크면
            memberEntity.setMnick(memberDto.getMnick());
-           memberEntity.setMnick(memberDto.getMprofile());
-           System.out.println("서비스"+memberDto.toString());
-           profileupload(memberDto , memberEntity);    //파일 업로드 실행(dto,entity담기)
-           System.out.println("수정오류****2 : ");
-            return true;
-        }else{  return false;  }
+           if (memberDto.getMprofile() != null) {
+               profileupload(memberDto, memberEntity);
+               return true;
+           }
+       }return false;
     }
 }

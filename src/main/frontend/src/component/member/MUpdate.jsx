@@ -17,7 +17,6 @@ export default function MUpdate(props){
     const mupdate = () => {
         let memberform = document.querySelector('.memberform'); // DOM 객체
         let formdata = new FormData(memberform , ('#file')[0][1]);
-        formdata.set("memail" , member.memail)    //수정할 회원
         console.log(formdata+'ㄱ공ㄴ시')
 
         axios.post("/member/setmupdate" , formdata, {headers: {'Content-Type': 'multipart/form-data'}})
@@ -32,7 +31,7 @@ export default function MUpdate(props){
             <h1>프로필 수정하기</h1>
             <form className="memberform" name="" value="post">
                 닉네임 <input type="text" className="mnick" name="mnick"/>
-                프로필사진 <input type="text" name="mprofile"/>
+                프로필사진 <input type="file" name="mprofile"/>
                 <button type="button" onClick={ mupdate }>수정하기</button>
             </form>
         </div>
