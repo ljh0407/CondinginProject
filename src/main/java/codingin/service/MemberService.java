@@ -44,8 +44,8 @@ public class MemberService implements  OAuth2UserService< OAuth2UserRequest , OA
 
     //====================================================//
     // 12.20 고은시 * 첨부파일 업로드 [ 1. 쓰기메소드 2. 수정메소드 ] 사용
-    @Transactional              //  boardDto : 쓰기,수정 대상     BoardEntity:원본
-    public boolean fileupload( MemberDto memberDto , MemberEntity memberEntity ){
+    @Transactional              //  memberDto : 쓰기,수정 대상     MemberEntity:원본
+    public boolean profileupload( MemberDto memberDto , MemberEntity memberEntity ){
         if( !memberDto.getMprofile().getOriginalFilename().equals("") ) { // ** 첨부파일 있을때
             // * 업로드 된 파일의 이름 [ 문제점 : 파일명 중복 ]
             String uuid = UUID.randomUUID().toString(); // 1. 난수생성
@@ -124,12 +124,14 @@ public class MemberService implements  OAuth2UserService< OAuth2UserRequest , OA
     // 12.20 고은시 회원수정 시 프로파일 업로드
     @Transactional
     public boolean setmupdate(MemberDto memberDto){
+        System.out.println("수정오류****");
         ///dto -> entity저장
        MemberEntity memberEntity = memberRepository.save(memberDto.toEntity());
+        System.out.println("수정오류***** 3 : "+memberEntity);
        if(memberEntity.getMno() != 0 ){ //회원번호가 0이 아니면(회원이면)
-           fileupload(memberDto , memberEntity);    //파일 업로드 실행(dto,entity담기)
+           //profileupload(memberDto , memberEntity);    //파일 업로드 실행(dto,entity담기)
+           System.out.println("수정오류****2 : ");
             return true;
         }else{  return false;  }
     }
-
 }

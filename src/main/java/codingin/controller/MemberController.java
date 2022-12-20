@@ -5,10 +5,7 @@ import codingin.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 
 @RestController
@@ -25,7 +22,7 @@ public class MemberController {
         return result;
     }
     // 회원정보수정
-    @PutMapping("/setmupdate")
+    @PostMapping("/setmupdate")
     public boolean setmupdate(MemberDto memberDto){
        return memberService.setmupdate(memberDto);
    }

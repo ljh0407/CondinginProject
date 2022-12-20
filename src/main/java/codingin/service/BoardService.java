@@ -159,17 +159,12 @@ public class BoardService {
     //4. 글 수정하기 12.6 최예은
     @Transactional
     public boolean bupboard(BoardDto boardDto){
-        System.out.println("**수정***");
         //1.수정할 게시물 찾기
         Optional<BoardEntity> optional = boardRepository.findById(boardDto.getBno());
         if(optional.isPresent()){
             BoardEntity boardEntity = optional.get();
-            System.out.println("**수정***1 : "+boardEntity);
-
             boardEntity.setBtitle(boardDto.getBtitle());
-            System.out.println("**수정***2 : "+boardEntity);
             boardEntity.setBcontent(boardDto.getBcontent());
-            System.out.println("**수정***3 : "+boardEntity);
             return true;
         }
         else {return false;}
@@ -191,7 +186,6 @@ public class BoardService {
     //6. 카테고리 출력하기 최예은
     public List<CategoryDto> bcategoryList(){
         List<CategoryEntity> categorylist = categoryRepository.findAll();
-        System.out.println("Boardservice 6.카테고리 출력하기 확인하기" + categorylist );
         List<CategoryDto> dtolist = new ArrayList<>();
         categorylist.forEach( e -> dtolist.add( e.toDto() ) );
         return dtolist;
