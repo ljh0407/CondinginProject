@@ -2,6 +2,7 @@ package codingin.domain.entity;
 import codingin.domain.BaseEntity;
 import codingin.domain.dto.MemberDto;
 import lombok.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -28,7 +29,7 @@ public class MemberEntity extends BaseEntity {
     @Column
     private String mphone;  //전화번호
     @Column
-    private String mprofile;    //프로필
+    private String mprofile;    //프로필 파일명
 
     private String mlevel; //로그인한 소셜 확인
 
@@ -67,15 +68,12 @@ public class MemberEntity extends BaseEntity {
 //    @Builder.Default
 //    private String lfrom; //보내는사람
 
-
-
-
     public MemberDto toDto(){
         return MemberDto
                 .builder()
                 .mno( this.mno )
                 .mpassword( this.mpassword )
-                .mprofile( this.mprofile )
+                //12.20 고은시 필드 삭제 .mprofile(this.mprofile)
                 .mnick( this.mnick )
                 .mlevel( this.mlevel)
                 .build();
