@@ -1,7 +1,6 @@
 package codingin.domain.dto;
 import codingin.domain.entity.BoardEntity;
 import lombok.*;
-import org.hibernate.annotations.ColumnDefault;
 import org.springframework.web.multipart.MultipartFile;
 
 @NoArgsConstructor @AllArgsConstructor

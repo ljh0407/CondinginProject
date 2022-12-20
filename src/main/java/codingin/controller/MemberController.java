@@ -25,8 +25,8 @@ public class MemberController {
         return result;
     }
     // 회원정보수정
-      @PutMapping("/setmupdate")
-      public boolean setmupdate(MemberDto memberDto){
+    @PutMapping("/setmupdate")
+    public boolean setmupdate(MemberDto memberDto){
        return memberService.setmupdate(memberDto);
    }
 

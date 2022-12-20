@@ -68,6 +68,9 @@ public class MemberEntity extends BaseEntity {
 //    @Builder.Default
 //    private String lfrom; //보내는사람
 
+
+
+
     public MemberDto toDto(){
         return MemberDto
                 .builder()

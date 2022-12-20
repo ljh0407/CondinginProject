@@ -5,6 +5,7 @@ import lombok.*;
 @NoArgsConstructor @AllArgsConstructor
 @Getter @Setter @ToString @Builder
 public class CategoryDto {
+
     private int cno;
     private String cname;
 
