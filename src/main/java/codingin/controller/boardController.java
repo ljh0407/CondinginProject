@@ -22,52 +22,35 @@ public class boardController {
     private BoardService boardService;
     //====================서비스=========================//
 
-    //controller
-    //1. 개별 글쓰기  12.5 최예은
-    @PostMapping("/setboard")
+    @PostMapping("/setboard")   //1. 개별 글쓰기
     public boolean setboard(BoardDto boardDto) { //js에서 json으로 받을 예정이라 @RequestBody로 받아야 함.
-        System.out.println("boardController 1.개별 글쓰기 boardDto 확인 : " + boardDto);
         return boardService.setboard(boardDto);
     }
-    //2. 글 출력하기 12.5 최예은
-    @PostMapping("/getboardlist")
+
+    @PostMapping("/getboardlist")   //2. 글 출력하기
     public PageDto getboardlist(@RequestBody PageDto pageDto){
-        System.out.println("BoardController 2. 글 출력하기 pageDto확인하기 : " + pageDto);
-        System.out.println("BoardController 2. 글 출력하기 pageDto확인하기 : " + pageDto.toString());
         return boardService.getboardlist(pageDto);
     }
 
-    //3.게시물 개별조회
-    @GetMapping("/getbview")
+    @GetMapping("/getbview")    //3.게시물 개별조회
     public BoardDto getbview (@RequestParam("bno") int bno){
-        System.out.println("컨트로 1 : **"+bno);
         return boardService.getboard(bno);    }
 
-
-    //4.게시물 삭제하기
-    @DeleteMapping("/delboard")
+    @DeleteMapping("/delboard") //4.게시물 삭제하기
     public boolean delboard(@RequestParam("bno") int bno){
 
         return  boardService.deleteboard(bno);
     }
 
-    //5. 게시물 수정하기
-   @PutMapping("/upboard")
+   @PutMapping("/upboard")  //5. 게시물 수정하기
     public boolean upboard( BoardDto boardDto){
-       System.out.println("컨트로 2 : **"+boardDto);
         return boardService.bupboard(boardDto);
    }
-    //6.  카테고리 출력하기 12.15 최예은 추가
-    @GetMapping("/getcategory")
+
+    @GetMapping("/getcategory") //6.  카테고리 출력하기
     public List<CategoryDto> categorylist(){
         System.out.println("BoardController 6. 카테고리 출력하기 categorylist 확인");
         return boardService.bcategoryList();
     }
-
-    //7.각 카테고리의 최신 글 가져오기 12.19 최예은 추가
-   /* @GetMapping("/getlimitdesc")
-    public List<BoardDto> getlimitdesc(@RequestParam int cno){
-        return boardService.getlimitdesc(cno);
-    }*/
 
 }

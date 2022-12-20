@@ -36,11 +36,11 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .invalidateHttpSession( true )                  // 세션초기화  [ principal 초기화 ]
                 .and()  // 기능 구분
                 .csrf() // 요청 위조 방지
-                .ignoringAntMatchers("/member/signup")
+                .ignoringAntMatchers("/member/signup")  //로그인
                 .ignoringAntMatchers("/letter/setletter") // 쪽지 작성 post 사용
                 .ignoringAntMatchers("/board/setboard") // 게시글 작성 post 사용
                 .ignoringAntMatchers("/board/getboardlist")  // 글리스트 출력 post
-                .ignoringAntMatchers("/board/getcategory")  // 12.16 최예은 카테고리 리스트 post 사용
+                .ignoringAntMatchers("/board/getcategory")  // 카테고리 리스트 post 사용
                 .ignoringAntMatchers("/board/delboard")  // 삭제 url
                 .ignoringAntMatchers("/board/upboard") // 게시물수정 put 사용
                 .ignoringAntMatchers("/member/setmupdate") // 회원수정 put 사용(시큐리티 = axios = 컨트롤러)

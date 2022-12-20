@@ -33,7 +33,7 @@ export default function Index( props ){
                         <h3>메인페이지</h3>
                     <Routes>
                         <Route path="/"  element={ < Home /> } />
-                        <Route path="/member/signup"  element={ < Login /> } />
+                        <Route path="/member/signup"  element={ < Login /> } /> {/*로그인*/}
                         <Route path="/board/bwrite" element={ <Bwrite />} /> {/*// 글쓰기*/}
                         <Route path="/board/boardlist" element={ <BoardList />} /> {/*// 글쓰기*/}
                         <Route path="/board/bview/:bno" element={ <Bview />} /> {/*// 개별글보기*/}

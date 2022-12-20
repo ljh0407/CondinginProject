@@ -105,8 +105,8 @@ public class MemberService implements  OAuth2UserService< OAuth2UserRequest , OA
         if (principal.equals("anonymousUser")) {  // anonymousUser 이면 로그인전
             return null;
         } else { // anonymousUser 아니면 로그인후
-            MemberDto memberDto = (MemberDto) principal;
-            return memberDto.getMemail()+"_"+memberDto.getAuthorities();
+            MemberDto memberDto = (MemberDto) principal;    //멤버디티오에서 가져옴
+            return memberDto.getMemail()+"_"+memberDto.getAuthorities();    //언더바로 무슨계정인지 표시
         }
     }
     //12.15 고은시 이종훈 엔티티에서 이메일 가져오고 로그인 토큰 반환(회원번호 호출)
@@ -124,14 +124,14 @@ public class MemberService implements  OAuth2UserService< OAuth2UserRequest , OA
     // 12.20 고은시 회원수정 시 프로파일 업로드
     @Transactional
     public boolean setmupdate(MemberDto memberDto ){
-        String Memail = getloginMno().split("_")[0];
-        MemberEntity memberEntity = memberRepository.findByMemail(Memail).get();
+        String Memail = getloginMno().split("_")[0];    //Memail에 로그인 세션가져오기
+        MemberEntity memberEntity = memberRepository.findByMemail(Memail).get();    //리포지토리에 설정한 이메일 찾기가져오기
         ///dto -> entity저장
        if(memberEntity.getMno() > 0 ) { //회원번호가 0보다 크면
-           memberEntity.setMnick(memberDto.getMnick());
-           if (memberDto.getMprofile() != null) {
-               profileupload(memberDto, memberEntity);
-               return true;
+           memberEntity.setMnick(memberDto.getMnick()); //디티오에서 가져온 닉네임 엔티티에 저장하기
+           if (memberDto.getMprofile() != null) {   //디티오에 프로파일이 없으면
+               profileupload(memberDto, memberEntity);  //파일업로드 메소드호출(디티오 엔티티)가져오기
+               return true; //전부 리턴
            }
        }return false;
     }

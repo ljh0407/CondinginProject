@@ -20,7 +20,7 @@ export default function Header(props) {
                 <Link to="/index"> <img className="logo" src={logo} /> </Link>
              </div>
                 {login == "" ?
-                    (
+                    (   /*로그인 안했을떄*/
                         <nav id="menu">
                             <ul id="top_menu">
                                 <li ><Link to="/member/signup"> 회원가입 및 로그인 </Link> </li>
@@ -28,7 +28,7 @@ export default function Header(props) {
                         </nav>
                     )
                     :
-                    (
+                    (   /*로그인 했을때*/
                     <nav id="menu">
                         <ul id="top_menu">
                             <li> { login } </li>

@@ -33,14 +33,14 @@ export default function Bview(props){
 
     return(
         <div>
-            <div>{board.btitle}</div>
-            <div>{board.bcontent}</div>
-            <div>{board.bdate}</div>
-            <div>{board.bview}</div>
-            <div>{board.bgood}</div>
-            <div>{board.bbad}</div>
-            <div>{board.memail}</div>
-            <div>{board.mprofile}</div>
+            <div>{board.btitle}</div>   {/*제목*/}
+            <div>{board.bcontent}</div> {/*내용*/}
+            <div>{board.bdate}</div>    {/*날짜*/}
+            <div>{board.bview}</div>    {/*??????*/}
+            <div>{board.bgood}</div>    {/*좋아요*/}
+            <div>{board.bbad}</div> {/*싫어요*/}
+            <div>{board.memail}</div>   {/*작성자*/}
+            <div>{board.mprofile}</div> {/*프로필*/}
 
             {/*12.16 작성자와 로그인이 같으면 버튼 노출*/}
             { login==board.memail && <button type="button" onClick={onDelete}>삭제</button> }
