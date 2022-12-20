@@ -24,6 +24,7 @@ public class MemberController {
     // 회원정보수정
     @PostMapping("/setmupdate")
     public boolean setmupdate(MemberDto memberDto){
+        System.out.println("멤버확인"+memberDto.toString());
        return memberService.setmupdate(memberDto);
    }
 

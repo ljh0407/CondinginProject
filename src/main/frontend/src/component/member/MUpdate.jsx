@@ -31,7 +31,8 @@ export default function MUpdate(props){
         <div>
             <h1>프로필 수정하기</h1>
             <form className="memberform" name="" value="post">
-                닉네임 <input type="text" className="mnick" />
+                닉네임 <input type="text" className="mnick" name="mnick"/>
+                프로필사진 <input type="text" name="mprofile"/>
                 <button type="button" onClick={ mupdate }>수정하기</button>
             </form>
         </div>
