@@ -14,7 +14,6 @@ export default function BoardList(props) {
     //서버로부터 pageInfo 요청 [실행조건? 1. 랜더링이 될때 2. 검색할 때 3.카테고리선택할때 4.페이징할 때 --> 일반함수화]
 //--------------------1. 게시물출력-------------------------
 
-
     function getboardlist(){  // pageinfo 요청 -> pageDto
         axios
             .post("/board/getboardlist",pageInfo)
@@ -25,6 +24,8 @@ export default function BoardList(props) {
             .catch(err => console.error(err))
     }
     useEffect(getboardlist,[pageInfo])
+
+
 
 
     // 페이징처리
@@ -51,8 +52,9 @@ export default function BoardList(props) {
 // <a href={"/board/bwrite"+params.cno}>글쓰기</a>
 //<a href = {"/board/filedownload?filename="+board.bfilename} > {board.bfilename}</a>
     return(
-            <div>
 
+            <div>
+                <a href="/board/bwrite">글쓰기</a>
                 { params.cno  }
                 <table className="blist">
                 {
@@ -68,7 +70,7 @@ export default function BoardList(props) {
                             </tr>
                         )
                     })
-                }
+                    }
                 </table>
 
                 <Pagination
@@ -90,5 +92,4 @@ export default function BoardList(props) {
             </div>
 
     );//return end
-
 }
