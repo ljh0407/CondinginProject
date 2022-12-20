@@ -34,12 +34,12 @@ export default function Bview(props){
     return(
         <div>
             <div>{board.btitle}</div>
-            <div>{board.memail}</div>
-            <div>{board.bdate}</div>
             <div>{board.bcontent}</div>
+            <div>{board.bdate}</div>
             <div>{board.bview}</div>
             <div>{board.bgood}</div>
             <div>{board.bbad}</div>
+            <div>{board.memail}</div>
             <div>{board.mprofile}</div>
 
             {/*12.16 작성자와 로그인이 같으면 버튼 노출*/}
@@ -49,3 +49,13 @@ export default function Bview(props){
 
     )
 }
+
+
+
+
+
+
+
+
+
+
