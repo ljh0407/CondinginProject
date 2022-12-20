@@ -50,9 +50,14 @@ public class BoardService {
     @Autowired
     private HttpServletRequest request; // 요청객체선언
     //12.15 최예은 추가
+
+
     @Autowired
     private HttpServletResponse response; //응답객체 선언
     // 첨부파일 경로
+
+
+
     String path = "C:\\upload\\";  // C드라이브-> upload 폴더 생성
 
     //====================================================//
@@ -165,7 +170,6 @@ public class BoardService {
         if(optional.isPresent()){
             BoardEntity boardEntity = optional.get();
             System.out.println("**수정***1 : "+boardEntity);
-
             boardEntity.setBtitle(boardDto.getBtitle());
             System.out.println("**수정***2 : "+boardEntity);
             boardEntity.setBcontent(boardDto.getBcontent());
@@ -199,11 +203,28 @@ public class BoardService {
     /////////////////////////////////////////////////////////////////////////
 
     //7.각 카테고리의 최신 글 가져오기 12.19 최예은 추가
-    /*public List<CategoryDto> getlimitdesc(int cno){
+    public List<CategoryDto> getlimitdesc( int cno){
+        //클릭한 카테고리에서 모든 글을 일단 가져온다
+        //그러면 cno이랑 boardlist랑 같이 넘어가야 하는건가?
+        //아니면 하나씩 가져와야하는건가? 컴퓨터는 한꺼번에 처리 못할 텐데?
+        //가져와야하는건가? 요청해야하는건가?
 
-    }
-*/
+        List<BoardEntity> elist = boardRepository.findAll();
+
+        //깡통하나만든다
+        List<BoardDto> blist = new ArrayList<>();
+
+        //향상된 for문으로 담아서
+        for(BoardEntity entity : elist){
+            blist.add(entity.toDto());
+        }
+        //리턴
+        return null;
+    }//7 end
+
+
 
 
 }// class end
 
+//select * from board where bcno=1  ORDER BY bno=1 DESC limit 4 ;
