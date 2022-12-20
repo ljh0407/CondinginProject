@@ -1,6 +1,7 @@
 package codingin.domain.entity;
 
 import codingin.domain.BaseEntity;
+import codingin.domain.dto.BoardDto;
 import lombok.*;
 import org.hibernate.annotations.ColumnDefault;
 

@@ -113,13 +113,10 @@ public class MemberService implements  OAuth2UserService< OAuth2UserRequest , OA
     public MemberEntity getEntity(){
         //로그인정보 확인
         Object object = new SecurityContextHolder().getContext().getAuthentication().getPrincipal();
-
         if(object == null){return null;}    //회원정보가 없으면
-
         MemberDto memberDto = (MemberDto) object;   //오브젝트를 디티오 형변환
         //멤버디티오에 있는 이메일을 멤버엔티티에 저장
         Optional<MemberEntity> optional = memberRepository.findByMemail(memberDto.getMemail());
-
         if(!optional.isPresent()){return null;} //로그인 확인 안되면 null 반환
         return optional.get();  //로그인정보 확인되면 전부 반환
     }
@@ -127,12 +124,10 @@ public class MemberService implements  OAuth2UserService< OAuth2UserRequest , OA
     // 12.20 고은시 회원수정 시 프로파일 업로드
     @Transactional
     public boolean setmupdate(MemberDto memberDto){
-        System.out.println("서비스****");
-        Optional<MemberEntity> optional = memberRepository.findById(memberDto.getMno());
-        if( optional.isPresent() ) {
-            MemberEntity memberEntity = optional.get();
-            memberEntity.setMnick( memberDto.getMnick() );
-            ///memberEntity.setMprofile( memberDto.getMprofile()); ;
+        ///dto -> entity저장
+       MemberEntity memberEntity = memberRepository.save(memberDto.toEntity());
+       if(memberEntity.getMno() != 0 ){ //회원번호가 0이 아니면(회원이면)
+           fileupload(memberDto , memberEntity);    //파일 업로드 실행(dto,entity담기)
             return true;
         }else{  return false;  }
     }

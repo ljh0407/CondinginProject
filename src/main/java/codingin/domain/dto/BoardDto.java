@@ -1,7 +1,6 @@
 package codingin.domain.dto;
 import codingin.domain.entity.BoardEntity;
 import lombok.*;
-import org.hibernate.annotations.ColumnDefault;
 import org.springframework.web.multipart.MultipartFile;
 
 @NoArgsConstructor @AllArgsConstructor
@@ -21,6 +20,8 @@ public class BoardDto {
 
     private MultipartFile bfile;// 첨부파일 객체[업로드용]
     private String bfilename;   //첨부파일 [ 출력용 ]
+
+    private String mprofile; // 12.20 누락된 프로필사진 추가
 
 
     //12.6 최예은 추가 글쓴이 일치여부 (수정,삭제때문에 추가)
