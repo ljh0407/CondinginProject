@@ -2,6 +2,7 @@ package codingin.domain.entity;
 import codingin.domain.BaseEntity;
 import codingin.domain.dto.MemberDto;
 import lombok.*;
+import org.hibernate.annotations.DynamicUpdate;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.*;

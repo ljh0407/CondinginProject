@@ -7,26 +7,17 @@ let bcontent = ''; // 12.14 고은시 입력받은 게시물 내용 [ 전역변�
 
 export default function Bwrite(props) {
 
-    /*/////////////////////////////글쓰기/////////////////////////////*/
-
     const bwrite = () => {
 
-        let boardform = document.querySelector('.boardform');
-        let formdata = new FormData(boardform);
-        formdata.set("bcontent",bcontent)
+        let boardform = document.querySelector('.boardform');   //form호출
+        let formdata = new FormData(boardform); //FormData 저장
+        formdata.set("bcontent",bcontent)   //FormData에 추가저장
 
-        console.log("Bwrite.js formdata 확인 : ")
-        console.log(formdata)
-
+        //통신.post버전 url호출           formdata전송      첨부파일있든없든 사용
         axios.post("/board/setboard", formdata, {headers: {'Content-Type': 'multipart/form-data'}})
             .then(res => {
-                console.log(res.data)
-                if (res.data == true) {
-                    alert('게시물 등록 성공');
-                } else {
-                    alert('게시물 등록 실패');
-                }
-            })
+                if (res.data == true) { alert('게시물 등록 성공'); }
+                else { alert('게시물 등록 실패'); } })
             .catch(err => {
                 console.log(err + '글쓰기 오류')
             })
@@ -40,7 +31,7 @@ export default function Bwrite(props) {
                     data=""
                     onChange={ ( event, editor ) => { const data = editor.getData(); bcontent = data  } }
                 />
-                <button type="button" onClick={bwrite}>작성하기</button>
+                <button type="button" onClick={bwrite}>작성하기</button>    {/*함수실행*/}
             </form>
         </div>
     )

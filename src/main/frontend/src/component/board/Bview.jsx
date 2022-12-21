@@ -130,13 +130,3 @@ export default function Bview(props){
 
     )
 }
-
-
-
-
-
-
-
-
-
-

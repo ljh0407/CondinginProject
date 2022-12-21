@@ -33,14 +33,6 @@ export default function Home( props ){
                                 )
                             })
                         }
-
-                        {/*<ul>*/}
-                        {/*    <li> <Link to="/"> 공지사항 </Link> </li>*/}
-                        {/*    <li> <Link to="/"> 고민있어요 </Link> </li>*/}
-                        {/*    <li> <Link to="/"> Q&A </Link> </li>*/}
-                        {/*    <li> <Link to="/"> 이벤트 </Link> </li>*/}
-                        {/*    <li> <Link to="/"> 인기게시판 </Link> </li>*/}
-                        {/*</ul>*/}
                     </article>
 
                     <div className="rightSection">
