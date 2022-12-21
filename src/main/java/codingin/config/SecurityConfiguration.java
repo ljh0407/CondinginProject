@@ -41,6 +41,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .ignoringAntMatchers("/board/setboard") // 게시글 작성 post 사용
                 .ignoringAntMatchers("/board/getboardlist")  // 글리스트 출력 post
                 .ignoringAntMatchers("/board/getcategory")  // 카테고리 리스트 post 사용
+                .ignoringAntMatchers("/board/getbview")  // 상세보기
                 .ignoringAntMatchers("/board/delboard")  // 삭제 url
                 .ignoringAntMatchers("/board/upboard") // 게시물수정 put 사용
                 .ignoringAntMatchers("/member/setmupdate") // 회원수정 put 사용(시큐리티 = axios = 컨트롤러)

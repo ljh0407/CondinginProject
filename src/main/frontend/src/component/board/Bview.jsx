@@ -38,10 +38,6 @@ export default function Bview(props){
         setShow(false); // model close
     }   // 쪽지 보내기 버튼
 
-
-
-
-
     /*12.16 게시물 상세보기*/
     const params = useParams();  // useParams() 훅 : 경로[URL]상의 매개변수 가져올때
     //게시물 , 리랜더링될 게시물           // 게시물 메모리
