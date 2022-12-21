@@ -104,25 +104,39 @@ public class BoardService {
 
     @Transactional  //글쓰기
     public boolean setboard( BoardDto boardDto){
+
         MemberEntity memberEntity = memberService.getEntity();  //멤버서비스에서 getEntity()로 로그인 정보 가져오기
         if(memberEntity == null){return false;} //회원확인 멤버엔티티가 null(회원정보가 없으면)실패
+
+        CategoryEntity categoryEntity = categoryRepository.findById(boardDto.getCno()).get();
+
+
         //dto -> entity에 담기     글쓰기 내용 엔티티에 다시 저장
         BoardEntity boardEntity = boardRepository.save(boardDto.toEntity());
         if(boardEntity.getBno() != 0){  //게시물 번호가 0이 아니면
+
             boardEntity.setMemberEntity(memberEntity);  //보트엔티티에 멤버엔티티 연결
+            memberEntity.getBoardEntityList().add(boardEntity);
+
+            categoryEntity.getBoardEntityList().add(boardEntity);
+            boardEntity.setCategoryEntity(categoryEntity);
+
             return true;    //게시물번호가 0이 아니면 저장
         }else {return false;}   //게시물번호가 0이면 실패
     }
 
 
-    @Transactional  //페이징처리 page : 현재 페이지번호 , key : 검색필드명 , keyword : 검색 데이터
+    @Transactional  //페이징처리 page : 현재 페이지번호 , key : 검색필드명 , keyword : 검색 데이터 글 리스트 출력
     public PageDto getboardlist(PageDto pageDto){
+
+        System.out.println("카테고리번호!!"+pageDto.getCno());
+
         Page<BoardEntity> elist = null; //게시물 먼저 선언함
                                             //사용자 기준으로 1을 입력해서 -1해주기 표시 게시물수 2 , 내림차순(bno기준)
         Pageable pageable = PageRequest.of(pageDto.getPage()-1,5,Sort.by(Sort.Direction.DESC,"bno")) ; //페이징설정
                         //PageRequest.of(현재페이지번호, 표시할레코드수,정렬)
         //검색여부
-        elist = boardRepository.findbySearch(pageDto.getKey(), pageDto.getKeyword(),pageable);
+        elist = boardRepository.findbySearch( pageDto.getCno() ,pageDto.getKey(), pageDto.getKeyword(),pageable);
         //프론트엔드에 표시할 페이징번호 버튼 수
         List<BoardDto> dlist = new ArrayList<BoardDto>();//컨트롤에게 전달할 때 형변한 하기 위한 그릇
        for(BoardEntity entity : elist){//반환
@@ -141,6 +155,7 @@ public class BoardService {
             //optional에 있는 객체 하나씩 꺼내서 엔티티에 넣기
             BoardEntity boardEntity = optional.get();   //보드엔티티에서 가져오기
             BoardDto boardDto = boardEntity.toDto(); // 디티오를 엔티티로 변환
+            System.out.println("서비스"+boardDto.toString());
             return boardDto; //형변환된 dto 반환
         }//if end
         else {
