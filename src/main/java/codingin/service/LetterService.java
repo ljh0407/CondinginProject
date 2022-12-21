@@ -14,8 +14,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
-    @Service
+@Service
     public class LetterService {
     @Autowired
     private LetterRepository letterRepository;
@@ -30,19 +31,32 @@ import java.util.List;
 
 
 
+
     // 1. 쪽지쓰기
     @Transactional
     public boolean setletter( LetterDto letterDto){
-        System.out.println(letterDto);
-        LetterEntity letterEntity = letterRepository.save(letterDto.toEntity());
-        if(letterEntity.getLno() != 0){
-           return true;
-        }else {return false;}
+        MemberEntity memberEntity = memberService.getEntity(); // 멤버엔티티에서 회원정보 가져오기
+        if( memberEntity == null ){return false;}
+
+
+        LetterEntity letterEntity = letterRepository.save( letterDto.toEntity()); // dto --> entitiy 반환
+        if (letterEntity.getLno() > 0 ){ // 보낸 쪽지번호가 0이 아니면 성공
+            letterEntity.setLto(memberEntity); // 받는사람 저장
+            memberEntity.getLtolist().add(letterEntity); // 멤버 엔티티에서 받는사람정보 가져와서 쪽지엔티티에다 저장
+
+            letterEntity.setLfrom(memberEntity); // 보낸사람 저장
+            memberEntity.getLfromlist().add(letterEntity);  // 멤버 엔티티에서 보낸사람정보 가져와서 쪽지엔티티에다 저장
+
+            System.out.println("쪽지 : "+letterEntity.toString());
+
+            return true;
+        }
+        else {return false;}
     }
 
     @Transactional
     // 2. 쪽지리스트 출력
-    public List<LetterDto>letterList(int lno, String ltitle, String lcontent ){
+    public List<LetterDto>letterList(@RequestBody LetterDto letterDto ){
         List<LetterEntity> letterEntityList = null;
             letterEntityList = letterRepository.findAll();
             List<LetterDto> letterDtoList = new ArrayList<>();
