@@ -10,6 +10,7 @@ export default function Home( props ){
     const [categorylist,setCategorylist] = useState([]); // db에 등록해놓은 카테고리 리스트
     // 카테고리 가져오기
 
+    /////////////////////////////db에서 insert한 카테고리 출력/////////////////////////////
     function clist(){
         axios
             .get("/board/getcategory")
@@ -34,7 +35,7 @@ export default function Home( props ){
                             })
                         }
                     </article>
-
+                    {/*출력한 각각의  cno , cname 뿌리기*/}
                     <div className="rightSection">
                         <div className="section01">
                             <div className="topSection section">
@@ -60,7 +61,11 @@ export default function Home( props ){
 
 
 
+/*
+cno를 구별해야한다.
 
+
+*/
 
 
 

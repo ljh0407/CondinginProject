@@ -3,9 +3,13 @@ import axios from "axios";
 import Pagination from 'react-js-pagination'
 import Bview from "./Bview"; // npm i react-js-pagination 설치 12.14 최예은 설치함
 
+import {useParams} from "react-router-dom";
+
 export default function BoardList(props) {
+
+   const params = useParams();  // useParams() 훅 : 경로[URL]상의 매개변수 가져올때
 //1. 메모리
-    const [pageInfo , setPageInfo] = useState({page:1, key:"",keyword:""})//1.요청정보객체state
+    const [pageInfo , setPageInfo] = useState({ cno : params.cno , page:1, key:"",keyword:""})//1.요청정보객체state
     const [pageDto , setPageDto] = useState({list:[]}) // 게시물리스트 state
     //서버로부터 pageInfo 요청 [실행조건? 1. 랜더링이 될때 2. 검색할 때 3.카테고리선택할때 4.페이징할 때 --> 일반함수화]
 //--------------------1. 게시물출력-------------------------
@@ -20,6 +24,8 @@ export default function BoardList(props) {
             .catch(err => console.error(err))
     }
     useEffect(getboardlist,[pageInfo])
+
+
 
 
     // 페이징처리
@@ -40,14 +46,16 @@ export default function BoardList(props) {
                 keyword: document.querySelector('.keyword').value
             }
         )}
-
     const loadView=(bno)=>{ {/*12.16 게시물번호 넘기기(상세보기)*/}
-            window.location = "/board/bview/" +bno
+            window.location = "/board/bwrite" +bno
     }
-
-
+// <a href={"/board/bwrite"+params.cno}>글쓰기</a>
+//<a href = {"/board/filedownload?filename="+board.bfilename} > {board.bfilename}</a>
     return(
+
             <div>
+                <a href="/board/bwrite">글쓰기</a>
+                { params.cno  }
                 <table className="blist">
                 {
                     pageDto.list.map( (b) => {
@@ -62,7 +70,7 @@ export default function BoardList(props) {
                             </tr>
                         )
                     })
-                }
+                    }
                 </table>
 
                 <Pagination

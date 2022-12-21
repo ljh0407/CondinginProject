@@ -183,6 +183,27 @@ public class BoardService {
         categorylist.forEach( e -> dtolist.add( e.toDto() ) );  //카테고리 디티오에 저장
         return dtolist; //반환
     }
+    /////////////////////////////////////////////////////////////////////////
+
+    //7.각 카테고리의 최신 글 가져오기 12.19 최예은 추가
+    public List<CategoryDto> getlimitdesc( int cno){
+
+        List<BoardEntity> elist = boardRepository.findAll();
+
+        //깡통하나만든다
+        List<BoardDto> blist = new ArrayList<>();
+
+        //향상된 for문으로 담아서
+        for(BoardEntity entity : elist){
+            blist.add(entity.toDto());
+        }
+        //리턴
+        return null;
+    }//7 end
+
+
+
 
 }// class end
 
+//select * from board where bcno=1  ORDER BY bno=1 DESC limit 4 ;

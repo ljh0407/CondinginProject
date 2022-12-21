@@ -21,23 +21,11 @@ export default function HomeBoard( props ){
     // 3. 서비스에서 최신 4개
 
     /* ------------------------------------------ */
-  /*  axios
-        .post("/board/getboardlist","cno" : cno)
-        .then(res=>())
-        .catch(err=>{console.log(err)})*/
-
-
-
-
-
-
-
-
 
     /* ------------ 5. html or jsx표현식 { }------------------*/
     return(
-        <div className="blist blist01">
-           <h3> { props.bcname} </h3>
+        <div className="blist">
+           <h3> <a href={"/board/"+props.cno} > { props.bcname} </a> </h3>
            <table>
             <tr>
                 <td> 게시물출력 1 </td>

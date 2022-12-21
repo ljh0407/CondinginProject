@@ -66,7 +66,7 @@ export default function Bview(props){
     //3. 게시물 삭제하기
     const onDelete = () =>{
         axios
-            .delete("/board/delboard",{params:{bno:params.bno}})
+            .delete("/board/delboard", { params:{bno:params.bno} } )
             .then(res => {alert("게시물삭제성공"); window.location.href="/board/boardlist"})
     }
 

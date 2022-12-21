@@ -42,6 +42,7 @@ export default function Index( props ){
                         <Route path="/board/update/:bno" element={ <Bupdate />} />   {/*//게시글 수정*/}
                         <Route path="/member/mupdate" element={ <MUpdate />} />   {/*//회원수정*/}
                         <Route path="/member/profile" element={ <Profilphoto />} />   {/*//프로필 출력*/}
+                        <Route path="/board/:cno" element={ <BoardList />} /> {/*// 글쓰기*/}{/*12.20 최예은 추가 */}
                     </Routes>
                     <Footer/>
                 </BrowserRouter>
