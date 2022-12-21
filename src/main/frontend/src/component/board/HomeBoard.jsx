@@ -1,14 +1,11 @@
 /* 1.임포트 */
 import React,{ useState,useEffect } from 'react';
-
 import axios from 'axios'; // 12.19 추가
 
 //카테고리별로 가져올 게시물
 // const [cno , setCno]  useState([]);
 /*-------*/
-
 /* 2.전역변수 */
-
 /*--------- */
 
 // 3.컴포넌트[함수] 만들기

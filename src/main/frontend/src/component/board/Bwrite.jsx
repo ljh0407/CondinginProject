@@ -3,13 +3,16 @@ import axios from "axios";
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import StyleSheet from '../../css/Board/bwrite.css'; // css 불러오기
-import { useParams } from 'react-router-dom';// 12.21 최예은 설치
+import { useParams } from 'react-router-dom';// 12.21 npm install react-router-dom 최예은 설치 (설치를 했는지 안했는지 기억이 안나서 일단 설치했습니다.)
 //npm install react-router-dom
+
 
 let bcno = 0; // 선택한 카테고리 번호 [ 전역변수 ]
 let bcontent = ''; // 12.14 고은시 입력받은 게시물 내용 [ 전역변수 ]  // 변수가 수정될경우 재랜더링할 필요 X
 
 //cno추가
+
+const cno = ()=>{}
 
 export default function Bwrite(props) {
 
@@ -19,7 +22,7 @@ export default function Bwrite(props) {
         let boardform = document.querySelector('.boardform');   //form호출
         let formdata = new FormData(boardform); //FormData 저장
         formdata.set("bcontent",bcontent)   //FormData에 추가저장
-        //form.set("cno",cno) // 카테고리번호! 어디서(공지사항인지 ,질문있어요 등등) 글을 작성했는지 구별하기 위해서
+        formdata.set("cno",cno) // 카테고리번호! 어디서(공지사항인지 ,질문있어요 등등) 글을 작성했는지 구별하기 위해서
 
         //통신.post버전 url호출           formdata전송      첨부파일있든없든 사용
         axios.post("/board/setboard", formdata, {headers: {'Content-Type': 'multipart/form-data'}})

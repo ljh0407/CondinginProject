@@ -38,7 +38,6 @@ public class boardController {
 
     @DeleteMapping("/delboard") //4.게시물 삭제하기
     public boolean delboard(@RequestParam("bno") int bno){
-
         return  boardService.deleteboard(bno);
     }
 
@@ -49,7 +48,7 @@ public class boardController {
 
     @GetMapping("/getcategory") //6.  카테고리 출력하기
     public List<CategoryDto> categorylist(){
-        System.out.println("BoardController 6. 카테고리 출력하기 categorylist 확인");
+        //System.out.println("BoardController 6. 카테고리 출력하기 categorylist 확인");
         return boardService.bcategoryList();
     }
 

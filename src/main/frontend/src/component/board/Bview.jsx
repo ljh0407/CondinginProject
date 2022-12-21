@@ -75,8 +75,6 @@ export default function Bview(props){
 
     return(
         <div>
-
-
             <Modal show={show} onHide={handleClose}>
                 <Modal.Header closeButton>
                     <Modal.Title>쪽지 보내기</Modal.Title>
