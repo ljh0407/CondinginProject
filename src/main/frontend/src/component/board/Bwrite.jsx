@@ -9,7 +9,7 @@ let bcontent = ''; // 12.14 고은시 입력받은 게시물 내용 [ 전역변�
 
 export default function Bwrite(props) {
     /*/////////////////////////////글쓰기/////////////////////////////*/
-
+    //test
     const bwrite = () => {
 
         let boardform = document.querySelector('.boardform');
