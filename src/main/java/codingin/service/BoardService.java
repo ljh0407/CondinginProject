@@ -56,8 +56,7 @@ public class BoardService {
     String path = "C:\\upload\\";  // C드라이브-> upload 폴더 생성
 
     //====================================================//
-   // 0. 첨부파일 다운로드
-    public void filedownload( String filename ){
+    public void filedownload( String filename ){    // 0. 첨부파일 다운로드
         String realfilename ="";  // uuid 제거  //
         String [] split = filename.split("_"); // 1. _ 기준으로 자르기
         for( int i = 1 ; i<split.length ; i++ ) { // 2. uuid 제외한 반복문 돌리기
@@ -103,24 +102,20 @@ public class BoardService {
         }else{ return  false;}
     }
 
-    //1. 개별글쓰기 12.5 최예은
-    //12.14 1.글 쓰기 최예은
-    @Transactional
+    @Transactional  //글쓰기
     public boolean setboard( BoardDto boardDto){
-        MemberEntity memberEntity = memberService.getEntity();  //멤버서비스에서 작성한 메소드 호출
-        if(memberEntity == null){return false;} //만약에 멤버엔티티가 null(회원정보가 없으면)실패
-        //dto -> entity에 담기
+        MemberEntity memberEntity = memberService.getEntity();  //멤버서비스에서 getEntity()로 로그인 정보 가져오기
+        if(memberEntity == null){return false;} //회원확인 멤버엔티티가 null(회원정보가 없으면)실패
+        //dto -> entity에 담기     글쓰기 내용 엔티티에 다시 저장
         BoardEntity boardEntity = boardRepository.save(boardDto.toEntity());
-
         if(boardEntity.getBno() != 0){  //게시물 번호가 0이 아니면
             boardEntity.setMemberEntity(memberEntity);  //보트엔티티에 멤버엔티티 연결
             return true;    //게시물번호가 0이 아니면 저장
         }else {return false;}   //게시물번호가 0이면 실패
     }
 
-    // 2. 글 출력하기 12.14 최예은
-    // page : 현재 페이지번호 , key : 검색필드명 , keyword : 검색 데이터
-    @Transactional
+
+    @Transactional  //페이징처리 page : 현재 페이지번호 , key : 검색필드명 , keyword : 검색 데이터
     public PageDto getboardlist(PageDto pageDto){
         Page<BoardEntity> elist = null; //게시물 먼저 선언함
                                             //사용자 기준으로 1을 입력해서 -1해주기 표시 게시물수 2 , 내림차순(bno기준)
@@ -138,17 +133,14 @@ public class BoardService {
        return pageDto;
     }
 
-    // 3. 개별  글 보기 12.6 최예은
-    @Transactional
+    @Transactional  // 3. 개별  글 보기
     public BoardDto getboard(int bno){
         //1.입력받은 게시물 번호로 엔티티검색
         Optional<BoardEntity> optional = boardRepository.findById(bno);
-        //2.optional안에 있는 내용물을 확인한다
-        if(optional.isPresent()){ // 내용물이 있는지 확인
-            //optional에 있는 객체 하나씩 꺼내서 entity에 넣기
-            BoardEntity boardEntity = optional.get();
-            BoardDto boardDto = boardEntity.toDto(); // board객체
-            System.out.println("서비스"+boardDto.toString());
+        if(optional.isPresent()){ // 엔티티에 있는지 확인
+            //optional에 있는 객체 하나씩 꺼내서 엔티티에 넣기
+            BoardEntity boardEntity = optional.get();   //보드엔티티에서 가져오기
+            BoardDto boardDto = boardEntity.toDto(); // 디티오를 엔티티로 변환
             return boardDto; //형변환된 dto 반환
         }//if end
         else {
@@ -156,54 +148,62 @@ public class BoardService {
         }
     }
 
-    //4. 글 수정하기 12.6 최예은
-    @Transactional
+    @Transactional  //게시글 수정하기
     public boolean bupboard(BoardDto boardDto){
-        System.out.println("**수정***");
-        //1.수정할 게시물 찾기
+        //1.수정할 게시물 찾기 엔티티에서 bno확인
         Optional<BoardEntity> optional = boardRepository.findById(boardDto.getBno());
-        if(optional.isPresent()){
-            BoardEntity boardEntity = optional.get();
-            System.out.println("**수정***1 : "+boardEntity);
-
-            boardEntity.setBtitle(boardDto.getBtitle());
-            System.out.println("**수정***2 : "+boardEntity);
-            boardEntity.setBcontent(boardDto.getBcontent());
-            System.out.println("**수정***3 : "+boardEntity);
+        if(optional.isPresent()){   //내용확인
+            BoardEntity boardEntity = optional.get();   //엔티티에서 가져오기
+            boardEntity.setBtitle(boardDto.getBtitle());    //엔티티에서 제목가져오기/수정
+            boardEntity.setBcontent(boardDto.getBcontent());    //엔티티에서 내용가져오기/수정
             return true;
         }
         else {return false;}
     }
-    //5. 글 삭제하기 12.6 최예은
+
+    @Transactional    //5. 글 삭제하기 12.6 최예은
     public boolean deleteboard( int bno){
-        boardRepository.findById(bno);
-        Optional<BoardEntity> optional = boardRepository.findById(bno);
-        if(optional.isPresent()){
-            BoardEntity boardEntity = optional.get();
-            boardRepository.delete(boardEntity);
-            return true;
+        boardRepository.findById(bno);  //bno 호출
+        Optional<BoardEntity> optional = boardRepository.findById(bno); //보드엔티티에서 bno가져오기
+        if(optional.isPresent()){   //보드엔티티에 bno 확인
+            BoardEntity boardEntity = optional.get();   //확인한 bno 가져와서 엔티티에 저장
+            boardRepository.delete(boardEntity);    //삭제할 엔티티 조작
+            return true;    //반환
         }
         else{
             return false;
         }
     }
     //////////////////////////////////////카테고리 출력하기///////////////////////////////////////////////
-    //6. 카테고리 출력하기 최예은
-    public List<CategoryDto> bcategoryList(){
+    @Transactional
+    public List<CategoryDto> bcategoryList(){   //6. 카테고리 출력하기 최예은
+        //리스트로 카테고리 엔티티 전체 호출
         List<CategoryEntity> categorylist = categoryRepository.findAll();
-        System.out.println("Boardservice 6.카테고리 출력하기 확인하기" + categorylist );
-        List<CategoryDto> dtolist = new ArrayList<>();
-        categorylist.forEach( e -> dtolist.add( e.toDto() ) );
-        return dtolist;
+        List<CategoryDto> dtolist = new ArrayList<>();  //리스트로 카테고리 디티오 가져오기
+        categorylist.forEach( e -> dtolist.add( e.toDto() ) );  //카테고리 디티오에 저장
+        return dtolist; //반환
     }
     /////////////////////////////////////////////////////////////////////////
 
     //7.각 카테고리의 최신 글 가져오기 12.19 최예은 추가
-    /*public List<CategoryDto> getlimitdesc(int cno){
+    public List<CategoryDto> getlimitdesc( int cno){
 
-    }
-*/
+        List<BoardEntity> elist = boardRepository.findAll();
+
+        //깡통하나만든다
+        List<BoardDto> blist = new ArrayList<>();
+
+        //향상된 for문으로 담아서
+        for(BoardEntity entity : elist){
+            blist.add(entity.toDto());
+        }
+        //리턴
+        return null;
+    }//7 end
+
+
 
 
 }// class end
 
+//select * from board where bcno=1  ORDER BY bno=1 DESC limit 4 ;

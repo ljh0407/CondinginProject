@@ -17,10 +17,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.io.File;
-import java.util.HashSet;
-import java.util.Optional;
-import java.util.Set;
-import java.util.UUID;
+import java.util.*;
 
 @Service
 public class MemberService implements  OAuth2UserService< OAuth2UserRequest , OAuth2User> {
@@ -44,8 +41,8 @@ public class MemberService implements  OAuth2UserService< OAuth2UserRequest , OA
 
     //====================================================//
     // 12.20 고은시 * 첨부파일 업로드 [ 1. 쓰기메소드 2. 수정메소드 ] 사용
-    @Transactional              //  boardDto : 쓰기,수정 대상     BoardEntity:원본
-    public boolean fileupload( MemberDto memberDto , MemberEntity memberEntity ){
+    @Transactional              //  memberDto : 쓰기,수정 대상     MemberEntity:원본
+    public boolean profileupload( MemberDto memberDto , MemberEntity memberEntity ){
         if( !memberDto.getMprofile().getOriginalFilename().equals("") ) { // ** 첨부파일 있을때
             // * 업로드 된 파일의 이름 [ 문제점 : 파일명 중복 ]
             String uuid = UUID.randomUUID().toString(); // 1. 난수생성
@@ -105,8 +102,8 @@ public class MemberService implements  OAuth2UserService< OAuth2UserRequest , OA
         if (principal.equals("anonymousUser")) {  // anonymousUser 이면 로그인전
             return null;
         } else { // anonymousUser 아니면 로그인후
-            MemberDto memberDto = (MemberDto) principal;
-            return memberDto.getMemail()+"_"+memberDto.getAuthorities();
+            MemberDto memberDto = (MemberDto) principal;    //멤버디티오에서 가져옴
+            return memberDto.getMemail()+"_"+memberDto.getAuthorities();    //언더바로 무슨계정인지 표시
         }
     }
     //12.15 고은시 이종훈 엔티티에서 이메일 가져오고 로그인 토큰 반환(회원번호 호출)
@@ -123,13 +120,24 @@ public class MemberService implements  OAuth2UserService< OAuth2UserRequest , OA
 
     // 12.20 고은시 회원수정 시 프로파일 업로드
     @Transactional
-    public boolean setmupdate(MemberDto memberDto){
+    public boolean setmupdate(MemberDto memberDto ){
+        String Memail = getloginMno().split("_")[0];    //Memail에 로그인 세션가져오기
+        MemberEntity memberEntity = memberRepository.findByMemail(Memail).get();    //리포지토리에 설정한 이메일 찾기가져오기
         ///dto -> entity저장
-       MemberEntity memberEntity = memberRepository.save(memberDto.toEntity());
-       if(memberEntity.getMno() != 0 ){ //회원번호가 0이 아니면(회원이면)
-           fileupload(memberDto , memberEntity);    //파일 업로드 실행(dto,entity담기)
-            return true;
-        }else{  return false;  }
+       if(memberEntity.getMno() > 0 ) { //회원번호가 0보다 크면
+           memberEntity.setMnick(memberDto.getMnick()); //디티오에서 가져온 닉네임 엔티티에 저장하기
+           if (memberDto.getMprofile() != null) {   //디티오에 프로파일이 없으면
+               profileupload(memberDto, memberEntity);  //파일업로드 메소드호출(디티오 엔티티)가져오기
+               return true; //전부 리턴
+           }
+       }return false;
     }
-
+    @Transactional  //12.21 고은시 회원정보 출력하기
+    public List<MemberDto> profilelist() {
+        List<MemberEntity> entityList = memberRepository.findAll();
+        System.out.println("회원출력 서비스실행**1 : " + entityList);
+        List<MemberDto> dtoList = new ArrayList<>();
+        entityList.forEach( e -> dtoList.add( e.toDto() ) );  //카테고리 디티오에 저장
+        return dtoList;
+    }
 }

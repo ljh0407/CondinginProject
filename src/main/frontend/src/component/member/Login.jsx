@@ -10,9 +10,9 @@ export default function Login (props){
             <h3 className="title">Login</h3>
               <form method="post" action="/member/getmember">
                 <div id="Log">
-                  <a href="/oauth2/authorization/kakao"> <img className="logimg" src={kakao} /> </a>
-                  <a href="/oauth2/authorization/naver"> <img className="logimg" src={naver} /> </a>
-                  <a href="/oauth2/authorization/google"> <img className="logimg" src={google} /> </a>
+                  <a href="/oauth2/authorization/kakao"> <img className="logimg" src={kakao} /> </a>    {/*카카오로그인*/}
+                  <a href="/oauth2/authorization/naver"> <img className="logimg" src={naver} /> </a>        {/*네이버로그인*/}
+                  <a href="/oauth2/authorization/google"> <img className="logimg" src={google} /> </a>  {/*구글 로그인*/}
                 </div>
               </form>
         </div>

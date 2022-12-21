@@ -20,7 +20,7 @@ export default function Header(props) {
                 <Link to="/index"> <img className="logo" src={logo} /> </Link>
              </div>
                 {login == "" ?
-                    (
+                    (   /*로그인 안했을떄*/
                         <nav id="menu">
                             <ul id="top_menu">
                                 <li ><Link to="/member/signup"> 회원가입 및 로그인 </Link> </li>
@@ -28,7 +28,7 @@ export default function Header(props) {
                         </nav>
                     )
                     :
-                    (
+                    (   /*로그인 했을때*/
                     <nav id="menu">
                         <ul id="top_menu">
                             <li> { login } </li>
@@ -36,10 +36,10 @@ export default function Header(props) {
                             <li> <a href="/board/bwrite">게시판</a> </li>
                             <li> <a href="/letter/lwrite">쪽지함</a> </li>
                             <li> <a href="/board/boardlist">글보기</a> </li>
-                            <li> <a href="/member/mupdate">My Home</a> </li>
+                            <li> <a href="/member/mupdate">Profile</a> </li>
+                            <li> <a href="/member/profile">My Home</a> </li>
                         </ul>
                     </nav>
-
                     )
                 }
             </div>
