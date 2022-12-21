@@ -2,10 +2,10 @@ import React, {useEffect, useState} from "react";
 import axios from "axios";
 
 export default function Profilphoto(props){
-    const [member ,setMember] = useState({list:[]});
+    const [member ,setMember] = useState([]);
 
     useEffect(
-        () => axios.get("/member/upprofile").then(res => {setMember(res.data); console.log(res.data)},[]).catch(err => console.log('출력오류 : ' + err))
+        () => axios.get("/member/upprofile").then(res => {setMember(res.data); console.log("프로필"+res.data)},[]).catch(err => console.log('출력오류 : ' + err))
     ,[])
 
     const [memberdto , setMemberDto] = useState({list:[]})
@@ -23,7 +23,7 @@ export default function Profilphoto(props){
                                <td>{m.mprofile}</td>
                                <button type="button" onClick={mupdate}>My Home</button>
                            </tr>
-                   )
+                        )
                    })
                }
            </table>
