@@ -8,7 +8,6 @@ public class LetterDto {
     private int lno;
     private String lfrom; //보내는사람
     private String  lto;    //받는 사람
-    private String  ltitle; //제목
     private String  lcontent;   //내용
     private String lfile;
 
@@ -16,9 +15,7 @@ public class LetterDto {
         return LetterEntity
                 .builder()
                 .lno( this.lno )
-                .ltitle( this.ltitle)
                 .lcontent( this.lcontent)
-                .lfile( this.lfile)
                 .build();
     }
 }
