@@ -30,7 +30,7 @@ export default function Bview(props){
             .delete("/board/delboard",{params:{bno:params.bno}})
             .then(res => {alert("게시물삭제성공"); window.location.href="/board/boardlist"})
     }
-
+    // css 작업 해야지 ~
     return(
         <div>
             <div>{board.btitle}</div>
