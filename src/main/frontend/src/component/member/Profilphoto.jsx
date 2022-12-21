@@ -7,7 +7,7 @@ export default function Profilphoto(props){
     useEffect(
         () => axios.get("/member/profile").then(res => {setMember(res.data)},[]).catch(err => console.log('출력오류 : ' + err))
     )
-
+    //
     const mupdate = () => {alert('클릭'); window.location.href="/member/mupdate"}
 
     return(
