@@ -9,7 +9,6 @@ import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
 
 
-let lcontent = '';
 export default function Bview(props){
 
     const [ lto , setLto ] = useState( [] );
@@ -24,9 +23,8 @@ export default function Bview(props){
     const handleSend = () => {
 
         // 1. 받는사람 , 내용
-        console.log( board.bno  )
+        let lcontent = document.querySelector(".lcontent").value;
 
-        console.log( document.querySelector(".lcontent").value  )
         axios
             .post("/letter/setletter" , { lto : board.memail , lcontent : lcontent  })
             .then( re => {
@@ -118,7 +116,6 @@ export default function Bview(props){
             <div>{board.bview}</div>
             <div>{board.bgood}</div>
             <div>{board.bbad}</div>
-            <div>{board.memail}</div>
             <div>{board.mprofile}</div>
 
             {/*12.16 작성자와 로그인이 같으면 버튼 노출*/}

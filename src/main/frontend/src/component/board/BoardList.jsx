@@ -3,7 +3,7 @@ import axios from "axios";
 import Pagination from 'react-js-pagination'
 import Bview from "./Bview"; // npm i react-js-pagination 설치 12.14 최예은 설치함
 
-import {useParams} from "react-router-dom"; //
+import {useParams} from "react-router-dom";
 
 export default function BoardList(props) {
 
@@ -20,19 +20,21 @@ export default function BoardList(props) {
             .then(res => {
                 console.log(res.pageInfo);
                 console.log(res.data);
-                setPageDto(res.data);
-            })
+                setPageDto(res.data); })
             .catch(err => console.error(err))
     }
     useEffect(getboardlist,[pageInfo])
 
+
+
+
     // 페이징처리
     const onPage = (page) =>{
         setPageInfo(
-            { cno : pageInfo.cno ,              // 카테고리
-                page:  page ,                   // 페이지
-                key : pageInfo.key,             // 검색
-                keyword : pageInfo.keyword }    // 키워드
+            { cno : pageInfo.cno ,  // 카테고리
+                page:  page ,     // 페이지
+                key : pageInfo.key, // 검색
+                keyword : pageInfo.keyword } // 키워드
         )}
 
     // 검색 기능
@@ -45,15 +47,15 @@ export default function BoardList(props) {
             }
         )}
     const loadView=(bno)=>{ {/*12.16 게시물번호 넘기기(상세보기)*/}
-        window.location = "/board/bview" +bno
+           window.location = "/board/bview/" +bno
     }
-
-
+// <a href={"/board/bwrite"+params.cno}>글쓰기</a>
+//<a href = {"/board/filedownload?filename="+board.bfilename} > {board.bfilename}</a>
     return(
+
             <div>
-
-                { params.cno  } {/*어떤 카테고리 인지 분별함*/ }
-
+                <a href={"/board/bwrite/"+params.cno} >글쓰기</a>
+                { params.cno  }
                 <table className="blist">
                 {
                     pageDto.list.map( (b) => {
@@ -68,7 +70,7 @@ export default function BoardList(props) {
                             </tr>
                         )
                     })
-                }
+                    }
                 </table>
 
                 <Pagination
