@@ -3,6 +3,8 @@ import axios from "axios";
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import StyleSheet from '../../css/Board/bwrite.css'; // css 불러오기
+
+
 let bcno = 0; // 선택한 카테고리 번호 [ 전역변수 ]
 let bcontent = ''; // 12.14 고은시 입력받은 게시물 내용 [ 전역변수 ]  // 변수가 수정될경우 재랜더링할 필요 X
 
@@ -34,7 +36,7 @@ export default function Bwrite(props) {
                     data=""
                     onChange={ ( event, editor ) => { const data = editor.getData(); bcontent = data  } }
                 />
-                <button type="button" onClick={bwrite}>작성하기</button>    {/*함수실행*/}
+                <button type="button" className="enrollment" onClick={bwrite}>작성하기</button>    {/*함수실행*/}
             </form>
         </div>
     )
