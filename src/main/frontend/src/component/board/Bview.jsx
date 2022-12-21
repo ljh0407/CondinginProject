@@ -113,7 +113,6 @@ export default function Bview(props){
                 </Modal.Footer>
             </Modal>
 
-
             <div>{board.btitle}</div>
             <div variant="primary" onClick={handleShow} >{board.memail}</div>
             <div>{board.bcontent}</div>
