@@ -47,14 +47,14 @@ export default function BoardList(props) {
             }
         )}
     const loadView=(bno)=>{ {/*12.16 게시물번호 넘기기(상세보기)*/}
-            window.location = "/board/bwrite" +bno
+           window.location = "/board/bview/" +bno
     }
 // <a href={"/board/bwrite"+params.cno}>글쓰기</a>
 //<a href = {"/board/filedownload?filename="+board.bfilename} > {board.bfilename}</a>
     return(
 
             <div>
-                <a href="/board/bwrite">글쓰기</a>
+                <a href={"/board/bwrite/"+params.cno} >글쓰기</a>
                 { params.cno  }
                 <table className="blist">
                 {

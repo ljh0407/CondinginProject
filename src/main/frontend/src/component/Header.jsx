@@ -17,7 +17,7 @@ export default function Header(props) {
         <header>
          <div className="box">
              <div id="logo">
-                <Link to="/index"> <img className="logo" src={logo} /> </Link>
+                <Link to="/"> <img className="logo" src={logo} /> </Link>
              </div>
                 {login == "" ?
                     (   /*로그인 안했을떄*/
@@ -33,9 +33,7 @@ export default function Header(props) {
                         <ul id="top_menu">
                             <li> { login } </li>
                             <li> <a href="/member/logout"> 로그아웃     </a> </li>
-                            <li> <a href="/board/bwrite">게시판</a> </li>
                             <li> <a href="/letter/lwrite">쪽지함</a> </li>
-                            <li> <a href="/board/boardlist">글보기</a> </li>
                             <li> <a href="/member/mupdate">Profile</a> </li>
                             <li> <a href="/member/profile">My Home</a> </li>
                         </ul>
