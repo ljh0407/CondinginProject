@@ -2,6 +2,7 @@ import React from "react";
 import axios from "axios";
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import StyleSheet from '../../css/Board/bwrite.css'; // css 불러오기
 let bcno = 0; // 선택한 카테고리 번호 [ 전역변수 ]
 let bcontent = ''; // 12.14 고은시 입력받은 게시물 내용 [ 전역변수 ]  // 변수가 수정될경우 재랜더링할 필요 X
 
@@ -23,9 +24,11 @@ export default function Bwrite(props) {
             })
     }
     return (
-        <div>
+        <div className="writing">
             <form className="boardform">
-                <span>제목</span> <input type="text" name="btitle" className="btitle" id="btitle"/><br/>
+                <h1 className="tit"> 카페 글 쓰기 </h1>
+                <div className="bar"></div>
+                <input type="text" name="btitle" className="btitle" id="btitle" placeholder ="제목을 입력해 주세요." /><br/>
                 <CKEditor
                     editor={ ClassicEditor }
                     data=""
