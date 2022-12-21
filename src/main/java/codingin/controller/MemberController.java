@@ -30,8 +30,7 @@ public class MemberController {
        return memberService.setmupdate(memberDto);
    }
    @GetMapping("/profile")   //12.21 고은시 회원정보 출력하기
-   public List<MemberEntity> profilelist(){
-       System.out.println("컨트롤러 출력***");
+   public List<MemberDto> profilelist(){
        return memberService.profilelist();
    }
 

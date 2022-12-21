@@ -14,7 +14,7 @@ export default function MUpdate(props){
     }
     useEffect(handleLogin , []);    //로그인은 여기서 체크하는거임
 
-    const mupdate = () => {
+    const update = () => {
         let memberform = document.querySelector('.memberform'); // DOM 객체
         let formdata = new FormData(memberform , ('#file')[0][1]);
 
@@ -31,7 +31,7 @@ export default function MUpdate(props){
             <form className="memberform" name="" value="post">
                 닉네임 <input type="text" className="mnick" name="mnick"/> {/*닉네임*/}
                 프로필사진 <input type="file" name="mprofile"/>  {/*프로필사진*/}
-                <button type="button" onClick={ mupdate }>수정하기</button>
+                <button type="button" onClick={ update }>수정하기</button>
             </form>
         </div>
     );
