@@ -25,9 +25,6 @@ export default function BoardList(props) {
     }
     useEffect(getboardlist,[pageInfo])
 
-
-
-
     // 페이징처리
     const onPage = (page) =>{
         setPageInfo(
@@ -49,13 +46,18 @@ export default function BoardList(props) {
     const loadView=(bno)=>{ {/*12.16 게시물번호 넘기기(상세보기)*/}
             window.location = "/board/bwrite" +bno
     }
-// <a href={"/board/bwrite"+params.cno}>글쓰기</a>
-//<a href = {"/board/filedownload?filename="+board.bfilename} > {board.bfilename}</a>
-    return(
 
+//<a href = {"/board/filedownload?filename="+board.bfilename} > 참고
+//<a href={"/board/bwrite?cno="+params.cno}>글쓰기</a>
+//1)글작성할 때 http://localhost:8080/board/bwrite?cno=2 500번이 뜸
+
+//<a href={"/board/bwrite?"+params.cno}>글쓰기</a>
+// 1) 글작성할때  //http://localhost:8080/board/bwrite?1 들어옴 /
+// 2) 글목록에서 다시 글쓰기를 할때에는 http://localhost:8080/board/bwrite?undefined 라고 뜸
+    return(
             <div>
-                <a href="/board/bwrite">글쓰기</a>
-                { params.cno  }
+                <a href={"/board/bwrite?="+params.cno}>글쓰기</a>
+                { params.cno  } {/*어떤 카테고리 인지 분별함*/}
                 <table className="blist">
                 {
                     pageDto.list.map( (b) => {
