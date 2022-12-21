@@ -44,6 +44,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .ignoringAntMatchers("/board/delboard")  // 삭제 url
                 .ignoringAntMatchers("/board/upboard") // 게시물수정 put 사용
                 .ignoringAntMatchers("/member/setmupdate") // 회원수정 put 사용(시큐리티 = axios = 컨트롤러)
+                .ignoringAntMatchers("/member/profilelist") // 회원출력 get 사용(시큐리티 = axios = 컨트롤러)
                 .and()
                 .oauth2Login() // 소셜 로그인 보안 설정
                 .defaultSuccessUrl("/")// 소셜 로그인 성공시 이동하는 URL

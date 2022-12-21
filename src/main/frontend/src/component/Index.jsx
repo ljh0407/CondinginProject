@@ -16,6 +16,7 @@ import Lwrite from "./letter/Lwrite";
 //css영역
 import StyleSheet from '../css/Index.css'; // css 불러오기
 import { HashRouter, BrowserRouter , Routes , Route , Link , Router } from 'react-router-dom';
+import Profilphoto from "./member/Profilphoto";
 //
 export default function Index( props ){
 
@@ -40,6 +41,7 @@ export default function Index( props ){
                         <Route path="/letter/lwrite" element={ <Lwrite />} />   {/*//쪽지*/}
                         <Route path="/board/update/:bno" element={ <Bupdate />} />   {/*//게시글 수정*/}
                         <Route path="/member/mupdate" element={ <MUpdate />} />   {/*//회원수정*/}
+                        <Route path="/member/profile" element={ <Profilphoto />} />   {/*//프로필 출력*/}
                     </Routes>
                     <Footer/>
                 </BrowserRouter>

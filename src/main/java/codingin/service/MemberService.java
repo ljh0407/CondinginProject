@@ -17,10 +17,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.io.File;
-import java.util.HashSet;
-import java.util.Optional;
-import java.util.Set;
-import java.util.UUID;
+import java.util.*;
 
 @Service
 public class MemberService implements  OAuth2UserService< OAuth2UserRequest , OAuth2User> {
@@ -134,5 +131,19 @@ public class MemberService implements  OAuth2UserService< OAuth2UserRequest , OA
                return true; //전부 리턴
            }
        }return false;
+    }
+    @Transactional  //12.21 고은시 회원정보 출력하기
+    public List<MemberEntity> profilelist() {
+        List<MemberEntity> entityList = memberRepository.findAll();
+        System.out.println("회원출력 서비스실행**1 : " + entityList);
+        List<MemberDto> dtoList = new ArrayList<>();
+        System.out.println("회원출력 서비스실행**2 : " + dtoList);
+        for(MemberEntity entity : entityList){
+            System.out.println("회원출력 서비스실행**3 : " + entity );
+            dtoList.add(entity.toDto());
+            System.out.println("회원출력 서비스실행**4 : " + dtoList );
+        }
+        System.out.println("회원출력 서비스실행**5 : " + entityList );
+        return entityList;
     }
 }

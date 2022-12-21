@@ -82,7 +82,5 @@ export default function BoardList(props) {
                     <button type="button" onClick={onSerch}> 검색 </button>
                 </div>
             </div>
-
     );//return end
-
 }

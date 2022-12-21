@@ -36,10 +36,10 @@ export default function Header(props) {
                             <li> <a href="/board/bwrite">게시판</a> </li>
                             <li> <a href="/letter/lwrite">쪽지함</a> </li>
                             <li> <a href="/board/boardlist">글보기</a> </li>
-                            <li> <a href="/member/mupdate">My Home</a> </li>
+                            <li> <a href="/member/mupdate">Profile</a> </li>
+                            <li> <a href="/member/profile">My Home</a> </li>
                         </ul>
                     </nav>
-
                     )
                 }
             </div>

@@ -1,11 +1,14 @@
 package codingin.controller;
 
 import codingin.domain.dto.MemberDto;
+import codingin.domain.entity.MemberEntity;
 import codingin.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 
 @RestController
@@ -24,8 +27,12 @@ public class MemberController {
 
     @PostMapping("/setmupdate") // 회원정보수정
     public boolean setmupdate(MemberDto memberDto){
-        System.out.println("멤버확인"+memberDto.toString());
        return memberService.setmupdate(memberDto);
+   }
+   @GetMapping("/profile")   //12.21 고은시 회원정보 출력하기
+   public List<MemberEntity> profilelist(){
+       System.out.println("컨트롤러 출력***");
+       return memberService.profilelist();
    }
 
 }
