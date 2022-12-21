@@ -6,6 +6,7 @@ import logo from '../img/logo.png'
 //로그인영역
 import Login from './member/Login';
 import MUpdate from "./member/MUpdate";
+import Profilphoto from "./member/Profilphoto";
 //board 영역
 import Bwrite from "./board/Bwrite";//글쓰기
 import BoardList from "./board/BoardList"; //전체글보기12.15 최예은 추가
@@ -16,7 +17,6 @@ import Lwrite from "./letter/Lwrite";
 //css영역
 import StyleSheet from '../css/Index.css'; // css 불러오기
 import { HashRouter, BrowserRouter , Routes , Route , Link , Router } from 'react-router-dom';
-import Profilphoto from "./member/Profilphoto";
 //
 export default function Index( props ){
 
