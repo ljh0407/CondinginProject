@@ -174,8 +174,8 @@ public class BoardService {
 
     /////////////////////////////////////////////////////////////////////////
      @Transactional //7.각 카테고리의 최신 글 가져오기
-    public List<CategoryDto> getlimitdesc( int cno){
-        List<BoardEntity> elist = boardRepository.findAll();
+    public List<BoardDto> getlimitdesc( int cno ){
+        List<BoardEntity> elist = boardRepository.findAll(); //일단 꺼낸다 조만간 query문으로 변경이 될 예정입니다.
         List<BoardDto> blist = new ArrayList<>();   //깡통하나만든다
         for(BoardEntity entity : elist){    //향상된 for문으로 담아서
             blist.add(entity.toDto());
