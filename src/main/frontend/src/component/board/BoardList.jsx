@@ -4,6 +4,9 @@ import axios from "axios";
 import Pagination from 'react-js-pagination'
 import Bview from "./Bview"; // npm i react-js-pagination 설치 12.14 최예은 설치함
 
+import StyleSheet from '../../css/Board/boardList.css'; // css 불러오기
+
+
 export default function BoardList(props) {  //글목록
 
     const params = useParams();  //경로[URL]상의 매개변수 가져올때
@@ -26,6 +29,9 @@ export default function BoardList(props) {  //글목록
     }
     useEffect(getboardlist,[pageInfo])
 
+
+
+
     // 페이징처리
     const onPage = (page) =>{
         setPageInfo(
@@ -47,8 +53,9 @@ export default function BoardList(props) {  //글목록
     const loadView=(bno)=>{ window.location = "/board/bview/" +bno }
 
     return(
+
             <div>
-                <a href={"/board/bwrite/"+params.cno} >글쓰기</a>
+                <a href={"/board/bwrite/"+params.cno } >글쓰기</a>
                 <table className="blist">
                 {
                     pageDto.list.map( (b) => {

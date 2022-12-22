@@ -17,13 +17,13 @@ li{ list-style-type: none; }
 
 header{
     height: 166px;
-    border : solid 1px red; /* 지워야함 */
+    /*border : solid 1px red; *//* 지워야함 */
 }
 
 .box{
     width: 1100px;
     margin: 0 auto;
-    border : solid 1px red; /* 지워야함 */
+   /* border : solid 1px red;  지워야함 */
 }
 
 #logo{
@@ -42,14 +42,15 @@ header{
 #top_menu li{
     margin : 60px 0 0 5px;
     font-family: 'Humanbumsuk';
+    text-decoration: none;
     font-size: 140%;
     border-radius: 45px;
-    background: #ffffff;
-    box-shadow:  21px 21px 42px #d6d6d6,
-                 -21px -21px 42px #ffffff;
  }
 
-
+.atag{
+    text-decoration: none;
+    color: block;
+}
 
 
 

@@ -6,9 +6,9 @@ export default function Footer(props){
     return (
         <footer>
             <ul id="ful">
-                <li id="fli"> @Conding </li>
-                <li id="fli"> 안녕하세요. </li>
-                <li id="fli"> 빠이빠이 </li>
+                <li id="fli">© CondingIn Korea Corporation All Rights Reserved. </li>
+
+
             </ul>
         </footer>
     );
