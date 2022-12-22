@@ -3,6 +3,8 @@ import axios from "axios";
 import Pagination from 'react-js-pagination'
 import Bview from "./Bview"; // npm i react-js-pagination 설치 12.14 최예은 설치함
 
+import StyleSheet from '../../css/Board/boardList.css'; // css 불러오기
+
 import {useParams} from "react-router-dom";
 
 export default function BoardList(props) {
@@ -54,7 +56,7 @@ export default function BoardList(props) {
     return(
 
             <div>
-                <a href="/board/bwrite">글쓰기</a>
+                <a href="/board/bwrite" className="again">글쓰기</a>
                 { params.cno  }
                 <table className="blist">
                 {

@@ -7,11 +7,13 @@
 
 footer {
     height : 166px;
+    /*background-color: #222426;*/
 }
 
 #fli{
    display : flex;
    flex-direction: column;
    align-items: center;
+   /*color: white;*/
 }
 
