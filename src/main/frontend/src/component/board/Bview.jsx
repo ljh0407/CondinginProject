@@ -3,19 +3,15 @@ import axios from "axios";
 import {useParams} from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.css';
 
-
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
 
-
-export default function Bview(props){
-
-    const [ lto , setLto ] = useState( [] );
-
-    const [ lfrom , setLfrom ] = useState( [] );
-
-    const [show, setShow] = useState(false);
+export default function Bview(props){   //상세보기
+    //---------------------------[쪽지보내기]----------------------------------//
+    const [ lto , setLto ] = useState( [] );    //받는사람
+    const [ lfrom , setLfrom ] = useState( [] );    // 보내는사람
+    const [show, setShow] = useState(false);    // 닫기
 
     const handleClose = () => setShow(false);   // 쪽지 보내기 버튼
     const handleShow = () => setShow(true);     // 닫기 버튼
@@ -24,8 +20,7 @@ export default function Bview(props){
 
         // 1. 받는사람 , 내용
         let lcontent = document.querySelector(".lcontent").value;
-
-        axios
+        axios//post의 url                        받는사람의 이메일(글작성자) 내용
             .post("/letter/setletter" , { lto : board.memail , lcontent : lcontent  })
             .then( re => {
                 if( re.data == true ){alert("쪽지보내기 성공");
@@ -34,14 +29,11 @@ export default function Bview(props){
             })
             .catch( err => {console.log(err)})
         setShow(false); // model close
-    }   // 쪽지 보내기 버튼
+    }   // 쪽지 보내기 버튼 end
+    //---------------------------[쪽지보내기]----------------------------------//
 
-
-
-
-
-    /*12.16 게시물 상세보기*/
-    const params = useParams();  // useParams() 훅 : 경로[URL]상의 매개변수 가져올때
+    //---------------------------[글상세보기]----------------------------------//
+    const params = useParams();  //경로[URL]상의 매개변수 가져올때
     //게시물 , 리랜더링될 게시물           // 게시물 메모리
     const [ board , setBoard ] = useState({ });
 
@@ -65,12 +57,9 @@ export default function Bview(props){
     const onDelete = () =>{
         axios
             .delete("/board/delboard", { params:{bno:params.bno} } )
-            .then(res => {alert("게시물삭제성공"); window.location.href="/board/boardlist"})
+            .then(res => {alert("게시물삭제성공"); window.location.href="/"})
     }
-
-    // 4. 쪽지 보내기
-
-
+    //---------------------------[글상세보기]----------------------------------//
     return(
         <div>
             <Modal show={show} onHide={handleClose}>
@@ -100,25 +89,21 @@ export default function Bview(props){
                     </Form>
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button variant="secondary" onClick={handleClose}>
-                        닫기
-                    </Button>
-                    <Button variant="primary" onClick={handleSend}>
-                        보내기
-                    </Button>
+                    <Button variant="secondary" onClick={handleClose}> 닫기 </Button>
+                    <Button variant="primary" onClick={handleSend}> 보내기 </Button>
                 </Modal.Footer>
-            </Modal>
+            </Modal>    {/*모달 - 쪽지보내기 end */}
 
             <div>{board.btitle}</div>
             <div variant="primary" onClick={handleShow} >{board.memail}</div>
-            <div>{board.bcontent}</div>
+            <div dangerouslySetInnerHTML={{__html:board.bcontent }}></div>  {/*dangerouslySetInnerHTML={{__html:board.bcontent }} p태그 제거 html형식으로 뿌리기*/}
             <div>{board.bdate}</div>
             <div>{board.bview}</div>
             <div>{board.bgood}</div>
             <div>{board.bbad}</div>
             <div>{board.mprofile}</div>
 
-            {/*12.16 작성자와 로그인이 같으면 버튼 노출*/}
+            {/* 작성자와 로그인이 같으면 버튼 노출*/}
             { login==board.memail && <button type="button" onClick={onDelete}>삭제</button> }
             { login == board.memail && <button type="button" onClick={ getUpdate }> 수정 </button>  }
         </div>

@@ -38,6 +38,7 @@ public class boardController {
 
     @DeleteMapping("/delboard") //4.게시물 삭제하기
     public boolean delboard(@RequestParam("bno") int bno){
+
         return  boardService.deleteboard(bno);
     }
 
@@ -48,14 +49,7 @@ public class boardController {
 
     @GetMapping("/getcategory") //6.  카테고리 출력하기
     public List<CategoryDto> categorylist(){
-        //System.out.println("BoardController 6. 카테고리 출력하기 categorylist 확인");
         return boardService.bcategoryList();
-    }
-
-    //7.각 카테고리의 최신 글 가져오기 12.19 최예은 추가
-    @GetMapping("/getlimitdesc")
-    public List<CategoryDto> getlimitdesc(@RequestParam int cno){
-        return boardService.getlimitdesc(cno);
     }
 
 }

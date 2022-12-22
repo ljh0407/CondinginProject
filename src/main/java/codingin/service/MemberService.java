@@ -134,10 +134,13 @@ public class MemberService implements  OAuth2UserService< OAuth2UserRequest , OA
     }
     @Transactional  //12.21 고은시 회원정보 출력하기
     public List<MemberDto> profilelist() {
+        //멤버엔티티 전부 가져오기 12/21 고은시
         List<MemberEntity> entityList = memberRepository.findAll();
-        System.out.println("회원출력 서비스실행**1 : " + entityList);
+        //멤버디티오 리스트로 호출
         List<MemberDto> dtoList = new ArrayList<>();
-        entityList.forEach( e -> dtoList.add( e.toDto() ) );  //카테고리 디티오에 저장
+        //멤버엔티티 -> 디티오에 저장
+        entityList.forEach( e -> dtoList.add( e.toDto() ) );
+        System.out.println("출력확인 1 : "+dtoList);
         return dtoList;
     }
 }

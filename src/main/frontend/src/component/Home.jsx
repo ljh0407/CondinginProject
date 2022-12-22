@@ -3,7 +3,8 @@ import StyleSheet from '../css/home.css';
 import {Link} from "react-router-dom";
 import axios from "axios";// 12.16 최예은 추가
 import HomeBoard from "./board/HomeBoard" // 12.19 최예은 추가
-
+import git from '../img/git.png';
+import Notion from '../img/Notion.png';
 
 export default function Home( props ){
     //0. 12.16 최예은 추가
@@ -34,6 +35,11 @@ export default function Home( props ){
                                 )
                             })
                         }
+                        <div id="promotion">    {/* git , notion 이미지 */}
+                            <a href="https://github.com/ljh0407/CondinginProject"> <img className="hongbo" src={git} /> </a>
+                            <a href="https://typhoon-swordtail-68e.notion.site/0e74dc862bbd45799d64654034bcfdc7"> <img className="hongbo" src={Notion} /> </a>
+                        </div>
+
                     </article>
                     {/*출력한 각각의  cno , cname 뿌리기*/}
                     <div className="rightSection">
