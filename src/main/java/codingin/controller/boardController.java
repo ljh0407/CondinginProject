@@ -15,17 +15,15 @@ import java.util.List;
 @RestController
 @RequestMapping("/board")
 public class boardController {
-    //=============================================//
+    //====================서비스=========================//
     @Autowired
     private MemberService memberService;
     @Autowired
     private BoardService boardService;
-    //====================서비스=========================//
+    //=============================================//
 
     @PostMapping("/setboard")   //1. 개별 글쓰기
-    public boolean setboard(BoardDto boardDto) { //js에서 json으로 받을 예정이라 @RequestBody로 받아야 함.
-        return boardService.setboard(boardDto);
-    }
+    public boolean setboard(BoardDto boardDto) { return boardService.setboard(boardDto); }
 
     @PostMapping("/getboardlist")   //2. 글 출력하기
     public PageDto getboardlist(@RequestBody PageDto pageDto){
