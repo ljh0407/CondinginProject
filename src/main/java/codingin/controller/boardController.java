@@ -52,4 +52,9 @@ public class boardController {
         return boardService.bcategoryList();
     }
 
+   @GetMapping("/getdesclist") // 7. 최신글 4개 가져오기
+    public List<BoardDto> getdesclist(@RequestParam("cno") int cno){
+        return boardService.getdesclist(cno);
+    }
+
 }

@@ -8,7 +8,9 @@ import Notion from '../img/Notion.png';
 
 export default function Home( props ){
     //0. 12.16 최예은 추가
-    const [categorylist,setCategorylist] = useState([]); // db에 등록해놓은 카테고리 리스트
+
+
+
     // 카테고리 가져오기
 
     /////////////////////////////db에서 insert한 카테고리 출력/////////////////////////////
@@ -24,7 +26,6 @@ export default function Home( props ){
 
     return(
         <>
-
             <div className="LayOut">   {/* 전체 div */}
                 <div className="mid">
                     <article  className="sidebar">
