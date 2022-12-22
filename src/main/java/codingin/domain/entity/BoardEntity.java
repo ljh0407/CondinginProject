@@ -40,7 +40,7 @@ public class BoardEntity extends BaseEntity {
     private MemberEntity memberEntity;  // PK에 엔티티 객체
 
     @ManyToOne // [ 1:n] FK에 해당 어노테이션
-    @JoinColumn(name="bcno")  // 카테고리 번호
+    @JoinColumn(name="cno")  // 카테고리 번호
     @ToString.Exclude
     private CategoryEntity categoryEntity;
 

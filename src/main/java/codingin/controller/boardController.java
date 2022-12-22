@@ -51,10 +51,4 @@ public class boardController {
         return boardService.bcategoryList();
     }
 
-    //7.각 카테고리의 최신 글 가져오기 12.19 최예은 추가
-   /* @GetMapping("/getlimitdesc")
-    public List<CategoryDto> getlimitdesc(@RequestParam int cno){
-        return boardService.getlimitdesc(cno);
-    }
-*/
 }

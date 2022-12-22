@@ -41,11 +41,19 @@ import java.util.Optional;
 
         LetterEntity letterEntity = letterRepository.save( letterDto.toEntity()); // dto --> entitiy 반환
         if (letterEntity.getLno() > 0 ){ // 보낸 쪽지번호가 0이 아니면 성공
-            letterEntity.setLto(memberEntity); // 받는사람 저장
-            memberEntity.getLtolist().add(letterEntity); // 멤버 엔티티에서 받는사람정보 가져와서 쪽지엔티티에다 저장
 
-            letterEntity.setLfrom(memberEntity); // 보낸사람 저장
-            memberEntity.getLfromlist().add(letterEntity);  // 멤버 엔티티에서 보낸사람정보 가져와서 쪽지엔티티에다 저장
+
+            letterEntity.setLfrom(memberEntity); //             보내는사람
+            memberEntity.getLfromlist().add(letterEntity); // 멤버 엔티티에서 받는사람정보 가져와서 쪽지엔티티에다 저장
+
+
+            Optional<MemberEntity> optional = memberRepository.findByMemail( letterDto.getLto() );
+            if(!optional.isPresent()){return false;} //로그인 확인 안되면 null 반환
+            MemberEntity toMemberEntity =  optional.get();
+
+
+            letterEntity.setLto( toMemberEntity );
+            toMemberEntity.getLtolist().add( letterEntity );        // 받는사람
 
             System.out.println("쪽지 : "+letterEntity.toString());
 
