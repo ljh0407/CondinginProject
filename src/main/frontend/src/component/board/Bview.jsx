@@ -10,8 +10,8 @@ import Modal from 'react-bootstrap/Modal';
 export default function Bview(props){   //상세보기
     //---------------------------[쪽지보내기]----------------------------------//
     const [ lto , setLto ] = useState( [] );    //받는사람
-    const [ lfrom , setLfrom ] = useState( [] );    //보낸사람
-    const [show, setShow] = useState(false);    //무엇인교
+    const [ lfrom , setLfrom ] = useState( [] );    // 보내는사람
+    const [show, setShow] = useState(false);    // 닫기
 
     const handleClose = () => setShow(false);   // 쪽지 보내기 버튼
     const handleShow = () => setShow(true);     // 닫기 버튼
