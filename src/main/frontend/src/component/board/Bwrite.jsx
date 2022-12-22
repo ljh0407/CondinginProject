@@ -24,7 +24,6 @@ export default function Bwrite(props) {
 
     useEffect( clist, [] );
     /*//////////////////////////////글쓰기/////////////////////////////*/
-
     const bwrite = () => {
 
         let boardform = document.querySelector('.boardform');   //form호출

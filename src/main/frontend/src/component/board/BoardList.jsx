@@ -55,14 +55,14 @@ export default function BoardList(props) {
 
             <div>
                 <a href={"/board/bwrite/"+params.cno} >글쓰기</a>
-                { params.cno  }
+                {/*{params.cno}*/}
                 <table className="blist">
                 {
                     pageDto.list.map( (b) => {
                         return(
                             <tr>
                             <td>{b.bno}</td>
-                                {/*제목누르면 상세보기 */}
+                            {/*제목누르면 상세보기 */}
                             <td onClick={() => loadView(b.bno)}>{b.btitle}</td>
                             <td>{b.memail}</td>
                             <td>{b.bdate}</td>

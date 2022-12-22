@@ -18,8 +18,8 @@ export default function Home( props ){
             .catch(err=>{ console.log(err);})
     }
     useEffect( clist, [] );
-    console.log("카테고리리스트");
-    console.log(categorylist);
+    //console.log("카테고리리스트");
+    //console.log(categorylist);
 
     return(
         <>
