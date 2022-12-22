@@ -96,7 +96,7 @@ export default function Bview(props){   //상세보기
 
             <div>{board.btitle}</div>
             <div variant="primary" onClick={handleShow} >{board.memail}</div>
-            <div>{board.bcontent}</div>
+            <div dangerouslySetInnerHTML={{__html:board.bcontent }}></div>  {/*dangerouslySetInnerHTML={{__html:board.bcontent }} p태그 제거 html형식으로 뿌리기*/}
             <div>{board.bdate}</div>
             <div>{board.bview}</div>
             <div>{board.bgood}</div>
@@ -107,5 +107,6 @@ export default function Bview(props){   //상세보기
             { login==board.memail && <button type="button" onClick={onDelete}>삭제</button> }
             { login == board.memail && <button type="button" onClick={ getUpdate }> 수정 </button>  }
         </div>
+
     )
 }
