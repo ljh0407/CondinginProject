@@ -29,7 +29,7 @@ public class MemberController {
     public boolean setmupdate(MemberDto memberDto){
        return memberService.setmupdate(memberDto);
    }
-   @GetMapping("/profile")   //12.21 고은시 회원정보 출력하기
+   @GetMapping("/upprofile")   //12.21 고은시 회원정보 출력하기
    public List<MemberDto> profilelist(){
        return memberService.profilelist();
    }

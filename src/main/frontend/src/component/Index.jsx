@@ -6,6 +6,7 @@ import logo from '../img/logo.png'
 //로그인영역
 import Login from './member/Login';
 import MUpdate from "./member/MUpdate";
+import Profilphoto from "./member/Profilphoto";
 //board 영역
 import Bwrite from "./board/Bwrite";//글쓰기
 import BoardList from "./board/BoardList"; //전체글보기12.15 최예은 추가
@@ -16,7 +17,6 @@ import Lwrite from "./letter/Lwrite";
 //css영역
 import StyleSheet from '../css/Index.css'; // css 불러오기
 import { HashRouter, BrowserRouter , Routes , Route , Link , Router } from 'react-router-dom';
-import Profilphoto from "./member/Profilphoto";
 //
 export default function Index( props ){
 
@@ -36,14 +36,13 @@ export default function Index( props ){
                     <Routes>
                         <Route path="/"  element={ < Home /> } />
                         <Route path="/member/signup"  element={ < Login /> } /> {/*로그인*/}
-                        <Route path="/board/bwrite" element={ <Bwrite />} /> {/*// 글쓰기*/}
-                        <Route path="/board/boardlist" element={ <BoardList />} /> {/*// 글쓰기*/}
+                        <Route path="/board/bwrite/:cno" element={ <Bwrite />} /> {/*// 글쓰기*/}
                         <Route path="/board/bview/:bno" element={ <Bview />} /> {/*// 개별글보기*/}
                         <Route path="/letter/lwrite" element={ <Lwrite />} />   {/*//쪽지*/}
                         <Route path="/board/update/:bno" element={ <Bupdate />} />   {/*//게시글 수정*/}
                         <Route path="/member/mupdate" element={ <MUpdate />} />   {/*//회원수정*/}
                         <Route path="/member/profile" element={ <Profilphoto />} />   {/*//프로필 출력*/}
-                        <Route path="/board/:cno" element={ <BoardList />} /> {/*// 글쓰기*/}{/*12.20 최예은 추가 */}
+                        <Route path="/board/:cno" element={ <BoardList />} /> {/*// 글쓰기12.20 최예은 추가 */}
                     </Routes>
                     <Footer/>
                 </BrowserRouter>
