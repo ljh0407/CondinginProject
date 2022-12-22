@@ -32,21 +32,7 @@ public class BoardService {
     @Autowired
     private CategoryRepository categoryRepository;
     @Autowired
-    private LetterRepository letterRepository;
-    @Autowired
-    private MemberRepository memberRepository;
-    @Autowired
-    private ReplyRepository replyRepository;
-    @Autowired
-    private RereplyRepository rereplyRepository;
-    @Autowired
-    private  UpdownRepository updownRepository;
-
-    //12.14최예은 memberService 추가함
-    @Autowired
     private MemberService memberService;
-
-    //12.15 최예은 추가
     @Autowired
     private HttpServletRequest request; // 요청객체선언
     //12.15 최예은 추가
@@ -97,50 +83,42 @@ public class BoardService {
                 boardDto.getBfile().transferTo(uploadfile);   // 5. 해당 객체 경로 로 업로드
             } catch (Exception e) {
                 System.out.println("첨부파일 업로드 실패 ");
-            }
-            return  true;
+            } return  true;
         }else{ return  false;}
     }
 
     @Transactional  //글쓰기
     public boolean setboard( BoardDto boardDto){
-
-        MemberEntity memberEntity = memberService.getEntity();  //멤버서비스에서 getEntity()로 로그인 정보 가져오기
+        //멤버서비스에서 getEntity()로 로그인 정보 가져오기
+        MemberEntity memberEntity = memberService.getEntity();
         if(memberEntity == null){return false;} //회원확인 멤버엔티티가 null(회원정보가 없으면)실패
-
+        //카테고리엔티티의 cno가져오기
         CategoryEntity categoryEntity = categoryRepository.findById(boardDto.getCno()).get();
-
-
         //dto -> entity에 담기     글쓰기 내용 엔티티에 다시 저장
         BoardEntity boardEntity = boardRepository.save(boardDto.toEntity());
         if(boardEntity.getBno() != 0){  //게시물 번호가 0이 아니면
-
+            //양방향으로 관계를 맺어서 서로 호출할 수 있음
             boardEntity.setMemberEntity(memberEntity);  //보트엔티티에 멤버엔티티 연결
-            memberEntity.getBoardEntityList().add(boardEntity);
-
-            categoryEntity.getBoardEntityList().add(boardEntity);
-            boardEntity.setCategoryEntity(categoryEntity);
-
+            memberEntity.getBoardEntityList().add(boardEntity); //멤버엔티티에 보드엔티티저장
+            categoryEntity.getBoardEntityList().add(boardEntity);   //카테고리엔티티에 보드엔티티리스트저장
+            boardEntity.setCategoryEntity(categoryEntity);  //보드엔티티에 카테고리엔티티 추가
             return true;    //게시물번호가 0이 아니면 저장
         }else {return false;}   //게시물번호가 0이면 실패
     }
 
-
     @Transactional  //페이징처리 page : 현재 페이지번호 , key : 검색필드명 , keyword : 검색 데이터 글 리스트 출력
     public PageDto getboardlist(PageDto pageDto){
-
         System.out.println("카테고리번호!!"+pageDto.getCno());
-
         Page<BoardEntity> elist = null; //게시물 먼저 선언함
                                             //사용자 기준으로 1을 입력해서 -1해주기 표시 게시물수 2 , 내림차순(bno기준)
         Pageable pageable = PageRequest.of(pageDto.getPage()-1,5,Sort.by(Sort.Direction.DESC,"bno")) ; //페이징설정
                         //PageRequest.of(현재페이지번호, 표시할레코드수,정렬)
-        //검색여부
+        //검색여부      리포지토리에서 조작한 sql문 호출
         elist = boardRepository.findbySearch( pageDto.getCno() ,pageDto.getKey(), pageDto.getKeyword(),pageable);
-        //프론트엔드에 표시할 페이징번호 버튼 수
+        //view에 표시할 페이징번호 버튼 수
         List<BoardDto> dlist = new ArrayList<BoardDto>();//컨트롤에게 전달할 때 형변한 하기 위한 그릇
-       for(BoardEntity entity : elist){//반환
-           dlist.add(entity.toDto()); }
+       for(BoardEntity entity : elist){ //페이지클래스를 보드엔티티에 저장
+           dlist.add(entity.toDto()); } //보드디티오에 엔티티를 저장
        //리액트 전달
        pageDto.setList(dlist); // 게시물 리스트
        pageDto.setTotalBoards(elist.getTotalElements());    //전체 게시물 수
@@ -148,14 +126,13 @@ public class BoardService {
     }
 
     @Transactional  // 3. 개별  글 보기
-    public BoardDto getboard(int bno){
+    public BoardDto getboard(int bno){  //선택한 bno
         //1.입력받은 게시물 번호로 엔티티검색
         Optional<BoardEntity> optional = boardRepository.findById(bno);
         if(optional.isPresent()){ // 엔티티에 있는지 확인
             //optional에 있는 객체 하나씩 꺼내서 엔티티에 넣기
             BoardEntity boardEntity = optional.get();   //보드엔티티에서 가져오기
             BoardDto boardDto = boardEntity.toDto(); // 디티오를 엔티티로 변환
-            System.out.println("서비스"+boardDto.toString());
             return boardDto; //형변환된 dto 반환
         }//if end
         else {
@@ -172,11 +149,10 @@ public class BoardService {
             boardEntity.setBtitle(boardDto.getBtitle());    //엔티티에서 제목가져오기/수정
             boardEntity.setBcontent(boardDto.getBcontent());    //엔티티에서 내용가져오기/수정
             return true;
-        }
-        else {return false;}
+        } else {return false;}
     }
 
-    @Transactional    //5. 글 삭제하기 12.6 최예은
+    @Transactional    //5. 글 삭제하기
     public boolean deleteboard( int bno){
         boardRepository.findById(bno);  //bno 호출
         Optional<BoardEntity> optional = boardRepository.findById(bno); //보드엔티티에서 bno가져오기
@@ -184,41 +160,27 @@ public class BoardService {
             BoardEntity boardEntity = optional.get();   //확인한 bno 가져와서 엔티티에 저장
             boardRepository.delete(boardEntity);    //삭제할 엔티티 조작
             return true;    //반환
-        }
-        else{
-            return false;
-        }
+        }else{ return false; }
     }
     //////////////////////////////////////카테고리 출력하기///////////////////////////////////////////////
-    @Transactional
-    public List<CategoryDto> bcategoryList(){   //6. 카테고리 출력하기 최예은
+    @Transactional  //6. 카테고리 출력하기
+    public List<CategoryDto> bcategoryList(){
         //리스트로 카테고리 엔티티 전체 호출
         List<CategoryEntity> categorylist = categoryRepository.findAll();
         List<CategoryDto> dtolist = new ArrayList<>();  //리스트로 카테고리 디티오 가져오기
         categorylist.forEach( e -> dtolist.add( e.toDto() ) );  //카테고리 디티오에 저장
         return dtolist; //반환
     }
+
     /////////////////////////////////////////////////////////////////////////
-
-    //7.각 카테고리의 최신 글 가져오기 12.19 최예은 추가
+     @Transactional //7.각 카테고리의 최신 글 가져오기
     public List<CategoryDto> getlimitdesc( int cno){
-
         List<BoardEntity> elist = boardRepository.findAll();
-
-        //깡통하나만든다
-        List<BoardDto> blist = new ArrayList<>();
-
-        //향상된 for문으로 담아서
-        for(BoardEntity entity : elist){
+        List<BoardDto> blist = new ArrayList<>();   //깡통하나만든다
+        for(BoardEntity entity : elist){    //향상된 for문으로 담아서
             blist.add(entity.toDto());
         }
-        //리턴
-        return null;
+        return null; //리턴
     }//7 end
 
-
-
-
 }// class end
-
-//select * from board where bcno=1  ORDER BY bno=1 DESC limit 4 ;

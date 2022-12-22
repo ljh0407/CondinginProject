@@ -5,14 +5,14 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { useParams  } from "react-router-dom";
 
 let bcontent = ''   //내용 전역변수
-export default function Bupdate( props ){
-    const params = useParams(); //매개변수사용
+export default function Bupdate( props ){   //글수정
+    const params = useParams(); //경로[URL]상의 매개변수사용
 
     const [ board , setBoard ] = useState( [] );
-    const [ login , setLogin ] = useState( [] );
-
-    useEffect(  //통신.get방식      url호출               변수받기
-        ()=>axios.get( "/board/getbview" , { params : { bno: params.bno } } ) .then( res => { setBoard( res.data ) } )
+    useEffect(      //통신.get방식      url호출               변수받기
+        () => axios.get( "/board/getbview" , { params : { bno: params.bno } } )
+            .then( res => { setBoard( res.data ) } )
+            .catch(err => {console.log('수정오류 : '+err)})
         , [] )
 
     const upboard = () => {  // 1. 서버로부터 수정된 정보를 이용한 게시물 수정 요청
@@ -25,10 +25,9 @@ export default function Bupdate( props ){
         // 통신.put방식     url호출       폼 전송
         axios.put("/board/upboard" , formdata , {headers: {'Content-Type': 'multipart/form-data'}})
             .then( res => {
-                if( res.data == true ){ alert('게시물 수정 성공'); }
+                if( res.data == true ){ alert('게시물 수정 성공'); window.location.href="/"}
                 else{ alert('게시물 수정 실패'); }
-            })
-            .catch( err => { console.log( err ); } )
+            }).catch( err => { console.log( err ); } )
     }
 
     return (

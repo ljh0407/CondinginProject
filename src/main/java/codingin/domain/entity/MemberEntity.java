@@ -18,7 +18,7 @@ public class MemberEntity extends BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int mno; //회원번호
 
-    @Column(nullable = false)// 12.07 삭제된 필드 복구
+    @Column(nullable = false)
     private String memail;
 
     //12.08 고은시  not null일 필요 없어서 삭제
@@ -77,6 +77,7 @@ public class MemberEntity extends BaseEntity {
                 .builder()
                 .mno( this.mno )
                 .mpassword( this.mpassword )
+                .memail(this.memail)
                 //12.20 고은시 필드 삭제 .mprofile(this.mprofile)
                 .mnick( this.mnick )
                 .mlevel( this.mlevel)

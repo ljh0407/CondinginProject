@@ -34,7 +34,6 @@ export default function Header(props) {
                             <li> { login } </li>
                             <li> <a href="/member/logout"> 로그아웃     </a> </li>
                             <li> <a href="/letter/lwrite">쪽지함</a> </li>
-                            <li> <a href="/member/mupdate">Profile</a> </li>
                             <li> <a href="/member/profile">My Home</a> </li>
                         </ul>
                     </nav>
