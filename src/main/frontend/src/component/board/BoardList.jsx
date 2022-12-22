@@ -4,6 +4,9 @@ import axios from "axios";
 import Pagination from 'react-js-pagination'
 import Bview from "./Bview"; // npm i react-js-pagination 설치 12.14 최예은 설치함
 
+import 'bootstrap/dist/css/bootstrap.css';
+
+
 import StyleSheet from '../../css/Board/boardList.css'; // css 불러오기
 
 
@@ -18,7 +21,7 @@ export default function BoardList(props) {  //글목록
     const [pageDto , setPageDto] = useState({list:[]})
 
     //--------------------1. 게시물출력-------------------------//
-    function getboardlist(){  // pageinfo 요청 -> pageDto
+    function getboardlist() {  // pageinfo 요청 -> pageDto
         axios   //url                       검색처리요소
             .post("/board/getboardlist",pageInfo)
             .then(res => {
@@ -55,23 +58,31 @@ export default function BoardList(props) {  //글목록
     return(
 
             <div>
-                <a href={"/board/bwrite/"+params.cno } >글쓰기</a>
-                <table className="blist">
+                <a href={"/board/bwrite/"+params.cno } className="atag" style={{color:'#000'}} >글쓰기</a>
+                <table className="clist">
+                    <tr>
+                        <td className="got1">순서</td>
+                        <td className="got2">제목</td>
+                        <td className="got3">이메일</td>
+                        <td className="got4">날짜</td>
+                        <td className="got5">조회수</td>
+                    </tr>
                 {
                     pageDto.list.map( (b) => {
                         return(
-                            <tr>
-                            <td>{b.bno}</td>
+                            <tr className="table">
+                            <td className="got6">{b.bno}</td>
                                 {/*제목누르면 상세보기 */}
-                            <td onClick={() => loadView(b.bno)}>{b.btitle}</td>
-                            <td>{b.memail}</td>
-                            <td>{b.bdate}</td>
-                            <td>{b.bview}</td>
+                            <td onClick={() => loadView(b.bno)} className="got2">{b.btitle}</td>
+                            <td className="got7">{b.memail}</td>
+                            <td className="got8">{b.bdate}</td>
+                            <td className="got9">{b.bview}</td>
                             </tr>
                         )
                     })
                     }
                 </table>
+
 
                 <Pagination
                     activePage={ pageInfo.page  }
@@ -79,6 +90,7 @@ export default function BoardList(props) {  //글목록
                     totalItemsCount = { pageDto.totalBoards }
                     pageRangeDisplayed = { 5 }
                     onChange={ onPage }
+                    style={{marginLeft:'45%'}}
                 />
 
                 <div className="searchbox">
