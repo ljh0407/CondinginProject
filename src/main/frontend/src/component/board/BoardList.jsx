@@ -55,7 +55,7 @@ export default function BoardList(props) {  //글목록
     return(
 
             <div>
-                <a href={"/board/bwrite/"+params.cno className="again"} >글쓰기</a>
+                <a href={"/board/bwrite/"+params.cno } >글쓰기</a>
                 <table className="blist">
                 {
                     pageDto.list.map( (b) => {

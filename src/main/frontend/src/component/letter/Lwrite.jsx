@@ -28,10 +28,11 @@ export default function Lwrite(){
         <div className="writing">
         <h1 className="tit">쪽지보내기</h1>
         <div className="bar"></div>
-        제목 : <input type="text" className="ltitle" /><br/>
-        내용 : <textarea className="lcontent" placeholder="500자이하로 작성해주세요"></textarea><br/>
+            <input type="text" className="ltitle" placeholder="제목을 입력해 주세요." /><br/>
+            <textarea className="lcontent" placeholder="500자 이하로 작성해주세요"></textarea><br/>
               <input type="file" className="lfile" />
-              <button type="button" onClick={setletter}>쪽지 보내기</button>
+              <br/>
+              <button type="button" onClick={setletter} className="lbutton">쪽지 보내기</button>
         </div>
     )
 
