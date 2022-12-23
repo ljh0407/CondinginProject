@@ -182,10 +182,6 @@ public class BoardService {
         }
         return blist; //리턴
     }//7 end
-
-
-
-
 }// class end
 
 //select * from board where bcno=1  ORDER BY bno=1 DESC limit 4 ;

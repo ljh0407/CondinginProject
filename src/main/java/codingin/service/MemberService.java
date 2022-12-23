@@ -133,14 +133,11 @@ public class MemberService implements  OAuth2UserService< OAuth2UserRequest , OA
        }return false;
     }
     @Transactional  //12.21 고은시 회원정보 출력하기
-    public List<MemberDto> profilelist() {
-        //멤버엔티티 전부 가져오기 12/21 고은시
-        List<MemberEntity> entityList = memberRepository.findAll();
-        //멤버디티오 리스트로 호출
-        List<MemberDto> dtoList = new ArrayList<>();
-        //멤버엔티티 -> 디티오에 저장
-        entityList.forEach( e -> dtoList.add( e.toDto() ) );
-        System.out.println("출력확인 1 : "+dtoList);
-        return dtoList;
+    public MemberDto profilelist() {
+        int mno = getEntity().getMno(); //로그인된 토큰에서(함수) pk호출
+        MemberEntity memberEntity = memberRepository.findById(getEntity().getMno()).get();  //멤버엔티티에서 mno(pk)가져오기
+        MemberDto memberDto = memberEntity.toDto(); //멤버디티오에 가져온 멤버엔티티 변환
+        System.out.println("출력확인 1 : "+memberDto);
+        return memberDto;
     }
 }
