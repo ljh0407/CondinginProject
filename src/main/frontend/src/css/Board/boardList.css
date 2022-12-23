@@ -1,0 +1,79 @@
+.again{
+    text-decoration: none;
+    /*color: #51d4dd; 색상 고민중 */
+    font-size: 30px;
+    margin-top: 18px;
+
+}
+
+
+
+.clist{
+    width: 50%;
+    margin-top: 2%;
+    font-size: 100%;
+    margin-left: 25%;
+    background-color: white;
+    width: 800px;
+    margin: 0 auto;
+}
+
+.got1{
+    background-color: #eeeeee;
+    text-align: center;
+}
+
+.got2{
+    background-color: #eeeeee;
+    text-align: center;
+    padding-left: 10px;
+}
+
+.got3{
+    background-color: #eeeeee;
+    text-align: center;
+    padding-left: 10px;
+}
+
+.got4{
+    background-color: #eeeeee;
+    text-align: center;
+    padding-left: 10px;
+}
+
+.got5{
+    background-color: #eeeeee;
+    text-align: center;
+    padding-left: 10px;
+}
+
+.got6{
+    background-color: #eeeeee;
+    text-align: center;
+}
+
+.got7{
+    background-color: #eeeeee;
+    text-align: center;
+    padding-left: 10px;
+}
+
+.got8{
+    background-color: #eeeeee;
+    text-align: center;
+    padding-left: 10px;
+}
+
+.got9{
+    background-color: #eeeeee;
+    text-align: center;
+    padding-left: 10px;
+}
+
+#paging{
+    margin-left: 45%;
+}
+
+.searchbox{
+    margin-left: 33%;
+}

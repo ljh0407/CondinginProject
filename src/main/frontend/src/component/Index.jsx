@@ -28,6 +28,7 @@ export default function Index( props ){
     { name : "이벤트" , path: "/" },
     { name : "인기게시판" , path: "/" }
     ];
+
      return  (
             <div className="box">
                 <BrowserRouter>

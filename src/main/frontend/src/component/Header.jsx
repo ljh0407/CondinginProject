@@ -23,7 +23,7 @@ export default function Header(props) {
                     (   /*로그인 안했을떄*/
                         <nav id="menu">
                             <ul id="top_menu">
-                                <li ><Link to="/member/signup"> 회원가입 및 로그인 </Link> </li>
+                                <li ><Link to="/member/signup" className="atag" style={{color:'#000'}}> 회원가입 및 로그인 </Link> </li>
                             </ul>
                         </nav>
                     )
@@ -32,9 +32,9 @@ export default function Header(props) {
                     <nav id="menu">
                         <ul id="top_menu">
                             <li> { login } </li>
-                            <li> <a href="/member/logout"> 로그아웃     </a> </li>
-                            <li> <a href="/letter/lwrite">쪽지함</a> </li>
-                            <li> <a href="/member/profile">My Home</a> </li>
+                            <li> <a href="/member/logout" className="atag" style={{color:'#000'}}> 로그아웃     </a> </li>
+                            <li> <a href="/" className="atag" style={{color:'#000'}}>쪽지함</a> </li>
+                            <li> <a href="/member/profile" className="atag" style={{color:'#000'}}>My Home</a> </li>
                         </ul>
                     </nav>
                     )
