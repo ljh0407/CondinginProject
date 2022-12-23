@@ -1,0 +1,44 @@
+*{
+box-sizing: border-box;
+}
+.sectionWrap{
+    border-bottom: 1px solid #ccc;
+    padding: 5px 10px;
+}
+.getViewSection{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin:5px 0;
+}
+.memberInfor{
+    display: flex;
+    align-items: center;
+}
+
+/*프로필영역*/
+.profile{
+    display:inline-block;
+    width:30px;
+    height:30px;
+    border-radius:50%;
+    background-color:#ccc;
+}
+/*작성자*/
+.memail{
+
+}
+.countSection{}
+.countSection>span{
+    font-size:10px;
+}
+
+
+.bgood{}
+.bview{}
+.bdate{}
+
+.titleSection{
+    font-size:24px;
+}
+.btitle{}

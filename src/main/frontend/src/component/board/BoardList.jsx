@@ -4,6 +4,7 @@ import axios from "axios";
 import Pagination from 'react-js-pagination'
 import Bview from "./Bview"; // npm i react-js-pagination 설치 12.14 최예은 설치함
 
+
 import 'bootstrap/dist/css/bootstrap.css';
 
 
@@ -64,10 +65,7 @@ export default function BoardList(props) {  //글목록
             .then(res=>{setSetview(res.data); console.log(res.data)})
             .catch(err=>console.error(err))
         ///////////////////////////////////////////////////////
-
         window.location = "/board/bview/" +bno
-
-
     }
 
     return(

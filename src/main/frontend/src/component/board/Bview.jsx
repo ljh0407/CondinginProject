@@ -40,7 +40,10 @@ export default function Bview(props){   //상세보기
    //좋아요버튼
     const [goodBtn,setgoodBtn] = useState([]);
    //싫어요버튼
-    const [badBtn,setbadBtn] = useState([])
+    const [badBtn,setbadBtn] = useState([]);
+    //댓글
+    const [reply,setreply] = useState([]);
+
 
     useEffect( // 1. 서버로 부터 해당 게시물번호의 시물정보 요청
     () => axios
@@ -70,18 +73,27 @@ export default function Bview(props){   //상세보기
         //alert("좋아요")
         axios
             .get("/board/good",{params:{bno:params.bno}})
-            .then(res => {setgoodBtn(res.data); console.log(res.data)})
+            .then(res => {setgoodBtn(res.data);})
             .catch(err=>{console.log(err);})
     }
 
     //5. 싫어요 클릭
     const bbadBtn = ()=>{
+        //alert("싫어요")
         axios
             .get("/board/bad",{params:{bno:params.bno}})
-            .then(res => {setbadBtn(res.data) ;console.log(res.data)})
+            .then(res => {setbadBtn(res.data);})
             .catch(err=>{console.log(err);})
-        //alert("싫어요")
     }
+    //6.댓글
+    const reple = ()=>{
+        alert("댓글댓글")
+        axios
+            .put("/reply/setreply" ,{params:{bno:params.bno}})
+            .then(res => alert("댓글등록이 완료되었습니다."))
+            .catch(err=>{console.log(err);})
+    }
+
     //---------------------------[글상세보기]----------------------------------//
     return(
         <div>
@@ -131,6 +143,19 @@ export default function Bview(props){   //상세보기
             { login == board.memail && <button type="button" onClick={ getUpdate }> 수정 </button>  }
 
             {/*댓글 컴포넌트 넣기*/}
+            <div className="repleWrap">
+                <span>프로필사진이 들어갈예정입니다.</span>
+                <textarea></textarea>
+            </div>
+            <button onClick={reple}>댓글작성하기</button>
+
+            <div className="repleSection">
+            {/*여기에 댓글이 출력이 될 예정입니다.*/}
+
+            </div>
+
+
+
         </div>
 
     )

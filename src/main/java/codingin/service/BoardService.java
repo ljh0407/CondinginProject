@@ -188,14 +188,13 @@ public class BoardService {
     public void setview( int bno ){
         BoardEntity entity =  boardRepository.findById(bno).get();
         entity.setBview( entity.getBview()+1 );
-        System.out.println("BoardService 8.조회수증가하기 entity확인 : "+entity);
     }
 
     //9.좋아요 증가 12.23 최예은
     @Transactional
     public void setgood( int bno ){
-        BoardEntity entity =  boardRepository.findById(bno).get();
-        entity.setBgood( entity.getBgood()+1 );
+        BoardEntity entity =  boardRepository.findById(bno).get(); //bno를 찾아와서 가져온다
+        entity.setBgood( entity.getBgood()+1 );//엔티티에 있는 좋아요+1
     }
 
     //10.싫어요 증가 12.23 최예은

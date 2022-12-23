@@ -70,8 +70,9 @@ public class boardController {
     public void bbad(@RequestParam("bno") int bno){
         //System.out.println("싫어요 controller");
         boardService.setbad(bno);
-
     }
+
+
 
 
 
