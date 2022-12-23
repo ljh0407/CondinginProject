@@ -37,7 +37,7 @@ public class MemberService implements  OAuth2UserService< OAuth2UserRequest , OA
     @Autowired
     private  UpdownRepository updownRepository;
     // 12.20 고은시 첨부파일 경로
-    String path = "C:\\Users\\504\\Desktop\\codingin\\src\\main\\resources\\static\\media";  // C드라이브-> upload 폴더 생성
+    String path = "C:\\Users\\504\\Desktop\\codingin\\build\\resources\\main\\static\\static\\media\\";  // C드라이브-> upload 폴더 생성
 
     //====================================================//
     // 12.20 고은시 * 첨부파일 업로드 [ 1. 쓰기메소드 2. 수정메소드 ] 사용

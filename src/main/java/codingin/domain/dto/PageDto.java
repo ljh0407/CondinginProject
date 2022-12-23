@@ -24,4 +24,9 @@ public class PageDto {
     ///end
     private Long totalBoards;   // 총 게시물수 // .getTotalElements() 메소드가 반환타입 LONG
 
+    private int lno;    //쪽지번호
+    private Long totalletters;   // 총 쪽지함 // .getTotalElements() 메소드가 반환타입 LONG
+    @Builder.Default // 빌더 사용시 현재 객체가 기본적으로 할당
+    private List<LetterDto> letterlist = new ArrayList<LetterDto>();    // 검색된 결과 게시물 리스트
+
 }

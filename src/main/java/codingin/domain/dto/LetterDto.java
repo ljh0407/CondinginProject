@@ -7,10 +7,9 @@ import lombok.*;
 public class LetterDto {
     private int lno;
     private String lfrom; //보내는사람
-    private String  lto;    //받는 사람
-    private String  lcontent;   //내용
-    private String lfile;
-
+    private String lto;    //받는 사람
+    private String lcontent;   //내용
+    private String ldata; // 작성날짜
     public LetterEntity toEntity(){
         return LetterEntity
                 .builder()

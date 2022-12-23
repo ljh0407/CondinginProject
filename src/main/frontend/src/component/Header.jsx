@@ -33,7 +33,7 @@ export default function Header(props) {
                         <ul id="top_menu">
                             <li> { login } </li>
                             <li> <a href="/member/logout" className="atag" style={{color:'#000'}}> 로그아웃     </a> </li>
-                            <li> <a href="/" className="atag" style={{color:'#000'}}>쪽지함</a> </li>
+                            <li> <a href="/letter/letterlist" className="atag" style={{color:'#000'}}>쪽지함</a> </li>
                             <li> <a href="/member/profile" className="atag" style={{color:'#000'}}>My Home</a> </li>
                         </ul>
                     </nav>
