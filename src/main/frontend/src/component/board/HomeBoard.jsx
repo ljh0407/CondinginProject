@@ -17,7 +17,6 @@ export default function HomeBoard( props ){
 
     ]); //최신글 가져오기 12.23 최예은
     useEffect( ()=>{
-
             axios
                 .get("/board/getdesclist" , { params : { cno : props.cno }} )
                 .then(res=>{setGetdesclist(res.data); console.log(res.data)})

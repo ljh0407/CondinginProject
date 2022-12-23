@@ -37,6 +37,11 @@ export default function Bview(props){   //상세보기
     //게시물 , 리랜더링될 게시물           // 게시물 메모리
     const [ board , setBoard ] = useState({ });
 
+   //좋아요버튼
+    const [goodBtn,setgoodBtn] = useState([]);
+   //싫어요버튼
+    const [badBtn,setbadBtn] = useState([])
+
     useEffect( // 1. 서버로 부터 해당 게시물번호의 시물정보 요청
     () => axios
         //컨트롤 목록조회url                   bno받기
@@ -58,6 +63,24 @@ export default function Bview(props){   //상세보기
         axios
             .delete("/board/delboard", { params:{bno:params.bno} } )
             .then(res => {alert("게시물삭제성공"); window.location.href="/"})
+    }
+
+    //4.좋아요 클릭
+    const bgoodBtn = ()=>{
+        //alert("좋아요")
+        axios
+            .get("/board/good",{params:{bno:params.bno}})
+            .then(res => {setgoodBtn(res.data); console.log(res.data)})
+            .catch(err=>{console.log(err);})
+    }
+
+    //5. 싫어요 클릭
+    const bbadBtn = ()=>{
+        axios
+            .get("/board/bad",{params:{bno:params.bno}})
+            .then(res => {setbadBtn(res.data) ;console.log(res.data)})
+            .catch(err=>{console.log(err);})
+        //alert("싫어요")
     }
     //---------------------------[글상세보기]----------------------------------//
     return(
@@ -97,11 +120,11 @@ export default function Bview(props){   //상세보기
             <div>{board.btitle}</div>
             <div variant="primary" onClick={handleShow} >{board.memail}</div>
             <div dangerouslySetInnerHTML={{__html:board.bcontent }}></div>  {/*dangerouslySetInnerHTML={{__html:board.bcontent }} p태그 제거 html형식으로 뿌리기*/}
-            <div>{board.bdate}</div>
-            <div>{board.bview}</div>
-            <div>{board.bgood}</div>
-            <div>{board.bbad}</div>
-            <div>{board.mprofile}</div>
+            <div>{board.bdate} 작성시간</div>
+            <div>{board.bview} 조회수</div>
+            <div onClick={bgoodBtn}>{board.bgood} 좋아요</div>
+            <div onClick={bbadBtn}>{board.bbad} 싫어요</div>
+            <div>{board.mprofile} 프로필</div>
 
             {/* 작성자와 로그인이 같으면 버튼 노출*/}
             { login==board.memail && <button type="button" onClick={onDelete}>삭제</button> }

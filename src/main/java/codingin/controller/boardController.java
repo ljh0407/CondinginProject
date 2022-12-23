@@ -56,6 +56,23 @@ public class boardController {
 
     @GetMapping("/setview")//8. 조회수 증가하기
     public void setview(@RequestParam("bno") int bno){
-        //return boardService.setview(bno);
+        //System.out.println("들어왔니 조회수?");
+        boardService.setview(bno);
     }
+
+
+    @GetMapping("/good")//9.좋아요 버튼
+    public void  bgood(@RequestParam("bno") int bno){
+        //System.out.println("좋아요 controller");
+        boardService.setgood(bno);
+    }
+    @GetMapping("/bad")//10.싫어요 버튼
+    public void bbad(@RequestParam("bno") int bno){
+        //System.out.println("싫어요 controller");
+        boardService.setbad(bno);
+
+    }
+
+
+
 }
