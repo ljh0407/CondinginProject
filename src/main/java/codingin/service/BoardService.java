@@ -40,7 +40,6 @@ public class BoardService {
     private HttpServletResponse response; //응답객체 선언
     // 첨부파일 경로
     String path = "C:\\upload\\";  // C드라이브-> upload 폴더 생성
-
     //====================================================//
     public void filedownload( String filename ){    // 0. 첨부파일 다운로드
         String realfilename ="";  // uuid 제거  //
@@ -108,7 +107,6 @@ public class BoardService {
 
     @Transactional  //페이징처리 page : 현재 페이지번호 , key : 검색필드명 , keyword : 검색 데이터 글 리스트 출력
     public PageDto getboardlist(PageDto pageDto){
-        System.out.println("카테고리번호!!"+pageDto.getCno());
         Page<BoardEntity> elist = null; //게시물 먼저 선언함
                                             //사용자 기준으로 1을 입력해서 -1해주기 표시 게시물수 2 , 내림차순(bno기준)
         Pageable pageable = PageRequest.of(pageDto.getPage()-1,5,Sort.by(Sort.Direction.DESC,"bno")) ; //페이징설정
@@ -182,5 +180,4 @@ public class BoardService {
         }
         return null; //리턴
     }//7 end
-
 }// class end

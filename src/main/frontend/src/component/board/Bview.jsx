@@ -106,6 +106,8 @@ export default function Bview(props){   //상세보기
             {/* 작성자와 로그인이 같으면 버튼 노출*/}
             { login==board.memail && <button type="button" onClick={onDelete}>삭제</button> }
             { login == board.memail && <button type="button" onClick={ getUpdate }> 수정 </button>  }
+
+            {/*댓글 컴포넌트 넣기*/}
         </div>
 
     )
