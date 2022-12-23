@@ -182,6 +182,47 @@ public class BoardService {
         }
         return blist; //리턴
     }//7 end
+
+    //조회수 증가하기
+    @Transactional
+    public void setview( int bno ){
+        BoardEntity entity =  boardRepository.findById(bno).get();
+        entity.setBview( entity.getBview()+1 );
+    }
+
+    @Transactional
+    public void setgood( int bno ){
+        BoardEntity entity =  boardRepository.findById(bno).get();
+        entity.setBgood( entity.getBgood()+1 );
+    }
+
+    @Transactional
+    public void setbad( int bno ){
+        BoardEntity entity =  boardRepository.findById(bno).get();
+        entity.setBbad( entity.getBbad()+1 );
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }// class end
 
 //select * from board where bcno=1  ORDER BY bno=1 DESC limit 4 ;

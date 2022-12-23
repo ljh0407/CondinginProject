@@ -10,7 +10,7 @@ let cno = 0; // 선택한 카테고리 번호 [ 전역변수 ]
 let bcontent = ''; // 입력받은 게시물 내용 [ 전역변수 ]  // 변수가 수정될경우 재랜더링할 필요 X
 
 export default function Bwrite(props) { //글쓰기
-
+    const [getdesclist,setGetdesclist] = useState([]); //최신글 가져오기
     const params = useParams();  //경로[URL]상의 매개변수 가져올때
     const [categorylist,setCategorylist] = useState([]); // db에 등록해놓은 카테고리 리스트
 

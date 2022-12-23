@@ -54,4 +54,8 @@ public class boardController {
         return boardService.getdesclist(cno);
     }
 
+    @GetMapping("/setview")//8. 조회수 증가하기
+    public void setview(@RequestParam("bno") int bno){
+        //return boardService.setview(bno);
+    }
 }

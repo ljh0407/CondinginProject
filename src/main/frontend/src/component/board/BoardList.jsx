@@ -53,7 +53,17 @@ export default function BoardList(props) {  //글목록
             }
         )}
     {/* 게시물번호 넘기기(상세보기) */}
-    const loadView=(bno)=>{ window.location = "/board/bview/" +bno }
+    const loadView=(bno)=>{
+
+        ///////////////////조회수 증가하는 axios///////////////////
+        //axios
+
+
+        ///////////////////////////////////////////////////////
+        window.location = "/board/bview/" +bno
+
+
+    }
 
     return(
 
