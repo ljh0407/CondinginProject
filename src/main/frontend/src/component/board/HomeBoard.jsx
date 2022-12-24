@@ -21,8 +21,15 @@ export default function HomeBoard( props ){
                 .catch(err=>{console.log(err);})
     } ,[]  );
 
+    //글 상세보기
 
-    /*글 넘어가기*/
+    const loadView=(bno)=>{
+    alert("클릭")
+        axios
+            .get("/board/setview" ,{params:{bno:bno}})
+            window.location = "/board/bview/"+bno
+    }
+
 
 
     /* ------------ 5. html or jsx표현식 { }------------------*/
@@ -46,7 +53,7 @@ export default function HomeBoard( props ){
                                 </div>
                             </div>
                             <div className="titleSection">
-                                <span className="btitle"> { b.btitle} {/*제목*/} </span>
+                                <span className="btitle" onClick={ () => loadView(b.bno) }> { b.btitle} {/*제목*/} </span>
                             </div>
                             {/*<span className="bno"> { b.bno} {/*bno번호</span>*/}
                             <span className="replecount"> {/*리플개수는 못가져오나?*/} </span>

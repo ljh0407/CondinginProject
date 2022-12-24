@@ -2,6 +2,8 @@ import React , { useState , useEffect } from 'react';
 import axios from "axios";
 import {useParams} from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.css';
+//12.24 최예은 css추가함
+import css from '../../css/Board/bview.css'
 
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
@@ -50,7 +52,7 @@ export default function Bview(props){   //상세보기
         //컨트롤 목록조회url                   bno받기
         .get("/board/getbview" , { params : {bno : params.bno}})
         //setBoard에 데이터 담기
-        .then( res => {setBoard(res.data)}) ,[]);
+        .then( res => {setBoard(res.data); console.log(res.data) }) ,[]);
 
     //로그인 맞는지 확인
     const [ login , setLogin ] = useState(null); // 로그인된 회원정보 state 생명주기 // 변경시 재 렌더링
@@ -129,30 +131,74 @@ export default function Bview(props){   //상세보기
                 </Modal.Footer>
             </Modal>    {/*모달 - 쪽지보내기 end */}
 
-            <div>{board.btitle}</div>
-            <div variant="primary" onClick={handleShow} >{board.memail}</div>
-            <div dangerouslySetInnerHTML={{__html:board.bcontent }}></div>  {/*dangerouslySetInnerHTML={{__html:board.bcontent }} p태그 제거 html형식으로 뿌리기*/}
-            <div>{board.bdate} 작성시간</div>
-            <div>{board.bview} 조회수</div>
-            <div onClick={bgoodBtn}>{board.bgood} 좋아요</div>
-            <div onClick={bbadBtn}>{board.bbad} 싫어요</div>
-            <div>{board.mprofile} 프로필</div>
+            <div class="wrap">{/*전체영역입니다.*/}
+                <div> {/*여기에 카테고리 이름을 넣고 싶어요 cname*/}</div>
+                {/*프로필 영역 및 조회수 영역*/}
+                <div className="memberWrap">
 
-            {/* 작성자와 로그인이 같으면 버튼 노출*/}
-            { login==board.memail && <button type="button" onClick={onDelete}>삭제</button> }
-            { login == board.memail && <button type="button" onClick={ getUpdate }> 수정 </button>  }
 
-            {/*댓글 컴포넌트 넣기*/}
-            <div className="repleWrap">
-                <span>프로필사진이 들어갈예정입니다.</span>
-                <textarea></textarea>
-            </div>
-            <button onClick={reple}>댓글작성하기</button>
+                    <div className="mprofileImg">{board.mprofile} 프로필</div>
 
-            <div className="repleSection">
-            {/*여기에 댓글이 출력이 될 예정입니다.*/}
+                    <div className="memberInforSection">
+                        <div className="memail">
+                            <span  variant="primary" onClick={handleShow} > {board.memail}</span>{/*작성자*/}
+                        </div>
+                        <div className="dateNbviewSection">{/*작성시간 및 조회수*/}
+                            <span className="bdate">{board.bdate} {/*작성시간*/}</span>
+                            <span className="bview">{board.bview} {/*조회수*/}</span>
+                        </div>
+                    </div>{/*memberInforSection*/}
 
-            </div>
+                </div>{/*memberWrap*/}
+
+
+                <h2 className="btitle">{board.btitle}</h2>{/*제목*/}
+
+
+                {/*내용영역입니다.*/}
+                <div dangerouslySetInnerHTML={{__html:board.bcontent }} className="bcontent"></div>  {/*dangerouslySetInnerHTML={{__html:board.bcontent }} p태그 제거 html형식으로 뿌리기*/}
+
+
+
+                <div className="goodNbadSection">{/*좋아요 및 싫어요 영역*/}
+                    <div className="goodMbadBtn">
+                        <span className="icon goodIcon">아이콘{/*좋아요 아이콘이 들어갈 예정입니다.*/}</span>
+                        <span onClick={bgoodBtn} className="bgood"> {board.bgood}  </span>
+                    </div>
+                    <div className="goodMbadBtn">
+                        <span className="icon badIcon">아이콘{/*싫어요 아이콘이 들어갈 예정입니다.*/}</span>
+                        <span onClick={bbadBtn} className="bbad">{board.bbad} </span>
+                    </div>
+
+                </div>{/*goodNbadSection*/}
+
+
+
+
+                {/* 작성자와 로그인이 같으면 버튼 노출*/}
+                { login==board.memail && <button type="button" onClick={onDelete} className="deleteBtn btn">삭제</button> }
+                { login == board.memail && <button type="button" onClick={ getUpdate } className="updateBtn btn"> 수정 </button>  }
+
+                {/*댓글 컴포넌트 넣기*/}
+
+                <div className="repleWrap">
+                    <div className="repleSection">
+                        <span className="repleProfile">{board.mprofile}</span>
+                        <textarea className="replyContent"></textarea>
+                    </div>
+                    <div className="repleBtnSection">
+                        <button onClick={reple} className="relpleBtn">댓글작성하기</button>
+                    </div>
+                </div>{/*repleWrap*/}
+
+
+
+                <div className="repleSection">
+                    {/*여기에 댓글이 출력이 될 예정입니다.*/}
+                </div>{/*repleSection*/}
+
+            </div>{/*wrap*/}
+
 
 
 
@@ -160,3 +206,5 @@ export default function Bview(props){   //상세보기
 
     )
 }
+
+   /*<div variant="primary" onClick={handleShow} >{board.memail}</div>*/

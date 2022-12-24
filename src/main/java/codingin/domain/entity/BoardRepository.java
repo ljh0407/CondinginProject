@@ -24,7 +24,7 @@ public interface BoardRepository extends JpaRepository<BoardEntity , Integer> {
 
     //1.bno로 판단을 할 때
         //select * from board where cno=1 ORDER BY bno desc limit 4 ;
-    //2 cdatd로 판단을 할 때 최신글이니 cdate로 판단
+    //2 cdate로 판단
         //select * from board where cno=1 ORDER BY cdate desc limit 4 ;
     // 12.22 db에서 최신글 4개 출력하는 query문
    @Query( value = "select * from board where cno=:cno ORDER BY bno desc limit 4 ;" ,nativeQuery = true)
