@@ -24,6 +24,10 @@ public class ReplyService {
 
 
     // 1. 댓글 등록하기
+    public boolean setreply(int bno){
+        return true;
+
+    }
 
 
     //2. 댓글 출력하기

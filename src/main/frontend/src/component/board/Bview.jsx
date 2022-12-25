@@ -9,6 +9,9 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
 
+
+let replyContent = ''; // 댓글내용
+
 export default function Bview(props){   //상세보기
     //---------------------------[쪽지보내기]----------------------------------//
     const [ lto , setLto ] = useState( [] );    //받는사람
@@ -90,10 +93,18 @@ export default function Bview(props){   //상세보기
     //6.댓글
     const reple = ()=>{
         alert("댓글댓글")
-        axios
-            .put("/reply/setreply" ,{params:{bno:params.bno}})
-            .then(res => alert("댓글등록이 완료되었습니다."))
-            .catch(err=>{console.log(err);})
+
+            let replewrap = document.querySelector(".repleWrap")
+            let formdata = new FormData(".replewrap")
+            formdata.set("bno",params.bno)//bno를 추가해서 axios로 넘어간다
+            formdata.set("replyContent",replyContent) //댓글내용도 같이 넘긴다.
+            console.log(formdata)
+            axios
+                .post("/reple/setreply",{params:{bno:params.bno}})
+                .then(res => {})
+
+
+
     }
 
     //---------------------------[글상세보기]----------------------------------//
@@ -131,6 +142,10 @@ export default function Bview(props){   //상세보기
                 </Modal.Footer>
             </Modal>    {/*모달 - 쪽지보내기 end */}
 
+
+
+            {/*///////////////////////////////글보기 영역/////////////////////////////////////*/}
+
             <div class="wrap">{/*전체영역입니다.*/}
                 <div> {/*여기에 카테고리 이름을 넣고 싶어요 cname*/}</div>
                 {/*프로필 영역 및 조회수 영역*/}
@@ -148,17 +163,12 @@ export default function Bview(props){   //상세보기
                             <span className="bview">{board.bview} {/*조회수*/}</span>
                         </div>
                     </div>{/*memberInforSection*/}
-
                 </div>{/*memberWrap*/}
-
 
                 <h2 className="btitle">{board.btitle}</h2>{/*제목*/}
 
-
                 {/*내용영역입니다.*/}
                 <div dangerouslySetInnerHTML={{__html:board.bcontent }} className="bcontent"></div>  {/*dangerouslySetInnerHTML={{__html:board.bcontent }} p태그 제거 html형식으로 뿌리기*/}
-
-
 
                 <div className="goodNbadSection">{/*좋아요 및 싫어요 영역*/}
                     <div className="goodMbadBtn">
@@ -179,17 +189,20 @@ export default function Bview(props){   //상세보기
                 { login==board.memail && <button type="button" onClick={onDelete} className="deleteBtn btn">삭제</button> }
                 { login == board.memail && <button type="button" onClick={ getUpdate } className="updateBtn btn"> 수정 </button>  }
 
+
+                {/*////////////////////////////////댓글영역입니다.////////////////////////////////////////*/}
+
                 {/*댓글 컴포넌트 넣기*/}
 
-                <div className="repleWrap">
+                <form className="repleWrap">
                     <div className="repleSection">
-                        <span className="repleProfile">{board.mprofile}</span>
-                        <textarea className="replyContent"></textarea>
+                        <span className="repleProfile">{board.mprofile}</span>{/*댓글작성자의 프로필 사진입니다.*/}
+                        <textarea className="replyContent"></textarea>{/*댓글내용입니다.*/}
                     </div>
                     <div className="repleBtnSection">
-                        <button onClick={reple} className="relpleBtn">댓글작성하기</button>
+                        <button onClick={reple} className="relpleBtn">댓글작성하기</button>{/*댓글작성하기 버튼입니다.*/}
                     </div>
-                </div>{/*repleWrap*/}
+                </form>{/*repleWrap*/}
 
 
 
