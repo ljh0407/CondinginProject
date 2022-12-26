@@ -19,6 +19,7 @@ public interface BoardRepository extends JpaRepository<BoardEntity , Integer> {
             "IF( :key = '' , true , IF( :key = 'btitle' ,  btitle like %:keyword% , bcontent like %:keyword%  ) )" , nativeQuery = true )
     Page<BoardEntity> findbySearch( int cno, String key , String keyword , Pageable pageable);
 
+
     @Query( value = "select * from board where cno=:cno ORDER BY bno desc limit 4 ;" ,nativeQuery = true)
     List<BoardEntity> getdesclist(int cno);
 

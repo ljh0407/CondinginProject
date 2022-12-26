@@ -14,7 +14,7 @@ import Bview from "./board/Bview";//개별글보기
 import Bupdate from "./board/Bupdate";  //게시글 수정
 //letter영역
 import Lwrite from "./letter/Lwrite";
-import Letterlist from "./letter/letterlist";
+import Letterlist from "./letter/Letterlist";
 //css영역
 import StyleSheet from '../css/Index.css'; // css 불러오기
 import { HashRouter, BrowserRouter , Routes , Route , Link , Router } from 'react-router-dom';

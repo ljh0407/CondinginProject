@@ -8,12 +8,14 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface LetterRepository extends JpaRepository<LetterEntity , Integer> {
 
+/*
     @Query( value = "SELECT * " +   //쪽지 보내는 사람 검색
             "FROM " +
             "letter " +
             "WHERE lno = :lno and " +
             "IF( :key = '' , true , IF( :key = 'lfrom' ,  lfrom like %:keyword% ) )" , nativeQuery = true )
     Page<LetterEntity> findbylfrom(int lno, String key, String keyword, Pageable pageable);
+*/
 
 /*
     @Query( value = "SELECT * " +   //쪽지 받은 사람 검색

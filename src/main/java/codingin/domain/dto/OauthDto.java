@@ -75,6 +75,7 @@ public class OauthDto {
         return MemberEntity.builder()
                 .memail( this.memail )
                 .mlevel( this.registrationId )
+                .mprofile( "null.jfif")
                 .build();
     }
 
