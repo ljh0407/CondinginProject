@@ -40,6 +40,7 @@ public class BoardService {
     private HttpServletResponse response; //응답객체 선언
     // 첨부파일 경로
     String path = "C:\\upload\\";  // C드라이브-> upload 폴더 생성
+
     //====================================================//
     public void filedownload( String filename ){    // 0. 첨부파일 다운로드
         String realfilename ="";  // uuid 제거  //
@@ -107,6 +108,7 @@ public class BoardService {
 
     @Transactional  //페이징처리 page : 현재 페이지번호 , key : 검색필드명 , keyword : 검색 데이터 글 리스트 출력
     public PageDto getboardlist(PageDto pageDto){
+        System.out.println("카테고리번호!!"+pageDto.getCno());
         Page<BoardEntity> elist = null; //게시물 먼저 선언함
                                             //사용자 기준으로 1을 입력해서 -1해주기 표시 게시물수 2 , 내림차순(bno기준)
         Pageable pageable = PageRequest.of(pageDto.getPage()-1,5,Sort.by(Sort.Direction.DESC,"bno")) ; //페이징설정
@@ -172,12 +174,55 @@ public class BoardService {
 
     /////////////////////////////////////////////////////////////////////////
      @Transactional //7.각 카테고리의 최신 글 가져오기
-    public List<CategoryDto> getlimitdesc( int cno){
-        List<BoardEntity> elist = boardRepository.findAll();
+    public List<BoardDto> getdesclist( int cno ){
+        List<BoardEntity> elist = boardRepository.getdesclist(cno); //query문으로 변경 boardrepository에 있습니다.
         List<BoardDto> blist = new ArrayList<>();   //깡통하나만든다
         for(BoardEntity entity : elist){    //향상된 for문으로 담아서
             blist.add(entity.toDto());
         }
-        return null; //리턴
+        return blist; //리턴
     }//7 end
+
+    //8조회수 증가하기 12.23 최예은
+    @Transactional
+    public void setview( int bno ){
+        BoardEntity entity =  boardRepository.findById(bno).get();
+        entity.setBview( entity.getBview()+1 );
+    }
+
+    //9.좋아요 증가 12.23 최예은
+    @Transactional
+    public void setgood( int bno ){
+        BoardEntity entity =  boardRepository.findById(bno).get(); //bno를 찾아와서 가져온다
+        entity.setBgood( entity.getBgood()+1 );//엔티티에 있는 좋아요+1
+    }
+
+    //10.싫어요 증가 12.23 최예은
+    @Transactional
+    public void setbad( int bno ){
+        BoardEntity entity =  boardRepository.findById(bno).get();
+        entity.setBbad( entity.getBbad()+1 );
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }// class end
+
+//select * from board where bcno=1  ORDER BY bno=1 DESC limit 4 ;

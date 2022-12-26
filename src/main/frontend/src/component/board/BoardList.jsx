@@ -4,6 +4,7 @@ import axios from "axios";
 import Pagination from 'react-js-pagination'
 import Bview from "./Bview"; // npm i react-js-pagination 설치 12.14 최예은 설치함
 
+
 import 'bootstrap/dist/css/bootstrap.css';
 
 
@@ -19,6 +20,9 @@ export default function BoardList(props) {  //글목록
     const [pageInfo , setPageInfo] = useState({ cno : params.cno , page:1, key:"",keyword:""})
     //      페이지 , 리랜더링                          게시물리스트
     const [pageDto , setPageDto] = useState({list:[]})
+
+    // 조회수 증가 12.23 최예은 추가함
+    const [setview,setSetview] = useState([])
 
     //--------------------1. 게시물출력-------------------------//
     function getboardlist() {  // pageinfo 요청 -> pageDto
@@ -53,7 +57,16 @@ export default function BoardList(props) {  //글목록
             }
         )}
     {/* 게시물번호 넘기기(상세보기) */}
-    const loadView=(bno)=>{ window.location = "/board/bview/" +bno }
+    const loadView=(bno)=>{
+
+        ///////////////////조회수 증가하는 axios 12.23 최예은///////////////////
+        axios
+            .get("/board/setview",{params:{bno:bno}})
+            .then(res=>{setSetview(res.data); console.log(res.data)})
+            .catch(err=>console.error(err))
+        ///////////////////////////////////////////////////////
+        window.location = "/board/bview/" +bno
+    }
 
     return(
 
