@@ -67,7 +67,11 @@
 .btnSection{
     text-align:right;
 }
-.btn{}
+.btn{
+    border: 1px solid;
+    border-radius: 0;
+    margin: 0 10px;
+}
 .deleteBtn{}
 .updateBtn{}
 
@@ -81,15 +85,16 @@
     border:1px solid #000;
     border-radius:10px;
     padding:50px 0;
-
-
 }
+
+
 .repleProfile{
     display:inline-block;
     width:50px;
     height:50px;
     border-radius:50px;
     border:1px solid #000;
+    margin:0 30px;
 }
 .replyContent{
     resize: none;
@@ -109,5 +114,5 @@
 
 .repleSection{
     display:flex;
-    justify-content:space-around;
+    justify-content:center;
 }

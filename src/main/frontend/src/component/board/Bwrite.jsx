@@ -28,7 +28,6 @@ export default function Bwrite(props) { //글쓰기
         let formdata = new FormData(boardform); //FormData 저장
         formdata.set("bcontent",bcontent)   //FormData에 게시글 내용추가
         formdata.set("cno",params.cno)   //FormData에 cno 추가
-
         //통신.post버전 url호출           formdata전송      첨부파일있든없든 사용
         axios.post("/board/setboard", formdata, {headers: {'Content-Type': 'multipart/form-data'}})
             .then(res => {
