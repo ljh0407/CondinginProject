@@ -22,6 +22,7 @@ export default function Letterlist(porps){
 
         Letter.list.map( (l) => {
             return(
+
                 <div>
                     <h6>메시지 출력</h6>
                     <table>

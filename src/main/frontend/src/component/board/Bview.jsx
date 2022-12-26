@@ -58,10 +58,10 @@ export default function Bview(props){   //상세보기
         .then( res => {setBoard(res.data); console.log(res.data) }) ,[]);
 
     //로그인 맞는지 확인
-    const [ login , setLogin ] = useState(null); // 로그인된 회원정보 state 생명주기 // 변경시 재 렌더링
+    const [ login , setLogin ] = useState({ }); // 로그인된 회원정보 state 생명주기 // 변경시 재 렌더링
     axios
         .get("/member/getloginMno") //url 호출                    언더바 기준으로 자르기(작성자와 로그인한 사람확인)
-        .then( (response) => { setLogin( response.data.split("_")[0] );  console.log( login ) } )
+        .then( (response) => { setLogin( response.data );  console.log( login ) } )
 
     // 2. 해당 게시물번호의 해당하는 업데이트 페이지로 이동
     const getUpdate = () => { alert('수정'); window.location.href='/board/update/'+params.bno;  }
@@ -154,7 +154,7 @@ export default function Bview(props){   //상세보기
                 <div className="memberWrap">
 
 
-                    <div className="mprofileImg">{board.mprofile} 프로필</div>
+                    <img className="mprofileImg" src={"/static/media/"+ board.mprofile } />
 
                     <div className="memberInforSection">
                         <div className="memail">
@@ -199,7 +199,7 @@ export default function Bview(props){   //상세보기
 
                 <form className="repleWrap">
                     <div className="repleSection">
-                        <span className="repleProfile">{board.mprofile}</span>{/*댓글작성자의 프로필 사진입니다.*/}
+                        <img className="repleProfile" src={"/static/media/"+ login.mfilename } />
                         <textarea className="replyContent"></textarea>{/*댓글내용입니다.*/}
                     </div>
                     <div className="repleBtnSection">

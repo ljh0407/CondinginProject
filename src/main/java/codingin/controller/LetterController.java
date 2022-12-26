@@ -42,8 +42,8 @@ public class LetterController {
     }
 
     @GetMapping("/getlist") // 2. 쪽지 리스트 출력
-    public List<LetterDto> letterlist(){
-        return letterService.letterlist();
+    public LetterDto letterlist(LetterDto letterDto){
+        return letterService.letterlist(letterDto);
     }
 
 } // end
