@@ -70,8 +70,10 @@ export default function BoardList(props) {  //글목록
 
     return(
 
-            <div>
+            <div className="blistrout">
+                <div className="awriting">
                 <a href={"/board/bwrite/"+params.cno } className="atag" style={{color:'#000'}} >글쓰기</a>
+                </div>
                 <table className="clist">
                     <tr>
                         <td className="got1">순서</td>
@@ -96,6 +98,7 @@ export default function BoardList(props) {  //글목록
                     }
                 </table>
 
+                <div className="searchbox">
 
                 <Pagination
                     activePage={ pageInfo.page  }
@@ -103,16 +106,14 @@ export default function BoardList(props) {  //글목록
                     totalItemsCount = { pageDto.totalBoards }
                     pageRangeDisplayed = { 5 }
                     onChange={ onPage }
-                    style={{marginLeft:'45%'}}
                 />
 
-                <div className="searchbox">
                     <select className="key">
                         <option value="btitle">제목</option>
                         <option value="bcontent">내용</option>
                     </select>
                     <input type="text" className="keyword" />
-                    <button type="button" onClick={onSerch}> 검색 </button>
+                    <button type="button" onClick={onSerch} className="blistbut"> 검색 </button>
                 </div>
             </div>
     );//return end
