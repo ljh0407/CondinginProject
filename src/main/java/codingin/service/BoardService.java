@@ -108,7 +108,7 @@ public class BoardService {
 
     @Transactional  //페이징처리 page : 현재 페이지번호 , key : 검색필드명 , keyword : 검색 데이터 글 리스트 출력
     public PageDto getboardlist(PageDto pageDto){
-        System.out.println("카테고리번호!!"+pageDto.getCno());
+        //System.out.println("카테고리번호!!"+pageDto.getCno());
         Page<BoardEntity> elist = null; //게시물 먼저 선언함
                                             //사용자 기준으로 1을 입력해서 -1해주기 표시 게시물수 2 , 내림차순(bno기준)
         Pageable pageable = PageRequest.of(pageDto.getPage()-1,5,Sort.by(Sort.Direction.DESC,"bno")) ; //페이징설정
@@ -118,6 +118,7 @@ public class BoardService {
         //view에 표시할 페이징번호 버튼 수
         List<BoardDto> dlist = new ArrayList<BoardDto>();//컨트롤에게 전달할 때 형변한 하기 위한 그릇
        for(BoardEntity entity : elist){ //페이지클래스를 보드엔티티에 저장
+           System.out.println("BoardService entity 확인하기 : " + entity);
            dlist.add(entity.toDto()); } //보드디티오에 엔티티를 저장
        //리액트 전달
        pageDto.setList(dlist); // 게시물 리스트
@@ -203,25 +204,6 @@ public class BoardService {
         BoardEntity entity =  boardRepository.findById(bno).get();
         entity.setBbad( entity.getBbad()+1 );
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 }// class end
 

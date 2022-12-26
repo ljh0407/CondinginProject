@@ -111,6 +111,10 @@ export default function Bview(props){   //상세보기
                 .then(res => {
                     if(res==true){ alert("댓글등록이 완료되었습니다.") }
                     else{ alert("댓글등록 실패") }
+
+                    //만약에 댓글을 작성한 사람이랑 로그인 한 사람이랑 같다면
+                    //수정 및 삭제 댓글 보여주기
+                    //대댓글은 언제하지...?
                 })
                 .catch(err => {console.log(err)});
     }

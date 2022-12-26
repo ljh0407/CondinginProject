@@ -24,7 +24,7 @@ export default function HomeBoard( props ){
     //글 상세보기
 
     const loadView=(bno)=>{
-    alert("클릭")
+    //alert("클릭")
         axios
             .get("/board/setview" ,{params:{bno:bno}})
             window.location = "/board/bview/"+bno

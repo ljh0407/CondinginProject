@@ -10,9 +10,6 @@ public class ReplyDto {
     private int rno;
     private int bno; //bno 추가함
     private int mno; //mno 추가함
-
-
-
     private String rcomment;
 
     //ttest
