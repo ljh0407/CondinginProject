@@ -64,6 +64,9 @@
 .bgood{}
 .bbad{}
 /*수정 삭제영역*/
+.btnSection{
+    text-align:right;
+}
 .btn{}
 .deleteBtn{}
 .updateBtn{}

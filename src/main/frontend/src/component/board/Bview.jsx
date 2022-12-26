@@ -93,18 +93,20 @@ export default function Bview(props){   //상세보기
     //6.댓글
     const reple = ()=>{
         alert("댓글댓글")
-
             let replewrap = document.querySelector(".repleWrap")
             let formdata = new FormData(".replewrap")
             formdata.set("bno",params.bno)//bno를 추가해서 axios로 넘어간다
             formdata.set("replyContent",replyContent) //댓글내용도 같이 넘긴다.
+            console.log(params.bno)
+            console.log(replyContent)
             console.log(formdata)
             axios
                 .post("/reple/setreply",{params:{bno:params.bno}})
-                .then(res => {})
-
-
-
+                .then(res => {
+                    if(res==true){ alert("댓글등록이 완료되었습니다.") }
+                    else{ alert("댓글등록 실패") }
+                })
+                .catch(err => {console.log(err)});
     }
 
     //---------------------------[글상세보기]----------------------------------//
@@ -186,9 +188,10 @@ export default function Bview(props){   //상세보기
 
 
                 {/* 작성자와 로그인이 같으면 버튼 노출*/}
-                { login==board.memail && <button type="button" onClick={onDelete} className="deleteBtn btn">삭제</button> }
-                { login == board.memail && <button type="button" onClick={ getUpdate } className="updateBtn btn"> 수정 </button>  }
-
+                <div className="btnSection">
+                    { login==board.memail && <button type="button" onClick={onDelete} className="deleteBtn btn">삭제</button> }
+                    { login == board.memail && <button type="button" onClick={ getUpdate } className="updateBtn btn"> 수정 </button>  }
+                </div>
 
                 {/*////////////////////////////////댓글영역입니다.////////////////////////////////////////*/}
 

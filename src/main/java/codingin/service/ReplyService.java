@@ -1,6 +1,7 @@
 package codingin.service;
 
 import codingin.domain.dto.ReplyDto;
+import codingin.domain.entity.MemberEntity;
 import codingin.domain.entity.ReplyEntity;
 import codingin.domain.entity.ReplyRepository;
 import codingin.domain.entity.RereplyRepository;
@@ -23,11 +24,6 @@ public class ReplyService {
 
 
 
-    // 1. 댓글 등록하기
-    public boolean setreply(int bno){
-        return true;
-
-    }
 
 
     //2. 댓글 출력하기
