@@ -8,6 +8,8 @@ public class ReplyDto {
     private int rno;
     private String rcomment;
 
+
+
     public ReplyEntity toEntity(){
         return ReplyEntity
                 .builder()
