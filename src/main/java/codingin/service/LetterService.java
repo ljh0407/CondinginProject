@@ -75,6 +75,7 @@ import java.util.Optional;
         List<LetterDto> dlist = new ArrayList<>();
         for(LetterEntity entity : elist){ //페이지클래스를 보드엔티티에 저장
             dlist.add( entity.toDto());  //보드디티오에 엔티티를 저장
+            System.out.println(dlist+"쪽지 리스트 ");
 
         }
 
@@ -95,5 +96,5 @@ import java.util.Optional;
         return dlist;
     }
 }
-
+    
 
