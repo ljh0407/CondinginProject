@@ -46,7 +46,7 @@ public class MemberService implements  OAuth2UserService< OAuth2UserRequest , OA
         if( !memberDto.getMprofile().getOriginalFilename().equals("") ) { // ** 첨부파일 있을때
             // * 업로드 된 파일의 이름 [ 문제점 : 파일명 중복 ]
             String uuid = UUID.randomUUID().toString(); // 1. 난수생성
-            String filename = uuid + "_" + memberDto.getMprofile().getOriginalFilename(); // 2. 난수+파일명
+            String filename = uuid + "" + memberDto.getMprofile().getOriginalFilename(); // 2. 난수+파일명
             // * 첨부파일명 db 에 등록
             memberEntity.setMprofile(filename); // 해당 파일명 엔티티에 저장 // 3. 난수+파일명 엔티티 에 저장
             // * 첨부파일 업로드 // 3. 저장할 경로 [ 전역변수 ]
@@ -88,12 +88,13 @@ public class MemberService implements  OAuth2UserService< OAuth2UserRequest , OA
         memberDto.setMemail( memberEntity.getMemail() );
         memberDto.setAuthorities( authorities );
         memberDto.setAttributes( oauthDto.getAttributes() );
+        memberDto.setMfilename(memberEntity.getMprofile());
 
         return memberDto;
     }
 
     // 2. 로그인 여부 판단 메소드
-    public  String getloginMno() {
+    public  MemberDto getloginMno() {
         // 1. 인증된 토큰 확인
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         // 2. 인증된 토큰 내용 확인
@@ -103,7 +104,8 @@ public class MemberService implements  OAuth2UserService< OAuth2UserRequest , OA
             return null;
         } else { // anonymousUser 아니면 로그인후
             MemberDto memberDto = (MemberDto) principal;    //멤버디티오에서 가져옴
-            return memberDto.getMemail()+"_"+memberDto.getAuthorities();    //언더바로 무슨계정인지 표시
+            //          아이디                 계정                          프로필
+            return memberDto;
         }
     }
     //12.15 고은시 이종훈 엔티티에서 이메일 가져오고 로그인 토큰 반환(회원번호 호출)
@@ -121,7 +123,7 @@ public class MemberService implements  OAuth2UserService< OAuth2UserRequest , OA
     // 12.20 고은시 회원수정 시 프로파일 업로드
     @Transactional
     public boolean setmupdate(MemberDto memberDto ){
-        String Memail = getloginMno().split("_")[0];    //Memail에 로그인 세션가져오기
+        String Memail = getloginMno().getMemail();    //Memail에 로그인 세션가져오기
         MemberEntity memberEntity = memberRepository.findByMemail(Memail).get();    //리포지토리에 설정한 이메일 찾기가져오기
         ///dto -> entity저장
        if(memberEntity.getMno() > 0 ) { //회원번호가 0보다 크면
