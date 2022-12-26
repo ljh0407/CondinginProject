@@ -92,24 +92,23 @@ export default function Bview(props){   //상세보기
             .then(res => {setbadBtn(res.data);})
             .catch(err=>{console.log(err);})
     }
-    //6.댓글작성
-    const reple = () => {
+    //6.댓글
+    const reple = ()=>{
         alert("댓글댓글")
-        let repleWrap = document.querySelector(".repleWrap")
-        let formdata = new FormData(repleWrap)
-         formdata.set("bno",params.bno)//bno를 추가
-         formdata.set("replyContent",replyContent) //댓글내용도 같이 넘긴다.
-
-        console.log(repleWrap)
-        console.log(formdata)
-
-        axios
-            .post("/reple/setreply/",formdata , {headers: {'Content-Type': 'multipart/form-data'} })
-            .then
-
-
-
-
+            let replewrap = document.querySelector(".repleWrap")
+            let formdata = new FormData(".replewrap")
+            formdata.set("bno",params.bno)//bno를 추가해서 axios로 넘어간다
+            formdata.set("replyContent",replyContent) //댓글내용도 같이 넘긴다.
+            console.log(params.bno)
+            console.log(replyContent)
+            console.log(formdata)
+            axios
+                .post("/reple/setreply",{params:{bno:params.bno}})
+                .then(res => {
+                    if(res==true){ alert("댓글등록이 완료되었습니다.") }
+                    else{ alert("댓글등록 실패") }
+                })
+                .catch(err => {console.log(err)});
     }
 
     //---------------------------[글상세보기]----------------------------------//
@@ -156,21 +155,18 @@ export default function Bview(props){   //상세보기
                 {/*프로필 영역 및 조회수 영역*/}
                 <div className="memberWrap">
 
-                    <div className="mprofileImg">{board.mprofile} {/*프로필*/}</div>
+
+                    <div className="mprofileImg">{board.mprofile} 프로필</div>
 
                     <div className="memberInforSection">
                         <div className="memail">
                             <span  variant="primary" onClick={handleShow} > {board.memail}</span>{/*작성자*/}
                         </div>
                         <div className="dateNbviewSection">{/*작성시간 및 조회수*/}
-                            <span className="bdateText Text">작성시간 : </span>
                             <span className="bdate">{board.bdate} {/*작성시간*/}</span>
-
-                            <span className="bviewText Text">조회수 : </span>
                             <span className="bview">{board.bview} {/*조회수*/}</span>
                         </div>
                     </div>{/*memberInforSection*/}
-
                 </div>{/*memberWrap*/}
 
                 <h2 className="btitle">{board.btitle}</h2>{/*제목*/}
@@ -220,6 +216,9 @@ export default function Bview(props){   //상세보기
                 </div>{/*repleSection*/}
 
             </div>{/*wrap*/}
+
+
+
 
         </div>
 

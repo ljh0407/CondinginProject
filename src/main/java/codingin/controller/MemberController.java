@@ -20,8 +20,8 @@ public class MemberController {
 
     //=============================================//
     @GetMapping("/getloginMno") // 1. 로그인 정보 확인
-    public String getloginMno() {
-        String result = memberService.getloginMno();
+    public MemberDto getloginMno() {
+        MemberDto result = memberService.getloginMno();
         return result;
     }
 

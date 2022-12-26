@@ -42,7 +42,7 @@ export default function HomeBoard( props ){
                         <div className="sectionWrap">
                             <div className="getViewSection">{/*상단 프로필 사진, 작성자, 리플수 및 조회수 및 좋아요 수 리플수는 없어질 수도 있습니다. */}
                                 <div className="memberInfor">
-                                    <span className="profile"> { b.mprofile} {/*프로필사진*/} </span>
+                                    <img className="profile" src={"/static/media/"+ b.mprofile } />
                                     <span className="memail"> { b.memail} {/*작성자*/} </span>
                                 </div>
                                 <div className="countSection">

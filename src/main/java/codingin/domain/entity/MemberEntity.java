@@ -2,6 +2,7 @@ package codingin.domain.entity;
 import codingin.domain.BaseEntity;
 import codingin.domain.dto.MemberDto;
 import lombok.*;
+import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.DynamicUpdate;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -29,6 +30,7 @@ public class MemberEntity extends BaseEntity {
     private String mpassword; //비밀번호
     @Column
     private String mphone;  //전화번호
+
     @Column
     private String mprofile;    //프로필 파일명
 
