@@ -9,6 +9,8 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
 
+//조회수 아이콘 이미지 추가 12.26 최예은
+import bviewImg from '../../img/bviewImg.png'
 
 let replyContent = ''; // 댓글내용
 
@@ -47,7 +49,7 @@ export default function Bview(props){   //상세보기
    //싫어요버튼
     const [badBtn,setbadBtn] = useState([]);
     //댓글
-    const [reply,setreply] = useState([]);
+    const [reply,setreply] = useState([]); //  함수와 이름이 동일x
 
 
     useEffect( // 1. 서버로 부터 해당 게시물번호의 시물정보 요청
@@ -58,10 +60,15 @@ export default function Bview(props){   //상세보기
         .then( res => {setBoard(res.data); console.log(res.data) }) ,[]);
 
     //로그인 맞는지 확인
-    const [ login , setLogin ] = useState({ }); // 로그인된 회원정보 state 생명주기 // 변경시 재 렌더링
-    axios
-        .get("/member/getloginMno") //url 호출                    언더바 기준으로 자르기(작성자와 로그인한 사람확인)
-        .then( (response) => { setLogin( response.data );  console.log( login ) } )
+    const [ login , setLogin ] = useState(null); // 로그인된 회원정보 state 생명주기 // 변경시 재 렌더링
+
+
+      useEffect( // 1. 서버로 부터 해당 게시물번호의 시물정보 요청
+        () =>  axios
+                      .get("/member/getloginMno") //url 호출                    언더바 기준으로 자르기(작성자와 로그인한 사람확인)
+                      .then( (response) => { setLogin( response.data );  console.log( login ) } ) ,[]);
+
+
 
     // 2. 해당 게시물번호의 해당하는 업데이트 페이지로 이동
     const getUpdate = () => { alert('수정'); window.location.href='/board/update/'+params.bno;  }
@@ -91,17 +98,16 @@ export default function Bview(props){   //상세보기
             .catch(err=>{console.log(err);})
     }
     //6.댓글
-    const reple = ()=>{
-        alert("댓글댓글")
-            let replewrap = document.querySelector(".repleWrap")
-            let formdata = new FormData(".replewrap")
-            formdata.set("bno",params.bno)//bno를 추가해서 axios로 넘어간다
-            formdata.set("replyContent",replyContent) //댓글내용도 같이 넘긴다.
-            console.log(params.bno)
-            console.log(replyContent)
-            console.log(formdata)
-            axios
-                .post("/reple/setreply",{params:{bno:params.bno}})
+    const reple22 = ()=>{
+            alert("댓글댓글")
+            let info = {
+                bno : params.bno ,
+                rcomment : document.querySelector(".replyContent").value
+            }
+
+            console.log( info  )
+
+            axios.post("/reply/setreply", info )
                 .then(res => {
                     if(res==true){ alert("댓글등록이 완료되었습니다.") }
                     else{ alert("댓글등록 실패") }
@@ -154,7 +160,7 @@ export default function Bview(props){   //상세보기
                 <div className="memberWrap">
 
 
-                    <img className="mprofileImg" src={"/static/media/"+ board.mprofile } />
+                    <div className="mprofileImg">{board.mprofile} 프로필</div>
 
                     <div className="memberInforSection">
                         <div className="memail">
@@ -199,11 +205,12 @@ export default function Bview(props){   //상세보기
 
                 <form className="repleWrap">
                     <div className="repleSection">
-                        <img className="repleProfile" src={"/static/media/"+ login.mfilename } />
+                        <span className="repleProfile">{board.mprofile}</span>{/*댓글작성자의 프로필 사진입니다.*/}
                         <textarea className="replyContent"></textarea>{/*댓글내용입니다.*/}
                     </div>
                     <div className="repleBtnSection">
-                        <button onClick={reple} className="relpleBtn">댓글작성하기</button>{/*댓글작성하기 버튼입니다.*/}
+                        <button type="button" onClick={ ()=>reple22 } className="relpleBtn">댓글작성하기</button>{/*댓글작성하기 버튼입니다.*/}
+                        <button type="button" className="enrollment" onClick={ reple22 }>작성하기</button>    {/*함수실행*/}
                     </div>
                 </form>{/*repleWrap*/}
 
@@ -214,8 +221,6 @@ export default function Bview(props){   //상세보기
                 </div>{/*repleSection*/}
 
             </div>{/*wrap*/}
-
-
 
 
         </div>

@@ -36,7 +36,6 @@ export default function HomeBoard( props ){
     return(
         <div className="blist">
            <h3> <a href={"/board/"+props.cno} style={{textDecoration: "none",color:"#000"}}> { props.bcname} </a> </h3>
-
             {
                 getdesclist.map( (b) => {
                     return (
@@ -61,8 +60,6 @@ export default function HomeBoard( props ){
                     );
                 })
             }
-
-
         </div>
     )
     /* -------------------------------------------*/
