@@ -21,16 +21,8 @@ export default function Home( props ){
             .catch(err=>{ console.log(err);})
     }
     useEffect( clist, [] );
-
-
-
-
-
     //console.log("카테고리리스트");
     //console.log(categorylist);
-
-
-
     return(
         <>
             <div className="LayOut">   {/* 전체 div */}
@@ -70,10 +62,6 @@ export default function Home( props ){
         </>
     )
 }
-
-
-
-
 
 /*
 cno를 구별해야한다.

@@ -2,7 +2,10 @@ package codingin.service;
 
 import codingin.domain.dto.BoardDto;
 import codingin.domain.dto.ReplyDto;
-import codingin.domain.entity.*;
+import codingin.domain.entity.MemberEntity;
+import codingin.domain.entity.ReplyEntity;
+import codingin.domain.entity.ReplyRepository;
+import codingin.domain.entity.RereplyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

@@ -21,6 +21,7 @@ public class ReplyController {
     private BoardService boardService;
     @PostMapping("/setreply")
     public boolean setreply(ReplyDto replyDto , int bno){
+        System.out.println("넘어왔니?");
         return replyService.setreply(replyDto , bno);
     }
 

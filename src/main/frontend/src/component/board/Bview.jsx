@@ -9,6 +9,8 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
 
+//조회수 아이콘 이미지 추가 12.26 최예은
+import bviewImg from '../../img/bviewImg.png'
 
 let replyContent = ''; // 댓글내용
 
@@ -161,10 +163,14 @@ export default function Bview(props){   //상세보기
                             <span  variant="primary" onClick={handleShow} > {board.memail}</span>{/*작성자*/}
                         </div>
                         <div className="dateNbviewSection">{/*작성시간 및 조회수*/}
+                            <span className="bdateText Text">작성시간 : </span>
                             <span className="bdate">{board.bdate} {/*작성시간*/}</span>
+
+                            <span className="bviewText Text">조회수 : </span>
                             <span className="bview">{board.bview} {/*조회수*/}</span>
                         </div>
                     </div>{/*memberInforSection*/}
+
                 </div>{/*memberWrap*/}
 
                 <h2 className="btitle">{board.btitle}</h2>{/*제목*/}
@@ -214,9 +220,6 @@ export default function Bview(props){   //상세보기
                 </div>{/*repleSection*/}
 
             </div>{/*wrap*/}
-
-
-
 
         </div>
 

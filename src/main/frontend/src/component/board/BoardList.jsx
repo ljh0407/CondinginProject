@@ -55,7 +55,7 @@ export default function BoardList(props) {  //글목록
                 key: document.querySelector('.key').value,
                 keyword: document.querySelector('.keyword').value
             }
-        )}
+    )}
     {/* 게시물번호 넘기기(상세보기) */}
     const loadView=(bno)=>{
 
