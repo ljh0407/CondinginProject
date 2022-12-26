@@ -24,6 +24,9 @@
     margin:0 10px;
 }
 .memail{}
+.Text{
+    font-size:12px;
+}
 /*작성시간 및 조회수 영역*/
 .dateNbviewSection{}
 .bdate{}
@@ -59,7 +62,6 @@
     align-items: center;
     justify-content: space-around;
     margin:0 15px;
-
 }
 .bgood{}
 .bbad{}

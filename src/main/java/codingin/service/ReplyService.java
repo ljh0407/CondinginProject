@@ -1,5 +1,6 @@
 package codingin.service;
 
+import codingin.domain.dto.BoardDto;
 import codingin.domain.dto.ReplyDto;
 import codingin.domain.entity.MemberEntity;
 import codingin.domain.entity.ReplyEntity;
