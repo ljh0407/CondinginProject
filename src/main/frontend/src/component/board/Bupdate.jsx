@@ -31,17 +31,19 @@ export default function Bupdate( props ){   //글수정
     }
 
     return (
-        <div>
-            <h1> 수정 페이지 </h1>
+        <div className="writing">
+
             <form className="boardform" value="put">
+                <h1> 수정 페이지 </h1>
+                <div className="bar"></div>
                 {/*텍스트타입    디티오호출                    변경할 내용 호출(기본값)*/}
-                제목 : <input type="text" name="btitle" defaultValue={ board.btitle } />
+                <input type="text" name="btitle" className="btitle" id="btitle" placeholder ="제목을 입력해 주세요."  defaultValue={ board.btitle } />
                 <CKEditor
                     editor={ ClassicEditor }
                     data= { board.bcontent }
                     onChange={ ( event, editor ) => { const data = editor.getData(); bcontent = data  } }
                 />
-                <button type="button" onClick={ upboard } > 수정 </button>
+                <button type="button" className="enrollment" onClick={ upboard } > 수정 </button>
             </form>
         </div>
     );
