@@ -16,7 +16,7 @@ export default function MUpdate(props){
 
     const update = () => {
         let memberform = document.querySelector('.memberform'); // DOM 객체
-        let formdata = new FormData(memberform , ('#file')[0][1]);
+        let formdata = new FormData(memberform);
 
         axios.post("/member/setmupdate" , formdata, {headers: {'Content-Type': 'multipart/form-data'}})
             .then(res => {

@@ -1,6 +1,7 @@
 package codingin.controller;
 
 import codingin.domain.dto.LetterDto;
+import codingin.domain.dto.PageDto;
 import codingin.domain.entity.LetterEntity;
 import codingin.domain.entity.LetterRepository;
 import codingin.domain.entity.MemberRepository;
@@ -34,24 +35,16 @@ public class LetterController {
 
 // ------------------------- 기능 ------------------------------------
 
-    // 1. 쪽지쓰기
-    @PostMapping("/setletter")
+    @PostMapping("/setletter")  // 1. 쪽지쓰기
     public boolean setletter(@RequestBody LetterDto letterDto){
      System.out.println("확인 : " + letterDto.toString() );
        return letterService.setletter(letterDto);
     }
 
-    // 2. 쪽지 리스트 출력
-    @GetMapping("/getlist")
-    public List<LetterDto>letterlist(){
-        List<LetterEntity> letterEntityList = letterRepository.findAll();
-        List<LetterDto> dtolist = new ArrayList<>();
-        letterEntityList.forEach( entity -> dtolist.add(entity.toDto()) );
-        System.out.println("리스트 출력 : ");
-        return dtolist;
+    @GetMapping("/getlist") // 2. 쪽지 리스트 출력
+    public List<LetterDto> letterlist(){
+        return letterService.letterlist();
     }
-
-
 
 } // end
 
