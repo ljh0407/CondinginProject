@@ -1,3 +1,7 @@
+.blistrout{
+    height: 650px;
+}
+
 .again{
     text-decoration: none;
     /*color: #51d4dd; 색상 고민중 */
@@ -6,7 +10,13 @@
 
 }
 
-
+.awriting{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px;
+    margin-bottom: 1%;
+}
 
 .clist{
     width: 50%;
@@ -76,4 +86,88 @@
 
 .searchbox{
     margin-left: 33%;
+    margin-top: 35%;
 }
+
+.key{
+    position: relative;
+    width: 150px;
+    height: 35px;
+    border-radius: 4px;
+    border: 2px solid #51d4dd;
+}
+.keyword{
+    position: relative;
+    width: 200px;
+    height: 35px;
+    border-radius: 4px;
+    margin: 0 5px;
+}
+
+.blistbut{
+    position: relative;
+    width: 50px;
+    height: 35px;
+    border-radius: 4px;
+    border: 2px solid #51d4dd;
+}
+
+
+
+/*-==========Pagination================*/
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+    margin-right: 40%;
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  ul.pagination li {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    border: 1px solid #e2e2e2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1rem;
+  }
+
+  ul.pagination li:first-child{
+    border-radius: 5px 0 0 5px;
+  }
+
+  ul.pagination li:last-child{
+    border-radius: 0 5px 5px 0;
+  }
+
+  ul.pagination li a {
+    text-decoration: none;
+    color: #337ab7;
+    font-size: 1rem;
+  }
+
+  ul.pagination li.active a {
+    color: white;
+  }
+
+  ul.pagination li.active {
+    background-color: #337ab7;
+  }
+
+  ul.pagination li a:hover,
+  ul.pagination li a.active {
+    color: blue;
+  }
+
+  .page-selection {
+    width: 48px;
+    height: 30px;
+    color: #337ab7;
+  }
