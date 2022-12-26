@@ -1,9 +1,13 @@
 package codingin.service;
 
+import codingin.domain.dto.ReplyDto;
+import codingin.domain.entity.MemberEntity;
+import codingin.domain.entity.ReplyEntity;
 import codingin.domain.entity.ReplyRepository;
 import codingin.domain.entity.RereplyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service    //댓글 고은시 12.22
 public class ReplyService {
@@ -17,5 +21,15 @@ public class ReplyService {
     @Autowired  //보드서비스
     private BoardService boardService;
     //====================================================//
+
+
+
+
+
+    //2. 댓글 출력하기
+
+
+
+
 
 }

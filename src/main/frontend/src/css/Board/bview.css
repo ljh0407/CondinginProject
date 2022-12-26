@@ -1,0 +1,113 @@
+
+/*전체영역*/
+
+.wrap{
+    width:100%;
+}
+
+/*프로필 사진 및 좋아요 싫어요 영역*/
+.memberWrap{
+    width:100%;
+    display:flex;
+    align-items:center;
+    margin:10px 0;
+}
+/*작성자 정보 및 프로필사진 영역*/
+
+.mprofileImg{
+    width:50px;
+    height:50px;
+    border-radius:50%;
+    background-color:#ccc;
+}
+.memberInforSection{
+    margin:0 10px;
+}
+.memail{}
+/*작성시간 및 조회수 영역*/
+.dateNbviewSection{}
+.bdate{}
+.bview{}
+
+/*제목영역*/
+
+.btitle{
+    margin:35px 0;
+}
+
+/*내용영역*/
+
+.bcontent{
+    width:100%;
+    margin:100px 0;
+}
+
+/*좋아요 싫어요 영역*/
+.goodNbadSection{
+    width:100%;
+    display:flex;
+    align:center;
+    justify-content:center;
+}
+.goodMbadBtn{
+    width:100px;
+    height:100px;
+    border-radius:50%;
+    border:1px solid #000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    margin:0 15px;
+
+}
+.bgood{}
+.bbad{}
+/*수정 삭제영역*/
+.btnSection{
+    text-align:right;
+}
+.btn{}
+.deleteBtn{}
+.updateBtn{}
+
+/*댓글영역*/
+.repleWrap{
+    width:80%;
+    margin:50px auto;
+    display:flex;
+    flex-direction: column;
+    justify-content:space-around;
+    border:1px solid #000;
+    border-radius:10px;
+    padding:50px 0;
+
+
+}
+.repleProfile{
+    display:inline-block;
+    width:50px;
+    height:50px;
+    border-radius:50px;
+    border:1px solid #000;
+}
+.replyContent{
+    resize: none;
+    width:80%;
+}
+.repleBtnSection{
+    text-align:right;
+    margin:30px 30px 0 0 ;
+}
+
+.relpleBtn{
+    outline: none;
+    cursor: pointer;
+    border: none;
+    padding: 15px;
+}
+
+.repleSection{
+    display:flex;
+    justify-content:space-around;
+}

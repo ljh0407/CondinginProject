@@ -49,4 +49,31 @@ public class boardController {
         return boardService.bcategoryList();
     }
 
+   @GetMapping("/getdesclist") // 7. 최신글 4개 가져오기
+    public List<BoardDto> getdesclist(@RequestParam("cno") int cno){
+        return boardService.getdesclist(cno);
+    }
+
+    @GetMapping("/setview")//8. 조회수 증가하기
+    public void setview(@RequestParam("bno") int bno){
+        //System.out.println("들어왔니 조회수?");
+        boardService.setview(bno);
+    }
+
+
+    @GetMapping("/good")//9.좋아요 버튼
+    public void  bgood(@RequestParam("bno") int bno){
+        //System.out.println("좋아요 controller");
+        boardService.setgood(bno);
+    }
+    @GetMapping("/bad")//10.싫어요 버튼
+    public void bbad(@RequestParam("bno") int bno){
+        //System.out.println("싫어요 controller");
+        boardService.setbad(bno);
+    }
+
+
+
+
+
 }
