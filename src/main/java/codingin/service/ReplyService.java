@@ -21,16 +21,12 @@ public class ReplyService {
     @Autowired  //보드서비스
     private BoardService boardService;
     //====================================================//
-
-
-
-
-
-
-    //2. 댓글 출력하기
-
-
-
-
+    @Transactional
+    public boolean setreply(ReplyDto replyDto , int bno){
+        BoardDto boardDto = boardService.getboard(bno); // 상세보기 함수에서 bno 가져오기
+        // 이제 시작
+        ReplyEntity replyEntity = replyRepository.save(replyDto.toEntity()); // dto entity로 형변환
+        return true;
+    }
 
 }

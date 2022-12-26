@@ -37,7 +37,7 @@ public class MemberService implements  OAuth2UserService< OAuth2UserRequest , OA
     @Autowired
     private  UpdownRepository updownRepository;
     // 12.20 고은시 첨부파일 경로
-    String path = "C:\\upload\\";  // C드라이브-> upload 폴더 생성
+    String path = "C:\\Users\\504\\Desktop\\codingin\\build\\resources\\main\\static\\static\\media\\";  // C드라이브-> upload 폴더 생성
 
     //====================================================//
     // 12.20 고은시 * 첨부파일 업로드 [ 1. 쓰기메소드 2. 수정메소드 ] 사용
@@ -137,6 +137,16 @@ public class MemberService implements  OAuth2UserService< OAuth2UserRequest , OA
         int mno = getEntity().getMno(); //로그인된 토큰에서(함수) pk호출
         MemberEntity memberEntity = memberRepository.findById(getEntity().getMno()).get();  //멤버엔티티에서 mno(pk)가져오기
         MemberDto memberDto = memberEntity.toDto(); //멤버디티오에 가져온 멤버엔티티 변환
+        // 사진등록 저장 ////////////////////////////////////////////////////////////
+        if(!memberDto.getMprofile().getOriginalFilename().equals("")){// 실제 첨부파일의 파일명이 존재할경우
+            // 필드가 적을때는 굳이 dto필요없음
+            memberEntity =memberRepository.save(MemberEntity.builder().mprofile(memberDto.getMprofile().getOriginalFilename()).build());    // 첨부파일 사진 업로드
+            try{
+                String filename=memberDto.getMprofile().getOriginalFilename(); // 첨부파일된 실제 파일명
+                File file=new File(path+filename); // 경로 + 첨부파일명 =>file 클래스 객체화 [transferTo함수의 인수가 file 이라서]
+                memberDto.getMprofile().transferTo(file); // MultipartFile 인터페이스 // transferTo : 업로드[파일 이동] 함수  // 기존파일.transferTo(이동할 경로)  // 예외처리 필수
+            }catch (Exception e){ System.out.println("[업로드 실패]"+e);}
+        }
         System.out.println("출력확인 1 : "+memberDto);
         return memberDto;
     }

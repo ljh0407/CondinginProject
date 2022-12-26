@@ -10,9 +10,6 @@ public class ReplyDto {
     private int rno;
     private String rcomment;
 
-    @Autowired
-    ReplyRepository replyRepository;
-
 
 
     public ReplyEntity toEntity(){

@@ -1,11 +1,14 @@
 package codingin.service;
 
+import codingin.domain.dto.BoardDto;
 import codingin.domain.dto.LetterDto;
-import codingin.domain.entity.LetterEntity;
-import codingin.domain.entity.LetterRepository;
-import codingin.domain.entity.MemberEntity;
-import codingin.domain.entity.MemberRepository;
+import codingin.domain.dto.PageDto;
+import codingin.domain.entity.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -64,18 +67,33 @@ import java.util.Optional;
 
     @Transactional
     // 2. 쪽지리스트 출력
-    public List<LetterDto>letterList(@RequestBody LetterDto letterDto ){
-        List<LetterEntity> letterEntityList = null;
-            letterEntityList = letterRepository.findAll();
-            List<LetterDto> letterDtoList = new ArrayList<>();
-            for(LetterEntity letterEntity : letterEntityList){
-                letterDtoList.add(letterEntity.toDto());
-            }
-        System.out.println("test");
-        return letterDtoList;
+    public List<LetterDto> letterlist(){
+
+        MemberEntity memberEntity =  memberService.getEntity();
+
+        List<LetterEntity> elist =  memberEntity.getLtolist();
+        List<LetterDto> dlist = new ArrayList<>();
+        for(LetterEntity entity : elist){ //페이지클래스를 보드엔티티에 저장
+            dlist.add( entity.toDto());  //보드디티오에 엔티티를 저장
+
+        }
+
+//        Page<LetterEntity> elist = null; //게시물 먼저 선언함
+//        //사용자 기준으로 1을 입력해서 -1해주기 표시 게시물수 2 , 내림차순(bno기준)
+//        Pageable pageable = PageRequest.of(pageDto.getPage()-1,5, Sort.by(Sort.Direction.DESC,"lno")) ; //페이징설정
+//        //PageRequest.of(현재페이지번호, 표시할레코드수,정렬)
+//        //검색여부      리포지토리에서 조작한 sql문 호출
+//        elist = LetterRepository.findbylfrom
+//        //elist = LetterRepository.findbylfrom( pageDto.getLno() ,pageDto.getKey(), pageDto.getKeyword(),pageable);
+//        //view에 표시할 페이징번호 버튼 수
+//        List<LetterDto> dlist = new ArrayList<LetterDto>();//컨트롤에게 전달할 때 형변한 하기 위한 그릇
+//        for(LetterEntity entity : elist){ //페이지클래스를 보드엔티티에 저장
+//            dlist.add(entity.toDto()); } //보드디티오에 엔티티를 저장
+//        //리액트 전달
+//        pageDto.setList(dlist); // 게시물 리스트
+//        pageDto.setTotalletters(elist.getTotalElements());    //전체 게시물 수
+        return dlist;
     }
-
-
 }
 
 
