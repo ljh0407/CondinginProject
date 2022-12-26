@@ -46,7 +46,7 @@ import java.util.Optional;
         if (letterEntity.getLno() > 0 ){ // 보낸 쪽지번호가 0이 아니면 성공
 
 
-            letterEntity.setLfrom(memberEntity); //             보내는사람
+            letterEntity.setLfrom(memberEntity); //보내는사람
             memberEntity.getLfromlist().add(letterEntity); // 멤버 엔티티에서 받는사람정보 가져와서 쪽지엔티티에다 저장
 
 
@@ -67,17 +67,10 @@ import java.util.Optional;
 
     @Transactional
     // 2. 쪽지리스트 출력
-    public List<LetterDto> letterlist(){
+    public LetterDto letterlist(LetterDto letterDto){
 
-        MemberEntity memberEntity =  memberService.getEntity();
 
-        List<LetterEntity> elist =  memberEntity.getLtolist();
-        List<LetterDto> dlist = new ArrayList<>();
-        for(LetterEntity entity : elist){ //페이지클래스를 보드엔티티에 저장
-            dlist.add( entity.toDto());  //보드디티오에 엔티티를 저장
-
-        }
-
+    return null;
 //        Page<LetterEntity> elist = null; //게시물 먼저 선언함
 //        //사용자 기준으로 1을 입력해서 -1해주기 표시 게시물수 2 , 내림차순(bno기준)
 //        Pageable pageable = PageRequest.of(pageDto.getPage()-1,5, Sort.by(Sort.Direction.DESC,"lno")) ; //페이징설정
@@ -92,7 +85,7 @@ import java.util.Optional;
 //        //리액트 전달
 //        pageDto.setList(dlist); // 게시물 리스트
 //        pageDto.setTotalletters(elist.getTotalElements());    //전체 게시물 수
-        return dlist;
+
     }
 }
 
