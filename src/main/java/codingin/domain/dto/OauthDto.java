@@ -75,7 +75,7 @@ public class OauthDto {
         return MemberEntity.builder()
                 .memail( this.memail )
                 .mlevel( this.registrationId )
-                .mprofile( "null.jfif")
+                .mprofile( "null.jfif") // 기본 프로필이미지
                 .build();
     }
 

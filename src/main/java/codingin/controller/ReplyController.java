@@ -6,6 +6,7 @@ import codingin.service.MemberService;
 import codingin.service.ReplyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -20,9 +21,9 @@ public class ReplyController {
     @Autowired
     private BoardService boardService;
     @PostMapping("/setreply")
-    public boolean setreply(ReplyDto replyDto , int bno){
+    public boolean setreply( @RequestBody ReplyDto replyDto){
         System.out.println("넘어왔니?");
-        return replyService.setreply(replyDto , bno);
+        return replyService.setreply(replyDto );
     }
 
 }
