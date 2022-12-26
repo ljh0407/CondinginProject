@@ -32,7 +32,7 @@ export default function Bwrite(props) { //글쓰기
         axios.post("/board/setboard", formdata, {headers: {'Content-Type': 'multipart/form-data'}})
             .then(res => {
                 if (res.data == true) { alert('게시물 등록 성공');
-                window.location.href="/board/"+params.cno;
+                    window.location.href="/board/"+params.cno;
                 } else { alert('게시물 등록 실패'); } })
             .catch(err => { console.log(err + '글쓰기 오류') })
     }

@@ -36,11 +36,11 @@ public class MemberService implements  OAuth2UserService< OAuth2UserRequest , OA
     private RereplyRepository rereplyRepository;
     @Autowired
     private  UpdownRepository updownRepository;
-    // 12.20 고은시 첨부파일 경로
+    //첨부파일 경로
     String path = "C:\\Users\\504\\Desktop\\codingin\\build\\resources\\main\\static\\static\\media\\";  // C드라이브-> upload 폴더 생성
 
     //====================================================//
-    // 12.20 고은시 * 첨부파일 업로드 [ 1. 쓰기메소드 2. 수정메소드 ] 사용
+    //* 첨부파일 업로드 [ 1. 쓰기메소드 2. 수정메소드 ] 사용
     @Transactional              //  memberDto : 쓰기,수정 대상     MemberEntity:원본
     public boolean profileupload( MemberDto memberDto , MemberEntity memberEntity ){
         if( !memberDto.getMprofile().getOriginalFilename().equals("") ) { // ** 첨부파일 있을때
@@ -60,7 +60,7 @@ public class MemberService implements  OAuth2UserService< OAuth2UserRequest , OA
         }else{ return  false;}
     }
     //====================================================//
-    @Override   // 12.07 고은시 자동생성_로그인                   성공한 소셜 회원 정보 받는 메소드
+    @Override   // 자동생성_로그인                   성공한 소셜 회원 정보 받는 메소드
     public OAuth2User loadUser(OAuth2UserRequest userRequest) throws OAuth2AuthenticationException {
         // 1. 인증[로그인] 결과 정보 요청
         OAuth2UserService oAuth2UserService = new DefaultOAuth2UserService();
@@ -93,7 +93,7 @@ public class MemberService implements  OAuth2UserService< OAuth2UserRequest , OA
         return memberDto;
     }
 
-    // 2. 로그인 여부 판단 메소드
+    @Transactional  // 2. 로그인 여부 판단 메소드
     public  MemberDto getloginMno() {
         // 1. 인증된 토큰 확인
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -108,7 +108,7 @@ public class MemberService implements  OAuth2UserService< OAuth2UserRequest , OA
             return memberDto;
         }
     }
-    //12.15 고은시 이종훈 엔티티에서 이메일 가져오고 로그인 토큰 반환(회원번호 호출)
+    @Transactional  //엔티티에서 이메일 가져오고 로그인 토큰 반환(회원번호 호출)
     public MemberEntity getEntity(){
         //로그인정보 확인
         Object object = new SecurityContextHolder().getContext().getAuthentication().getPrincipal();
@@ -120,32 +120,34 @@ public class MemberService implements  OAuth2UserService< OAuth2UserRequest , OA
         return optional.get();  //로그인정보 확인되면 전부 반환
     }
 
-    // 12.20 고은시 회원수정 시 프로파일 업로드
-    @Transactional
+
+    @Transactional  //회원수정 시 프로파일 업로드
     public boolean setmupdate(MemberDto memberDto ){
         String Memail = getloginMno().getMemail();    //Memail에 로그인 세션가져오기
         MemberEntity memberEntity = memberRepository.findByMemail(Memail).get();    //리포지토리에 설정한 이메일 찾기가져오기
         ///dto -> entity저장
-       if(memberEntity.getMno() > 0 ) { //회원번호가 0보다 크면
-           memberEntity.setMnick(memberDto.getMnick()); //디티오에서 가져온 닉네임 엔티티에 저장하기
-           if (memberDto.getMprofile() != null) {   //디티오에 프로파일이 없으면
-               profileupload(memberDto, memberEntity);  //파일업로드 메소드호출(디티오 엔티티)가져오기
-               return true; //전부 리턴
-           }
-       }return false;
+        if(memberEntity.getMno() > 0 ) { //회원번호가 0보다 크면
+            memberEntity.setMnick(memberDto.getMnick()); //디티오에서 가져온 닉네임 엔티티에 저장하기
+            if (memberDto.getMprofile() != null) {   //디티오에 프로파일이 없으면
+                profileupload(memberDto, memberEntity);  //파일업로드 메소드호출(디티오 엔티티)가져오기
+                return true; //전부 리턴
+            }
+        }return false;
     }
-    @Transactional  //12.21 고은시 회원정보 출력하기
+    @Transactional  // 회원정보 출력하기
     public MemberDto profilelist() {
         int mno = getEntity().getMno(); //로그인된 토큰에서(함수) pk호출
         MemberEntity memberEntity = memberRepository.findById(getEntity().getMno()).get();  //멤버엔티티에서 mno(pk)가져오기
         MemberDto memberDto = memberEntity.toDto(); //멤버디티오에 가져온 멤버엔티티 변환
         // 사진등록 저장 ////////////////////////////////////////////////////////////
-        if(!memberDto.getMprofile().getOriginalFilename().equals("")){// 실제 첨부파일의 파일명이 존재할경우
+        if(!memberDto.getMprofile().getOriginalFilename().equals("")){  //여기서 막힘 실제 첨부파일의 파일명이 존재할경우
+            System.out.println("존재 확인 : " + memberDto);
             // 필드가 적을때는 굳이 dto필요없음
             memberEntity =memberRepository.save(MemberEntity.builder().mprofile(memberDto.getMprofile().getOriginalFilename()).build());    // 첨부파일 사진 업로드
+            System.out.println("첨부파일 확인"+memberEntity);
             try{
                 String filename=memberDto.getMprofile().getOriginalFilename(); // 첨부파일된 실제 파일명
-                File file=new File(path+filename); // 경로 + 첨부파일명 =>file 클래스 객체화 [transferTo함수의 인수가 file 이라서]
+                File file = new File(path+filename); // 경로 + 첨부파일명 =>file 클래스 객체화 [transferTo함수의 인수가 file 이라서]
                 memberDto.getMprofile().transferTo(file); // MultipartFile 인터페이스 // transferTo : 업로드[파일 이동] 함수  // 기존파일.transferTo(이동할 경로)  // 예외처리 필수
             }catch (Exception e){ System.out.println("[업로드 실패]"+e);}
         }

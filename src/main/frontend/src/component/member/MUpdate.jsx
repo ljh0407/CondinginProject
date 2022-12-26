@@ -11,6 +11,7 @@ export default function MUpdate(props){
     const handleLogin= () => {
         axios.get("/member/getloginMno")    //url
             .then((res)=>{setLogin(res.data.split("_")[0]);})
+            .catch(err => {console.log('출력오류'+err);})
     }
     useEffect(handleLogin , []);    //로그인은 여기서 체크하는거임
 
