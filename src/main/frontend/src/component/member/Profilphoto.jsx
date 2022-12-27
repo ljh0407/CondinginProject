@@ -17,7 +17,7 @@ export default function Profilphoto(props){
 
     return(
         <div>   {/*로그인된 회원 정보 출력*/}
-            프로필사진 : <img className="mprofileImg" src={"/static/media/"+ login.mfilename } />
+            프로필사진 : <img className="mprofileImg" src={"/static/media/"+login.mfilename } />
             Email : <div name="memail">{login.memail}</div>
             닉네임 : <div name="mnick">{login.mnick}</div>
             <button type="button" onClick={ mupdate }>수정하기</button>

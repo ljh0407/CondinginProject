@@ -1,6 +1,7 @@
 package codingin.controller;
 
 import codingin.domain.dto.ReplyDto;
+import codingin.domain.dto.RereplyDto;
 import codingin.service.BoardService;
 import codingin.service.MemberService;
 import codingin.service.ReplyService;
@@ -39,21 +40,15 @@ public class ReplyController {
     @DeleteMapping("/deletereply")
     public boolean deletereply(@RequestParam("rno") int rno){
         System.out.println("삭제하기 controller");
-         return replyService.deletereply(rno);//bno도???????
+        return replyService.deletereply(rno);//bno도???????
     }
-
-
     //4. 대댓글 작성하기
 
-
-
-
-    //5. 대댓글 출력하기
-
-
-    //6.대댓글 삭제하기
-
-
+    @PostMapping("/setrerply")
+    public boolean setrereply(@RequestBody RereplyDto rereplyDto){
+        System.out.println("대댓글 controller");
+        return replyService.setrereply(rereplyDto);
+    }
 
 
 }

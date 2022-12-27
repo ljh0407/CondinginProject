@@ -13,10 +13,10 @@ import Modal from 'react-bootstrap/Modal';
 import bviewImg from '../../img/bviewImg.png'
 
 
-import { CKEditor } from '@ckeditor/ckeditor5-react'; //12.27 최예은 대댓글 작성으로 인해 가져옴
-import ClassicEditor from '@ckeditor/ckeditor5-build-classic';//12.27 최예은 대댓글 작성으로 인해 가져옴
+
 
 let replyContent = ''; // 댓글내용
+let rercomment = ''; //대댓글내용
 
 export default function Bview(props){   //상세보기
     //---------------------------[쪽지보내기]----------------------------------//
@@ -139,16 +139,29 @@ export default function Bview(props){   //상세보기
         axios
             .delete("/reply/deletereply" , { params : { "rno" : rno }})
             .then(res => {
-                if(res==true){ alert("댓글삭제 성공") }
+                if(res.data == true){ alert("댓글삭제 성공") }
                 else{alert("댓글삭제 실패")}
             } )
             .catch(err => { console.log(err)})
-            //meami=l이 bno=? 에있는 rno를 지운다.
     }
 
 
     //대댓글 작성하기
+    function setrerply (rno) {
+       alert("대댓글")
+        alert(rno)
+        let data={
+            "rno" : rno ,
+            rercomment : document.querySelector(".rercomment").value
+        }
+        console.log(data)
+       axios
+           .post("/reply/setrerply" ,data )
+           .then(res=>{ })
 
+
+
+    }
 
     //대댓글 출력하기
 
@@ -278,12 +291,10 @@ export default function Bview(props){   //상세보기
                             <div>rno : {r.rno}</div>
                             { (r.memail === login.memail && (<button type="button" onClick={  ()=>replyDelete( r.rno ) }> 댓글 삭제하기 </button>) )    }
                             <div>댓글쓰기</div>
+                                <textarea className="rercomment"> </textarea>{/*대댓글 입력하는 공간*/}
+                                <button type="button" onClick={ ()=> setrerply(r.rno) }>작성하기</button>
 
-                            <CKEditor
-                                    editor={ ClassicEditor }
-                                    data=""
 
-                                />
 
                             </>
                         )
