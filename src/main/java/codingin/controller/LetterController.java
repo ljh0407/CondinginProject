@@ -51,5 +51,9 @@ public class LetterController {
         return letterService.tolist();
     }
 
+    @GetMapping("/lview")
+    public LetterDto viewletter(int lno){
+        return letterService.viewletter(lno);
+    }
 } // end
 

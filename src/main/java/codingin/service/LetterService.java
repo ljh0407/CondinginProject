@@ -84,6 +84,20 @@ import java.util.Optional;
         }
         return dtoList;
     }
+
+    @Transactional // 쪽지 상세보기
+    public LetterDto viewletter(int lno){  // 선택한 lno
+        // 입력받은 쪽지 번호 엔티티검색
+        Optional<LetterEntity> optional = letterRepository.findById(lno);
+        if(optional.isPresent()){
+            
+            LetterEntity letterEntity = optional.get(); // letter엔티티에서 가져오기
+            LetterDto letterDto = letterEntity.toDto(); // 디티오 -> 엔티티변환
+            System.out.println("쪽지상세보기 : "+letterDto);
+            return letterDto;
+        }else {return null;}
+    }
+
 }
 
 
