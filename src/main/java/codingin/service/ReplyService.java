@@ -43,11 +43,11 @@ public class ReplyService {
 
         //boardDto bno 가져오기
         BoardEntity boardEntity = boardRepository.findById(boardDto.getBno()).get();
-            System.out.println("repleyService boardRepository 확인 : "+ boardEntity.getBno());
+            //System.out.println("repleyService boardRepository 확인 : "+ boardEntity.getBno());
         
 
         ReplyEntity replyEntity = replyRepository.save( replyDto.toEntity());
-            System.out.println("repleyService  replyEntity : "+replyEntity);
+            //System.out.println("repleyService  replyEntity : "+replyEntity);
 
         if(replyEntity.getRno()!=0){//댓글 번호가 0이 아니면
             replyEntity.setMemberEntity(memberEntity); // replyEntity에 memberEntity 연결
@@ -56,32 +56,34 @@ public class ReplyService {
             boardEntity.getReplyEntityList().add(replyEntity);//boardEntity에 RepleEntityList 저장
             replyEntity.setBoardEntity(boardEntity);//replyEntity에 boardEntity 추가
 
-            System.out.println( "ReplyService replyEntity.toString 확인하기 : "+ replyEntity.toString() );
+            //System.out.println( "ReplyService replyEntity.toString 확인하기 : "+ replyEntity.toString() );
             return true;
         }else{ return  false;}
     }//댓글 등록하기 end
 
     //2. 댓글 출력하기 12.26 최예은
-    public ReplyDto getrdplelist(ReplyDto replyDto){
+    public List<ReplyDto> getrdplelist( int bno ){ //  어떤글인지 판단을 하기 위해서
 
-        List<ReplyEntity> rentitylist = replyRepository.findAll(); //replyEntity에 있는 리스트들을 가져온다
-            System.out.println("ReplyService 2. 댓글 출력하기 rist 확인: " + rentitylist); // 확인한번 해본다
-
+        List<ReplyEntity> rentitylist = boardRepository.findById( bno ).get().getReplyEntityList(); //replyEntity에 있는 리스트들을 가져온다
+            //System.out.println("ReplyService 2. 댓글 출력하기 rist 확인: " + rentitylist); // 확인한번 해본다
         //dto 를 담을 깡통하나 만들어 준다.
-        List<ReplyDto> rdto = new ArrayList<ReplyDto>();
+
+        List<ReplyDto> rdto = new ArrayList<ReplyDto>();//컨트롤 에게 전달하기 위한 형변환 깡통 그릇
+
         for(ReplyEntity rentity : rentitylist){
-            rdto.add(rentity.toDto());
+            rdto.add(rentity.toDto());//??????????????
         }
-        System.out.println("rdto 확인" + rdto);
 
-
-        //mno도 가져가고
-        //bno도 가져가야함
-
-
-        return null;
+        return rdto;
     }
 
+    //3. 댓글 삭제하기
+    public boolean deletereply(int rno ){
+
+
+    return true;
+
+    }
 
 
 }
