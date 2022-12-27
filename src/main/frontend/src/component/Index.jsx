@@ -15,6 +15,7 @@ import Bupdate from "./board/Bupdate";  //게시글 수정
 //letter영역
 import Lwrite from "./letter/Lwrite";
 import Letterlist from "./letter/Letterlist";
+import ToLetter from "./letter/ToLetter";
 //css영역
 import StyleSheet from '../css/Index.css'; // css 불러오기
 import { HashRouter, BrowserRouter , Routes , Route , Link , Router } from 'react-router-dom';
@@ -41,6 +42,7 @@ export default function Index( props ){
                         <Route path="/board/bview/:bno" element={ <Bview />} /> {/*// 개별글보기*/}
                         <Route path="/letter/lwrite" element={ <Lwrite />} />   {/*//쪽지*/}
                         <Route path="/letter/letterlist" element={ <Letterlist />} />   {/*//쪽지함*/}
+                        <Route path="/letter/tolist" element={ <ToLetter />} />   {/*//받은쪽지함*/}
                         <Route path="/board/update/:bno" element={ <Bupdate />} />   {/*//게시글 수정*/}
                         <Route path="/member/mupdate" element={ <MUpdate />} />   {/*//회원수정*/}
                         <Route path="/member/profile" element={ <Profilphoto />} />   {/*//프로필 출력*/}

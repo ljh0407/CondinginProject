@@ -64,7 +64,7 @@ export default function Bview(props){   //상세보기
     const [ login , setLogin ] = useState([]); // 로그인된 회원정보 state 생명주기 // 변경시 재 렌더링
       useEffect( // 1. 서버로 부터 해당 게시물번호의 시물정보 요청
         () =>  axios
-                      .get("/member/getloginMno") //url 호출                    언더바 기준으로 자르기(작성자와 로그인한 사람확인)
+                      .get("/member/getloginMno") //url 호출
                       .then( (response) => { setLogin( response.data );  console.log( login ) } ) ,[]);
 
     // 2. 해당 게시물번호의 해당하는 업데이트 페이지로 이동
