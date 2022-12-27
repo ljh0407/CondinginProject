@@ -67,8 +67,8 @@ public class LetterService {
         List<LetterEntity> entityList = memberService.getEntity().getLfromlist();
         List<LetterDto> dtoList = new ArrayList<>();    //받은 쪽지 디티오리스트 생성
         for(LetterEntity letterEntity : entityList){    //쪽지 엔티티에 가져온 회원의 받은 쪽지함 담기
-            System.out.println("쪽지서비스:"+dtoList);
             dtoList.add(letterEntity.toDto());  //디티오에 회원의 받은 쪽지 담기
+            System.out.println("dtolist : "+dtoList);
         }
         return dtoList;
     }
@@ -77,10 +77,11 @@ public class LetterService {
     public List<LetterDto> tolist(){
         //쪽지엔티티에 로그인 된 회원의 받은 쪽지 가져오기
         List<LetterEntity> entityList = memberService.getEntity().getLtolist();
+        System.out.println("바든쪽지"+entityList);
         List<LetterDto> dtoList = new ArrayList<>();    //받은 쪽지 디티오리스트 생성
         for(LetterEntity letterEntity : entityList){    //쪽지 엔티티에 가져온 회원의 보낸 쪽지함 담기
             dtoList.add(letterEntity.toDto());
-            System.out.println("쪽지서비스:"+dtoList);   //디티오에 회원의 보낸 쪽지 담기
+            System.out.println("받은:"+dtoList);   //디티오에 회원의 보낸 쪽지 담기
         }
         return dtoList;
     }

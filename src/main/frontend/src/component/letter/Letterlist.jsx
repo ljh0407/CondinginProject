@@ -26,6 +26,7 @@ export default function Letterlist(porps){
                 LetterList.map( (l) => {
             return(
                 <tr>
+                    <td>{l.lto}</td>
                     <td>{l.lcontent}</td>
                 </tr>
             )
