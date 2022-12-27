@@ -42,6 +42,21 @@ export default function Letterlist(porps){
 
     return(
         <div>
+            <h3> 보낸 쪽지 함 </h3>
+            <table>
+                {
+                    LetterList.map( (l) => {
+                        return(
+                            <tr>
+                                <td variant="primary" onClick={handleShow} >{l.lto}</td>
+                                <td>{l.lcontent}</td>
+                            </tr>
+                        )
+
+                    })
+                }
+            </table>
+
             <Modal show={show} onHide={handleClose}>
                 <Modal.Header closeButton>
                     <Modal.Title>쪽지 보기</Modal.Title>
@@ -64,7 +79,9 @@ export default function Letterlist(porps){
                             controlId="exampleForm.ControlTextarea1"
                         >
                             <Form.Label>내용</Form.Label>
-                            <Form.Control as="textarea" rows={6} className="lcontent" />
+                            <Form.Control as="textarea" rows={6} className="lcontent"
+                                          Value={LetterList.lcontent}
+                            />
                         </Form.Group>
                     </Form>
                 </Modal.Body>
@@ -72,20 +89,6 @@ export default function Letterlist(porps){
                     <Button variant="secondary" onClick={handleClose}> 닫기 </Button>
                 </Modal.Footer>
             </Modal>    {/*모달 - 쪽지보내기 end */}
-            <h3> 보낸 쪽지 함 </h3>
-            <table>
-                {
-                    LetterList.map( (l) => {
-                return(
-                    <tr>
-                        <td variant="primary" onClick={handleShow} >{l.lto}</td>
-                        <td>{l.lcontent}</td>
-                    </tr>
-                )
-
-            })
-                }
-            </table>
     </div>
     )
 }

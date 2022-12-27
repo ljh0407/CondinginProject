@@ -54,8 +54,6 @@ public class LetterService {
             letterEntity.setLto( toMemberEntity );
             toMemberEntity.getLtolist().add( letterEntity );        // 받는사람
 
-            System.out.println("쪽지 : "+letterEntity.toString());
-
             return true;
         }
         else {return false;}
@@ -68,7 +66,6 @@ public class LetterService {
         List<LetterDto> dtoList = new ArrayList<>();    //받은 쪽지 디티오리스트 생성
         for(LetterEntity letterEntity : entityList){    //쪽지 엔티티에 가져온 회원의 받은 쪽지함 담기
             dtoList.add(letterEntity.toDto());  //디티오에 회원의 받은 쪽지 담기
-            System.out.println("dtolist : "+dtoList);
         }
         return dtoList;
     }
@@ -77,20 +74,19 @@ public class LetterService {
     public List<LetterDto> tolist(){
         //쪽지엔티티에 로그인 된 회원의 받은 쪽지 가져오기
         List<LetterEntity> entityList = memberService.getEntity().getLtolist();
-        System.out.println("바든쪽지"+entityList);
         List<LetterDto> dtoList = new ArrayList<>();    //받은 쪽지 디티오리스트 생성
         for(LetterEntity letterEntity : entityList){    //쪽지 엔티티에 가져온 회원의 보낸 쪽지함 담기
             dtoList.add(letterEntity.toDto());
-            System.out.println("받은:"+dtoList);   //디티오에 회원의 보낸 쪽지 담기
         }
         return dtoList;
     }
 
     @Transactional // 쪽지 상세보기
     public LetterDto viewletter(int lno){  // 선택한 lno
-
+        System.out.println("**쪽지번호"+lno);
         // 입력받은 쪽지 번호 엔티티검색
         Optional<LetterEntity> optional = letterRepository.findById(lno);
+
         if(optional.isPresent()){
             
             LetterEntity letterEntity = optional.get(); // letter엔티티에서 가져오기

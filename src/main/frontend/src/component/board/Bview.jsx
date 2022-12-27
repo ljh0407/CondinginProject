@@ -218,9 +218,6 @@ export default function Bview(props){   //상세보기
 
                 </div>{/*goodNbadSection*/}
 
-
-
-
                 {/* 작성자와 로그인이 같으면 버튼 노출*/}
                 <div className="btnSection">
                     { login==board.memail && <button type="button" onClick={onDelete} className="deleteBtn btn">삭제</button> }
@@ -246,8 +243,6 @@ export default function Bview(props){   //상세보기
                         <button type="button" className="enrollment" onClick={ setreply }>작성하기</button>    {/*함수실행*/}
                     </div>
                 </form>{/*repleWrap*/}
-
-
 
                 <div className="getRepleylist">
                     {/*여기에 댓글이 출력이 될 예정입니다.*/}
@@ -276,7 +271,6 @@ export default function Bview(props){   //상세보기
                 </div>{/*repleSection*/}
 
             </div>{/*wrap*/}
-
 
         </div>
 
