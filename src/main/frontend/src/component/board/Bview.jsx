@@ -134,13 +134,12 @@ export default function Bview(props){   //상세보기
 
     //8.댓글 삭제하기
     function replyDelete( rno ){
-        //bno도 가져가야 하고 rno도 가져가야하고 객체로 가져가야 하는건가
-        //bno가 1인 곳에서 rno=1번을 지운다..... 둘다 필요한 것 같은데?
-        //아니다 이미 bno는 있으니까 rno만 가져가면 되는건가?
-
         axios
             .delete("/reply/deletereply" , { params : { "rno" : rno }})
-            .then(res => { console.log(res.data) } )
+            .then(res => {
+                if(res==true){ alert("댓글삭제 성공") }
+                else{alert("댓글삭제 실패")}
+            } )
             .catch(err => { console.log(err)})
             //meami=l이 bno=? 에있는 rno를 지운다.
     }

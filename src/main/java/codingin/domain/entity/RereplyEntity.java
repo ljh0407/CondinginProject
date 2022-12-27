@@ -14,6 +14,10 @@ public class RereplyEntity extends BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int reno;
 
+    private String rercomment; // 대댓글 내용 최예은 추가
+
+    
+    
     @ManyToOne
     @JoinColumn(name = "rno")
     @ToString.Exclude

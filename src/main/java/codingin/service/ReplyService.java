@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service    //댓글 고은시 12.22
 public class ReplyService {
@@ -79,9 +80,15 @@ public class ReplyService {
 
     //3. 댓글 삭제하기
     public boolean deletereply(int rno ){
+        replyRepository.findById(rno);
+        Optional<ReplyEntity> optional = replyRepository.findById(rno);
+        if(optional.isPresent()){
+            ReplyEntity replyEntity = optional.get();
+            replyRepository.delete(replyEntity);
+            return true;
+        }else{ return false; }
 
 
-    return true;
 
     }
 

@@ -12,9 +12,9 @@ public class ReplyDto {
     private int rno; // 출
     private int bno; //bno 추가함 // 입
     private String rcomment; // 입 , 출
-    private String memail; // output
-    private String bfilename;   //output
-    private String bdate; //output
+    private String memail; // output 작성자
+    private String bfilename;   //output // 프로필
+    private String bdate; //output // 작성시간
 
     //ttest
     public ReplyEntity toEntity(){
