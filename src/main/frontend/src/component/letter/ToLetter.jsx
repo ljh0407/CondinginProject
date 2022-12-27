@@ -1,7 +1,9 @@
 import React , { useState , useEffect } from "react";
 import axios from "axios";
 
-
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
+import Modal from 'react-bootstrap/Modal';
 export default function ToLetter(porps){
 
     const [ LetterList2 , setLetterList2 ] = useState( [])
@@ -17,7 +19,7 @@ export default function ToLetter(porps){
     }
 
     useEffect(getletter2 , [] );
-
+    // 받은 쪽지 리스트
     return(
         <div>
             <h3> 받은 쪽지 함 </h3>

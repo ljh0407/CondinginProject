@@ -18,6 +18,7 @@ export default function Bview(props){   //상세보기
     //---------------------------[쪽지보내기]----------------------------------//
     const [ lto , setLto ] = useState( [] );    //받는사람
     const [ lfrom , setLfrom ] = useState( [] );    // 보내는사람
+
     const [show, setShow] = useState(false);    // 닫기
 
     const handleClose = () => setShow(false);   // 쪽지 보내기 버튼
@@ -161,14 +162,14 @@ export default function Bview(props){   //상세보기
                                 Value={board.memail}
                                 className="lto"
                                 autoFocus
-                                disabled
+                                disabled    //아이디 고정(내용 못고침)
                             />
                         </Form.Group>
                         <Form.Group
                             className="mb-3"
                             controlId="exampleForm.ControlTextarea1"
                         >
-                            <Form.Label>쪽지내용</Form.Label>
+                            <Form.Label>내용</Form.Label>
                             <Form.Control as="textarea" rows={6} className="lcontent" />
                         </Form.Group>
                     </Form>
@@ -178,8 +179,6 @@ export default function Bview(props){   //상세보기
                     <Button variant="primary" onClick={handleSend}> 보내기 </Button>
                 </Modal.Footer>
             </Modal>    {/*모달 - 쪽지보내기 end */}
-
-
 
             {/*///////////////////////////////글보기 영역/////////////////////////////////////*/}
 

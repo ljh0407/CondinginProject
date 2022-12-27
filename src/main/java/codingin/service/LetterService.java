@@ -88,6 +88,7 @@ public class LetterService {
 
     @Transactional // 쪽지 상세보기
     public LetterDto viewletter(int lno){  // 선택한 lno
+
         // 입력받은 쪽지 번호 엔티티검색
         Optional<LetterEntity> optional = letterRepository.findById(lno);
         if(optional.isPresent()){

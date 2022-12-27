@@ -51,7 +51,7 @@ public class LetterController {
         return letterService.tolist();
     }
 
-    @GetMapping("/lview")
+    @GetMapping("/lview") // 쪽지 상세보기
     public LetterDto viewletter(int lno){
         return letterService.viewletter(lno);
     }

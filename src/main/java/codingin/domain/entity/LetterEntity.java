@@ -33,6 +33,8 @@ public class LetterEntity extends BaseEntity {
                 .builder()
                 .lno( this.lno )
                 .lcontent( this.lcontent)
+                .lfrom( lfrom.getMemail() )
+                .lto(lto.getMemail())
                 .build();
     }
 }
