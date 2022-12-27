@@ -84,12 +84,18 @@ public class MemberService implements  OAuth2UserService< OAuth2UserRequest , OA
         Set<GrantedAuthority> authorities   = new HashSet<>();
         authorities.add( new SimpleGrantedAuthority( memberEntity.getMlevel() ) );
         // 5. 반환 MemberDto[ 일반회원 vs oauth : 통합회원 - loginDto ]
+            // 로그인 성공했을대 들어가는 정보들
         MemberDto memberDto = new MemberDto();
-        memberDto.setMemail( memberEntity.getMemail() );
-        memberDto.setAuthorities( authorities );
-        memberDto.setAttributes( oauthDto.getAttributes() );
-        memberDto.setMfilename(memberEntity.getMprofile());
+        memberDto.setAuthorities( authorities );    //로그인
+        memberDto.setAttributes( oauthDto.getAttributes() );    //세션
+        memberDto.setMfilename(memberEntity.getMprofile()); //프로필
+        memberDto.setMemail( memberEntity.getMemail() );    //이메일
 
+        if( memberEntity.getMnick() == null ){  //닉네임이 없으면
+            memberDto.setMnick( memberEntity.getMemail() ); //이메일 출력
+        }else{  //닉네임이 있으면
+            memberDto.setMnick( memberEntity.getMnick() );  //닉네임 출력
+        }
         return memberDto;
     }
 
@@ -104,7 +110,6 @@ public class MemberService implements  OAuth2UserService< OAuth2UserRequest , OA
             return null;
         } else { // anonymousUser 아니면 로그인후
             MemberDto memberDto = (MemberDto) principal;    //멤버디티오에서 가져옴
-            //          아이디                 계정                          프로필
             return memberDto;
         }
     }
@@ -137,21 +142,13 @@ public class MemberService implements  OAuth2UserService< OAuth2UserRequest , OA
     @Transactional  // 회원정보 출력하기
     public MemberDto profilelist() {
         int mno = getEntity().getMno(); //로그인된 토큰에서(함수) pk호출
-        MemberEntity memberEntity = memberRepository.findById(getEntity().getMno()).get();  //멤버엔티티에서 mno(pk)가져오기
-        MemberDto memberDto = memberEntity.toDto(); //멤버디티오에 가져온 멤버엔티티 변환
-        // 사진등록 저장 ////////////////////////////////////////////////////////////
-        if(!memberDto.getMprofile().getOriginalFilename().equals("")){  //여기서 막힘 실제 첨부파일의 파일명이 존재할경우
-            System.out.println("존재 확인 : " + memberDto);
-            // 필드가 적을때는 굳이 dto필요없음
-            memberEntity =memberRepository.save(MemberEntity.builder().mprofile(memberDto.getMprofile().getOriginalFilename()).build());    // 첨부파일 사진 업로드
-            System.out.println("첨부파일 확인"+memberEntity);
-            try{
-                String filename=memberDto.getMprofile().getOriginalFilename(); // 첨부파일된 실제 파일명
-                File file = new File(path+filename); // 경로 + 첨부파일명 =>file 클래스 객체화 [transferTo함수의 인수가 file 이라서]
-                memberDto.getMprofile().transferTo(file); // MultipartFile 인터페이스 // transferTo : 업로드[파일 이동] 함수  // 기존파일.transferTo(이동할 경로)  // 예외처리 필수
-            }catch (Exception e){ System.out.println("[업로드 실패]"+e);}
+        Optional<MemberEntity> optional = memberRepository.findById(getEntity().getMno());  //멤버엔티티에서 mno(pk)가져오기
+        if (optional.isPresent()) {
+            MemberEntity memberEntity = optional.get();
+            MemberDto memberDto = memberEntity.toDto();
+            return memberDto;
+        } else {
+            return null;
         }
-        System.out.println("출력확인 1 : "+memberDto);
-        return memberDto;
     }
 }
