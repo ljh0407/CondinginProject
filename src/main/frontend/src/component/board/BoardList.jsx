@@ -55,7 +55,7 @@ export default function BoardList(props) {  //글목록
                 key: document.querySelector('.key').value,
                 keyword: document.querySelector('.keyword').value
             }
-    )}
+        )}
     {/* 게시물번호 넘기기(상세보기) */}
     const loadView=(bno)=>{
 
@@ -70,35 +70,35 @@ export default function BoardList(props) {  //글목록
 
     return(
 
-            <div className="blistrout">
-                <div className="awriting">
+        <div className="blistrout">
+            <div className="awriting">
                 <a href={"/board/bwrite/"+params.cno } className="atag" style={{color:'#000'}} >글쓰기</a>
-                </div>
-                <table className="clist">
-                    <tr>
-                        <td className="got1">순서</td>
-                        <td className="got2">제목</td>
-                        <td className="got3">이메일</td>
-                        <td className="got4">날짜</td>
-                        <td className="got5">조회수</td>
-                    </tr>
+            </div>
+            <table className="clist">
+                <tr>
+                    <td className="got1">순서</td>
+                    <td className="got2">제목</td>
+                    <td className="got3">이메일</td>
+                    <td className="got4">날짜</td>
+                    <td className="got5">조회수</td>
+                </tr>
                 {
                     pageDto.list.map( (b) => {
                         return(
                             <tr className="table">
-                            <td className="got6">{b.bno}</td>
+                                <td className="got6">{b.bno}</td>
                                 {/*제목누르면 상세보기 */}
-                            <td onClick={() => loadView(b.bno)} className="got2">{b.btitle}</td>
-                            <td className="got7">{b.memail}</td>
-                            <td className="got8">{b.bdate}</td>
-                            <td className="got9">{b.bview}</td>
+                                <td onClick={() => loadView(b.bno)} className="got2">{b.btitle}</td>
+                                <td className="got7">{b.memail}</td>
+                                <td className="got8">{b.bdate}</td>
+                                <td className="got9">{b.bview}</td>
                             </tr>
                         )
                     })
-                    }
-                </table>
+                }
+            </table>
 
-                <div className="searchbox">
+            <div className="searchbox">
 
                 <Pagination
                     activePage={ pageInfo.page  }
@@ -108,13 +108,13 @@ export default function BoardList(props) {  //글목록
                     onChange={ onPage }
                 />
 
-                    <select className="key">
-                        <option value="btitle">제목</option>
-                        <option value="bcontent">내용</option>
-                    </select>
-                    <input type="text" className="keyword" />
-                    <button type="button" onClick={onSerch} className="blistbut"> 검색 </button>
-                </div>
+                <select className="key">
+                    <option value="btitle">제목</option>
+                    <option value="bcontent">내용</option>
+                </select>
+                <input type="text" className="keyword" />
+                <button type="button" onClick={onSerch} className="blistbut"> 검색 </button>
             </div>
+        </div>
     );//return end
 }
