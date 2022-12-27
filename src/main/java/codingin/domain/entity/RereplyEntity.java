@@ -7,6 +7,8 @@ import lombok.*;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity // 엔티티 정의
 @Table(name = "rereply") // 테이블명 정의
@@ -17,8 +19,6 @@ public class RereplyEntity extends BaseEntity {
     private int reno;
 
     private String rercomment; // 대댓글 내용 최예은 추가
-
-    
     
     @ManyToOne
     @JoinColumn(name = "rno")
@@ -33,9 +33,7 @@ public class RereplyEntity extends BaseEntity {
 
 
 
-
-
-    public RereplyDto toEntity(){
+    public RereplyDto toDto(){
         return RereplyDto
                 .builder()
                 .reno( this.reno )

@@ -10,7 +10,7 @@ public class RereplyDto {
     private String rercomment; // 대댓글 입력  //입,출
 
     private String memail; // 출력할 때 필요함
-    private String bfilename;   //output
+    private String bfilename;   //출력할 때 필요함
     private String bdate; //작성시간
 
     public RereplyEntity toEntity(){
