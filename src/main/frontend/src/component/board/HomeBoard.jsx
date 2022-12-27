@@ -13,22 +13,19 @@ export default function HomeBoard( props ){
     const [getdesclist,setGetdesclist] = useState([
         { rno : 0 ,  btitle : "" , memail : ""}
     ]); //최신글 가져오기 12.23 최예은
-
-
     useEffect( ()=>{
-            axios
-                .get("/board/getdesclist" , { params : { cno : props.cno }} )
-                .then(res=>{setGetdesclist(res.data); console.log(res.data)})
-                .catch(err=>{console.log(err);})
+        axios
+            .get("/board/getdesclist" , { params : { cno : props.cno }} )
+            .then(res=>{setGetdesclist(res.data); console.log(res.data)})
+            .catch(err=>{console.log(err);})
     } ,[]  );
 
     //글 상세보기
 
     const loadView=(bno)=>{
-    //alert("클릭")
         axios
             .get("/board/setview" ,{params:{bno:bno}})
-            window.location = "/board/bview/"+bno
+        window.location = "/board/bview/"+bno
     }
 
 
@@ -36,7 +33,8 @@ export default function HomeBoard( props ){
     /* ------------ 5. html or jsx표현식 { }------------------*/
     return(
         <div className="blist">
-           <h3> <a href={"/board/"+props.cno} style={{textDecoration: "none",color:"#000"}}> { props.bcname} </a> </h3>
+            <h3> <a href={"/board/"+props.cno} style={{textDecoration: "none",color:"#000"}}> { props.bcname} </a> </h3>
+
             {
                 getdesclist.map( (b) => {
                     return (

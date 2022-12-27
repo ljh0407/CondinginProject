@@ -84,6 +84,7 @@
     margin-left: 45%;
 }
 
+/*===============================*/
 .searchbox{
     margin-left: 33%;
     margin-top: 35%;
@@ -94,7 +95,6 @@
     width: 150px;
     height: 35px;
     border-radius: 4px;
-    border: 2px solid #51d4dd;
 }
 .keyword{
     position: relative;
@@ -109,7 +109,6 @@
     width: 50px;
     height: 35px;
     border-radius: 4px;
-    border: 2px solid #51d4dd;
 }
 
 

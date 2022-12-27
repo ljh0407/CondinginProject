@@ -108,22 +108,21 @@ public class BoardService {
 
     @Transactional  //페이징처리 page : 현재 페이지번호 , key : 검색필드명 , keyword : 검색 데이터 글 리스트 출력
     public PageDto getboardlist(PageDto pageDto){
-        //System.out.println("카테고리번호!!"+pageDto.getCno());
+        System.out.println("카테고리번호!!"+pageDto.getCno());
         Page<BoardEntity> elist = null; //게시물 먼저 선언함
-                                            //사용자 기준으로 1을 입력해서 -1해주기 표시 게시물수 2 , 내림차순(bno기준)
+        //사용자 기준으로 1을 입력해서 -1해주기 표시 게시물수 2 , 내림차순(bno기준)
         Pageable pageable = PageRequest.of(pageDto.getPage()-1,5,Sort.by(Sort.Direction.DESC,"bno")) ; //페이징설정
-                        //PageRequest.of(현재페이지번호, 표시할레코드수,정렬)
+        //PageRequest.of(현재페이지번호, 표시할레코드수,정렬)
         //검색여부      리포지토리에서 조작한 sql문 호출
         elist = boardRepository.findbySearch( pageDto.getCno() ,pageDto.getKey(), pageDto.getKeyword(),pageable);
         //view에 표시할 페이징번호 버튼 수
         List<BoardDto> dlist = new ArrayList<BoardDto>();//컨트롤에게 전달할 때 형변한 하기 위한 그릇
-       for(BoardEntity entity : elist){ //페이지클래스를 보드엔티티에 저장
-           System.out.println("BoardService entity 확인하기 : " + entity);
-           dlist.add(entity.toDto()); } //보드디티오에 엔티티를 저장
-       //리액트 전달
-       pageDto.setList(dlist); // 게시물 리스트
-       pageDto.setTotalBoards(elist.getTotalElements());    //전체 게시물 수
-       return pageDto;
+        for(BoardEntity entity : elist){ //페이지클래스를 보드엔티티에 저장
+            dlist.add(entity.toDto()); } //보드디티오에 엔티티를 저장
+        //리액트 전달
+        pageDto.setList(dlist); // 게시물 리스트
+        pageDto.setTotalBoards(elist.getTotalElements());    //전체 게시물 수
+        return pageDto;
     }
 
     @Transactional  // 3. 개별  글 보기
@@ -174,7 +173,7 @@ public class BoardService {
     }
 
     /////////////////////////////////////////////////////////////////////////
-     @Transactional //7.각 카테고리의 최신 글 가져오기
+    @Transactional //7.각 카테고리의 최신 글 가져오기
     public List<BoardDto> getdesclist( int cno ){
         List<BoardEntity> elist = boardRepository.getdesclist(cno); //query문으로 변경 boardrepository에 있습니다.
         List<BoardDto> blist = new ArrayList<>();   //깡통하나만든다

@@ -39,17 +39,17 @@ public class boardController {
         return  boardService.deleteboard(bno);
     }
 
-   @PutMapping("/upboard")  //5. 게시물 수정하기
+    @PutMapping("/upboard")  //5. 게시물 수정하기
     public boolean upboard( BoardDto boardDto){
         return boardService.bupboard(boardDto);
-   }
+    }
 
     @GetMapping("/getcategory") //6.  카테고리 출력하기
     public List<CategoryDto> categorylist(){
         return boardService.bcategoryList();
     }
 
-   @GetMapping("/getdesclist") // 7. 최신글 4개 가져오기
+    @GetMapping("/getdesclist") // 7. 최신글 4개 가져오기
     public List<BoardDto> getdesclist(@RequestParam("cno") int cno){
         return boardService.getdesclist(cno);
     }

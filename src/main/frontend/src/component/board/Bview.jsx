@@ -44,9 +44,9 @@ export default function Bview(props){   //상세보기
     //게시물 , 리랜더링될 게시물           // 게시물 메모리
     const [ board , setBoard ] = useState({ });
 
-   //좋아요버튼
+    //좋아요버튼
     const [goodBtn,setgoodBtn] = useState([]);
-   //싫어요버튼
+    //싫어요버튼
     const [badBtn,setbadBtn] = useState([]);
 
     //댓글
@@ -55,15 +55,13 @@ export default function Bview(props){   //상세보기
     //---------------------------[댓글]----------------------------------//
     useEffect( // 1. 서버로 부터 해당 게시물번호의 시물정보 요청
     () => axios
-        //컨트롤 목록조회url                   bno받기
+        //컨트롤 목록조회 url                   선택한 게시물의 bno 받기
         .get("/board/getbview" , { params : {bno : params.bno}})
-        //setBoard에 데이터 담기
+        //setBoard(리랜더링)에 데이터 담기
         .then( res => {setBoard(res.data); getrdplelist(); console.log(res.data) }) ,[]);
 
     //로그인 맞는지 확인
-    const [ login , setLogin ] = useState(null); // 로그인된 회원정보 state 생명주기 // 변경시 재 렌더링
-
-
+    const [ login , setLogin ] = useState([]); // 로그인된 회원정보 state 생명주기 // 변경시 재 렌더링
       useEffect( // 1. 서버로 부터 해당 게시물번호의 시물정보 요청
         () =>  axios
                       .get("/member/getloginMno") //url 호출                    언더바 기준으로 자르기(작성자와 로그인한 사람확인)
@@ -189,8 +187,8 @@ export default function Bview(props){   //상세보기
                 {/*프로필 영역 및 조회수 영역*/}
                 <div className="memberWrap">
 
-
-                    <div className="mprofileImg">{board.mprofile} 프로필</div>
+                    {/*프로필사진출력*/}
+                    <img className="mprofileImg" src={"/static/media/"+ board.mprofile } />
 
                     <div className="memberInforSection">
                         <div className="memail">
@@ -235,7 +233,9 @@ export default function Bview(props){   //상세보기
 
                 <form className="repleWrap">
                     <div className="repleSection">
-                        <span className="repleProfile">{board.mprofile}</span>{/*댓글작성자의 프로필 사진입니다.*/}
+                        {/*<img className="repleProfile" src={"/static/media/"+ login.mprofile } />*/}
+
+                        <img className="repleProfile" src={"/static/media/"+ login.mprofile } />{/*댓글작성자의 프로필 사진입니다.*/}
                         <textarea
                             className="replyContent"
                             placeholder = {  login == '' ? "로그인후 댓글 작성가능합니다." : "댓글 작성이 가능합니다."  }

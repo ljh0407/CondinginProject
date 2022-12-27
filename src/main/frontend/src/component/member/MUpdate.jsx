@@ -1,5 +1,7 @@
 import React , { useState , useEffect } from 'react';
 import axios from "axios";
+import css from '../../css/member/mupdate.css'
+
 
 export default function MUpdate(props){
 
@@ -11,6 +13,7 @@ export default function MUpdate(props){
     const handleLogin= () => {
         axios.get("/member/getloginMno")    //url
             .then((res)=>{setLogin(res.data.split("_")[0]);})
+            .catch(err => {console.log('출력오류'+err);})
     }
     useEffect(handleLogin , []);    //로그인은 여기서 체크하는거임
 
@@ -26,11 +29,11 @@ export default function MUpdate(props){
             .catch(err => {console.log('회원수정에러 : '+err)})
     }
     return(
-        <div>
+        <div className="bobobo">
             <h1>프로필 수정하기</h1>
             <form className="memberform" name="" value="post">
-                닉네임 <input type="text" className="mnick" name="mnick"/> {/*닉네임*/}
                 프로필사진 <input type="file" name="mprofile"/>  {/*프로필사진*/}
+                닉네임 <input type="text" className="mnick" name="mnick"/> {/*닉네임*/}
                 <button type="button" onClick={ update }>수정하기</button>
             </form>
         </div>
