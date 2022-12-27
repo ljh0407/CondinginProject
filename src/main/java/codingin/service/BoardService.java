@@ -46,7 +46,8 @@ public class BoardService {
         String realfilename ="";  // uuid 제거  //
         String [] split = filename.split("_"); // 1. _ 기준으로 자르기
         for( int i = 1 ; i<split.length ; i++ ) { // 2. uuid 제외한 반복문 돌리기
-            realfilename += split[i];               // 3. 뒷자리 문자열 추가
+            realfilename += split[i];               // 3. 뒷
+            // 자리 문자열 추가
             if (split.length-1 != i ){      // 마지막 인덱스 아니면
                 realfilename += "_";        // 문자열[1] _ 문자열[2] _ 문자열[3].확장자명
             }
