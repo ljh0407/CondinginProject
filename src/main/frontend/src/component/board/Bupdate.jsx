@@ -28,6 +28,7 @@ export default function Bupdate( props ){   //글수정
                 if( res.data == true ){ alert('게시물 수정 성공'); window.location.href="/"}
                 else{ alert('게시물 수정 실패'); }
             }).catch( err => { console.log( err ); } )
+
     }
 
     return (

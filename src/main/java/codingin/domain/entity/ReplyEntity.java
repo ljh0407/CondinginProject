@@ -5,6 +5,8 @@ import codingin.domain.dto.ReplyDto;
 import lombok.*;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,6 +42,15 @@ public class ReplyEntity extends BaseEntity {
         return ReplyDto
                 .builder()
                 .rno( this.rno )
+                .memail( memberEntity.getMemail() )
+                .bfilename( memberEntity.getMprofile())
+                .bdate(
+                        this.getCdate().toLocalDate().toString().equals(LocalDateTime.now().toString())
+                                ?
+                                this.getCdate().toLocalTime().format(DateTimeFormatter.ofPattern("HH:mm:ss"))
+                                :
+                                this.getCdate().toLocalDate().toString()
+                )
                 .rcomment( this.rcomment)
                 .build();
     }
