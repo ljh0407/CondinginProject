@@ -2,7 +2,7 @@ import React , { useState , useEffect } from "react";
 import axios from "axios";
 
 
-export default function Letterlist(porps){
+export default function ToLetter(porps){
 
     const [ LetterList2 , setLetterList2 ] = useState( [])
 
@@ -26,6 +26,7 @@ export default function Letterlist(porps){
                     LetterList2.map( (l) => {
                         return(
                             <tr>
+                                <td>{l.lfrom}</td>
                                 <td>{l.lcontent}</td>
                             </tr>
                         )
