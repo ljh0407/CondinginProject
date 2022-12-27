@@ -7,13 +7,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 @NoArgsConstructor @AllArgsConstructor
 @Getter @Setter @ToString @Builder
 public class ReplyDto {
-    private int rno;
-    private int bno; //bno 추가함
-    private int mno; //mno 추가함
 
-
-
-    private String rcomment;
+    //
+    private int rno; // 출
+    private int bno; //bno 추가함 // 입
+    private String rcomment; // 입 , 출
+    private String memail; // output
+    private String bfilename;   //output
+    private String bdate; //output
 
     //ttest
     public ReplyEntity toEntity(){

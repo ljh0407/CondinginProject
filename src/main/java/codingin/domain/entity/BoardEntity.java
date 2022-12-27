@@ -63,10 +63,10 @@ public class BoardEntity extends BaseEntity {
                 .bview(this.bview)
                 .bgood(this.bgood)
                 .bbad(this.bbad)
-                .bdate(
+               .bdate(
                         this.getCdate().toLocalDate().toString().equals(LocalDateTime.now().toString())
                                 ?
-                        this.getCdate().toLocalTime().format(DateTimeFormatter.ofPattern("HH:mm:ss"))
+                                this.getCdate().toLocalTime().format(DateTimeFormatter.ofPattern("HH:mm:ss"))
                                 :
                         this.getCdate().toLocalDate().toString()
                 ) //12.12 최예은 작성시간 추가

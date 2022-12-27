@@ -10,7 +10,6 @@ import css from '../../css/Board/homeBoard.css'; // 12.23 최예은 css추가
 
 // 3.컴포넌트[함수] 만들기
 export default function HomeBoard( props ){
-
     const [getdesclist,setGetdesclist] = useState([
         { rno : 0 ,  btitle : "" , memail : ""}
     ]); //최신글 가져오기 12.23 최예은
@@ -24,7 +23,6 @@ export default function HomeBoard( props ){
     //글 상세보기
 
     const loadView=(bno)=>{
-        alert("클릭")
         axios
             .get("/board/setview" ,{params:{bno:bno}})
         window.location = "/board/bview/"+bno
@@ -61,8 +59,6 @@ export default function HomeBoard( props ){
                     );
                 })
             }
-
-
         </div>
     )
     /* -------------------------------------------*/
