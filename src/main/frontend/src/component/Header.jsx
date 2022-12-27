@@ -39,6 +39,7 @@ export default function Header(props) {
                             <li> <a href="/member/profile" className="atag" style={{color:'#000'}}>My Home</a> </li>
                         </ul>
                     </nav>
+
                     )
                 }
             </div>
