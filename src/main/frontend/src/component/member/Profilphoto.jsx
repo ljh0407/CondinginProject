@@ -2,6 +2,8 @@ import React, {useEffect, useState} from "react";
 import axios from "axios";
 import {useParams} from "react-router-dom";
 
+import css from '../../css/member/profilphoto.css'
+
 export default function Profilphoto(props){
     const [member ,setMember] = useState(  []);
     useEffect(
@@ -20,11 +22,21 @@ export default function Profilphoto(props){
     const mupdate = () => {window.location.href="/member/mupdate"}  //버튼을 눌렀을때 회원수정하기 페이지 이동
 
     return(
-        <div>
-                Email : <div name="memail">{member.memail}</div>
-                닉네임 : <div name="mnick">{member.mnick}</div>
-                프로필사진 : <div name="memprofilemail" typeof="file">{member.mprofile}</div>
-                <button type="button" onClick={ mupdate }>수정하기</button>
+        <div className="pro">
+                <div className="probox">
+                    <div name="memprofilemail" typeof="file" className="profil">{member.mprofile}</div> {/* 프로필 사진 */}
+                </div>
+                <div className="proemailbox">
+                    Email
+                    <div name="memail" className="proemail">{member.memail}</div>
+                </div>
+                <div className="probickbox">
+                    닉네임
+                    <div name="mnick" className="pronick">{member.mnick}</div>
+                </div>
+
+                <div className="proboard"> </div>
+                <button type="button" onClick={ mupdate } className="probut">수정하기</button>
         </div>
     )
 }

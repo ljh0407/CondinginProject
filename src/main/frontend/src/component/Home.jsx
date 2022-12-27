@@ -34,21 +34,9 @@ export default function Home( props ){
     return(
         <>
             <div className="LayOut">   {/* 전체 div */}
+                <div className="homeline" > </div>
                 <div className="mid">
-                    <article  className="sidebar">
-                        {
-                            categorylist.map((c)=>{
-                                return(
-                                    <div className="clist"> {/*{c.cname}*/} </div>
-                                )
-                            })
-                        }
-                        <div id="promotion">    {/* git , notion 이미지 */}
-                            <a href="https://github.com/ljh0407/CondinginProject"> <img className="hongbo" src={git} /> </a>
-                            <a href="https://typhoon-swordtail-68e.notion.site/0e74dc862bbd45799d64654034bcfdc7"> <img className="hongbo" src={Notion} /> </a>
-                        </div>
 
-                    </article>
                     {/*출력한 각각의  cno , cname 뿌리기*/}
                     <div className="rightSection">
                         <div className="section01">
@@ -65,6 +53,21 @@ export default function Home( props ){
                             <div className="eventSection"></div>
                         </div>
                     </div>
+
+                    <article  className="sidebar">
+                                            {
+                                                categorylist.map((c)=>{
+                                                    return(
+                                                        <div className="clist"> {/*{c.cname}*/} </div>
+                                                    )
+                                                })
+                                            }
+                                            <div id="promotion">   {/* git , notion 이미지 */}
+                                                <a href="https://github.com/ljh0407/CondinginProject"> <img className="hongbo" src={git} /> </a>
+                                                <a href="https://typhoon-swordtail-68e.notion.site/0e74dc862bbd45799d64654034bcfdc7"> <img className="hongbo" src={Notion} /> </a>
+                                            </div>
+                                        </article>
+
                 </div>  {/* mid div */}
         </div>   {/* 전체 div */}
         </>
