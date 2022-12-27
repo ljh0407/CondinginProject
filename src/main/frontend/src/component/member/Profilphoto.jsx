@@ -2,6 +2,8 @@ import React, {useEffect, useState} from "react";
 import axios from "axios";
 import {useParams} from "react-router-dom";
 
+import css from '../../css/member/profilphoto.css'
+
 export default function Profilphoto(props){
 
 
