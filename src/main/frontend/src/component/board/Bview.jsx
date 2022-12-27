@@ -12,6 +12,10 @@ import Modal from 'react-bootstrap/Modal';
 //조회수 아이콘 이미지 추가 12.26 최예은
 import bviewImg from '../../img/bviewImg.png'
 
+
+import { CKEditor } from '@ckeditor/ckeditor5-react'; //12.27 최예은 대댓글 작성으로 인해 가져옴
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';//12.27 최예은 대댓글 작성으로 인해 가져옴
+
 let replyContent = ''; // 댓글내용
 
 export default function Bview(props){   //상세보기
@@ -143,6 +147,13 @@ export default function Bview(props){   //상세보기
     }
 
 
+    //대댓글 작성하기
+
+
+    //대댓글 출력하기
+
+    //대댓글 삭제하기
+
     //---------------------------[글상세보기]----------------------------------//
     return(
         <div>
@@ -267,6 +278,12 @@ export default function Bview(props){   //상세보기
                             <div>rno : {r.rno}</div>
                             { (r.memail === login.memail && (<button type="button" onClick={  ()=>replyDelete( r.rno ) }> 댓글 삭제하기 </button>) )    }
                             <div>댓글쓰기</div>
+
+                            <CKEditor
+                                    editor={ ClassicEditor }
+                                    data=""
+
+                                />
 
                             </>
                         )

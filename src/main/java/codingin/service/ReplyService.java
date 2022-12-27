@@ -2,6 +2,7 @@ package codingin.service;
 
 import codingin.domain.dto.BoardDto;
 import codingin.domain.dto.ReplyDto;
+import codingin.domain.dto.RereplyDto;
 import codingin.domain.entity.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,7 +25,9 @@ public class ReplyService {
     private BoardService boardService;
     
     @Autowired // 12.26 최예은 추가함
-    private  BoardRepository boardRepository; 
+    private  BoardRepository boardRepository;
+
+
     //====================================================//
 
     //12.26 댓글 등록하기
@@ -64,7 +67,6 @@ public class ReplyService {
 
     //2. 댓글 출력하기 12.26 최예은
     public List<ReplyDto> getrdplelist( int bno ){ //  어떤글인지 판단을 하기 위해서
-
         List<ReplyEntity> rentitylist = boardRepository.findById( bno ).get().getReplyEntityList(); //replyEntity에 있는 리스트들을 가져온다
             //System.out.println("ReplyService 2. 댓글 출력하기 rist 확인: " + rentitylist); // 확인한번 해본다
         //dto 를 담을 깡통하나 만들어 준다.
@@ -87,10 +89,37 @@ public class ReplyService {
             replyRepository.delete(replyEntity);
             return true;
         }else{ return false; }
+    }
 
+    //4.대댓글 작성하기
+    public boolean setrereply(){
+        return true;
+    }
 
+    //5. 대댓글 출력하기
+    public List<RereplyDto> getrerplylist(int rno) {
+
+        return null;
 
     }
+
+
+
+    //6.대댓글 삭제하기
+
+    public boolean deleterereply(int rno ){
+        rereplyRepository.findById(rno);
+        Optional<RereplyEntity> optional = rereplyRepository.findById(rno);
+        if(optional.isPresent()){
+            RereplyEntity rereplyEntity = optional.get();
+            rereplyRepository.delete(rereplyEntity); //엔티티 조작
+            return true;
+        }else{ return false;}
+    }
+
+
+
+
 
 
 }
