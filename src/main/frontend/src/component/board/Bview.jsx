@@ -18,8 +18,8 @@ let replyContent = ''; // 댓글내용
 
 export default function Bview(props){   //상세보기
     //---------------------------[쪽지보내기]----------------------------------//
-    const [ lto , setLto ] = useState( [] );    //받는사람
-    const [ lfrom , setLfrom ] = useState( [] );    // 보내는사람
+
+
     const [show, setShow] = useState(false);    // 닫기
 
     const handleClose = () => setShow(false);   // 쪽지 보내기 버튼
@@ -193,14 +193,14 @@ function rereplyWrite(){
                                 Value={board.memail}
                                 className="lto"
                                 autoFocus
-                                disabled
+                                disabled    //아이디 고정(내용 못고침)
                             />
                         </Form.Group>
                         <Form.Group
                             className="mb-3"
                             controlId="exampleForm.ControlTextarea1"
                         >
-                            <Form.Label>쪽지내용</Form.Label>
+                            <Form.Label>내용</Form.Label>
                             <Form.Control as="textarea" rows={6} className="lcontent" />
                         </Form.Group>
                     </Form>
@@ -210,8 +210,6 @@ function rereplyWrite(){
                     <Button variant="primary" onClick={handleSend}> 보내기 </Button>
                 </Modal.Footer>
             </Modal>    {/*모달 - 쪽지보내기 end */}
-
-
 
             {/*///////////////////////////////글보기 영역/////////////////////////////////////*/}
 
@@ -225,7 +223,7 @@ function rereplyWrite(){
 
                     <div className="memberInforSection">
                         <div className="memail">
-                            <span  variant="primary" onClick={handleShow} > {board.memail}</span>{/*작성자*/}
+                            <span  variant="primary" onClick={handleShow} >{ login.mnick == null ? login.memail : login.mnick }</span>{/*작성자*/}
                         </div>
                         <div className="dateNbviewSection">{/*작성시간 및 조회수*/}
                             <span className="bdate">{board.bdate} {/*작성시간*/}</span>
@@ -276,8 +274,6 @@ function rereplyWrite(){
                     </div>
                 </form>{/*repleWrap*/}
 
-
-
                 <div className="getRepleylist">
                     {/*여기에 댓글이 출력이 될 예정입니다.*/}
                 {
@@ -322,7 +318,6 @@ function rereplyWrite(){
                 </div>{/*repleSection*/}
 
             </div>{/*wrap*/}
-
 
         </div>
 

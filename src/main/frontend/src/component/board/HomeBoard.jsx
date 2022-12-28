@@ -10,6 +10,13 @@ import css from '../../css/Board/homeBoard.css'; // 12.23 최예은 css추가
 
 // 3.컴포넌트[함수] 만들기
 export default function HomeBoard( props ){
+
+    const [ login , setLogin ] = useState({}); // 로그인된 회원정보 state 생명주기 // 변경시 재 렌더링
+
+    axios
+        .get("/member/getloginMno")
+        .then( (response) => { setLogin( response.data ); } )
+
     const [getdesclist,setGetdesclist] = useState([
         { rno : 0 ,  btitle : "" , memail : ""}
     ]); //최신글 가져오기 12.23 최예은
@@ -42,7 +49,7 @@ export default function HomeBoard( props ){
                             <div className="getViewSection">{/*상단 프로필 사진, 작성자, 리플수 및 조회수 및 좋아요 수 리플수는 없어질 수도 있습니다. */}
                                 <div className="memberInfor">
                                     <img className="profile" src={"/static/media/"+ b.mprofile } />
-                                    <span className="memail"> { b.memail} {/*작성자*/} </span>
+                                    <li> { login.mnick == null ? login.memail : login.mnick }  </li>
                                 </div>
                                 <div className="countSection">
                                     <span className="bgood"> { b.bgood} {/*좋아요수*/} </span>

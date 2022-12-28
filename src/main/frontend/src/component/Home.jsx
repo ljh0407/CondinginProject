@@ -5,6 +5,10 @@ import axios from "axios";// 12.16 최예은 추가
 import HomeBoard from "./board/HomeBoard" // 12.19 최예은 추가
 import git from '../img/git.png';
 import Notion from '../img/Notion.png';
+import conding from '../img/conding.png';
+import Intellij from '../img/Intellij.png';
+import react from '../img/react.png';
+import springboot from '../img/springboot.png';
 
 export default function Home( props ){
     //0. 12.16 최예은 추가
@@ -47,18 +51,26 @@ export default function Home( props ){
                     </div>
 
                     <article  className="sidebar">
-                                            {
-                                                categorylist.map((c)=>{
-                                                    return(
-                                                        <div className="clist"> {/*{c.cname}*/} </div>
-                                                    )
-                                                })
-                                            }
-                                            <div id="promotion">   {/* git , notion 이미지 */}
-                                                <a href="https://github.com/ljh0407/CondinginProject"> <img className="hongbo" src={git} /> </a>
-                                                <a href="https://typhoon-swordtail-68e.notion.site/0e74dc862bbd45799d64654034bcfdc7"> <img className="hongbo" src={Notion} /> </a>
-                                            </div>
-                                        </article>
+                        {
+                            categorylist.map((c)=>{
+                                return(
+                                    <div className="clist"> {/*{c.cname}*/} </div>
+                                )
+                            })
+                        }
+                        <div id="promotion">   {/* git , notion 이미지 */}
+                            <a href="https://github.com/ljh0407/CondinginProject"> <img className="hongbo" src={git} /> </a>
+                            <a href="https://typhoon-swordtail-68e.notion.site/0e74dc862bbd45799d64654034bcfdc7"> <img className="hongbo" src={Notion} /> </a>
+                        </div>
+                         <div className="banner">
+                             <img className="conding" src={conding} />
+                             <img className="Intellij" src={Intellij} />
+                         </div>
+                         <div className="banners">
+                             <img className="react" src={react} />
+                             <img className="springboot" src={springboot} />
+                         </div>
+                    </article>
 
                 </div>  {/* mid div */}
         </div>   {/* 전체 div */}

@@ -13,6 +13,13 @@ import StyleSheet from '../../css/Board/boardList.css'; // css 불러오기
 
 export default function BoardList(props) {  //글목록
 
+    const [ login , setLogin ] = useState({}); // 로그인된 회원정보 state 생명주기 // 변경시 재 렌더링
+
+    axios
+        .get("/member/getloginMno")
+        .then( (response) => { setLogin( response.data ); } )
+
+
     const params = useParams();  //경로[URL]상의 매개변수 가져올때
 
     // 서버로부터 pageInfo 요청 [실행조건 1. 랜더링이 될때 2. 검색할 때 3.카테고리선택할때 4.페이징할 때 --> 일반함수화] //
@@ -89,7 +96,7 @@ export default function BoardList(props) {  //글목록
                                 <td className="got6">{b.bno}</td>
                                 {/*제목누르면 상세보기 */}
                                 <td onClick={() => loadView(b.bno)} className="got2">{b.btitle}</td>
-                                <td className="got7">{b.memail}</td>
+                                <td className="got7">{ login.mnick == null ? login[b].memail : login.mnick }</td>
                                 <td className="got8">{b.bdate}</td>
                                 <td className="got9">{b.bview}</td>
                             </tr>

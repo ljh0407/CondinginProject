@@ -1,5 +1,66 @@
 
-
+/* 수정하기 보더콜리 */
 .bobobo{
-    border: 1px solid black;
+    background-color: #f0f8ff;
+    /* border: 1px solid #000; */
+    border-radius: 3%;
+    height: 400px;
+    margin-left: 30%;
+    width: 450px;
+    margin-top: 6%;
+}
+
+/* h1 프로필 수정하기 이름  */
+
+.uptitle{
+    font-size: 40px;
+    margin-left: 17%;
+    margin-top: 2%;
+
+}
+
+/* 프로필 사진 */
+
+/* label 스타일 조정 */
+.button {
+    display: flex;
+    justify-content: center;
+    margin-left: -2%;
+}
+label {
+    cursor: pointer;
+    font-size: 2em;
+}
+
+/* input 숨기기 */
+#chooseFile {
+    visibility: hidden;
+}
+
+/* 닉네임 */
+.mnick{
+    background-color: #e9e9e9;
+    border: 0;
+    border-radius: 15px;
+    font-size: 15px;
+    height: 32px;
+    outline: none;
+    padding-left: 10px;
+    width: 230px;
+    margin-left: 23%;
+}
+
+.upbutton{
+    background: linear-gradient(145deg,#aec8e2,#cfeeff);
+    border: none;
+    border-radius: 50px;
+    box-shadow: 20px 20px 60px #a4bdd5, -20px -20px 60px #deffff;
+    color: #fff;
+    display: inline-block;
+    font-size: 20px;
+    margin-left: 33%;
+    margin-top: 17%;
+    padding: 11px 32px;
+    text-align: center;
+    text-decoration: none;;
 }

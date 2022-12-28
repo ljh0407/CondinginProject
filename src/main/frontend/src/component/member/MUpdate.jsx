@@ -1,7 +1,6 @@
 import React , { useState , useEffect } from 'react';
 import axios from "axios";
-import css from '../../css/member/mupdate.css'
-
+import css from '../../css/member/mupdate.css';
 
 export default function MUpdate(props){
 
@@ -12,7 +11,7 @@ export default function MUpdate(props){
     const [ login , setLogin ] = useState(null); // 로그인된 회원정보 state 생명주기 // 변경시 재 렌더링
     const handleLogin= () => {
         axios.get("/member/getloginMno")    //url
-            .then((res)=>{setLogin(res.data.split("_")[0]);})
+            .then((res)=>{setLogin(res.data.split("_")[0]); console.log("값 확인 : "+res.data)})
             .catch(err => {console.log('출력오류'+err);})
     }
     useEffect(handleLogin , []);    //로그인은 여기서 체크하는거임
@@ -29,12 +28,22 @@ export default function MUpdate(props){
             .catch(err => {console.log('회원수정에러 : '+err)})
     }
     return(
+
         <div className="bobobo">
-            <h1>프로필 수정하기</h1>
+            <div className="homeline" > </div>
+            <h1 className="uptitle">프로필 수정하기</h1>
             <form className="memberform" name="" value="post">
-                프로필사진 <input type="file" name="mprofile"/>  {/*프로필사진*/}
-                닉네임 <input type="text" className="mnick" name="mnick"/> {/*닉네임*/}
-                <button type="button" onClick={ update }>수정하기</button>
+                <div>
+                    <div class="button">
+                        <label for="chooseFile">
+                            👉 profile! 👈
+                        </label>
+                    </div>
+                    <input type="file" name="mprofile" id="chooseFile" />  {/*프로필사진*/}
+                </div>
+                <input type="text" className="mnick" name="mnick" placeholder="변경할 닉네임을 입력해 주세요."/> {/*닉네임*/}
+
+                <button type="button" onClick={ update } className="upbutton">수정하기</button>
             </form>
         </div>
     );

@@ -37,7 +37,7 @@ public class MemberService implements  OAuth2UserService< OAuth2UserRequest , OA
     @Autowired
     private  UpdownRepository updownRepository;
     //첨부파일 경로
-    String path = "C:\\Users\\504\\Desktop\\t\\CondinginProject\\build\\resources\\main\\static\\static\\media\\";  // C드라이브-> upload 폴더 생성
+    String path = "C:\\Users\\504\\Desktop\\codingin\\build\\resources\\main\\static\\static\\media\\";  // C드라이브-> upload 폴더 생성
 
     //====================================================//
     //* 첨부파일 업로드 [ 1. 쓰기메소드 2. 수정메소드 ] 사용
@@ -90,6 +90,7 @@ public class MemberService implements  OAuth2UserService< OAuth2UserRequest , OA
         memberDto.setAttributes( oauthDto.getAttributes() );    //세션
         memberDto.setMfilename(memberEntity.getMprofile()); //프로필
         memberDto.setMemail( memberEntity.getMemail() );    //이메일
+        memberDto.setMno( memberEntity.getMno() );    //이메일
 
         if( memberEntity.getMnick() == null ){  //닉네임이 없으면
             memberDto.setMnick( memberEntity.getMemail() ); //이메일 출력
@@ -120,7 +121,7 @@ public class MemberService implements  OAuth2UserService< OAuth2UserRequest , OA
         if(object == null){return null;}    //회원정보가 없으면
         MemberDto memberDto = (MemberDto) object;   //오브젝트를 디티오 형변환
         //멤버디티오에 있는 이메일을 멤버엔티티에 저장
-        Optional<MemberEntity> optional = memberRepository.findByMemail(memberDto.getMemail());
+        Optional<MemberEntity> optional = memberRepository.findById(memberDto.getMno());
         if(!optional.isPresent()){return null;} //로그인 확인 안되면 null 반환
         return optional.get();  //로그인정보 확인되면 전부 반환
     }
