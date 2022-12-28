@@ -73,6 +73,7 @@ public class LetterService {
         // 오류 확인 pageDto.setList(ldto);
         pageDto.setTotalBoards(llist.getTotalElements());    //전체 게시물 수
         return pageDto;
+
     }
 
     @Transactional  // 받은 쪽지리스트 출력
