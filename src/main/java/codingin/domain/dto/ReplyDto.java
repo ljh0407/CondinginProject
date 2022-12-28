@@ -4,6 +4,8 @@ import codingin.domain.entity.ReplyRepository;
 import lombok.*;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.List;
+
 @NoArgsConstructor @AllArgsConstructor
 @Getter @Setter @ToString @Builder
 public class ReplyDto {
@@ -15,6 +17,8 @@ public class ReplyDto {
     private String memail; // output 작성자
     private String bfilename;   //output // 프로필
     private String bdate; //output // 작성시간
+
+    private List<RereplyDto> rereplyDtos; // output // 대댓글
 
     //ttest
     public ReplyEntity toEntity(){

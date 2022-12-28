@@ -37,6 +37,8 @@ public class RereplyEntity extends BaseEntity {
         return RereplyDto
                 .builder()
                 .reno( this.reno )
+                .rercomment(this.rercomment)
+                //rerecommt작성하기
                 .bdate(
                     this.getCdate().toLocalDate().toString().equals(LocalDateTime.now().toString())
                             ?

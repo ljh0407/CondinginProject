@@ -17,13 +17,13 @@ export default function Header(props) {
         <header>
             <div className="box">
                 <div id="logo">
-                    <Link to="/"> <img className="logo" src={logo} /> </Link>
+                    <a href="/"> <img className="logo" src={logo} /> </a>
                 </div>
                 {login == "" ?
                     (   /*로그인 안했을떄*/
                         <nav id="menu">
                             <ul id="top_menu">
-                                <li ><Link to="/member/signup" className="atag" style={{color:'#000'}}> 회원가입 및 로그인 </Link> </li>
+                                <li ><a href="/member/signup" className="atag" style={{color:'#000'}}> 회원가입 및 로그인 </a> </li>
                             </ul>
                         </nav>
                     )

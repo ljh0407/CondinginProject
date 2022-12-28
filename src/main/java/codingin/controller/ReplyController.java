@@ -43,12 +43,22 @@ public class ReplyController {
         return replyService.deletereply(rno);//bno도???????
     }
     //4. 대댓글 작성하기
-
     @PostMapping("/setrerply")
     public boolean setrereply(@RequestBody RereplyDto rereplyDto){
         System.out.println("대댓글 controller");
         return replyService.setrereply(rereplyDto);
     }
+
+    //5. 대댓글 출력하기
+//    @GetMapping("gerrerply")
+//    public List<RereplyDto> getrereplylist(@RequestParam int rno){
+//        System.out.println("대댓글 출력하기 controller");
+//        return replyService.getrereplylist(rno);
+//    }
+
+
+    //6.대댓글 삭제하기
+
 
 
 }
