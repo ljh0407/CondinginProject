@@ -44,7 +44,7 @@ export default function ToLetter(porps){
                 <Modal.Body>
                     <Form>
                         <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                            <Form.Label>받은 사람</Form.Label>
+                            <Form.Label>보낸 사람</Form.Label>
                             <Form.Control
                                 type="email"
                                 Value={ LetterList2[selectItem2].lfrom }

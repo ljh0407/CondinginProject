@@ -16,8 +16,7 @@ let replyContent = ''; // 댓글내용
 
 export default function Bview(props){   //상세보기
     //---------------------------[쪽지보내기]----------------------------------//
-    const [ lto , setLto ] = useState( [] );    //받는사람
-    const [ lfrom , setLfrom ] = useState( [] );    // 보내는사람
+
 
     const [show, setShow] = useState(false);    // 닫기
 
@@ -192,7 +191,7 @@ export default function Bview(props){   //상세보기
 
                     <div className="memberInforSection">
                         <div className="memail">
-                            <span  variant="primary" onClick={handleShow} > {board.memail}</span>{/*작성자*/}
+                            <span  variant="primary" onClick={handleShow} >{ login.mnick == null ? login.memail : login.mnick }</span>{/*작성자*/}
                         </div>
                         <div className="dateNbviewSection">{/*작성시간 및 조회수*/}
                             <span className="bdate">{board.bdate} {/*작성시간*/}</span>
