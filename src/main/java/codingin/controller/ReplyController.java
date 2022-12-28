@@ -10,40 +10,31 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController //댓글
+@RestController
 @RequestMapping("/reply")
-public class ReplyController {
+public class ReplyController {  //댓글
 
     @Autowired
     private ReplyService replyService;
-    @Autowired
-    private MemberService memberService;
-    @Autowired
-    private BoardService boardService;
 
-    //1. 댓글 등록하기
-    @PostMapping("/setreply")
+    @PostMapping("/setreply")   //1. 댓글 등록하기
     public boolean setreply( @RequestBody ReplyDto replyDto){
-        //System.out.println("댓글 등록하기 controller");
         return replyService.setreply(replyDto );
     }
 
-    //2. 댓글출력하기
-    @GetMapping("/getrdplelist")
+    @GetMapping("/getrdplelist")    //2. 댓글출력하기
     public List<ReplyDto> getrdplelist(@RequestParam int bno ){
         //System.out.println("댓글 출력하기  controller");
         return replyService.getrdplelist(bno);
     }
 
-
-    //3.댓글삭제하기
-    @DeleteMapping("/deletereply")
+    @DeleteMapping("/deletereply")  //3.댓글삭제하기
     public boolean deletereply(@RequestParam("rno") int rno){
         System.out.println("삭제하기 controller");
         return replyService.deletereply(rno);//bno도???????
     }
-    //4. 대댓글 작성하기
-    @PostMapping("/setrerply")
+
+    @PostMapping("/setrerply")  //4. 대댓글 작성하기
     public boolean setrereply(@RequestBody RereplyDto rereplyDto){
         System.out.println("대댓글 controller");
         return replyService.setrereply(rereplyDto);

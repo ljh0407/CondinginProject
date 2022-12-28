@@ -2,7 +2,7 @@ import React , { useState , useEffect } from 'react';
 import axios from "axios";
 import css from '../../css/member/mupdate.css';
 
-export default function MUpdate(props){
+export default function MUpdate(props){ //회원수정
 
     //회원 , 리랜더링될 회원정보           // 회원 메모리
     const [ member , setMember ] = useState([ ]);
@@ -14,14 +14,14 @@ export default function MUpdate(props){
             .then((res)=>{setLogin(res.data.split("_")[0]); console.log("값 확인 : "+res.data)})
             .catch(err => {console.log('출력오류'+err);})
     }
-    useEffect(handleLogin , []);    //로그인은 여기서 체크하는거임
+    useEffect(handleLogin , []);    //로그인 체크
 
     const update = () => {
         let memberform = document.querySelector('.memberform'); // DOM 객체
         let formdata = new FormData(memberform);
 
         axios.post("/member/setmupdate" , formdata, {headers: {'Content-Type': 'multipart/form-data'}})
-            .then(res => {
+            .then(res => {  //수정 성공하면 로그아웃하기
                 if(res.data == true){alert('수정완료'); window.location.href="/member/logout" }
                 else {alert('수정실패')}
             })
@@ -36,7 +36,7 @@ export default function MUpdate(props){
                 <div>
                     <div class="button">
                         <label for="chooseFile">
-                            👉 profile! 👈
+                            👉 profile! 👈    {/*프로필 사진 수정*/}
                         </label>
                     </div>
                     <input type="file" name="mprofile" id="chooseFile" />  {/*프로필사진*/}

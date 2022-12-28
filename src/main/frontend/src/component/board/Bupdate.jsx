@@ -6,9 +6,11 @@ import { useParams  } from "react-router-dom";
 
 let bcontent = ''   //내용 전역변수
 export default function Bupdate( props ){   //글수정
+
     const params = useParams(); //경로[URL]상의 매개변수사용
 
     const [ board , setBoard ] = useState( [] );
+
     useEffect(      //통신.get방식      url호출               변수받기
         () => axios.get( "/board/getbview" , { params : { bno: params.bno } } )
             .then( res => { setBoard( res.data ) } )

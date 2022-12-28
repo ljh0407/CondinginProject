@@ -13,8 +13,8 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/member")
-public class MemberController {
-    //=============================================//
+public class MemberController { //회원관리
+
     @Autowired
     private MemberService memberService;
 
@@ -28,7 +28,8 @@ public class MemberController {
     public boolean setmupdate(MemberDto memberDto){
        return memberService.setmupdate(memberDto);
    }
-   @GetMapping("/upprofile")   //12.21 고은시 회원정보 출력하기
+
+   @GetMapping("/upprofile")   // 회원정보 출력하기
    public MemberDto profilelist(){
        return memberService.profilelist();
    }

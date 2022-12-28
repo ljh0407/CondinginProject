@@ -14,10 +14,10 @@ import java.util.List;
 @Entity // 엔티티 정의
 @Table(name = "reply") // 테이블명 정의
 @AllArgsConstructor @NoArgsConstructor @Getter @Setter @Builder @ToString
-public class ReplyEntity extends BaseEntity {
+public class ReplyEntity extends BaseEntity {   //댓글
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int rno;
+    private int rno;    //댓글 번호
 
     @Column
     private String rcomment; //댓글
@@ -40,7 +40,6 @@ public class ReplyEntity extends BaseEntity {
 
 
     public ReplyDto toDto(){
-
         List<RereplyDto> list = new ArrayList<>();
         rereplyEntityList.forEach( ( e ) ->{  list.add( e.toDto() );  });
 

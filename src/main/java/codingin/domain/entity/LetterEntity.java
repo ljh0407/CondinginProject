@@ -8,10 +8,10 @@ import javax.persistence.*;
 @Entity // 엔티티 정의
 @Table(name = "letter") // 테이블명 정의
 @AllArgsConstructor @NoArgsConstructor @Getter @Setter @Builder @ToString
-public class LetterEntity extends BaseEntity {
+public class LetterEntity extends BaseEntity {  //쪽지
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) // 자동번호 부여
-    private int lno;
+    private int lno;    //쪽지 번호
 
     @Column( nullable = false )
     private String  lcontent;   //내용

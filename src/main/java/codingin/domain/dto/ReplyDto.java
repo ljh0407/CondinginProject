@@ -8,8 +8,7 @@ import java.util.List;
 
 @NoArgsConstructor @AllArgsConstructor
 @Getter @Setter @ToString @Builder
-public class ReplyDto {
-
+public class ReplyDto { //댓글
 
     private int rno; // 출
     private int bno; //bno 추가함 // 입
@@ -20,7 +19,6 @@ public class ReplyDto {
 
     private List<RereplyDto> rereplyDtos; // output // 대댓글
 
-    //ttest
     public ReplyEntity toEntity(){
         return ReplyEntity
                 .builder()
