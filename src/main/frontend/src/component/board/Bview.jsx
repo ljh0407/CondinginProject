@@ -159,22 +159,14 @@ export default function Bview(props){   //상세보기
             })
     }
 
-    //10.대댓글 출력하기
-//
-//    function getrereplylist(rno){
-//        axios
-//            .get("/reply/getrereplylist",{params:{"rno":rno}})
-//            .then(res=>{
-//                console.log(res.data)
-//                console.log(res)
-//                setRereplyDto(res.data)
-//            })
-//    }
 
-//댓글쓰기를 클릭하면 대댓글창이 나오는 함수
+
+
+
 function rereplyWrite(){
-    alert("dd")
+    setReShow(!reshow);
 }
+const [reshow,setReShow] = useState(false);
 
     //---------------------------[글상세보기]----------------------------------//
     return(
@@ -250,7 +242,7 @@ function rereplyWrite(){
 
                 {/* 작성자와 로그인이 같으면 버튼 노출*/}
                 <div className="btnSection">
-                    { login==board.memail && <button type="button" onClick={onDelete} className="deleteBtn btn">삭제</button> }
+                    { login == board.memail && <button type="button" onClick={onDelete} className="deleteBtn btn">삭제</button> }
                     { login == board.memail && <button type="button" onClick={ getUpdate } className="updateBtn btn"> 수정 </button>  }
                 </div>
 
@@ -260,15 +252,16 @@ function rereplyWrite(){
 
                 <form className="repleWrap">
                     <div className="repleSection">
-                        {/*<img className="repleProfile" src={"/static/media/"+ login.mprofile } />*/}
-
                         <img className="repleProfile" src={"/static/media/"+ login.mprofile } />{/*댓글작성자의 프로필 사진입니다.*/}
+
                         <textarea
                             className="replyContent"
                             placeholder = {  login == '' ? "로그인후 댓글 작성가능합니다." : "생각의 차이를 인정하고 공감해 주세요."  }
                             >
                         </textarea>{/*댓글내용입니다.*/}
-                    </div>
+
+                    </div>{/*repleSection*/}
+
                     <div className="repleBtnSection">
                         <button type="button" className="relpleBtn" onClick={ setreply }>작성하기</button>    {/*함수실행*/}
                     </div>
@@ -291,25 +284,40 @@ function rereplyWrite(){
                             <div>{r.rcomment}</div>
                             <div>rno : {r.rno}</div>
                             { (r.memail === login.memail && (<button type="button" onClick={  ()=>replyDelete( r.rno ) }> 댓글 삭제하기 </button>) )    }
-                            <div className="rereplyWrite"> <span onClick={rereplyWrite}>댓글쓰기</span>
 
-                                <div className="RereplyBox">
-                                    <textarea
-                                        className="rercomment"
-                                        placeholder={login ==''? "로그인 후 댓글 작성이 가능합니다." : "생각의 차이를 인정하고 공감해 주세요."}
-                                        >
-                                    </textarea>{/*대댓글 입력하는 공간*/}
-                                    <button type="button" onClick={ (  )=> setrerply( r.rno , i ) }>작성하기</button>
-                                </div>{/*RereplyBox*/}
-
-                            </div>{/*rereplyWrite*/}
+                            {/*///////////////////////////////////////////////*/}
+                            <button type="button" onClick={rereplyWrite} > 보여줘라</button>
+                            {reshow && (  <div>dddd</div>)  }{/*reshowend*/}
 
 
 
-                            {/*//////////////////////////////////////대댓글출력공간/////////////////////////////////////*/}
+                            {/*/////////////////////////////////대댓글 입력하는 공간/////////////////////////////////*/}
+                            <div className="rereplyWrite">
+
+                                <>
+                                    <div className="RereplyBox">
+
+
+                                        <textarea
+                                            className="rercomment"
+                                            placeholder={login ==''? "로그인 후 댓글 작성이 가능합니다." : "생각의 차이를 인정하고 공감해 주세요."}
+                                            >
+                                        </textarea>{/*대댓글 입력하는 공간*/}
+
+
+
+                                        <button type="button" onClick={ (  )=> setrerply( r.rno , i ) } className="RereplyBtn">작성하기</button>
+                                    </div>{/*RereplyBox*/}
+                                </>
+                                {/*//////////////////////////////////////////////////////////////////////////////////*/}
+
+
+
+                                {/*//////////////////////////////////////대댓글출력공간/////////////////////////////////////*/}
 
                                 <Rereply data = { r.rereplyDtos } />{/*중첩이 되지 않아 Rereply파일일을 만들었습니다.*/}
 
+                            </div>{/*rereplyWrite*/}
                             </>
                         )
                     })

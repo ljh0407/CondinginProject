@@ -35,13 +35,13 @@ public class ReplyController {
         return replyService.getrdplelist(bno);
     }
 
-
     //3.댓글삭제하기
     @DeleteMapping("/deletereply")
     public boolean deletereply(@RequestParam("rno") int rno){
         System.out.println("삭제하기 controller");
         return replyService.deletereply(rno);//bno도???????
     }
+
     //4. 대댓글 작성하기
     @PostMapping("/setrerply")
     public boolean setrereply(@RequestBody RereplyDto rereplyDto){
@@ -49,15 +49,7 @@ public class ReplyController {
         return replyService.setrereply(rereplyDto);
     }
 
-    //5. 대댓글 출력하기
-//    @GetMapping("gerrerply")
-//    public List<RereplyDto> getrereplylist(@RequestParam int rno){
-//        System.out.println("대댓글 출력하기 controller");
-//        return replyService.getrereplylist(rno);
-//    }
-
-
-    //6. 대댓글 삭제하기
+    //5. 대댓글 삭제하기
     @DeleteMapping("/deleterereply")
     public boolean deleterereply(@RequestParam("reno") int reno){
         System.out.println("대댓글삭제!");

@@ -134,7 +134,9 @@
 .RereplyBox{
 
 }
-
+.RereplyBtn{
+    float:right;
+}
 .rercomment{}
 /*대댓글*/
 .rercomment{

@@ -5,8 +5,6 @@ import css from "../../css/Reply/Rereply.css"
 
 
 
-
-
 const deltererply=(reno)=>{
     //alert(reno)
     //console.log(reno)
