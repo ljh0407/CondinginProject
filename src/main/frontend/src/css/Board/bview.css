@@ -129,7 +129,10 @@
 
 .profile{}
 
-.rereplyWrite{}
+.rereplyWriteBtn{
+    border:none;
+    background:none;
+}
 
 .RereplyBox{
 

@@ -144,6 +144,7 @@ export default function Bview(props){   //상세보기
         alert("대댓글")
         alert(rno)
         let rercomments =  document.querySelectorAll(".rercomment") //  .rercomment class명 모두  배열로 가져오기
+
         let data={
             "rno" : rno ,
             rercomment : rercomments.item(i).value // 해당 선택한 i 번째 .rercomment의 입력된 데이터 호출
@@ -283,18 +284,17 @@ const [reshow,setReShow] = useState(false);
 
                             <div>{r.rcomment}</div>
                             <div>rno : {r.rno}</div>
+                            <button type="button" onClick={rereplyWrite} className="rereplyWriteBtn"> 댓글쓰기</button>
                             { (r.memail === login.memail && (<button type="button" onClick={  ()=>replyDelete( r.rno ) }> 댓글 삭제하기 </button>) )    }
 
                             {/*///////////////////////////////////////////////*/}
-                            <button type="button" onClick={rereplyWrite} > 보여줘라</button>
-                            {reshow && (  <div>dddd</div>)  }{/*reshowend*/}
 
-
-
-                            {/*/////////////////////////////////대댓글 입력하는 공간/////////////////////////////////*/}
-                            <div className="rereplyWrite">
+                            {reshow && (
 
                                 <>
+                                <div className="rereplyWrite">
+
+
                                     <div className="RereplyBox">
 
 
@@ -308,7 +308,7 @@ const [reshow,setReShow] = useState(false);
 
                                         <button type="button" onClick={ (  )=> setrerply( r.rno , i ) } className="RereplyBtn">작성하기</button>
                                     </div>{/*RereplyBox*/}
-                                </>
+
                                 {/*//////////////////////////////////////////////////////////////////////////////////*/}
 
 
@@ -318,6 +318,18 @@ const [reshow,setReShow] = useState(false);
                                 <Rereply data = { r.rereplyDtos } />{/*중첩이 되지 않아 Rereply파일일을 만들었습니다.*/}
 
                             </div>{/*rereplyWrite*/}
+                            </>
+
+                                )
+
+                            }
+
+
+
+                            {/*/////////////////////////////////대댓글 입력하는 공간/////////////////////////////////*/}
+
+
+
                             </>
                         )
                     })
