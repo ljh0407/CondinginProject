@@ -90,6 +90,11 @@
 }
 
 
+.repleSection{
+    display:flex;
+    justify-content:center;
+}
+
 .repleProfile{
     display:inline-block;
     width:50px;
@@ -98,10 +103,13 @@
     border:1px solid #000;
     margin:0 30px;
 }
-.replyContent{
+
+.replyContent{ /*댓글 textarea입니다.*/
     resize: none;
     width:80%;
+    font-size: 14px;
 }
+
 .repleBtnSection{
     text-align:right;
     margin:30px 30px 0 0 ;
@@ -114,7 +122,22 @@
     padding: 15px;
 }
 
-.repleSection{
-    display:flex;
-    justify-content:center;
+
+.getRepleylist{}
+
+.memberProfileImg{}
+
+.profile{}
+
+.rereplyWrite{}
+
+.RereplyBox{
+
+}
+
+.rercomment{}
+/*대댓글*/
+.rercomment{
+    resize:none;
+    width:100%;
 }

@@ -171,6 +171,10 @@ export default function Bview(props){   //상세보기
 //            })
 //    }
 
+//댓글쓰기를 클릭하면 대댓글창이 나오는 함수
+function rereplyWrite(){
+    alert("dd")
+}
 
     //---------------------------[글상세보기]----------------------------------//
     return(
@@ -263,12 +267,12 @@ export default function Bview(props){   //상세보기
                         <img className="repleProfile" src={"/static/media/"+ login.mprofile } />{/*댓글작성자의 프로필 사진입니다.*/}
                         <textarea
                             className="replyContent"
-                            placeholder = {  login == '' ? "로그인후 댓글 작성가능합니다." : "댓글 작성이 가능합니다."  }
+                            placeholder = {  login == '' ? "로그인후 댓글 작성가능합니다." : "생각의 차이를 인정하고 공감해 주세요."  }
                             >
                         </textarea>{/*댓글내용입니다.*/}
                     </div>
                     <div className="repleBtnSection">
-                        <button type="button" className="enrollment" onClick={ setreply }>작성하기</button>    {/*함수실행*/}
+                        <button type="button" className="relpleBtn" onClick={ setreply }>작성하기</button>    {/*함수실행*/}
                     </div>
                 </form>{/*repleWrap*/}
 
@@ -291,9 +295,20 @@ export default function Bview(props){   //상세보기
                             <div>{r.rcomment}</div>
                             <div>rno : {r.rno}</div>
                             { (r.memail === login.memail && (<button type="button" onClick={  ()=>replyDelete( r.rno ) }> 댓글 삭제하기 </button>) )    }
-                            <div>댓글쓰기</div>
-                                <textarea className="rercomment"> </textarea>{/*대댓글 입력하는 공간*/}
-                                <button type="button" onClick={ (  )=> setrerply( r.rno , i ) }>작성하기</button>
+                            <div className="rereplyWrite"> <span onClick={rereplyWrite}>댓글쓰기</span>
+
+                                <div className="RereplyBox">
+                                    <textarea
+                                        className="rercomment"
+                                        placeholder={login ==''? "로그인 후 댓글 작성이 가능합니다." : "생각의 차이를 인정하고 공감해 주세요."}
+                                        >
+                                    </textarea>{/*대댓글 입력하는 공간*/}
+                                    <button type="button" onClick={ (  )=> setrerply( r.rno , i ) }>작성하기</button>
+                                </div>{/*RereplyBox*/}
+
+                            </div>{/*rereplyWrite*/}
+
+
 
                             {/*//////////////////////////////////////대댓글출력공간/////////////////////////////////////*/}
 
