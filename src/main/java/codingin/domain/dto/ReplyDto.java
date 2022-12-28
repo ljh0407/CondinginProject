@@ -4,17 +4,21 @@ import codingin.domain.entity.ReplyRepository;
 import lombok.*;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.List;
+
 @NoArgsConstructor @AllArgsConstructor
 @Getter @Setter @ToString @Builder
 public class ReplyDto {
 
-    //
+
     private int rno; // 출
     private int bno; //bno 추가함 // 입
     private String rcomment; // 입 , 출
-    private String memail; // output
-    private String bfilename;   //output
-    private String bdate; //output
+    private String memail; // output 작성자
+    private String bfilename;   //output // 프로필
+    private String bdate; //output // 작성시간
+
+    private List<RereplyDto> rereplyDtos; // output // 대댓글
 
     //ttest
     public ReplyEntity toEntity(){

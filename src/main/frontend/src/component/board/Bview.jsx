@@ -12,6 +12,9 @@ import Modal from 'react-bootstrap/Modal';
 //조회수 아이콘 이미지 추가 12.26 최예은
 import bviewImg from '../../img/bviewImg.png'
 
+import Rereply from './Rereply'
+
+
 let replyContent = ''; // 댓글내용
 
 export default function Bview(props){   //상세보기
@@ -48,9 +51,10 @@ export default function Bview(props){   //상세보기
     const [goodBtn,setgoodBtn] = useState([]);
     //싫어요버튼
     const [badBtn,setbadBtn] = useState([]);
-
     //댓글
     const [ReplyDto,setReplyDto] = useState([]); //  함수와 이름이 동일x 12.27 변경함
+    //대댓글
+    const [RereplyDto,setRereplyDto] = useState([]);
 
     //---------------------------[댓글]----------------------------------//
     useEffect( // 1. 서버로 부터 해당 게시물번호의 시물정보 요청
@@ -58,14 +62,14 @@ export default function Bview(props){   //상세보기
         //컨트롤 목록조회 url                   선택한 게시물의 bno 받기
         .get("/board/getbview" , { params : {bno : params.bno}})
         //setBoard(리랜더링)에 데이터 담기
-        .then( res => {setBoard(res.data); getrdplelist(); console.log(res.data) }) ,[]);
+        .then( res => {setBoard(res.data); getrdplelist();  console.log(res.data) }) ,[]);
 
     //로그인 맞는지 확인
     const [ login , setLogin ] = useState([]); // 로그인된 회원정보 state 생명주기 // 변경시 재 렌더링
       useEffect( // 1. 서버로 부터 해당 게시물번호의 시물정보 요청
         () =>  axios
-                      .get("/member/getloginMno") //url 호출
-                      .then( (response) => { setLogin( response.data );  console.log( login ) } ) ,[]);
+          .get("/member/getloginMno") //url 호출
+          .then( (response) => { setLogin( response.data );  console.log( login ) } ) ,[]);
 
     // 2. 해당 게시물번호의 해당하는 업데이트 페이지로 이동
     const getUpdate = () => { alert('수정'); window.location.href='/board/update/'+params.bno;  }
@@ -106,14 +110,10 @@ export default function Bview(props){   //상세보기
 
             axios.post("/reply/setreply", info )
                 .then(res => {
-                    console.log( res );
-                    console.log( res.data );
+                    //console.log( res );
+                    //console.log( res.data );
                     if(res.data == true){ alert("댓글등록이 완료되었습니다."); getrdplelist(); }
                     else{ alert("댓글등록 실패") }
-
-                    //만약에 댓글을 작성한 사람이랑 로그인 한 사람이랑 같다면
-                    //수정 및 삭제 댓글 보여주기
-                    //대댓글은 언제하지...?
                 })
                 .catch(err => {console.log(err)});
     }
@@ -132,17 +132,54 @@ export default function Bview(props){   //상세보기
 
     //8.댓글 삭제하기
     function replyDelete( rno ){
-        //bno도 가져가야 하고 rno도 가져가야하고 객체로 가져가야 하는건가
-        //bno가 1인 곳에서 rno=1번을 지운다..... 둘다 필요한 것 같은데?
-        //아니다 이미 bno는 있으니까 rno만 가져가면 되는건가?
-
         axios
             .delete("/reply/deletereply" , { params : { "rno" : rno }})
-            .then(res => { console.log(res.data) } )
+            .then(res => {
+                if(res.data == true){ alert("댓글삭제 성공") }
+                else{alert("댓글삭제 실패")}
+            } )
             .catch(err => { console.log(err)})
-            //meami=l이 bno=? 에있는 rno를 지운다.
     }
 
+
+    //9.대댓글 작성하기
+    function setrerply (rno,i) {
+        alert("대댓글")
+        alert(rno)
+
+        let rercomments =  document.querySelectorAll(".rercomment") //  .rercomment class명 모두  배열로 가져오기
+
+
+        let data={
+            "rno" : rno ,
+            rercomment : rercomments.item(i).value // 해당 선택한 i 번째 .rercomment의 입력된 데이터 호출
+        }
+
+        console.log( i )
+        console.log( data );
+        //console.log(data)
+       axios
+           .post("/reply/setrerply" ,data )
+           .then(res=>{
+                if(res.data==true){ alert("대댓글 작성 성공");}
+                else{ alert("대댓글 작성 실패")}
+            })
+    }
+
+    //10.대댓글 출력하기
+//
+//    function getrereplylist(rno){
+//        axios
+//            .get("/reply/getrereplylist",{params:{"rno":rno}})
+//            .then(res=>{
+//                console.log(res.data)
+//                console.log(res)
+//                setRereplyDto(res.data)
+//            })
+//    }
+
+
+    //대댓글 삭제하기
 
     //---------------------------[글상세보기]----------------------------------//
     return(
@@ -246,7 +283,7 @@ export default function Bview(props){   //상세보기
                 <div className="getRepleylist">
                     {/*여기에 댓글이 출력이 될 예정입니다.*/}
                 {
-                    ReplyDto.map((r)=>{
+                    ReplyDto.map((r , i)=>{
                         return(
                             <>
                             <div className="memberProfileImg">
@@ -261,6 +298,12 @@ export default function Bview(props){   //상세보기
                             <div>rno : {r.rno}</div>
                             { (r.memail === login.memail && (<button type="button" onClick={  ()=>replyDelete( r.rno ) }> 댓글 삭제하기 </button>) )    }
                             <div>댓글쓰기</div>
+                                <textarea className="rercomment"> </textarea>{/*대댓글 입력하는 공간*/}
+                                <button type="button" onClick={ (  )=> setrerply( r.rno , i ) }>작성하기</button>
+
+                            {/*//////////////////////////////////////대댓글출력공간/////////////////////////////////////*/}
+
+                                <Rereply data = { r.rereplyDtos } />
 
                             </>
                         )
