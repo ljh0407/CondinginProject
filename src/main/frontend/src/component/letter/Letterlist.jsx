@@ -10,15 +10,19 @@ export default function Letterlist(porps){
 
     //---------------------------[쪽지보내기]----------------------------------//
 
+    const [ selectItem , setSelectItem ] = useState(0);
 
     const [show, setShow] = useState(false);    // 닫기
-    const handleClose = () => setShow(false);   // 쪽지 보내기 버튼
-    const handleShow = () => setShow(true);     // 닫기 버튼
+    const handleClose = () => setShow(false);   // 쪽지닫기
+    const handleShow = (i) => {
+        setSelectItem(i);
+        setShow(true);
+    }     // 쪽지 열기
 
     //---------------------------[쪽지보내기]----------------------------------//
 
 
-    const [ LetterList , setLetterList ] = useState( [])
+    const [ LetterList , setLetterList ] = useState( [ { lto : "" ,  lcontent : "" } ])
 
     function getletter()  {
         axios
@@ -30,14 +34,6 @@ export default function Letterlist(porps){
             .catch(err => {console.log('리스트 오류'+err);})
     }
 
-    const loadView=()=>{
-        axios
-            .get("/letter/lview")
-            .then(res=>{setLetterList(res.data); console.log(res.data)})
-            .catch(err=>console.error(err))
-        window.location = "/letter/lview"
-    }
-
     useEffect(getletter , [] );
 
     return(
@@ -45,10 +41,10 @@ export default function Letterlist(porps){
             <h3> 보낸 쪽지 함 </h3>
             <table>
                 {
-                    LetterList.map( (l) => {
+                    LetterList.map( (l, i ) => {
                         return(
                             <tr>
-                                <td variant="primary" onClick={handleShow} >{l.lto}</td>
+                                <td variant="primary" onClick={ () => handleShow(i) } >{ l.lfrom }</td>
                                 <td>{l.lcontent}</td>
                             </tr>
                         )
@@ -67,8 +63,7 @@ export default function Letterlist(porps){
                             <Form.Label>보낸 사람</Form.Label>
                             <Form.Control
                                 type="email"
-                                placeholder="name@example.com"
-                                Value={LetterList.memail}
+                                Value={LetterList[selectItem].lto }
                                 className="lfrom"
                                 autoFocus
                                 disabled    //아이디 고정(내용 못고침)
@@ -79,9 +74,7 @@ export default function Letterlist(porps){
                             controlId="exampleForm.ControlTextarea1"
                         >
                             <Form.Label>내용</Form.Label>
-                            <Form.Control as="textarea" rows={6} className="lcontent"
-                                          Value={LetterList.lcontent}
-                            />
+                            <Form.Control rows={6} className="lcontent" Value={LetterList[selectItem].lcontent} />
                         </Form.Group>
                     </Form>
                 </Modal.Body>

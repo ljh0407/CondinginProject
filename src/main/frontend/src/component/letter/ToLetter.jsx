@@ -4,33 +4,23 @@ import axios from "axios";
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
-import {useParams} from "react-router-dom";
 export default function ToLetter(porps){
 
-    const params = useParams();  //경로[URL]상의 매개변수 가져올때
 
     //---------------------------[쪽지보내기]----------------------------------//
+    //리스트에서 lno찾기
+    const [ selectItem2 , setSelectItem2 ] = useState(0);
 
     const [show, setShow] = useState(false);    // 닫기
-    const handleClose = () => setShow(false);   // 쪽지 보내기 버튼
-    const handleShow = () => setShow(true);     // 닫기 버튼
+    const handleClose = () => setShow(false);   // 쪽지닫기
+    const handleShow = (i) => {
+        setSelectItem2(i)   //랜더링 쪽지
+        setShow(true);
+    }     // 쪽지 열기
 
     //---------------------------[쪽지보내기]----------------------------------//
-
-    const [ toletter , setTolist ] = useState( [])
-
-    useEffect( // 1. 서버로 부터 해당 게시물번호의 시물정보 요청
-        () => {
-            console.log('ddddddd')
-            axios
-            //컨트롤 목록조회 url                   선택한 게시물의 bno 받기
-            .get("/letter/lview" , { params : {lno : params.lno}})
-            .then( res => {setTolist(res.data); console.log(res.data) })
-            .catch(err => {console.log('쪽지 상세보기오류 : ' + err)})
-        } ,[]);
-
-
-    const [ LetterList2 , setLetterList2 ] = useState( [])
+    // 쪽지 정보                                                   랜더링된 후 값을 넣기 위해 값 입력
+    const [ LetterList2 , setLetterList2 ] = useState( [ { lfrom : "" ,  lcontent : "" } ])
 
     function getletter2()  {
         axios
@@ -43,6 +33,7 @@ export default function ToLetter(porps){
     }
 
     useEffect(getletter2 , [] );
+
     // 받은 쪽지 리스트
     return(
         <div>
@@ -56,8 +47,7 @@ export default function ToLetter(porps){
                             <Form.Label>받은 사람</Form.Label>
                             <Form.Control
                                 type="email"
-                                placeholder="name@example.com"
-                                Value={ toletter.memail }
+                                Value={ LetterList2[selectItem2].lfrom }
                                 className="lto"
                                 autoFocus
                                 disabled    //아이디 고정(내용 못고침)
@@ -68,8 +58,7 @@ export default function ToLetter(porps){
                             controlId="exampleForm.ControlTextarea1"
                         >
                             <Form.Label>내용</Form.Label>
-                            <Form.Control rows={6} className="lcontent"
-                                          Value={ toletter.lcontent }
+                            <Form.Control rows={6} className="lcontent"  Value={ LetterList2[selectItem2].lcontent } disabled
                             />
                         </Form.Group>
                     </Form>
@@ -82,10 +71,10 @@ export default function ToLetter(porps){
             <h3> 받은 쪽지 함 </h3>
             <table>
                 {
-                    LetterList2.map( (l) => {
+                    LetterList2.map( ( l , i ) => {
                         return(
                             <tr>
-                                <td variant="primary" onClick={ handleShow } >{ l.lto }</td>
+                                <td variant="primary" onClick={ () => handleShow(i) } >{ l.lto }</td>
                                 <td>{ l.lcontent }</td>
                             </tr>
                         )
