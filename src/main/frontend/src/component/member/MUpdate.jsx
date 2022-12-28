@@ -22,7 +22,7 @@ export default function MUpdate(props){
 
         axios.post("/member/setmupdate" , formdata, {headers: {'Content-Type': 'multipart/form-data'}})
             .then(res => {
-                if(res.data == true){alert('수정완료');}
+                if(res.data == true){alert('수정완료'); window.location.href="/member/logout" }
                 else {alert('수정실패')}
             })
             .catch(err => {console.log('회원수정에러 : '+err)})
