@@ -60,19 +60,24 @@ public class LetterService {
     }
 
     @Transactional  // 보낸 쪽지리스트 출력
-    public PageDto fromlist(PageDto pageDto){
-        Page<LetterEntity> llist = null; //게시물 먼저 선언함
+    public List<LetterDto> fromlist( int page ){
+
+        Pageable pageable = PageRequest.of( page-1 , 5 ); // -1 : 현재페이지  5 : 한 페이지당 쪽지갯수
+
+        Page<LetterEntity> entityList // Repository 에서 정보를 가져와야함 서비스에서 가져오면 페이징처리를 수동으로 만들어야함!!
+                = letterRepository.findByFromLetter( memberService.getEntity().getMno() , pageable );
+                // 멤버서비스에서 회원정보중 회원번호를 가져오고 // pageable도 가져온다.
         //사용자 기준으로 1을 입력해서 -1해주기 표시 게시물수 2 , 내림차순(lno)
-        Pageable pageable = PageRequest.of(pageDto.getPage()-1,5,Sort.by(Sort.Direction.DESC,"lno")) ;
-        //PageRequest.of(현재페이지번호, 표시할레코드수,정렬)
+       // PageRequest.of(현재페이지번호, 표시할레코드수,정렬)
          //view에 표시할 페이징번호 버튼 수
         List<LetterDto> ldto = new ArrayList<LetterDto>();//컨트롤에게 전달할 때 형변한 하기 위한 그릇
-        for(LetterEntity lntity : llist){ //페이지클래스를 보드엔티티에 저장
-            ldto.add(lntity.toDto()); } //보드디티오에 엔티티를 저장
+        for(LetterEntity lentity : entityList){ //페이지클래스를 letter엔티티에 저장
+            ldto.add( lentity.toDto());  // ldto에 lentity를 변환해서 넣기
+            ldto.get(0).setTotalletter(  entityList.getTotalElements() ); // setTotalletter : 전체 보낸 쪽지수
+        } //보드디티오에 엔티티를 저장
         //리액트 전달
-        // 오류 확인 pageDto.setList(ldto);
-        pageDto.setTotalBoards(llist.getTotalElements());    //전체 게시물 수
-        return pageDto;
+
+        return ldto;
 
     }
 
@@ -86,9 +91,6 @@ public class LetterService {
         }
         return dtoList;
     }
-
-
-
 }
 
 

@@ -1,7 +1,6 @@
 import React , { useState , useEffect } from 'react';
 import axios from "axios";
-import css from '../../css/member/mupdate.css'
-
+import css from '../../css/member/mupdate.css';
 
 export default function MUpdate(props){
 
@@ -12,7 +11,7 @@ export default function MUpdate(props){
     const [ login , setLogin ] = useState(null); // 로그인된 회원정보 state 생명주기 // 변경시 재 렌더링
     const handleLogin= () => {
         axios.get("/member/getloginMno")    //url
-            .then((res)=>{setLogin(res.data.split("_")[0]);})
+            .then((res)=>{setLogin(res.data.split("_")[0]); console.log("값 확인 : "+res.data)})
             .catch(err => {console.log('출력오류'+err);})
     }
     useEffect(handleLogin , []);    //로그인은 여기서 체크하는거임

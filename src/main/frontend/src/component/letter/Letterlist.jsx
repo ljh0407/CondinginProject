@@ -4,6 +4,7 @@ import axios from "axios";
 import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
+import Pagination from "react-js-pagination";
 
 
 export default function Letterlist(porps){
@@ -14,6 +15,10 @@ export default function Letterlist(porps){
     const [ selectItem , setSelectItem ] = useState(0);
 
     const [show, setShow] = useState(false);    // 닫기
+
+    const [page, setPage] = useState(1 );    // 닫기
+
+
     const handleClose = () => setShow(false);   // 쪽지닫기
     const handleShow = (i) => {
         setSelectItem(i);
@@ -27,7 +32,7 @@ export default function Letterlist(porps){
 
     function getletter()  {
         axios
-            .get("/letter/fromletter")
+            .get("/letter/fromletter" , { params : {"page" : page } } )
             .then( re => {
                 console.log( '쪽지리스트 : '+re.data );
                 setLetterList(re.data);
@@ -35,7 +40,12 @@ export default function Letterlist(porps){
             .catch(err => {console.log('리스트 오류'+err);})
     }
 
-    useEffect(getletter , [] );
+    useEffect(getletter , [page] );
+
+    const onPage = (page) => {
+        setPage(page)
+    }
+
 
     return(
         <div>
@@ -49,10 +59,16 @@ export default function Letterlist(porps){
                                 <td>{l.lcontent}</td>
                             </tr>
                         )
-
                     })
                 }
             </table>
+            <Pagination
+                activePage={ page  }
+                itemsCountPerPage = { 5 }
+                totalItemsCount = { LetterList[0].totalletter }
+                pageRangeDisplayed = { 5 }
+                onChange={ onPage }
+            />
 
             <Modal show={show} onHide={handleClose}>
                 <Modal.Header closeButton>
