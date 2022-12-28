@@ -59,16 +59,16 @@ export default function Home( props ){
                             })
                         }
                         <div id="promotion">   {/* git , notion 이미지 */}
-                            <a href="https://github.com/ljh0407/CondinginProject"> <img className="hongbo" src={git} /> </a>
-                            <a href="https://typhoon-swordtail-68e.notion.site/0e74dc862bbd45799d64654034bcfdc7"> <img className="hongbo" src={Notion} /> </a>
+                            <a href="https://github.com/ljh0407/CondinginProject" target='_blank' rel='noreferrer'> <img className="hongbo" src={git} /> </a>
+                            <a href="https://typhoon-swordtail-68e.notion.site/0e74dc862bbd45799d64654034bcfdc7" target='_blank' rel='noreferrer'> <img className="hongbo" src={Notion} /> </a>
                         </div>
                          <div className="banner">
                              <img className="conding" src={conding} />
-                             <img className="Intellij" src={Intellij} />
+                             <a href="https://www.jetbrains.com/ko-kr/idea/" target='_blank' rel='noreferrer'> <img className="Intellij" src={Intellij} /> </a>
                          </div>
                          <div className="banners">
-                             <img className="react" src={react} />
-                             <img className="springboot" src={springboot} />
+                              <a href="https://ko.reactjs.org/" target='_blank' rel='noreferrer'> <img className="react" src={react} /> </a>
+                              <a href="https://spring.io/projects/spring-boot" target='_blank' rel='noreferrer'> <img className="springboot" src={springboot} /> </a>
                          </div>
                     </article>
 

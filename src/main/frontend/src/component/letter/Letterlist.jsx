@@ -5,7 +5,7 @@ import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Pagination from "react-js-pagination";
-
+import StyleSheet from '../../css/Letter/Letterlist.css'; // css 불러오기
 
 export default function Letterlist(porps){
 
@@ -48,27 +48,30 @@ export default function Letterlist(porps){
 
 
     return(
-        <div>
-            <h3> 보낸 쪽지 함 </h3>
-            <table>
+        <div className="letterlistbox">
+            <h3 className="letterh3"> 보낸 쪽지 함 </h3>
+            <div className="homeline" > </div>
+            <table className="tablelist">
                 {
                     LetterList.map( (l, i ) => {
                         return(
-                            <tr>
-                                <td variant="primary" onClick={ () => handleShow(i) } >{ l.lfrom }</td>
+                            <tr className="listreturn">
+                                <td variant="primary" onClick={ () => handleShow(i) } >{ l.lfrom } </td>
                                 <td>{l.lcontent}</td>
                             </tr>
                         )
                     })
                 }
             </table>
-            <Pagination
-                activePage={ page  }
-                itemsCountPerPage = { 5 }
-                totalItemsCount = { LetterList[0].totalletter }
-                pageRangeDisplayed = { 5 }
-                onChange={ onPage }
-            />
+            <div className="Pagination" >
+                <Pagination
+                    activePage={ page  }
+                    itemsCountPerPage = { 5 }
+                    totalItemsCount = { LetterList[0].totalletter }
+                    pageRangeDisplayed = { 5 }
+                    onChange={ onPage }
+                />
+            </div>
 
             <Modal show={show} onHide={handleClose}>
                 <Modal.Header closeButton>

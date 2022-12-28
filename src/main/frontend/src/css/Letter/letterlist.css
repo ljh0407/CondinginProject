@@ -1,0 +1,42 @@
+/* 쪽지 박스 */
+.letterlistbox{
+    background-color: #f0f8ff;
+    border-radius: 3%;
+    height: 400px;
+    margin-left: 30%;
+    margin-top: 6%;
+    width: 450px;
+}
+
+/* 보낸 쪽지 함  h3 */
+.letterh3{
+    font-size: 40px;
+    margin-left: 17%;
+    margin-top: 2%;
+}
+
+
+/* table */
+
+.tablelist{
+    border-collapse: separate;
+    border-spacing: 30px 1px;
+    border-inline-width: inherit;
+}
+
+
+.listreturn{
+    line-height: 3rem;
+    border-bottom: 1px solid;
+    font-size: 13px;
+}
+
+
+
+
+
+/* Pagination 안먹혀서 div로 감싸줌 천재다 */
+.Pagination{
+    margin-left: 20%;
+    margin-top: 9%;
+}

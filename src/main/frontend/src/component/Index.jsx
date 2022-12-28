@@ -42,7 +42,7 @@ export default function Index( props ){
                         <Route path="/board/bwrite/:cno" element={ <Bwrite />} /> {/*// 글쓰기*/}
                         <Route path="/board/bview/:bno" element={ <Bview />} /> {/*// 개별글보기*/}
                         <Route path="/letter/lwrite" element={ <Lwrite />} />   {/*//쪽지*/}
-                        <Route path="/letter/letterlist" element={ <Letterlist />} />   {/*//쪽지함*/}
+                        <Route path="/letter/letterlist" element={ <Letterlist />}  />   {/*//쪽지함*/}
                         <Route path="/letter/tolist" element={ <ToLetter />} />   {/*//받은쪽지함*/}
                         <Route path="/letter/letterview" element={ <Lview />} />   {/*//받은쪽지함*/}
                         <Route path="/board/update/:bno" element={ <Bupdate />} />   {/*//게시글 수정*/}
