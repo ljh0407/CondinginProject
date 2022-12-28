@@ -47,8 +47,8 @@ public class LetterController {
     }
 
     @GetMapping("/toletter") // 받은 쪽지리스트 출력
-    public List<LetterDto> tolist(){
-        return letterService.tolist();
+    public List<LetterDto> tolist(@RequestParam("page") int page){
+        return letterService.tolist(page);
     }
 
 

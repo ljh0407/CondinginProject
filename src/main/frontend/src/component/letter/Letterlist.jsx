@@ -16,8 +16,7 @@ export default function Letterlist(porps){
 
     const [show, setShow] = useState(false);    // 닫기
 
-    const [page, setPage] = useState(1 );    // 닫기
-
+    const [page, setPage] = useState(1 );    // 페이지
 
     const handleClose = () => setShow(false);   // 쪽지닫기
     const handleShow = (i) => {
