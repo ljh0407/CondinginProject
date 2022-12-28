@@ -31,8 +31,6 @@ public class RereplyEntity extends BaseEntity {
     private  MemberEntity memberEntity;
 
 
-
-
     public RereplyDto toDto(){
         return RereplyDto
                 .builder()

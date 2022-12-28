@@ -14,7 +14,6 @@ import bviewImg from '../../img/bviewImg.png'
 
 import Rereply from './Rereply'
 
-
 let replyContent = ''; // 댓글내용
 
 export default function Bview(props){   //상세보기
@@ -27,7 +26,6 @@ export default function Bview(props){   //상세보기
     const handleShow = () => setShow(true);     // 닫기 버튼
 
     const handleSend = () => {
-
         // 1. 받는사람 , 내용
         let lcontent = document.querySelector(".lcontent").value;
         axios//post의 url                        받는사람의 이메일(글작성자) 내용
@@ -127,7 +125,6 @@ export default function Bview(props){   //상세보기
                 setReplyDto( res.data );
                 })
             .catch(err => {console.log(err)});
-
     }
 
     //8.댓글 삭제하기
@@ -146,15 +143,11 @@ export default function Bview(props){   //상세보기
     function setrerply (rno,i) {
         alert("대댓글")
         alert(rno)
-
         let rercomments =  document.querySelectorAll(".rercomment") //  .rercomment class명 모두  배열로 가져오기
-
-
         let data={
             "rno" : rno ,
             rercomment : rercomments.item(i).value // 해당 선택한 i 번째 .rercomment의 입력된 데이터 호출
         }
-
         console.log( i )
         console.log( data );
         //console.log(data)
@@ -178,8 +171,6 @@ export default function Bview(props){   //상세보기
 //            })
 //    }
 
-
-    //대댓글 삭제하기
 
     //---------------------------[글상세보기]----------------------------------//
     return(
@@ -253,11 +244,7 @@ export default function Bview(props){   //상세보기
                         <span className="icon badIcon">아이콘{/*싫어요 아이콘이 들어갈 예정입니다.*/}</span>
                         <span onClick={bbadBtn} className="bbad">{board.bbad} </span>
                     </div>
-
                 </div>{/*goodNbadSection*/}
-
-
-
 
                 {/* 작성자와 로그인이 같으면 버튼 노출*/}
                 <div className="btnSection">
@@ -310,7 +297,7 @@ export default function Bview(props){   //상세보기
 
                             {/*//////////////////////////////////////대댓글출력공간/////////////////////////////////////*/}
 
-                                <Rereply data = { r.rereplyDtos } />
+                                <Rereply data = { r.rereplyDtos } />{/*중첩이 되지 않아 Rereply파일일을 만들었습니다.*/}
 
                             </>
                         )

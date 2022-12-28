@@ -131,9 +131,9 @@ public class ReplyService {
 //    }
     //6.대댓글 삭제하기
     @Transactional
-    public boolean deleterereply(int rno ){
-        rereplyRepository.findById(rno);
-        Optional<RereplyEntity> optional = rereplyRepository.findById(rno);
+    public boolean deleterereply(int reno ){
+        rereplyRepository.findById(reno);
+        Optional<RereplyEntity> optional = rereplyRepository.findById(reno);
         if(optional.isPresent()){
             RereplyEntity rereplyEntity = optional.get();
             rereplyRepository.delete(rereplyEntity); //엔티티 조작
