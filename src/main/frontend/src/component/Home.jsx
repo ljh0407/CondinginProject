@@ -37,12 +37,12 @@ export default function Home( props ){
                     <div className="rightSection">
                         <div className="section01">
                             <div className="topSection section">
-                                <HomeBoard cno={ 1 } bcname={ "공지사항" } />
-                                <HomeBoard cno={ 2 } bcname={ "질문있어요" } />
+                                <HomeBoard cno={ 1 } bcname={ "QnA" } />
+                                <HomeBoard cno={ 2 } bcname={ "채용/취업" } />
                             </div>
                             <div className="bottomSection section">
-                                <HomeBoard cno={ 3 } bcname={ "고민있어요" } />
-                                <HomeBoard cno={ 4 } bcname={ "인기게시판" } />
+                                <HomeBoard cno={ 3 } bcname={ "일상" } />
+                                <HomeBoard cno={ 4 } bcname={ "공부관련" } />
                             </div>
                         </div>
                         <div className="section02">

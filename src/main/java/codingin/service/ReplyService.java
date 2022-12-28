@@ -114,22 +114,8 @@ public class ReplyService {
             //Rereply.jsx & reply
             return true;
     }
-    
-    //5.대댓글 출력하기
-//    @Transactional
-//    public List<RereplyDto> getrereplylist( int rno ){
-//        //모든 대댓글을 가져온다
-//        List<RereplyEntity> rerplylist = replyRepository.findById(rno).get().getRereplyEntityList(); //모든 리스트 들을 가져온다.
-//            System.out.println("ReplyService 5.대댓글 출력하기 : " + rerplylist);
-//        List<RereplyDto> rerplydto = new ArrayList<>();
-//        for(RereplyEntity rereplyEntity : rerplylist){
-//            rerplydto.add(rereplyEntity.toDto());
-//        }
-//        System.out.println("ReplyService 5.대댓글 출력하기 :  " + rerplydto);
-//
-//        return rerplydto;
-//    }
-    //6.대댓글 삭제하기
+
+    //5.대댓글 삭제하기
     @Transactional
     public boolean deleterereply(int reno ){
         rereplyRepository.findById(reno);

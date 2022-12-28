@@ -29,6 +29,7 @@
 }
 /*작성시간 및 조회수 영역*/
 .dateNbviewSection{}
+.bviewText{}
 .bdate{}
 .bview{}
 
@@ -84,7 +85,7 @@
     display:flex;
     flex-direction: column;
     justify-content:space-around;
-    border:1px solid #000;
+    border:1px solid #ccc;
     border-radius:10px;
     padding:50px 0;
 }
@@ -108,6 +109,8 @@
     resize: none;
     width:80%;
     font-size: 14px;
+    padding: 20px;
+
 }
 
 .repleBtnSection{
@@ -115,7 +118,7 @@
     margin:30px 30px 0 0 ;
 }
 
-.relpleBtn{
+.relpleBtn{ /*댓글작성하기 버튼*/
     outline: none;
     cursor: pointer;
     border: none;
@@ -125,22 +128,57 @@
 
 .getRepleylist{}
 
+.replyBox{
+    margin: 30px 0;
+}
+
+.replyInformation{
+    display:flex;
+    align-items:center;
+}
 .memberProfileImg{}
 
 .profile{}
 
+.replyInfor{
+    margin-left:15px;
+    font-size:14px;
+}
+.replyMeamil{}
+.replyBdate{}
+
 .rereplyWriteBtn{
     border:none;
     background:none;
+    font-size:12px;
 }
 
+rereplyWriteBtn:hover{
+    color:#0090f9;
+}
+
+.replycomment{
+    padding:25px 0;
+}
+
+.replycomment>button{
+    margin:0 10px;
+}
+
+.rereplyWriteBtn,.replydeleteBtn{
+    border: none;
+    background: none;
+    font-size: 12px;
+}
+.
 .RereplyBox{
 
 }
 .RereplyBtn{
     float:right;
 }
-.rercomment{}
+
+
 /*대댓글*/
 .rercomment{
     resize:none;

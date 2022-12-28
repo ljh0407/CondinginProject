@@ -3,12 +3,6 @@ import axios from "axios";
 import css from "../../css/Reply/Rereply.css"
 
 
-
-
-
-
-
-
 export default function Rereply(porps){
 
 const deltererply=(reno)=>{
@@ -36,16 +30,23 @@ const deltererply=(reno)=>{
             porps.data.map( (rr) => {
                 return (
                 <>
+                    {/*css 작업은 Rereply.css에서 작업했습니다 참고부탁드립니다.*/}
                     <div className="rereplyWrap">
-                        <div className="rereplyProfileImg">{/*대댓글작성자의 프로필이미지 안들어옴*/}
-                            <img src={"/static/modia/"+rr.bfilename}/>
-                        </div>
-                        <div>
-                            <div>작성자 : {rr.memail}</div>{/*작성자..왜 null값이 들어올까요?*/}
-                            <div>작성시간 : {rr.bdate}</div>
-                        </div>
-                        <div> 대댓글내용 :  {rr.rercomment} </div>{/*대댓글내용*/}
-                        rero :{rr.reno}
+
+                        <div className="rereplyInformation">
+                            <div className="rereplyProfileImg">{/*대댓글작성자의 프로필이미지 안들어옴*/}
+                                <img src={"/static/modia/"+rr.bfilename}/>
+                            </div>{/*rereplyProfileImg*/}
+                            <div className="rereplyInfor">
+                                <div className="rereplyMemail">작성자 : {rr.memail}</div>{/*작성자..왜 null값이 들어올까요?*/}
+                                <div className="rereplyDate">작성시간 : {rr.bdate}</div>
+                            </div>{/*rereplyInfor*/}
+                        </div>{/*rereplyInformation*/}
+
+
+
+                        <div className="rereplyList">{rr.rercomment}</div>{/*대댓글내용*/}
+
 
                         {login == rr.memail && <button type="button" onClick={()=>deltererply(rr.reno)}> 삭제</button> }
 
