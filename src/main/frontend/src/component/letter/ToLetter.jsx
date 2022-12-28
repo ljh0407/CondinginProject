@@ -4,6 +4,7 @@ import axios from "axios";
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
+import Pagination from "react-js-pagination";
 export default function ToLetter(porps){
 
 
@@ -12,6 +13,8 @@ export default function ToLetter(porps){
     const [ selectItem2 , setSelectItem2 ] = useState(0);
 
     const [show, setShow] = useState(false);    // 닫기
+
+    const [page, setPage] = useState(1 );    // 페이지
     const handleClose = () => setShow(false);   // 쪽지닫기
     const handleShow = (i) => {
         setSelectItem2(i)   //랜더링 쪽지
@@ -20,19 +23,27 @@ export default function ToLetter(porps){
 
     //---------------------------[쪽지보내기]----------------------------------//
     // 쪽지 정보                                                   랜더링된 후 값을 넣기 위해 값 입력
-    const [ LetterList2 , setLetterList2 ] = useState( [ { lfrom : "" ,  lcontent : "" } ])
+    const [ LetterList2 , setLetterList2 ] = useState( [ { lto : "" ,  lcontent : "" } ])
 
     function getletter2()  {
         axios
-            .get("/letter/toletter")
+            .get("/letter/toletter" , { params : {"page" : page } })
             .then( re => {
-                console.log( '쪽지리스트 : '+re.data );
-                setLetterList2(re.data);
+                if( re.data.length == 0 ){
+                    alert("쪽지가 없습니다");
+                }else{
+                    console.log( '쪽지리스트 : '+re.data );
+                    setLetterList2(re.data);
+                }
             })
             .catch(err => {console.log('리스트 오류'+err);})
     }
 
-    useEffect(getletter2 , [] );
+    useEffect(getletter2 , [page] );
+
+    const onPage = (page) => {
+        setPage(page)
+    }
 
     // 받은 쪽지 리스트
     return(
@@ -47,7 +58,7 @@ export default function ToLetter(porps){
                             <Form.Label>보낸 사람</Form.Label>
                             <Form.Control
                                 type="email"
-                                Value={ LetterList2[selectItem2].lfrom }
+                                Value={ LetterList2 == false ? (LetterList2[selectItem2].lfrom) : null }
                                 className="lto"
                                 autoFocus
                                 disabled    //아이디 고정(내용 못고침)
@@ -81,6 +92,13 @@ export default function ToLetter(porps){
                     })
                 }
             </table>
+            <Pagination
+                activePage={ page  }
+                itemsCountPerPage = { 5 }
+                totalItemsCount = { LetterList2 == false ? (LetterList2.totalletter) : 0 }
+                pageRangeDisplayed = { 5 }
+                onChange={ onPage }
+            />
         </div>
     )
 }

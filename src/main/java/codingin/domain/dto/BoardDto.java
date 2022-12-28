@@ -18,6 +18,8 @@ public class BoardDto {
     
     private String memail; // 작성자 일단 테스트
 
+    private String mnick; // 닉네임 일단 테스트
+
     private MultipartFile bfile;// 첨부파일 객체[업로드용]
     private String bfilename;   //첨부파일 [ 출력용 ]
 
