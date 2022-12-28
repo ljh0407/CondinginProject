@@ -47,8 +47,9 @@ export default function ToLetter(porps){
 
     // 받은 쪽지 리스트
     return(
-        <div>
-            <Modal show={show} onHide={handleClose}>
+        <div className="letterlistbox">
+
+        <Modal show={show} onHide={handleClose}>
                 <Modal.Header closeButton>
                     <Modal.Title> 쪽지 보기 </Modal.Title>
                 </Modal.Header>
@@ -79,8 +80,9 @@ export default function ToLetter(porps){
                 </Modal.Footer>
             </Modal>    {/*모달 - 쪽지보내기 end */}
 
-            <h3> 받은 쪽지 함 </h3>
-            <table>
+            <h3 className="letterh3"> 보낸 쪽지 함 </h3>
+            <div className="homeline" > </div>
+            <table className="tablelist">
                 {
                     LetterList2.map( ( l , i ) => {
                         return(
@@ -92,13 +94,15 @@ export default function ToLetter(porps){
                     })
                 }
             </table>
+            <div className="Pagination" >
             <Pagination
                 activePage={ page  }
                 itemsCountPerPage = { 5 }
-                totalItemsCount = { LetterList2 == false ? (LetterList2.totalletter) : 0 }
+                totalItemsCount = { LetterList2 == false ? (LetterList2.totalletter) : 10 }
                 pageRangeDisplayed = { 5 }
                 onChange={ onPage }
             />
+            </div>
         </div>
     )
 }

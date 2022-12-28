@@ -69,13 +69,15 @@ export default function Letterlist(porps){
                 }
             </table>
             {
+                <div className="Pagination" >
                 <Pagination
                     activePage={ page  }
                     itemsCountPerPage = { 5 }
-                    totalItemsCount = { LetterList == false ? (LetterList.totalletter) : 0 }
+                    totalItemsCount = { LetterList == false ? (LetterList.totalletter) : 10 }
                     pageRangeDisplayed = { 5 }
                     onChange={ onPage }
                 />
+                </div>
              }
 
             <Modal show={show} onHide={handleClose}>
