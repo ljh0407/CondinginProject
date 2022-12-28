@@ -60,14 +60,19 @@ public class LetterService {
     }
 
     @Transactional  // 보낸 쪽지리스트 출력
-    public List<LetterDto> fromlist(){
-        //쪽지엔티티에 로그인 된 회원의 보낸 쪽지 가져오기
-        List<LetterEntity> entityList = memberService.getEntity().getLfromlist();
-        List<LetterDto> dtoList = new ArrayList<>();    //받은 쪽지 디티오리스트 생성
-        for(LetterEntity letterEntity : entityList){    //쪽지 엔티티에 가져온 회원의 받은 쪽지함 담기
-            dtoList.add(letterEntity.toDto());  //디티오에 회원의 받은 쪽지 담기
-        }
-        return dtoList;
+    public PageDto fromlist(PageDto pageDto){
+        Page<LetterEntity> llist = null; //게시물 먼저 선언함
+        //사용자 기준으로 1을 입력해서 -1해주기 표시 게시물수 2 , 내림차순(lno)
+        Pageable pageable = PageRequest.of(pageDto.getPage()-1,5,Sort.by(Sort.Direction.DESC,"lno")) ;
+        //PageRequest.of(현재페이지번호, 표시할레코드수,정렬)
+         //view에 표시할 페이징번호 버튼 수
+        List<LetterDto> ldto = new ArrayList<LetterDto>();//컨트롤에게 전달할 때 형변한 하기 위한 그릇
+        for(LetterEntity lntity : llist){ //페이지클래스를 보드엔티티에 저장
+            ldto.add(lntity.toDto()); } //보드디티오에 엔티티를 저장
+        //리액트 전달
+        // 오류 확인 pageDto.setList(ldto);
+        pageDto.setTotalBoards(llist.getTotalElements());    //전체 게시물 수
+        return pageDto;
     }
 
     @Transactional  // 받은 쪽지리스트 출력
@@ -81,20 +86,7 @@ public class LetterService {
         return dtoList;
     }
 
-    @Transactional // 쪽지 상세보기
-    public LetterDto viewletter(int lno){  // 선택한 lno
-        System.out.println("**쪽지번호"+lno);
-        // 입력받은 쪽지 번호 엔티티검색
-        Optional<LetterEntity> optional = letterRepository.findById(lno);
 
-        if(optional.isPresent()){
-            
-            LetterEntity letterEntity = optional.get(); // letter엔티티에서 가져오기
-            LetterDto letterDto = letterEntity.toDto(); // 디티오 -> 엔티티변환
-            System.out.println("쪽지상세보기 : "+letterDto);
-            return letterDto;
-        }else {return null;}
-    }
 
 }
 
