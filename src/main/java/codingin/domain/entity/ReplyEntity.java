@@ -2,6 +2,7 @@ package codingin.domain.entity;
 
 import codingin.domain.BaseEntity;
 import codingin.domain.dto.ReplyDto;
+import codingin.domain.dto.RereplyDto;
 import lombok.*;
 
 import javax.persistence.*;
@@ -39,6 +40,10 @@ public class ReplyEntity extends BaseEntity {
 
 
     public ReplyDto toDto(){
+
+        List<RereplyDto> list = new ArrayList<>();
+        rereplyEntityList.forEach( ( e ) ->{  list.add( e.toDto() );  });
+
         return ReplyDto
                 .builder()
                 .rno( this.rno )
@@ -52,6 +57,7 @@ public class ReplyEntity extends BaseEntity {
                                 this.getCdate().toLocalDate().toString()
                 )
                 .rcomment( this.rcomment)
+                .rereplyDtos( list )
                 .build();
     }
 }

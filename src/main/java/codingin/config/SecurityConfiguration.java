@@ -48,6 +48,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                     .ignoringAntMatchers("/member/upprofile") // 회원출력 get 사용
                     .ignoringAntMatchers("/reply/setreply") // 12.23 최예은 댓글작성 post 사용
                     .ignoringAntMatchers("/reply/deletereply") // 12.27 최예은 댓글삭제 deletet사용함
+                    .ignoringAntMatchers("/reply/setrerply") // 12.27 최예은 대댓글 작정하기 post 사용함
                 .and()
                 .oauth2Login() // 소셜 로그인 보안 설정
                 .defaultSuccessUrl("/")// 소셜 로그인 성공시 이동하는 URL

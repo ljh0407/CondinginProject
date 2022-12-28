@@ -54,34 +54,40 @@ public class LetterService {
             letterEntity.setLto( toMemberEntity );
             toMemberEntity.getLtolist().add( letterEntity );        // 받는사람
 
-            System.out.println("쪽지 : "+letterEntity.toString());
-
             return true;
         }
         else {return false;}
     }
 
     @Transactional  // 보낸 쪽지리스트 출력
-    public List<LetterDto> fromlist(){
-        //쪽지엔티티에 로그인 된 회원의 보낸 쪽지 가져오기
-        List<LetterEntity> entityList = memberService.getEntity().getLfromlist();
-        List<LetterDto> dtoList = new ArrayList<>();    //받은 쪽지 디티오리스트 생성
-        for(LetterEntity letterEntity : entityList){    //쪽지 엔티티에 가져온 회원의 받은 쪽지함 담기
-            dtoList.add(letterEntity.toDto());  //디티오에 회원의 받은 쪽지 담기
-            System.out.println("dtolist : "+dtoList);
-        }
-        return dtoList;
+    public List<LetterDto> fromlist( int page ){
+
+        Pageable pageable = PageRequest.of( page-1 , 5 ); // -1 : 현재페이지  5 : 한 페이지당 쪽지갯수
+
+        Page<LetterEntity> entityList // Repository 에서 정보를 가져와야함 서비스에서 가져오면 페이징처리를 수동으로 만들어야함!!
+                = letterRepository.findByFromLetter( memberService.getEntity().getMno() , pageable );
+                // 멤버서비스에서 회원정보중 회원번호를 가져오고 // pageable도 가져온다.
+        //사용자 기준으로 1을 입력해서 -1해주기 표시 게시물수 2 , 내림차순(lno)
+       // PageRequest.of(현재페이지번호, 표시할레코드수,정렬)
+         //view에 표시할 페이징번호 버튼 수
+        List<LetterDto> ldto = new ArrayList<LetterDto>();//컨트롤에게 전달할 때 형변한 하기 위한 그릇
+        for(LetterEntity lentity : entityList){ //페이지클래스를 letter엔티티에 저장
+            ldto.add( lentity.toDto());  // ldto에 lentity를 변환해서 넣기
+            ldto.get(0).setTotalletter(  entityList.getTotalElements() ); // setTotalletter : 전체 보낸 쪽지수
+        } //보드디티오에 엔티티를 저장
+        //리액트 전달
+
+        return ldto;
+
     }
 
     @Transactional  // 받은 쪽지리스트 출력
     public List<LetterDto> tolist(){
         //쪽지엔티티에 로그인 된 회원의 받은 쪽지 가져오기
         List<LetterEntity> entityList = memberService.getEntity().getLtolist();
-        System.out.println("바든쪽지"+entityList);
         List<LetterDto> dtoList = new ArrayList<>();    //받은 쪽지 디티오리스트 생성
         for(LetterEntity letterEntity : entityList){    //쪽지 엔티티에 가져온 회원의 보낸 쪽지함 담기
             dtoList.add(letterEntity.toDto());
-            System.out.println("받은:"+dtoList);   //디티오에 회원의 보낸 쪽지 담기
         }
         return dtoList;
     }
