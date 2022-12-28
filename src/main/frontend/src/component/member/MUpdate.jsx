@@ -29,12 +29,22 @@ export default function MUpdate(props){
             .catch(err => {console.log('회원수정에러 : '+err)})
     }
     return(
+
         <div className="bobobo">
-            <h1>프로필 수정하기</h1>
+            <div className="homeline" > </div>
+            <h1 className="uptitle">프로필 수정하기</h1>
             <form className="memberform" name="" value="post">
-                프로필사진 <input type="file" name="mprofile"/>  {/*프로필사진*/}
-                닉네임 <input type="text" className="mnick" name="mnick"/> {/*닉네임*/}
-                <button type="button" onClick={ update }>수정하기</button>
+                <div>
+                    <div class="button">
+                        <label for="chooseFile">
+                            👉 profile! 👈
+                        </label>
+                    </div>
+                    <input type="file" name="mprofile" id="chooseFile" />  {/*프로필사진*/}
+                </div>
+                <input type="text" className="mnick" name="mnick" placeholder="변경할 닉네임을 입력해 주세요."/> {/*닉네임*/}
+
+                <button type="button" onClick={ update } className="upbutton">수정하기</button>
             </form>
         </div>
     );

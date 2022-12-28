@@ -31,10 +31,10 @@ export default function Header(props) {
                     (   /*로그인 했을때*/
                         <nav id="menu">
                             <ul id="top_menu">
-                                <li> { login.mnick == null ? login.memail : login.mnick } </li>
-                                <a href="/member/profile"> <img className="mprofileImg" src={"/static/media/"+ login.mfilename } /> </a>
-                                <li> <a href="/member/logout" className="atag" style={{color:'#000'}}> 로그아웃     </a> </li>
-                                <li> <a href="/letter/Letterlist" className="atag" style={{color:'#000'}}>보낸 쪽지함</a> </li>
+                                <li> { login.mnick == null ? login.memail : login.mnick }  </li>
+                                <a href="/member/profile" className="amprofileImg"> <img className="mprofileImg" src={"/static/media/"+ login.mfilename } /> </a>
+                                <li> <a href="/member/logout" className="atag" style={{color:'#000'}}> 로그아웃 |     </a> </li>
+                                <li> <a href="/letter/Letterlist" className="atag" style={{color:'#000'}}>보낸 쪽지함 |</a> </li>
                                 <li> <a href="/letter/tolist" className="atag" style={{color:'#000'}}>받은 쪽지함</a> </li>
                             </ul>
                         </nav>
