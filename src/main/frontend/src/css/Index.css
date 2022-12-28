@@ -86,3 +86,36 @@
 .blist03{background: aquamarine; }
 
 .blist04{background: brown;  }*/
+
+
+/* 하단 광고 배너  */
+.banner{
+    display: flex;
+    margin-left: -96%;
+    margin-top: 65%;
+}
+
+.conding{
+    height: 80px;
+    margin-left: -85%;
+}
+
+.Intellij{
+    height: 80px;
+}
+
+/* 밑 배너  */
+.banners{
+    display: flex;
+    margin-left: -263%;
+    margin-top: 0;
+}
+
+
+.react{
+    height: 80px;
+}
+
+.springboot{
+    height: 80px;
+}
