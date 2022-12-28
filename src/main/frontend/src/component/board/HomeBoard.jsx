@@ -49,7 +49,7 @@ export default function HomeBoard( props ){
                             <div className="getViewSection">{/*상단 프로필 사진, 작성자, 리플수 및 조회수 및 좋아요 수 리플수는 없어질 수도 있습니다. */}
                                 <div className="memberInfor">
                                     <img className="profile" src={"/static/media/"+ b.mprofile } />
-                                    <li> { login.mnick == null ? login.memail : login.mnick }  </li>
+                                    <li> { b.mnick == null ? b.memail : b.mnick }  </li>
                                 </div>
                                 <div className="countSection">
                                     <span className="bgood"> { b.bgood} {/*좋아요수*/} </span>

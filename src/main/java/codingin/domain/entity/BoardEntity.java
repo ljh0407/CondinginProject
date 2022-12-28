@@ -72,6 +72,7 @@ public class BoardEntity extends BaseEntity {
                 ) //12.12 최예은 작성시간 추가
                 .mprofile(this.getMemberEntity().getMprofile()) // 12.12  최예은 프로필사진 추가
                 .memail(this.getMemberEntity().getMemail())
+                .mnick(this.memberEntity.getMnick())
                 .build();
     }
 }

@@ -23,14 +23,18 @@ export default function ToLetter(porps){
 
     //---------------------------[쪽지보내기]----------------------------------//
     // 쪽지 정보                                                   랜더링된 후 값을 넣기 위해 값 입력
-    const [ LetterList2 , setLetterList2 ] = useState( [ { lfrom : "" ,  lcontent : "" } ])
+    const [ LetterList2 , setLetterList2 ] = useState( [ { lto : "" ,  lcontent : "" } ])
 
     function getletter2()  {
         axios
             .get("/letter/toletter" , { params : {"page" : page } })
             .then( re => {
-                console.log( '쪽지리스트 : '+re.data );
-                setLetterList2(re.data);
+                if( re.data.length == 0 ){
+                    alert("쪽지가 없습니다");
+                }else{
+                    console.log( '쪽지리스트 : '+re.data );
+                    setLetterList2(re.data);
+                }
             })
             .catch(err => {console.log('리스트 오류'+err);})
     }
@@ -54,7 +58,7 @@ export default function ToLetter(porps){
                             <Form.Label>보낸 사람</Form.Label>
                             <Form.Control
                                 type="email"
-                                Value={ LetterList2[selectItem2].lfrom }
+                                Value={ LetterList2 == false ? (LetterList2[selectItem2].lfrom) : null }
                                 className="lto"
                                 autoFocus
                                 disabled    //아이디 고정(내용 못고침)
@@ -91,7 +95,7 @@ export default function ToLetter(porps){
             <Pagination
                 activePage={ page  }
                 itemsCountPerPage = { 5 }
-                totalItemsCount = { LetterList2[0].totalletter }
+                totalItemsCount = { LetterList2 == false ? (LetterList2.totalletter) : 0 }
                 pageRangeDisplayed = { 5 }
                 onChange={ onPage }
             />
