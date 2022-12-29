@@ -27,8 +27,7 @@ public class boardController {  //게시판
     }
 
     @GetMapping("/getbview")    //3.게시물 개별조회
-    public BoardDto getbview (@RequestParam("bno") int bno){
-        return boardService.getboard(bno);    }
+    public BoardDto getbview (@RequestParam("bno") int bno){ return boardService.getboard(bno); }
 
     @DeleteMapping("/delboard") //4.게시물 삭제하기
     public boolean delboard(@RequestParam("bno") int bno){
@@ -53,16 +52,6 @@ public class boardController {  //게시판
     @GetMapping("/setview")//8. 조회수 증가하기
     public void setview(@RequestParam("bno") int bno){
         boardService.setview(bno);
-    }
-
-    @GetMapping("/good")//9.좋아요 버튼
-    public void  bgood(@RequestParam("bno") int bno){
-        boardService.setgood(bno);
-    }
-
-    @GetMapping("/bad")//10.싫어요 버튼
-    public void bbad(@RequestParam("bno") int bno){
-        boardService.setbad(bno);
     }
 
 }

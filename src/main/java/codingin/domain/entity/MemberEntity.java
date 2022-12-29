@@ -57,13 +57,6 @@ public class MemberEntity extends BaseEntity {  //회원
     @Builder.Default
     private List<RereplyEntity>rereplyEntityList = new ArrayList<>();
 
-    //좋아요 엔티티 연관관계
-    @ManyToOne
-    @JoinColumn(name="uno")
-    @ToString.Exclude
-    private  UpdownEntity updownEntity;
-
-
     public MemberDto toDto(){
         return MemberDto
                 .builder()

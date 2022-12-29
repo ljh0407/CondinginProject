@@ -48,12 +48,6 @@ public class BoardEntity extends BaseEntity {   //게시판
     @Builder.Default
     private List<ReplyEntity>  replyEntityList = new ArrayList<>();
 
-    //주혁 좋아요 엔티티 연관관계 2022 12-06
-    @ManyToOne
-    @JoinColumn(name="uno")
-    @ToString.Exclude
-    private  UpdownEntity updownEntity;
-
     public BoardDto toDto(){
         return BoardDto
                 .builder()

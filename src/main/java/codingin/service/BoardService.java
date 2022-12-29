@@ -189,16 +189,4 @@ public class BoardService {
         entity.setBview( entity.getBview()+1 );
     }
 
-    @Transactional  //9.좋아요 증가
-    public void setgood( int bno ){
-        BoardEntity entity =  boardRepository.findById(bno).get(); //bno를 찾아와서 가져온다
-        entity.setBgood( entity.getBgood()+1 );//엔티티에 있는 좋아요+1
-    }
-
-    @Transactional  //10.싫어요 증가
-    public void setbad( int bno ){
-        BoardEntity entity =  boardRepository.findById(bno).get();
-        entity.setBbad( entity.getBbad()+1 );
-    }
-
 }// class end

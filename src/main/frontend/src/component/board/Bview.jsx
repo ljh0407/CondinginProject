@@ -78,23 +78,6 @@ export default function Bview(props){   //상세보기
             .then(res => {alert("게시물삭제성공"); window.location.href="/"})
     }
 
-    //4.좋아요 클릭
-    const bgoodBtn = ()=>{
-        //alert("좋아요")
-        axios
-            .get("/board/good",{params:{bno:params.bno}})
-            .then(res => {setgoodBtn(res.data);})
-            .catch(err=>{console.log(err);})
-    }
-
-    //5. 싫어요 클릭
-    const bbadBtn = ()=>{
-        //alert("싫어요")
-        axios
-            .get("/board/bad",{params:{bno:params.bno}})
-            .then(res => {setbadBtn(res.data);})
-            .catch(err=>{console.log(err);})
-    }
     //6.댓글
     const setreply = ()=>{
             //alert("댓글댓글")
@@ -158,11 +141,11 @@ export default function Bview(props){   //상세보기
                 else{ alert("대댓글 작성 실패")}
             })
     }
-//댓글쓰기 클릭하면 나타나는 대댓글
-function rereplyWrite(){
-    setReShow(!reshow);
-}
-const [reshow,setReShow] = useState(false);
+        //댓글쓰기 클릭하면 나타나는 대댓글
+        function rereplyWrite(){
+            setReShow(!reshow);
+        }
+        const [reshow,setReShow] = useState(false);
 
     //---------------------------[쪽지 보내기]----------------------------------//
     return(
