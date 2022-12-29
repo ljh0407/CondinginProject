@@ -57,11 +57,11 @@ export default function ToLetter(porps){    //받은 쪽지
                         <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
                             <Form.Label>보낸 사람</Form.Label>
                             <Form.Control
-                                type="email"    /* 쪽지 작성자 이메일 */
+                                type="email"
                                 Value={ LetterList2 == false ? (LetterList2[selectItem2].lfrom) : null }
                                 className="lto"
                                 autoFocus
-                                disabled    //아이디 고정(내용 못고침)
+                                disabled    /*아이디 고정(내용 못고침)*/
                             />
                         </Form.Group>
                         <Form.Group
@@ -85,7 +85,7 @@ export default function ToLetter(porps){    //받은 쪽지
                 {
                     LetterList2.map( ( l , i ) => {
                         return(
-                            <tr>    /* 쪽지 작성자 */
+                            <tr>
                                 <td variant="primary" onClick={ () => handleShow(i) } >{ l.lto }</td>
                                 <td>{ l.lcontent }</td> {/* 쪽지 내용 */}
                             </tr>
@@ -97,7 +97,7 @@ export default function ToLetter(porps){    //받은 쪽지
             <Pagination
                 activePage={ page  }    //페이징
                 itemsCountPerPage = { 5 }   //출력할 쪽지 수
-                totalItemsCount = { LetterList2 == false ? (LetterList2.totalletter) : 10 } /* 버튼 수 */
+                totalItemsCount = { LetterList2 == false ? (LetterList2.totalletter) : 5 } /* 버튼 수 */
                 pageRangeDisplayed = { 5 }  //표시할 버튼 수
                 onChange={ onPage }
             />

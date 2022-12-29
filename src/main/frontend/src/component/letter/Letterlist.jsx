@@ -29,7 +29,7 @@ export default function Letterlist(porps){  //from쪽지 리스트
     const [ LetterList , setLetterList ] = useState( [ { lfrom : "" ,  lcontent : "" } ])
     function getletter()  { //쪽지 정보 가져오기
         axios   //페이징은 경로로 인수받기
-            .get("/letter/toletter" , { params : {"page" : page } } )
+            .get("/letter/fromletter" , { params : {"page" : page } } )
             .then( re => {
                 if( re.data.length == 0 ){  //쪽지가 없을 때
                     alert("쪽지가 없습니다");
@@ -47,13 +47,13 @@ export default function Letterlist(porps){  //from쪽지 리스트
 
     return(
         <div className="letterlistbox">
-            <h3 className="letterh3"> 보낸 쪽지 함 </h3> //쪽지함 이름
+            <h3 className="letterh3"> 받은 쪽지 함 </h3>
             <div className="homeline" > </div>
             <table className="tablelist">
                 {   //쪽지정보와 인덱스 넘기기
                     LetterList.map( (l, i ) => {
                         return(
-                            <tr className="listreturn"> /*이메일 누르면 쪽지 열림*/
+                            <tr className="listreturn">
                                 <td variant="primary" onClick={ () => handleShow(i) } >{ l.lfrom } </td>
                                 <td>{l.lcontent}</td>   {/*쪽지 내용*/}
                             </tr>
@@ -64,26 +64,26 @@ export default function Letterlist(porps){  //from쪽지 리스트
             {
                 <div className="Pagination" >
                 <Pagination
-                    activePage={ page  }    //페이징
+                    activePage={ page  }    /*페이징*/
                     itemsCountPerPage = { 5 }   //출력할 전체 게시물 수
-                    totalItemsCount = { LetterList == false ? (LetterList.totalletter) : 10 }   //버튼 수
+                    totalItemsCount = { LetterList == false ? (LetterList.totalletter) : 5 }   //버튼 수
                     pageRangeDisplayed = { 5 }  //표시할 전체 버튼 수
                     onChange={ onPage } //페이징 버튼 표시
                 />
                 </div>
              }
 
-            <Modal show={show} onHide={handleClose}>    //모달 닫기
+            <Modal show={show} onHide={handleClose}>    {/*모달 닫기*/}
                 <Modal.Header closeButton>
                     <Modal.Title>쪽지 보기</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <Form>
                         <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                            <Form.Label>보낸 사람</Form.Label>
+                            <Form.Label>받는 사람</Form.Label>
                             <Form.Control
                                 type="email"    /*선택한 쪽지의 이메일 가져오기*/
-                                Value={ LetterList == false ? (LetterList[selectItem].lfrom) : null }
+                                Value={ LetterList == false ? (LetterList[selectItem].lto) : null }
                                 className="lfrom"
                                 autoFocus
                                 disabled    //아이디 고정(내용 못고침)

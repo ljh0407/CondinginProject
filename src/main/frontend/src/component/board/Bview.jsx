@@ -164,7 +164,7 @@ function rereplyWrite(){
 }
 const [reshow,setReShow] = useState(false);
 
-    //---------------------------[글상세보기]----------------------------------//
+    //---------------------------[쪽지 보내기]----------------------------------//
     return(
         <div>
             <Modal show={show} onHide={handleClose}>
@@ -211,7 +211,7 @@ const [reshow,setReShow] = useState(false);
 
                     <div className="memberInforSection">
                         <div className="memail">
-                            <span  variant="primary" onClick={handleShow} >{ login.mnick == null ? login.memail : login.mnick }</span>{/*작성자*/}
+                            <span  variant="primary" onClick={handleShow} >{ board.mnick == null ? board.memail : board.mnick }</span>{/*작성자*/}
                         </div>
                         <div className="dateNbviewSection">{/*작성시간 및 조회수*/}
                             <span className="bview"> <span className="Text">조회수 : </span>{board.bview} {/*조회수*/}</span>
