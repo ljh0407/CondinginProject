@@ -36,8 +36,9 @@ export default function HomeBoard( props ){
     /* ------------ 5. html or jsx표현식 { }------------------*/
     return(
         <div className="blist">
-            <h3> <a href={"/board/"+props.cno} style={{textDecoration: "none",color:"#000"}}> { props.bcname} </a> </h3>
-
+            <div className="titlebox">
+                <h3 className="category"> <a href={"/board/"+props.cno} style={{textDecoration: "none",color:"#000"}}> { props.bcname} </a> </h3>
+            </div>
             {
                 getdesclist.map( (b) => {
                     return (
@@ -48,8 +49,8 @@ export default function HomeBoard( props ){
                                     <li> { b.mnick == null ? b.memail : b.mnick }  </li>    {/* 닉네임없으면 이메일 표시 */}
                                 </div>
                                 <div className="countSection">
-                                    <span className="bgood"> { b.bgood} {/*좋아요수*/} </span>
-                                    <span className="bview"> { b.bview} {/*조회수*/} </span>
+                                    {/*<span className="bgood"> { b.bgood} 좋아요수 </span>*/}
+                                    <span className="bview"> <span className="bviewText">조회수 : </span> { b.bview} {/*조회수*/} </span>
                                     <span className="bdate"> { b.bdate} {/*작성시간*/} </span>
                                 </div>
                             </div>

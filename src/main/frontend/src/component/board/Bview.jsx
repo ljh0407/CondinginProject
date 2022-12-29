@@ -14,7 +14,6 @@ import bviewImg from '../../img/bviewImg.png'
 
 import Rereply from './Rereply'
 
-
 let replyContent = ''; // 댓글내용
 
 export default function Bview(props){   //상세보기
@@ -27,7 +26,6 @@ export default function Bview(props){   //상세보기
     const handleShow = () => setShow(true);     // 닫기 버튼
 
     const handleSend = () => {
-
         // 1. 받는사람 , 내용
         let lcontent = document.querySelector(".lcontent").value;
         axios//post의 url                        받는사람의 이메일(글작성자) 내용
@@ -46,7 +44,6 @@ export default function Bview(props){   //상세보기
     const params = useParams();  //경로[URL]상의 매개변수 가져올때
     //게시물 , 리랜더링될 게시물           // 게시물 메모리
     const [ board , setBoard ] = useState({ });
-
     //좋아요버튼
     const [goodBtn,setgoodBtn] = useState([]);
     //싫어요버튼
@@ -127,7 +124,6 @@ export default function Bview(props){   //상세보기
                 setReplyDto( res.data );
                 })
             .catch(err => {console.log(err)});
-
     }
 
     //8.댓글 삭제하기
@@ -144,19 +140,16 @@ export default function Bview(props){   //상세보기
 
     //9.대댓글 작성하기
     function setrerply (rno,i) {
-        alert("대댓글")
-        alert(rno)
-
+        //alert("대댓글")
+        //alert(rno)
         let rercomments =  document.querySelectorAll(".rercomment") //  .rercomment class명 모두  배열로 가져오기
-
 
         let data={
             "rno" : rno ,
             rercomment : rercomments.item(i).value // 해당 선택한 i 번째 .rercomment의 입력된 데이터 호출
         }
-
-        console.log( i )
-        console.log( data );
+        //console.log( i )
+        //console.log( data );
         //console.log(data)
        axios
            .post("/reply/setrerply" ,data )
@@ -165,21 +158,11 @@ export default function Bview(props){   //상세보기
                 else{ alert("대댓글 작성 실패")}
             })
     }
-
-    //10.대댓글 출력하기
-//
-//    function getrereplylist(rno){
-//        axios
-//            .get("/reply/getrereplylist",{params:{"rno":rno}})
-//            .then(res=>{
-//                console.log(res.data)
-//                console.log(res)
-//                setRereplyDto(res.data)
-//            })
-//    }
-
-
-    //대댓글 삭제하기
+//댓글쓰기 클릭하면 나타나는 대댓글
+function rereplyWrite(){
+    setReShow(!reshow);
+}
+const [reshow,setReShow] = useState(false);
 
     //---------------------------[글상세보기]----------------------------------//
     return(
@@ -231,8 +214,9 @@ export default function Bview(props){   //상세보기
                             <span  variant="primary" onClick={handleShow} >{ login.mnick == null ? login.memail : login.mnick }</span>{/*작성자*/}
                         </div>
                         <div className="dateNbviewSection">{/*작성시간 및 조회수*/}
-                            <span className="bdate">{board.bdate} {/*작성시간*/}</span>
-                            <span className="bview">{board.bview} {/*조회수*/}</span>
+                            <span className="bview"> <span className="Text">조회수 : </span>{board.bview} {/*조회수*/}</span>
+                            <span className="bdate"> <span className="Text">작성시간 : </span>{board.bdate} {/*작성시간*/}</span>
+
                         </div>
                     </div>{/*memberInforSection*/}
                 </div>{/*memberWrap*/}
@@ -242,21 +226,11 @@ export default function Bview(props){   //상세보기
                 {/*내용영역입니다.*/}
                 <div dangerouslySetInnerHTML={{__html:board.bcontent }} className="bcontent"></div>  {/*dangerouslySetInnerHTML={{__html:board.bcontent }} p태그 제거 html형식으로 뿌리기*/}
 
-                <div className="goodNbadSection">{/*좋아요 및 싫어요 영역*/}
-                    <div className="goodMbadBtn">
-                        <span className="icon goodIcon">아이콘{/*좋아요 아이콘이 들어갈 예정입니다.*/}</span>
-                        <span onClick={bgoodBtn} className="bgood"> {board.bgood}  </span>
-                    </div>
-                    <div className="goodMbadBtn">
-                        <span className="icon badIcon">아이콘{/*싫어요 아이콘이 들어갈 예정입니다.*/}</span>
-                        <span onClick={bbadBtn} className="bbad">{board.bbad} </span>
-                    </div>
 
-                </div>{/*goodNbadSection*/}
 
                 {/* 작성자와 로그인이 같으면 버튼 노출*/}
                 <div className="btnSection">
-                    { login==board.memail && <button type="button" onClick={onDelete} className="deleteBtn btn">삭제</button> }
+                    { login == board.memail && <button type="button" onClick={onDelete} className="deleteBtn btn">삭제</button> }
                     { login == board.memail && <button type="button" onClick={ getUpdate } className="updateBtn btn"> 수정 </button>  }
                 </div>
 
@@ -266,44 +240,72 @@ export default function Bview(props){   //상세보기
 
                 <form className="repleWrap">
                     <div className="repleSection">
-                        {/*<img className="repleProfile" src={"/static/media/"+ login.mprofile } />*/}
-
                         <img className="repleProfile" src={"/static/media/"+ login.mprofile } />{/*댓글작성자의 프로필 사진입니다.*/}
+
                         <textarea
                             className="replyContent"
-                            placeholder = {  login == '' ? "로그인후 댓글 작성가능합니다." : "댓글 작성이 가능합니다."  }
+                            placeholder = {  login == '' ? "로그인후 댓글 작성가능합니다." : "생각의 차이를 인정하고 공감해 주세요."  }
                             >
                         </textarea>{/*댓글내용입니다.*/}
-                    </div>
+
+                    </div>{/*repleSection*/}
+
                     <div className="repleBtnSection">
-                        <button type="button" className="enrollment" onClick={ setreply }>작성하기</button>    {/*함수실행*/}
+                        <button type="button" className="relpleBtn" onClick={ setreply }>작성하기</button>    {/*함수실행*/}
                     </div>
                 </form>{/*repleWrap*/}
 
                 <div className="getRepleylist">
-                    {/*여기에 댓글이 출력이 될 예정입니다.*/}
+                    {/*/////////////////////여기에 댓글이 출력이 될 예정입니다./////////////////////*/}
                 {
                     ReplyDto.map((r , i)=>{
                         return(
                             <>
-                            <div className="memberProfileImg">
-                                <img className="profile" src={"/static/media/"+ r.bfilename } />{/*댓글을 작성한 사람의 프로필*/}
-                            </div>
 
-                            <div>
-                                <span>{r.bdate}</span>
-                            </div>
+                            <div className="replyBox">
+                                <div className="replyInformation">
+                                    <div className="memberProfileImg">{/*프로필이미지*/}
+                                        <img className="profile" src={"/static/media/"+ r.bfilename } />{/*댓글을 작성한 사람의 프로필*/}
+                                    </div>{/*memberProfileImg*/}
+                                    <div className="replyInfor">
+                                        <div className="replyMeamil">{r.memail}</div>
+                                        <div className="replyBdate">{r.bdate}</div>
+                                    </div>{/*replyInfor*/}
+                                </div>{/*replyInformation*/}
+                                <div className="replycomment">{r.rcomment}</div>{/*댓글내용입니다.*/}
+                                <button type="button" onClick={rereplyWrite} className="rereplyWriteBtn"> 댓글쓰기</button>
+                                {(r.memail === login.memail && (<button type="button" onClick={  ()=>replyDelete( r.rno ) } className="replydeleteBtn"> 삭제하기 </button>) )}
+                            </div>{/*replyBox*/}
 
-                            <div>{r.rcomment}</div>
-                            <div>rno : {r.rno}</div>
-                            { (r.memail === login.memail && (<button type="button" onClick={  ()=>replyDelete( r.rno ) }> 댓글 삭제하기 </button>) )    }
-                            <div>댓글쓰기</div>
-                                <textarea className="rercomment"> </textarea>{/*대댓글 입력하는 공간*/}
-                                <button type="button" onClick={ (  )=> setrerply( r.rno , i ) }>작성하기</button>
+                            {/*////////////////댓글쓰기  클릭하면 대댓글 창이 나옴////////////////*/}
 
-                            {/*//////////////////////////////////////대댓글출력공간/////////////////////////////////////*/}
+                            {reshow &&
+                            <>
+                                <div className="rereplyWrite">
+                                    <div className="RereplyBox">
+                                        <textarea
+                                            className="rercomment"
+                                            placeholder={login ==''? "로그인 후 댓글 작성이 가능합니다." : "생각의 차이를 인정하고 공감해 주세요."}
+                                            >
+                                        </textarea>{/*대댓글 입력하는 공간*/}
+                                    </div>
+                                    <button type="button" onClick={ (  )=> setrerply( r.rno , i ) } className="RereplyBtn">작성하기</button>
+                                </div>
 
-                                <Rereply data = { r.rereplyDtos } />
+                            </>
+                            }
+                             {/*얘를 안에 집어 넣으니 toggle 되지 않습니다.*/}
+                            <Rereply data = { r.rereplyDtos } />{/*중첩이 되지 않아 Rereply파일일을 만들었습니다.*/}
+
+                        {/*///////////////////////////////////////////////////////////////////////////////////*/}
+
+
+
+
+
+                            {/*/////////////////////////////////대댓글 입력하는 공간/////////////////////////////////*/}
+
+
 
                             </>
                         )

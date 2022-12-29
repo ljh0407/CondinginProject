@@ -40,16 +40,10 @@ public class ReplyController {  //댓글
         return replyService.setrereply(rereplyDto);
     }
 
-    //5. 대댓글 출력하기
-//    @GetMapping("gerrerply")
-//    public List<RereplyDto> getrereplylist(@RequestParam int rno){
-//        System.out.println("대댓글 출력하기 controller");
-//        return replyService.getrereplylist(rno);
-//    }
-
-
-    //6.대댓글 삭제하기
-
-
-
+    //5. 대댓글 삭제하기
+    @DeleteMapping("/deleterereply")
+    public boolean deleterereply(@RequestParam("reno") int reno){
+        System.out.println("대댓글삭제!");
+        return replyService.deleterereply(reno);
+    }
 }

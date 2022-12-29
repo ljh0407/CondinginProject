@@ -25,7 +25,7 @@ public class MemberService implements  OAuth2UserService< OAuth2UserRequest , OA
     @Autowired
     private MemberRepository memberRepository;
     //첨부파일 경로
-    String path = "C:\\Users\\504\\Desktop\\codingin\\build\\resources\\main\\static\\static\\media\\";
+    String path = "C:\\Users\\504\\Desktop\\codingin\\build\\resources\\main\\static\\static\\media\\";  // C드라이브-> upload 폴더 생성
 
     //* 첨부파일 업로드 [ 1. 쓰기메소드 2. 수정메소드 ] 사용
     @Transactional              //  memberDto : 쓰기,수정 대상     MemberEntity:원본

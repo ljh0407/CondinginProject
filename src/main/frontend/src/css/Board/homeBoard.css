@@ -1,6 +1,32 @@
 *{
 box-sizing: border-box;
 }
+
+
+.titlebox{
+    font-size: 25px;
+    font-weight: 700;
+    text-align: center;
+    border: 1px solid #ccc;
+    height: 50px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: url("../../img/categorytitleimg1.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.category{
+    margin:10px 0;
+}
+
+
+
+
+
+
 .sectionWrap{
     border-bottom: 1px solid #ccc;
     padding: 5px 10px;
@@ -23,6 +49,7 @@ box-sizing: border-box;
     height:30px;
     border-radius:50%;
     background-color:#ccc;
+    margin-right:7px;
 }
 /*작성자*/
 .memail{
@@ -31,8 +58,11 @@ box-sizing: border-box;
 .countSection{}
 .countSection>span{
     font-size:14px;
+    margin: 0 3px;
 }
-
+.bviewText{
+    font-size:11px;
+}
 
 .bgood{}
 .bview{}

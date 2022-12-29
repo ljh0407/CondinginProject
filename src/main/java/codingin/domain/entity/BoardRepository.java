@@ -23,4 +23,6 @@ public interface BoardRepository extends JpaRepository<BoardEntity , Integer> {
     @Query( value = "select * from board where cno=:cno ORDER BY bno desc limit 4 ;" ,nativeQuery = true)
     List<BoardEntity> getdesclist(int cno);
 
+    //
+
 }
