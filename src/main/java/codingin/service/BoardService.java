@@ -29,13 +29,16 @@ public class BoardService {
     //=============전역변수=============================//
     @Autowired
     private BoardRepository boardRepository;
+
     @Autowired
     private CategoryRepository categoryRepository;
+
     @Autowired
     private MemberService memberService;
+
     @Autowired
     private HttpServletRequest request; // 요청객체선언
-    //12.15 최예은 추가
+
     @Autowired
     private HttpServletResponse response; //응답객체 선언
     // 첨부파일 경로
@@ -108,7 +111,6 @@ public class BoardService {
 
     @Transactional  //페이징처리 page : 현재 페이지번호 , key : 검색필드명 , keyword : 검색 데이터 글 리스트 출력
     public PageDto getboardlist(PageDto pageDto){
-        //System.out.println("카테고리번호!!"+pageDto.getCno());
         Page<BoardEntity> elist = null; //게시물 먼저 선언함
         //사용자 기준으로 1을 입력해서 -1해주기 표시 게시물수 2 , 내림차순(bno기준)
         Pageable pageable = PageRequest.of(pageDto.getPage()-1,5,Sort.by(Sort.Direction.DESC,"bno")) ; //페이징설정
@@ -135,9 +137,7 @@ public class BoardService {
             BoardDto boardDto = boardEntity.toDto(); // 디티오를 엔티티로 변환
             return boardDto; //형변환된 dto 반환
         }//if end
-        else {
-            return null; //없으면 null 반환
-        }
+        else { return null; }//없으면 null 반환
     }
 
     @Transactional  //게시글 수정하기
@@ -172,7 +172,6 @@ public class BoardService {
         return dtolist; //반환
     }
 
-    /////////////////////////////////////////////////////////////////////////
     @Transactional //7.각 카테고리의 최신 글 가져오기
     public List<BoardDto> getdesclist( int cno ){
         List<BoardEntity> elist = boardRepository.getdesclist(cno); //query문으로 변경 boardrepository에 있습니다.
@@ -183,27 +182,23 @@ public class BoardService {
         return blist; //리턴
     }//7 end
 
-    //8조회수 증가하기 12.23 최예은
+    //8.조회수 증가하기
     @Transactional
     public void setview( int bno ){
         BoardEntity entity =  boardRepository.findById(bno).get();
         entity.setBview( entity.getBview()+1 );
     }
 
-    //9.좋아요 증가 12.23 최예은
-    @Transactional
+    @Transactional  //9.좋아요 증가
     public void setgood( int bno ){
         BoardEntity entity =  boardRepository.findById(bno).get(); //bno를 찾아와서 가져온다
         entity.setBgood( entity.getBgood()+1 );//엔티티에 있는 좋아요+1
     }
 
-    //10.싫어요 증가 12.23 최예은
-    @Transactional
+    @Transactional  //10.싫어요 증가
     public void setbad( int bno ){
         BoardEntity entity =  boardRepository.findById(bno).get();
         entity.setBbad( entity.getBbad()+1 );
     }
 
 }// class end
-
-//select * from board where bcno=1  ORDER BY bno=1 DESC limit 4 ;
