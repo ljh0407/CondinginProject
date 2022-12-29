@@ -170,12 +170,15 @@ rereplyWriteBtn:hover{
     background: none;
     font-size: 12px;
 }
-.
+
 .RereplyBox{
 
 }
+
 .RereplyBtn{
-    float:right;
+  float: right;
+  padding: 15px;
+  border: none;
 }
 
 

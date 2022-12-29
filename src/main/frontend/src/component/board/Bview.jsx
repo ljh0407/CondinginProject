@@ -44,7 +44,6 @@ export default function Bview(props){   //상세보기
     const params = useParams();  //경로[URL]상의 매개변수 가져올때
     //게시물 , 리랜더링될 게시물           // 게시물 메모리
     const [ board , setBoard ] = useState({ });
-
     //좋아요버튼
     const [goodBtn,setgoodBtn] = useState([]);
     //싫어요버튼
@@ -141,16 +140,16 @@ export default function Bview(props){   //상세보기
 
     //9.대댓글 작성하기
     function setrerply (rno,i) {
-        alert("대댓글")
-        alert(rno)
+        //alert("대댓글")
+        //alert(rno)
         let rercomments =  document.querySelectorAll(".rercomment") //  .rercomment class명 모두  배열로 가져오기
 
         let data={
             "rno" : rno ,
             rercomment : rercomments.item(i).value // 해당 선택한 i 번째 .rercomment의 입력된 데이터 호출
         }
-        console.log( i )
-        console.log( data );
+        //console.log( i )
+        //console.log( data );
         //console.log(data)
        axios
            .post("/reply/setrerply" ,data )
@@ -296,7 +295,6 @@ const [reshow,setReShow] = useState(false);
                             </>
                             }
                              {/*얘를 안에 집어 넣으니 toggle 되지 않습니다.*/}
-
                             <Rereply data = { r.rereplyDtos } />{/*중첩이 되지 않아 Rereply파일일을 만들었습니다.*/}
 
                         {/*///////////////////////////////////////////////////////////////////////////////////*/}
