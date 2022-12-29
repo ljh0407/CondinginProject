@@ -11,19 +11,25 @@
     font-style: normal;
 }
 
+.hdlogo{
+    width: 70%;
+    margin-top: 8%;
+}
 
 
 li{ list-style-type: none; }
 
 header{
     height: 166px;
-    /*border : solid 1px red; *//* 지워야함 */
+    display: flex;
+    align-items: center;
+
 }
 
 .box{
     width: 1100px;
     margin: 0 auto;
-   /* border : solid 1px red;  지워야함 */
+
 }
 
 #logo{

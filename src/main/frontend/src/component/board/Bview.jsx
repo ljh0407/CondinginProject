@@ -92,7 +92,7 @@ export default function Bview(props){   //상세보기
                 .then(res => {
                     //console.log( res );
                     //console.log( res.data );
-                    if(res.data == true){ alert("댓글등록이 완료되었습니다."); getrdplelist(); }
+                    if(res.data == true){ alert("댓글등록이 완료되었습니다."); getrdplelist();  }
                     else{ alert("댓글등록 실패") }
                 })
                 .catch(err => {console.log(err)});
@@ -213,8 +213,8 @@ export default function Bview(props){   //상세보기
 
                 {/* 작성자와 로그인이 같으면 버튼 노출*/}
                 <div className="btnSection">
-                    { login == board.memail && <button type="button" onClick={onDelete} className="deleteBtn btn">삭제</button> }
-                    { login == board.memail && <button type="button" onClick={ getUpdate } className="updateBtn btn"> 수정 </button>  }
+                    { login == board.memail  && login.mnick == board.mnick &&  <button type="button" onClick={onDelete} className="deleteBtn btn">삭제</button> }
+                    { login == board.memail && login.mnick == board.mnick && <button type="button" onClick={ getUpdate } className="updateBtn btn"> 수정 </button>  }
                 </div>
 
                 {/*////////////////////////////////댓글영역입니다.////////////////////////////////////////*/}
@@ -277,14 +277,14 @@ export default function Bview(props){   //상세보기
                             </>
                             }
                              {/*얘를 안에 집어 넣으니 toggle 되지 않습니다.*/}
-                                <Rereply data = { r.rereplyDtos } />{/*중첩이 되지 않아 Rereply파일일을 만들었습니다.*/}
+                                <Rereply data = { r.rereplyDtos } /> {/*중첩이 되지 않아 Rereply파일일을 만들었습니다.*/}
                         {/*///////////////////////////////////////////////////////////////////////////////////*/}
 
 
 
 
 
-                            {/*/////////////////////////////////대댓글 입력하는 공간/////////////////////////////////*/}
+
                             </>
                         )
                     })

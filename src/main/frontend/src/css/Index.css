@@ -78,14 +78,13 @@
     text-align: center;
 }
 
-/*
-.blist01{background: antiquewhite;}
+.titleSection{
+    min-width: 300px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 
-.blist02{background: aliceblue;  }
-
-.blist03{background: aquamarine; }
-
-.blist04{background: brown;  }*/
+}
 
 
 /* 하단 광고 배너  */

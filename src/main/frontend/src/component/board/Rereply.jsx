@@ -11,6 +11,7 @@ const deltererply=(reno)=>{
     axios
         .delete("/reply/deleterereply",{ params : { "reno" : reno }})
         .then(res=>{
+            console.log(res.data)
             if(res.data==true){alert("댓글삭제성공!")}
             else{alert("댓글삭제실패")}
         })
@@ -32,7 +33,6 @@ const deltererply=(reno)=>{
                 <>
                     {/*css 작업은 Rereply.css에서 작업했습니다 참고부탁드립니다.*/}
                     <div className="rereplyWrap">
-
                         <div className="rereplyInformation">
                             <div className="rereplyProfileImg">{/*대댓글작성자의 프로필이미지 안들어옴*/}
                                 <img src={"/static/modia/"+rr.bfilename}/>
@@ -47,7 +47,7 @@ const deltererply=(reno)=>{
 
                         <div className="rereplyList">{rr.rercomment}</div>{/*대댓글내용*/}
 
-                        {login == rr.memail && <button type="button" onClick={()=>deltererply(rr.reno)}> 삭제</button> }
+                        {login == rr.memail && <button type="button" onClick={()=>deltererply(rr.reno)}>삭제</button> }
 
 
                         {/*로그인 한 사람과 댓글 작성자가 일치해야 삭제 버튼이 보여짐*/}

@@ -7,25 +7,31 @@
     /*color: #51d4dd; 색상 고민중 */
     font-size: 30px;
     margin-top: 18px;
-
 }
 
 .awriting{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 30px;
-    margin-bottom: 1%;
+    text-decoration: none;
+    font-size: 1rem;
+    color: white;
+    padding: 10px 20px 10px 20px;
+    margin-top: 1%;
+    margin-left: 13%;
+    display: inline-block;
+    border-radius: 10px;
+    transition: all 0.1s;
+    transform: translateY(3px);
+    background-color: #51d4dd;
+    border-bottom: 5px solid #1f75d9;
+    font-family: monospace;
 }
 
 .clist{
     width: 50%;
-    margin-top: 2%;
     font-size: 100%;
     margin-left: 25%;
     background-color: white;
     width: 800px;
-    margin: 0 auto;
+    margin: 2% auto;
 }
 
 .got1{

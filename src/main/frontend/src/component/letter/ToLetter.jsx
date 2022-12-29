@@ -47,7 +47,6 @@ export default function ToLetter(porps){    //받은 쪽지
     // 받은 쪽지 리스트
     return(
         <div className="letterlistbox">
-
         <Modal show={show} onHide={handleClose}>    {/* 닫기 */}
                 <Modal.Header closeButton>
                     <Modal.Title> 쪽지 보기 </Modal.Title>
