@@ -96,7 +96,7 @@ export default function BoardList(props) {  //글목록
                                 <td className="got6">{b.bno}</td>
                                 {/*제목누르면 상세보기 */}
                                 <td onClick={() => loadView(b.bno)} className="got2">{b.btitle}</td>
-                                <td className="got7">{ login.mnick == null ? login[b].memail : login.mnick }</td>
+                                <td className="got7"> { b.mnick == null ? b.memail : b.mnick } </td>
                                 <td className="got8">{b.bdate}</td>
                                 <td className="got9">{b.bview}</td>
                             </tr>

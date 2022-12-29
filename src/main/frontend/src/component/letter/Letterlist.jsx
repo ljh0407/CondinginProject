@@ -5,6 +5,7 @@ import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Pagination from "react-js-pagination";
+
 import StyleSheet from '../../css/Letter/Letterlist.css'; // css 불러오기
 
 export default function Letterlist(porps){
@@ -16,10 +17,10 @@ export default function Letterlist(porps){
 
     const [show, setShow] = useState(false);    // 닫기
 
-    const [page, setPage] = useState(1 );    // 닫기
-
+    const [page, setPage] = useState(1 );    // 페이지
 
     const handleClose = () => setShow(false);   // 쪽지닫기
+
     const handleShow = (i) => {
         setSelectItem(i);
         setShow(true);
@@ -28,14 +29,18 @@ export default function Letterlist(porps){
     //---------------------------[쪽지보내기]----------------------------------//
 
 
-    const [ LetterList , setLetterList ] = useState( [ { lto : "" ,  lcontent : "" } ])
+    const [ LetterList , setLetterList ] = useState( [ { lfrom : "" ,  lcontent : "" } ])
 
     function getletter()  {
         axios
-            .get("/letter/fromletter" , { params : {"page" : page } } )
+            .get("/letter/toletter" , { params : {"page" : page } } )
             .then( re => {
-                console.log( '쪽지리스트 : '+re.data );
-                setLetterList(re.data);
+                if( re.data.length == 0 ){
+                    alert("쪽지가 없습니다");
+                }else{
+                    console.log( '쪽지리스트 : '+re.data );
+                    setLetterList(re.data);
+                }
             })
             .catch(err => {console.log('리스트 오류'+err);})
     }
@@ -63,15 +68,17 @@ export default function Letterlist(porps){
                     })
                 }
             </table>
-            <div className="Pagination" >
+            {
+                <div className="Pagination" >
                 <Pagination
                     activePage={ page  }
                     itemsCountPerPage = { 5 }
-                    totalItemsCount = { LetterList[0].totalletter }
+                    totalItemsCount = { LetterList == false ? (LetterList.totalletter) : 10 }
                     pageRangeDisplayed = { 5 }
                     onChange={ onPage }
                 />
-            </div>
+                </div>
+             }
 
             <Modal show={show} onHide={handleClose}>
                 <Modal.Header closeButton>
@@ -83,7 +90,7 @@ export default function Letterlist(porps){
                             <Form.Label>보낸 사람</Form.Label>
                             <Form.Control
                                 type="email"
-                                Value={LetterList[selectItem].lto }
+                                Value={ LetterList == false ? (LetterList[selectItem].lfrom) : null }
                                 className="lfrom"
                                 autoFocus
                                 disabled    //아이디 고정(내용 못고침)

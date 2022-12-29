@@ -43,12 +43,13 @@ public class LetterController {
 
     @GetMapping("/fromletter") // 보낸 쪽지리스트 출력
     public List<LetterDto> fromlist( @RequestParam("page") int page ){
+        System.out.println("test");
         return letterService.fromlist(page);
     }
 
     @GetMapping("/toletter") // 받은 쪽지리스트 출력
-    public List<LetterDto> tolist(){
-        return letterService.tolist();
+    public List<LetterDto> tolist(@RequestParam("page") int page){
+        return letterService.tolist(page);
     }
 
 
