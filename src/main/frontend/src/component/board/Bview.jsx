@@ -213,8 +213,8 @@ export default function Bview(props){   //상세보기
 
                 {/* 작성자와 로그인이 같으면 버튼 노출*/}
                 <div className="btnSection">
-                    { login == board.memail  && login.mnick == board.mnick &&  <button type="button" onClick={onDelete} className="deleteBtn btn">삭제</button> }
-                    { login == board.memail && login.mnick == board.mnick && <button type="button" onClick={ getUpdate } className="updateBtn btn"> 수정 </button>  }
+                    { (login.memail == board.memail  || login.mnick == board.mnick) &&  <button type="button" onClick={onDelete} className="deleteBtn btn">삭제</button> }
+                    { (login.memail == board.memail || login.mnick == board.mnick) && <button type="button" onClick={ getUpdate } className="updateBtn btn"> 수정 </button>  }
                 </div>
 
                 {/*////////////////////////////////댓글영역입니다.////////////////////////////////////////*/}

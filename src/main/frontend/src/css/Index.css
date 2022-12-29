@@ -90,31 +90,30 @@
 /* 하단 광고 배너  */
 .banner{
     display: flex;
-    margin-left: -96%;
+    margin-left: -151%;
     margin-top: 65%;
 }
 
 .conding{
-    height: 80px;
+    height: 100px;
     margin-left: -85%;
 }
 
 .Intellij{
-    height: 80px;
+    height: 100px;
 }
 
 /* 밑 배너  */
 .banners{
     display: flex;
-    margin-left: -263%;
+    margin-left: -365%;
     margin-top: 0;
 }
 
-
 .react{
-    height: 80px;
+    height: 100px;
 }
 
 .springboot{
-    height: 80px;
+    height: 100px;
 }

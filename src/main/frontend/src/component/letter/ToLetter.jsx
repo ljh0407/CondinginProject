@@ -84,7 +84,7 @@ export default function ToLetter(porps){    //받은 쪽지
                 {
                     LetterList2.map( ( l , i ) => {
                         return(
-                            <tr>
+                            <tr className="listreturn">
                                 <td variant="primary" onClick={ () => handleShow(i) } >{ l.lto }</td>
                                 <td>{ l.lcontent }</td> {/* 쪽지 내용 */}
                             </tr>

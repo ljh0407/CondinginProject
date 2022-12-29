@@ -34,55 +34,68 @@
     margin: 2% auto;
 }
 
+.td{
+    padding:15px;
+    border-bottom: 1px solid #ccc;
+}
+
 .got1{
-    background-color: #eeeeee;
+   /* background-color: #eeeeee;*/
     text-align: center;
 }
 
 .got2{
-    background-color: #eeeeee;
+    /*background-color: #eeeeee;*/
     text-align: center;
     padding-left: 10px;
+    cursor: pointer;
 }
 
 .got3{
-    background-color: #eeeeee;
+    /*background-color: #eeeeee;*/
     text-align: center;
     padding-left: 10px;
 }
 
 .got4{
-    background-color: #eeeeee;
+    /*background-color: #eeeeee;*/
     text-align: center;
     padding-left: 10px;
 }
 
 .got5{
-    background-color: #eeeeee;
+    /*background-color: #eeeeee;*/
     text-align: center;
     padding-left: 10px;
 }
 
-.got6{
-    background-color: #eeeeee;
+.table>td{
+    padding:15px 0;
+    border-bottom: 1px solid #cccccc;
     text-align: center;
+
+}
+
+.got6{
+    /*background-color: #eeeeee;*/
+
 }
 
 .got7{
-    background-color: #eeeeee;
-    text-align: center;
+    /*background-color: #eeeeee;*/
+
     padding-left: 10px;
 }
 
 .got8{
-    background-color: #eeeeee;
-    text-align: center;
+    /*background-color: #eeeeee;*/
+
     padding-left: 10px;
 }
 
 .got9{
-    background-color: #eeeeee;
-    text-align: center;
+   /* background-color: #eeeeee;*/
+
     padding-left: 10px;
 }
 
@@ -93,7 +106,7 @@
 /*===============================*/
 .searchbox{
     margin-left: 33%;
-    margin-top: 35%;
+    margin-top: 10%;
 }
 
 .key{

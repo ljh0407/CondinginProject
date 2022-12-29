@@ -74,11 +74,11 @@ export default function BoardList(props) {  //글목록
             </div>
             <table className="clist">
                 <tr>
-                    <td className="got1">순서</td>
-                    <td className="got2">제목</td>
-                    <td className="got3">이메일</td>
-                    <td className="got4">날짜</td>
-                    <td className="got5">조회수</td>
+                    <td className="got1 td">순서</td>
+                    <td className="got2 td">제목</td>
+                    <td className="got3 td">이메일</td>
+                    <td className="got4 td">날짜</td>
+                    <td className="got5 td">조회수</td>
                 </tr>
                 {
                     pageDto.list.map( (b) => {

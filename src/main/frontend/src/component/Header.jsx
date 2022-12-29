@@ -17,6 +17,7 @@ export default function Header(props) {
 
         <header>
             <div className="box">
+
                 <div id="logo">
                     <a href="/"> <img className="logo" src={logo} className="hdlogo" /> </a>   {/* 인덱스로 이동 */}
                 </div>

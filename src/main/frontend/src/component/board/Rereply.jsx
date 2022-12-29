@@ -43,8 +43,6 @@ const deltererply=(reno)=>{
                             </div>{/*rereplyInfor*/}
                         </div>{/*rereplyInformation*/}
 
-
-
                         <div className="rereplyList">{rr.rercomment}</div>{/*대댓글내용*/}
 
                         {login == rr.memail && <button type="button" onClick={()=>deltererply(rr.reno)}>삭제</button> }
