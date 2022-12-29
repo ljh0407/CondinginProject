@@ -6,7 +6,7 @@ import java.util.Map;
 
 @NoArgsConstructor @AllArgsConstructor
 @Getter@Setter@ToString@Builder
-public class OauthDto {
+public class OauthDto { //소셜
     private String memail;                      // 아이디 [이메일]
     private String mname;                       // 이름[닉네임]
     private String registrationId;              // auth 회사명
@@ -60,15 +60,6 @@ public class OauthDto {
                 .attributes( attributes )
                 .build();
     }
-
-    /*// 4. github 객체 생성 메소드
-    public static OauthDto ofGithub( String registrationId , String oauth2UserInfo , Map<String , Object> attributes ){
-        System.out.println("Github attributes : " + attributes);
-        return  OauthDto.builder()
-                .memail((String) attributes.get("email"))
-                .mname((String) attributes.get(""))
-                .build();
-    }*/
 
     // 4. dto --> ToEntity
     public MemberEntity toEntity(  ){

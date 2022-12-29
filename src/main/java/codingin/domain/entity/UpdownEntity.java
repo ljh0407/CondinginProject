@@ -18,9 +18,9 @@ import java.util.List;
 @Builder
 @ToString
 
-public class UpdownEntity extends BaseEntity {
+public class UpdownEntity extends BaseEntity {  //좋아요 싫어요
 
-    //12-06 주혁 좋아요싫어요 엔티티 생성
+    // 좋아요싫어요 엔티티 생성
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private  int uno; //pk

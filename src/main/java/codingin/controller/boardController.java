@@ -6,18 +6,14 @@ import codingin.domain.dto.PageDto;
 import codingin.service.BoardService;
 import codingin.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.ClassPathResource;
-import org.springframework.core.io.Resource;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/board")
-public class boardController {
+public class boardController {  //게시판
     //====================서비스=========================//
-    @Autowired
-    private MemberService memberService;
     @Autowired
     private BoardService boardService;
     //=============================================//
@@ -56,24 +52,17 @@ public class boardController {
 
     @GetMapping("/setview")//8. 조회수 증가하기
     public void setview(@RequestParam("bno") int bno){
-        //System.out.println("들어왔니 조회수?");
         boardService.setview(bno);
     }
 
-
     @GetMapping("/good")//9.좋아요 버튼
     public void  bgood(@RequestParam("bno") int bno){
-        //System.out.println("좋아요 controller");
         boardService.setgood(bno);
     }
+
     @GetMapping("/bad")//10.싫어요 버튼
     public void bbad(@RequestParam("bno") int bno){
-        //System.out.println("싫어요 controller");
         boardService.setbad(bno);
     }
-
-
-
-
 
 }

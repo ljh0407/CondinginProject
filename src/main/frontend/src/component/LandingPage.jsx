@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import axios from 'axios';
 
-export default function LandingPage(props) {
+export default function LandingPage(props) {  //로그아웃
 
   const onClickHandler = () => {
       axios.get(`/member/logout`).then((response) => {

@@ -19,31 +19,20 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/letter")
-public class LetterController {
+public class LetterController { //쪽지
+
     @Autowired
     private LetterService letterService;
-    @Autowired
-    private HttpServletResponse response;
-    @Autowired
-    private HttpServletRequest request;
-    @Autowired
-    private MemberService memberService;
-    @Autowired
-    private MemberRepository memberRepository;
-    @Autowired
-    private LetterRepository letterRepository;
 
-// ------------------------- 기능 ------------------------------------
+// ----------------------------------------------------------------//
 
     @PostMapping("/setletter")  // 1. 쪽지쓰기
     public boolean setletter(@RequestBody LetterDto letterDto){
-     System.out.println("확인 : " + letterDto.toString() );
        return letterService.setletter(letterDto);
     }
 
     @GetMapping("/fromletter") // 보낸 쪽지리스트 출력
     public List<LetterDto> fromlist( @RequestParam("page") int page ){
-        System.out.println("test");
         return letterService.fromlist(page);
     }
 
@@ -51,7 +40,6 @@ public class LetterController {
     public List<LetterDto> tolist(@RequestParam("page") int page){
         return letterService.tolist(page);
     }
-
 
 } // end
 

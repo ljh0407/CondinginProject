@@ -4,7 +4,7 @@ import kakao from '../../img/kakao.png';
 import naver from '../../img/naver.png';
 import google from '../../img/google.png';
 
-export default function Login (props){
+export default function Login (props){  //로그인
     return(
         <div className="login">
             <h3 className="title">Login</h3>

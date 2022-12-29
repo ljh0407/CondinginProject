@@ -3,13 +3,8 @@ import {useParams} from "react-router-dom";
 import axios from "axios";
 import Pagination from 'react-js-pagination'
 import Bview from "./Bview"; // npm i react-js-pagination 설치 12.14 최예은 설치함
-
-
 import 'bootstrap/dist/css/bootstrap.css';
-
-
 import StyleSheet from '../../css/Board/boardList.css'; // css 불러오기
-
 
 export default function BoardList(props) {  //글목록
 
@@ -19,7 +14,6 @@ export default function BoardList(props) {  //글목록
         .get("/member/getloginMno")
         .then( (response) => { setLogin( response.data ); } )
 
-
     const params = useParams();  //경로[URL]상의 매개변수 가져올때
 
     // 서버로부터 pageInfo 요청 [실행조건 1. 랜더링이 될때 2. 검색할 때 3.카테고리선택할때 4.페이징할 때 --> 일반함수화] //
@@ -28,7 +22,7 @@ export default function BoardList(props) {  //글목록
     //      페이지 , 리랜더링                          게시물리스트
     const [pageDto , setPageDto] = useState({list:[]})
 
-    // 조회수 증가 12.23 최예은 추가함
+    // 조회수 증가
     const [setview,setSetview] = useState([])
 
     //--------------------1. 게시물출력-------------------------//
@@ -42,9 +36,6 @@ export default function BoardList(props) {  //글목록
             .catch(err => console.error(err))
     }
     useEffect(getboardlist,[pageInfo])
-
-
-
 
     // 페이징처리
     const onPage = (page) =>{
@@ -63,8 +54,8 @@ export default function BoardList(props) {  //글목록
                 keyword: document.querySelector('.keyword').value
             }
         )}
-    {/* 게시물번호 넘기기(상세보기) */}
-    const loadView=(bno)=>{
+
+    const loadView=(bno)=>{ {/* 게시물번호 넘기기(상세보기) */}
 
         ///////////////////조회수 증가하는 axios 12.23 최예은///////////////////
         axios
@@ -78,7 +69,7 @@ export default function BoardList(props) {  //글목록
     return(
 
         <div className="blistrout">
-            <div className="awriting">
+            <div className="awriting">  {/*카테고리 번호 넘기기*/}
                 <a href={"/board/bwrite/"+params.cno } className="atag" style={{color:'#000'}} >글쓰기</a>
             </div>
             <table className="clist">
@@ -93,12 +84,13 @@ export default function BoardList(props) {  //글목록
                     pageDto.list.map( (b) => {
                         return(
                             <tr className="table">
-                                <td className="got6">{b.bno}</td>
+                                <td className="got6">{b.bno}</td>   {/* 게시물 번호 */}
                                 {/*제목누르면 상세보기 */}
                                 <td onClick={() => loadView(b.bno)} className="got2">{b.btitle}</td>
+                                {/* 닉네임 없으면 이메일표시 */}
                                 <td className="got7"> { b.mnick == null ? b.memail : b.mnick } </td>
-                                <td className="got8">{b.bdate}</td>
-                                <td className="got9">{b.bview}</td>
+                                <td className="got8">{b.bdate}</td> {/* 작성일 */}
+                                <td className="got9">{b.bview}</td> {/* 조회수 */}
                             </tr>
                         )
                     })

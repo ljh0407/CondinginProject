@@ -1,0 +1,34 @@
+
+
+.rereplyInformation{
+    display:flex;
+    align-items:center;
+}
+
+.rereplyWrap{
+    width: 80%;
+    padding-left: 50px;
+    margin: 20px 30px;
+    /*border-left: 1px solid;*/
+}
+.rereplyProfileImg{
+    width:30px;
+    height:30px;
+    border-radius:50%;
+    border:1px solid #000;
+}
+
+.rereplyInfor{
+    display:flex;
+    flex-direction: column;
+    font-size:14px;
+    margin-left:10px;
+}
+
+.rereplyMemail{}
+
+.rereplyDate{}
+
+.rereplyList{
+    padding:25px 0;
+}

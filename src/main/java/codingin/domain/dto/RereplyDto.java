@@ -4,7 +4,8 @@ import lombok.*;
 
 @NoArgsConstructor @AllArgsConstructor
 @Getter @Setter @ToString @Builder
-public class RereplyDto {
+public class RereplyDto {   //대댓글
+
     private int reno; // 대댓글번호
     private int rno; // 댓글번호 추가
     private String rercomment; // 대댓글 입력  //입,출

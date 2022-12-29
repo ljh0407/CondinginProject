@@ -13,13 +13,13 @@ import java.util.List;
 @Entity // 엔티티 정의
 @Table(name = "rereply") // 테이블명 정의
 @AllArgsConstructor @NoArgsConstructor @Getter @Setter @Builder @ToString
-public class RereplyEntity extends BaseEntity {
+public class RereplyEntity extends BaseEntity { //대댓글
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int reno;
+    private int reno;   //대댓글 번호
 
-    private String rercomment; // 대댓글 내용 최예은 추가
-    
+    private String rercomment; // 대댓글 내용
+
     @ManyToOne
     @JoinColumn(name = "rno")
     @ToString.Exclude
@@ -30,15 +30,11 @@ public class RereplyEntity extends BaseEntity {
     @ToString.Exclude
     private  MemberEntity memberEntity;
 
-
-
-
     public RereplyDto toDto(){
         return RereplyDto
                 .builder()
                 .reno( this.reno )
                 .rercomment(this.rercomment)
-                //rerecommt작성하기
                 .bdate(
                     this.getCdate().toLocalDate().toString().equals(LocalDateTime.now().toString())
                             ?

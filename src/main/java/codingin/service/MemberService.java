@@ -20,26 +20,13 @@ import java.io.File;
 import java.util.*;
 
 @Service
-public class MemberService implements  OAuth2UserService< OAuth2UserRequest , OAuth2User> {
-    //=============전역변수=============================//
-    @Autowired
-    private BoardRepository boardRepository;
-    @Autowired
-    private CategoryRepository categoryRepository;
-    @Autowired
-    private LetterRepository letterRepository;
+public class MemberService implements  OAuth2UserService< OAuth2UserRequest , OAuth2User> { //회원
+    //==========================================//
     @Autowired
     private MemberRepository memberRepository;
-    @Autowired
-    private ReplyRepository replyRepository;
-    @Autowired
-    private RereplyRepository rereplyRepository;
-    @Autowired
-    private  UpdownRepository updownRepository;
     //첨부파일 경로
     String path = "C:\\Users\\504\\Desktop\\codingin\\build\\resources\\main\\static\\static\\media\\";  // C드라이브-> upload 폴더 생성
 
-    //====================================================//
     //* 첨부파일 업로드 [ 1. 쓰기메소드 2. 수정메소드 ] 사용
     @Transactional              //  memberDto : 쓰기,수정 대상     MemberEntity:원본
     public boolean profileupload( MemberDto memberDto , MemberEntity memberEntity ){
@@ -71,7 +58,6 @@ public class MemberService implements  OAuth2UserService< OAuth2UserRequest , OA
         String oauth2UserInfo = userRequest.getClientRegistration().getProviderDetails().getUserInfoEndpoint().getUserNameAttributeName();
         // 4. Dto 처리
         OauthDto oauthDto = OauthDto.of( registrationId , oauth2UserInfo , oAuth2User.getAttributes() );
-
         // *. Db 처리 1. 이메일로 엔티티 검색 [ 가입  or 기존회원 **구분 ]
         Optional< MemberEntity > optional = memberRepository.findByMemail(oauthDto.getMemail());
         MemberEntity memberEntity = null;
@@ -84,14 +70,12 @@ public class MemberService implements  OAuth2UserService< OAuth2UserRequest , OA
         Set<GrantedAuthority> authorities   = new HashSet<>();
         authorities.add( new SimpleGrantedAuthority( memberEntity.getMlevel() ) );
         // 5. 반환 MemberDto[ 일반회원 vs oauth : 통합회원 - loginDto ]
-            // 로그인 성공했을대 들어가는 정보들
-        MemberDto memberDto = new MemberDto();
+        MemberDto memberDto = new MemberDto(); // 로그인 성공했을대 들어가는 정보들
         memberDto.setAuthorities( authorities );    //로그인
         memberDto.setAttributes( oauthDto.getAttributes() );    //세션
         memberDto.setMfilename(memberEntity.getMprofile()); //프로필
         memberDto.setMemail( memberEntity.getMemail() );    //이메일
         memberDto.setMno( memberEntity.getMno() );    //이메일
-
         if( memberEntity.getMnick() == null ){  //닉네임이 없으면
             memberDto.setMnick( memberEntity.getMemail() ); //이메일 출력
         }else{  //닉네임이 있으면
@@ -125,7 +109,6 @@ public class MemberService implements  OAuth2UserService< OAuth2UserRequest , OA
         if(!optional.isPresent()){return null;} //로그인 확인 안되면 null 반환
         return optional.get();  //로그인정보 확인되면 전부 반환
     }
-
 
     @Transactional  //회원수정 시 프로파일 업로드
     public boolean setmupdate(MemberDto memberDto ){

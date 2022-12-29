@@ -15,7 +15,7 @@ import java.util.List;
 @Entity // 엔티티 정의
 @Table(name = "board") // 테이블명 정의
 @AllArgsConstructor@NoArgsConstructor@Getter@Setter@Builder@ToString
-public class BoardEntity extends BaseEntity {
+public class BoardEntity extends BaseEntity {   //게시판
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int bno;
@@ -69,10 +69,10 @@ public class BoardEntity extends BaseEntity {
                                 this.getCdate().toLocalTime().format(DateTimeFormatter.ofPattern("HH:mm:ss"))
                                 :
                         this.getCdate().toLocalDate().toString()
-                ) //12.12 최예은 작성시간 추가
-                .mprofile(this.getMemberEntity().getMprofile()) // 12.12  최예은 프로필사진 추가
-                .memail(this.getMemberEntity().getMemail())
-                .mnick(this.memberEntity.getMnick())
+                ) // 작성시간 추가
+                .mprofile(this.getMemberEntity().getMprofile()) // 프로필사진
+                .memail(this.getMemberEntity().getMemail()) //이메일
+                .mnick(this.memberEntity.getMnick())    //닉네임
                 .build();
     }
 }

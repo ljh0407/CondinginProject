@@ -6,9 +6,9 @@ import lombok.*;
 
 @NoArgsConstructor @AllArgsConstructor
 @Getter @Setter @ToString @Builder
-public class UpdownDto {
+public class UpdownDto {    //좋아요 싫어요
 
-    // 12-06 주혁 좋아요 싫어요 Dto  생성
+    // 좋아요 싫어요 Dto  생성
     private  int uno; // pk
 
     private  int likeno; //좋아요

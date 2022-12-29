@@ -3,15 +3,15 @@ import axios from "axios";
 import StyleSheet from '../../css/Letter/lwrite.css'; // css 불러오기
 
 
-export default function Lwrite(){
+export default function Lwrite(){   //쪽지쓰기
 
-    const setletter = () =>{
+    const setletter = () =>{    //쪽지보내기
 
-        let info = {
+        let info = {    //제목과 내용 받기
             ltitle : document.querySelector('.ltitle').value ,
             lcontent : document.querySelector('.lcontent').value
         }
-        console.log(info);
+
         axios
             .post("/letter/setletter" , info )
             .then( res => {
@@ -22,7 +22,6 @@ export default function Lwrite(){
             .catch( err => { console.log( err ); } )
     }
 
-    // 12-21 이태준 3:30 분 경 하다가 중단
     return(
 
         <div className="writing">
@@ -30,8 +29,7 @@ export default function Lwrite(){
         <div className="bar"></div>
             <input type="text" className="ltitle" placeholder="제목을 입력해 주세요." /><br/>
             <textarea className="lcontent" placeholder="500자 이하로 작성해주세요"></textarea><br/>
-              <input type="file" className="lfile" />
-              <br/>
+              <input type="file" className="lfile" /> <br/>
               <button type="button" onClick={setletter} className="lbutton">쪽지 보내기</button>
         </div>
     )

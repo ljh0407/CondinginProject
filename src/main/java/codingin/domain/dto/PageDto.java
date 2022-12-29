@@ -11,14 +11,14 @@ import java.util.List;
 @Setter
 @ToString
 @Builder
-public class PageDto {
+public class PageDto {  //페이징
     private int cno;       // 카테고리
     private int page ;      // 현재 페이지
     private String key;     // 검색 필드
     private String keyword; // 검색 단어
     @Builder.Default // 빌더 사용시 현재 객체가 기본적으로 할당
     private List<BoardDto> list = new ArrayList<BoardDto>();    // 검색된 결과 게시물 리스트
-    //12.15 최예은 추가 start
+
     private int startbtn;     //페이징 버튼 시작번호
     private int endbtn;        //페이징 버튼 끝번호
     ///end

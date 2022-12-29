@@ -4,9 +4,9 @@ import lombok.*;
 
 @NoArgsConstructor @AllArgsConstructor
 @Getter @Setter @ToString @Builder
-public class LetterDto {
-    private int lno;
-    private String lfrom; //보내는사람
+public class LetterDto {    //쪽지
+    private int lno;    //쪽지 번호
+    private String lfrom; //보내는 사람
     private String lto;    //받는 사람
     private String lcontent;   //내용
     private String ldata; // 작성날짜
