@@ -291,12 +291,10 @@ const [reshow,setReShow] = useState(false);
                                     </div>
                                     <button type="button" onClick={ (  )=> setrerply( r.rno , i ) } className="RereplyBtn">작성하기</button>
                                 </div>
-
                             </>
                             }
                              {/*얘를 안에 집어 넣으니 toggle 되지 않습니다.*/}
-                            <Rereply data = { r.rereplyDtos } />{/*중첩이 되지 않아 Rereply파일일을 만들었습니다.*/}
-
+                                <Rereply data = { r.rereplyDtos } />{/*중첩이 되지 않아 Rereply파일일을 만들었습니다.*/}
                         {/*///////////////////////////////////////////////////////////////////////////////////*/}
 
 
@@ -304,9 +302,6 @@ const [reshow,setReShow] = useState(false);
 
 
                             {/*/////////////////////////////////대댓글 입력하는 공간/////////////////////////////////*/}
-
-
-
                             </>
                         )
                     })
